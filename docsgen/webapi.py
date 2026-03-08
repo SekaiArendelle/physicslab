@@ -46,7 +46,7 @@ def main():
             else:
                 context += f"*  {line.lstrip()}\n"
 
-        context += f"对应的协程风格的api:\n" \
+        context += f"async version api:\n" \
             f"```Python\n" \
             f"async def {'async_' + fn_name}{async_method_signature}\n" \
             f"```\n"

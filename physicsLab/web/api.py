@@ -819,17 +819,17 @@ class User:
         skip: int = 0,
         comment_id: Optional[str] = None,
     ) -> dict:
-        """获取评论板信息
+        """Get comment board information
 
         Args:
-            target_id: 物实用户的ID/实验的id
+            target_id: ID of Wushi user / ID of the experiment
             target_type: User, Discussion, Experiment
-            take: 获取留言的数量
-            skip: 跳过的留言数量, 为(unix时间戳 * 1000)
-            comment_id: 从comment_id开始获取take条消息 (另一种skip的规则)
+            take: Number of comments to retrieve
+            skip: Number of comments to skip (value is unix timestamp * 1000)
+            comment_id: Retrieve `take` number of messages starting from this comment_id (an alternative skip rule)
 
         Returns:
-            dict: 物实api返回体结构
+            dict: Structure of the response body returned by Wushi API
         """
         if not isinstance(target_id, str):
             raise TypeError(

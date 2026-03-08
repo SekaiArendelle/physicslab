@@ -12,7 +12,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_ban(self, target_id: str, reason: str, length: int) -> Awaitable[dict]
 ```
@@ -34,7 +34,7 @@ Notes:
 *  Low-level API, do not use directly
 *  Use Experiment.update() and Experiment.upload() methods to publish experiments
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_confirm_experiment(self, summary_id: str, category: physicsLab.enums.Category, image_counter: int) -> Awaitable[dict]
 ```
@@ -51,27 +51,27 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_follow(self, target_id: str, action: bool = True) -> Awaitable[dict]
 ```
 
-## 获取评论板信息
+## Get comment board information
 ```Python
 def get_comments(self, target_id: str, target_type: str, take: int = 16, skip: int = 0, comment_id: str | None = None) -> dict
 ```
 
 Args:
-*  target_id: 物实用户的ID/实验的id
+*  target_id: ID of Wushi user / ID of the experiment
 *  target_type: User, Discussion, Experiment
-*  take: 获取留言的数量
-*  skip: 跳过的留言数量, 为(unix时间戳 * 1000)
-*  comment_id: 从comment_id开始获取take条消息 (另一种skip的规则)
+*  take: Number of comments to retrieve
+*  skip: Number of comments to skip (value is unix timestamp * 1000)
+*  comment_id: Retrieve `take` number of messages starting from this comment_id (an alternative skip rule)
 
 Returns:
-*  dict: 物实api返回体结构
+*  dict: Structure of the response body returned by Wushi API
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_comments(self, target_id: str, target_type: str, take: int = 16, skip: int = 0, comment_id: str | None = None) -> Awaitable[dict]
 ```
@@ -88,7 +88,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_derivatives(self, content_id: str, category: physicsLab.enums.Category) -> Awaitable[dict]
 ```
@@ -106,7 +106,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_experiment(self, content_id: str, category: physicsLab.enums.Category | None = None) -> Awaitable[dict]
 ```
@@ -119,7 +119,7 @@ def get_library(self) -> dict
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_library(self) -> Awaitable[dict]
 ```
@@ -135,7 +135,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_message(self, message_id: str) -> Awaitable[dict]
 ```
@@ -155,7 +155,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_messages(self, category_id: int, skip: int = 0, take: int = 16, no_templates: bool = True) -> Awaitable[dict]
 ```
@@ -168,7 +168,7 @@ def get_profile(self) -> dict
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_profile(self) -> Awaitable[dict]
 ```
@@ -188,7 +188,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_relations(self, user_id: str, display_type: str = 'Follower', skip: int = 0, take: int = 20, query: str = '') -> Awaitable[dict]
 ```
@@ -205,7 +205,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_summary(self, content_id: str, category: physicsLab.enums.Category) -> Awaitable[dict]
 ```
@@ -224,7 +224,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_supporters(self, content_id: str, category: physicsLab.enums.Category, skip: int = 0, take: int = 16) -> Awaitable[dict]
 ```
@@ -244,7 +244,7 @@ Returns:
 Notes:
 *  Only for compatibility, use `get_user_by_id` or `get_user_by_name` is recommended
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_user(self, msg: str, get_user_mode: physicsLab.enums.GetUserMode) -> Awaitable[dict]
 ```
@@ -260,7 +260,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_user_by_id(self, id: str) -> Awaitable[dict]
 ```
@@ -276,7 +276,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_get_user_by_name(self, name: str) -> Awaitable[dict]
 ```
@@ -292,7 +292,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_modify_information(self, target: str) -> Awaitable[dict]
 ```
@@ -312,7 +312,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_post_comment(self, target_id: str, target_type: str, content: str, reply_id: str | None = None, special: str | None = None) -> Awaitable[dict]
 ```
@@ -336,7 +336,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_query_experiments(self, category: physicsLab.enums.Category, tags: List[physicsLab.enums.Tag] | None = None, exclude_tags: List[physicsLab.enums.Tag] | None = None, languages: List[str] | None = None, exclude_languages: List[str] | None = None, user_id: str | None = None, take: int = 20, skip: int = 0, from_skip: str | None = None) -> Awaitable[dict]
 ```
@@ -353,7 +353,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_receive_bonus(self, activity_id: str, index: int) -> Awaitable[dict]
 ```
@@ -370,7 +370,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_remove_comment(self, comment_id: str, target_type: str) -> Awaitable[dict]
 ```
@@ -388,7 +388,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_remove_experiment(self, summary_id: str, category: physicsLab.enums.Category, reason: str | None = None) -> Awaitable[dict]
 ```
@@ -404,7 +404,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_rename(self, nickname: str) -> Awaitable[dict]
 ```
@@ -423,7 +423,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_star_content(self, content_id: str, category: physicsLab.enums.Category, star_type: int, status: bool = True) -> Awaitable[dict]
 ```
@@ -440,7 +440,7 @@ Args:
 Returns:
 *  dict: Physics-Lab-AR API response structure
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_unban(self, target_id: str, reason: str) -> Awaitable[dict]
 ```
@@ -461,7 +461,7 @@ Returns:
 Notes:
 *  This API is a low-level API, it is recommended to use the more complete Experiment.upload() and Experiment.update() methods for uploading images
 
-对应的协程风格的api:
+async version api:
 ```Python
 async def async_upload_image(self, policy: str, authorization: str, image_path: str) -> Awaitable[dict]
 ```
