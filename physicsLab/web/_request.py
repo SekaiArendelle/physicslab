@@ -2,7 +2,7 @@
 
 import json
 import urllib.request
-from physicsLab._typing import Union
+from physicsLab._typing import Union, Dict
 
 
 def get_http(domain: str, path: str, port: int = 80) -> bytes:
@@ -57,7 +57,7 @@ def get_https(domain: str, path: str, port: int = 443, verify: bool = True) -> b
 def post_http(
     domain: str,
     path: str,
-    header: dict,
+    header: Dict[str, str],
     body: bytes,
     port: int = 80,
 ) -> dict:
@@ -104,7 +104,7 @@ def post_http(
 def post_https(
     domain: str,
     path: str,
-    header: dict,
+    header: Dict[str, str],
     body: Union[bytes, dict],
     port: int = 443,
     verify: bool = True,
