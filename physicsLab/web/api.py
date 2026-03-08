@@ -516,19 +516,21 @@ class User:
             # If experiment ID is passed, first get summary to obtain ContentID
             content_id = self.get_summary(content_id, category)["Data"]["ContentID"]
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Contents/GetExperiment",
-            json={
-                "ContentID": content_id,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetExperiment",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "ContentID": content_id,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_experiment(
         self,
@@ -567,22 +569,24 @@ class User:
                 f"Parameter `image_counter` must be of type `int`, but got value `{image_counter}` of type `{type(image_counter).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/ConfirmExperiment",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/ConfirmExperiment",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "SummaryID": summary_id,
                 "Category": category.value,
                 "Image": image_counter,
                 "Extension": ".jpg",
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_confirm_experiment(
         self, summary_id: str, category: enums.Category, image_counter: int
@@ -624,23 +628,25 @@ class User:
             else "2411"
         )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Contents/RemoveExperiment",
-            json={
-                "Category": category.value,
-                "SummaryID": summary_id,
-                "Hiding": True,
-                "Reason": reason,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/RemoveExperiment",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
                 "x-API-Version": plar_ver,
             },
+            body={
+                "Category": category.value,
+                "SummaryID": summary_id,
+                "Hiding": True,
+                "Reason": reason,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_remove_experiment(
         self,
@@ -732,9 +738,16 @@ class User:
 
         assert isinstance(reply_id, str)
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Messages/PostComment",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Messages/PostComment",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "TargetID": target_id,
                 "TargetType": target_type,
                 "Language": "Chinese",
@@ -742,14 +755,9 @@ class User:
                 "Content": content,
                 "Special": special,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_post_comment(
         self,
@@ -786,20 +794,22 @@ class User:
                 f"Parameter `target_type` must be one of ['User', 'Discussion', 'Experiment'], but got value `{target_type}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Messages/RemoveComment",
-            json={
-                "TargetType": target_type,
-                "CommentID": comment_id,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Messages/RemoveComment",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "TargetType": target_type,
+                "CommentID": comment_id,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_remove_comment(
         self, comment_id: str, target_type: str
@@ -851,23 +861,25 @@ class User:
                 f"Parameter `target_type` must be one of ['User', 'Discussion', 'Experiment'], but got value `{target_type} of type '{target_type}'"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Messages/GetComments",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Messages/GetComments",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "TargetID": target_id,
                 "TargetType": target_type,
                 "CommentID": comment_id,
                 "Take": take,
                 "Skip": skip,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_comments(
         self,
@@ -900,16 +912,18 @@ class User:
                 f"Parameter `category` must be an instance of Category enum, but got value `{category}` of type `{type(category).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/GetSummary",
-            json={
-                "ContentID": content_id,
-                "Category": category.value,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetSummary",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
+            },
+            body={
+                "ContentID": content_id,
+                "Category": category.value,
             },
         )
 
@@ -922,7 +936,7 @@ class User:
                     "experiment not found(may be you select category wrong)",
                 )
 
-        return _check_response(response, callback)
+        return _check_response_json(response)
 
     async def async_get_summary(
         self, content_id: str, category: enums.Category
@@ -948,20 +962,22 @@ class User:
                 f"Parameter `category` must be an instance of Category enum, but got value `{category}` of type `{type(category).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/GetDerivatives",
-            json={
-                "ContentID": content_id,
-                "Category": category.value,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetDerivatives",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "ContentID": content_id,
+                "Category": category.value,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_derivatives(
         self, content_id: str, category: enums.Category
@@ -981,17 +997,19 @@ class User:
             raise TypeError(
                 f"Parameter `name` must be of type `str`, but got value `{name}` of type `{type(name).__name__}`"
             )
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/GetUser",
-            json={"Name": name},
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/GetUser",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={"Name": name},
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_user_by_name(self, name: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.get_user_by_name, name)
@@ -1009,17 +1027,19 @@ class User:
             raise TypeError(
                 f"Parameter `id` must be of type `str`, but got value `{id}` of type `{type(id).__name__}`"
             )
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/GetUser",
-            json={"ID": id},
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/GetUser",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={"ID": id},
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_user_by_id(self, id: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.get_user_by_id, id)
@@ -1071,19 +1091,21 @@ class User:
         Returns:
             _api_result: Physics-Lab-AR API response structure
         """
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Contents/GetProfile",
-            json={
-                "ID": self.user_id,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetProfile",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "ID": self.user_id,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_profile(self) -> Awaitable[_api_result]:
         return await _async_wrapper(self.get_profile)
@@ -1123,22 +1145,24 @@ class User:
                 f"Parameter `star_type` must be one of [0, 1], but got value `{star_type} of type '{star_type}'`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/StarContent",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/StarContent",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "ContentID": content_id,
                 "Status": status,
                 "Category": category.value,
                 "Type": star_type,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_star_content(
         self,
@@ -1224,19 +1248,21 @@ class User:
                 f"Parameter `message_id` must be of type `str`, but got value `{message_id}` of type `{type(message_id).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Messages/GetMessage",
-            json={
-                "MessageID": message_id,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Messages/GetMessage",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "MessageID": message_id,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_message(self, message_id: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.get_message, message_id)
@@ -1277,22 +1303,24 @@ class User:
                 f"Parameter `no_templates` must be of type `bool`, but got value `{no_templates}` of type `{type(no_templates).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Messages/GetMessages",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Messages/GetMessages",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "CategoryID": category_id,
                 "Skip": skip,
                 "Take": take,
                 "NoTemplates": no_templates,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_messages(
         self,
@@ -1340,22 +1368,24 @@ class User:
                 f"Parameter `take` must be of type `int`, but got value `{take}` of type `{type(take).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/GetSupporters",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetSupporters",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "ContentID": content_id,
                 "Category": category.value,
                 "Skip": skip,
                 "Take": take,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_supporters(
         self,
@@ -1412,23 +1442,25 @@ class User:
         else:
             errors.unreachable()
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/GetRelations",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/GetRelations",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "UserID": user_id,
                 "DisplayType": display_type_,
                 "Skip": skip,
                 "Take": take,
                 "Query": query,
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_relations(
         self,
@@ -1461,20 +1493,22 @@ class User:
                 f"Parameter `action` must be of type `bool`, but got value `{action}` of type `{type(action).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/Follow",
-            json={
-                "TargetID": target_id,
-                "Action": int(action),
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/Follow",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "TargetID": target_id,
+                "Action": int(action),
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_follow(
         self, target_id: str, action: bool = True
@@ -1495,20 +1529,22 @@ class User:
                 f"Parameter `nickname` must be of type `str`, but got value `{nickname}` of type {type(nickname).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/Rename",
-            json={
-                "Target": nickname,
-                "UserID": self.user_id,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/Rename",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "Target": nickname,
+                "UserID": self.user_id,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_rename(self, nickname: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.rename, nickname)
@@ -1527,20 +1563,22 @@ class User:
                 f"Parameter `target` must be of type `str`, but got value `{target}` of type `{type(target).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/ModifyInformation",
-            json={
-                "Target": target,
-                "Field": "Signature",
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/ModifyInformation",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "Target": target,
+                "Field": "Signature",
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_modify_information(self, target: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.modify_information, target)
@@ -1568,21 +1606,23 @@ class User:
                 f"Parameter `index` must be a non-negative integer, but got value `{index}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/ReceiveBonus",
-            json={
-                "ActivityID": activity_id,
-                "Index": index,
-                "Statistic": self.statistic,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/ReceiveBonus",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "ActivityID": activity_id,
+                "Index": index,
+                "Statistic": self.statistic,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_receive_bonus(
         self, activity_id: str, index: int
@@ -1616,21 +1656,23 @@ class User:
         if length <= 0:  # TODO Try negative number someday
             raise ValueError
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/Ban",
-            json={
-                "TargetID": target_id,
-                "Reason": reason,
-                "Length": length,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/Ban",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "TargetID": target_id,
+                "Reason": reason,
+                "Length": length,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_ban(
         self, target_id: str, reason: str, length: int
@@ -1656,20 +1698,22 @@ class User:
                 f"Parameter reason must be of type `str`, but got value `{reason}` of type `{type(reason).__name__}`"
             )
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com:443/Users/Unban",
-            json={
-                "TargetID": target_id,
-                "Reason": reason,
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Users/Unban",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "TargetID": target_id,
+                "Reason": reason,
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_unban(self, target_id: str, reason: str) -> Awaitable[_api_result]:
         return await _async_wrapper(self.unban, target_id, reason)
