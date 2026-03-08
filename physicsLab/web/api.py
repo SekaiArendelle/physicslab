@@ -11,6 +11,8 @@ import functools
 import contextvars
 import requests
 
+from . import _request
+
 from physicsLab import plAR
 from physicsLab import enums
 from physicsLab import errors
@@ -70,6 +72,17 @@ def _check_response(
     raise errors.ResponseFail(
         response_json()["code"],
         f"Physics-Lab-AR's server returned error code {status_code}: {response_json['Message']}",
+    )
+
+
+def _check_response_json(response: dict) -> _api_result:
+    status_code = response["Status"]
+
+    if status_code == 200:
+        return response
+    raise errors.ResponseFail(
+        response["code"],
+        f"Physics-Lab-AR's server returned error code {status_code}: {response['Message']}",
     )
 
 
@@ -209,6 +222,7 @@ class User:
         decoration: int,
         verification,
         statistic: dict,
+        domain: str = "physics-api-cn.turtlesim.com",
     ) -> None:
         """Data initialization only"""
         if not isinstance(token, (str, type(None))):
@@ -263,6 +277,11 @@ class User:
             raise TypeError(
                 f"Parameter `statistic` must be of type `dict`, but got value `{statistic}` of type `{type(statistic).__name__}`"
             )
+        if not isinstance(domain, str):
+            raise TypeError(
+                f"Parameter `domain` must be of type `str`, but got value `{domain}` of type `{type(domain).__name__}`"
+            )
+
         # TODO Use assert_true to check types
         assert auth_code is not None, errors.BUG_REPORT
         self.token: Optional[str] = token
@@ -281,6 +300,7 @@ class User:
         self.verification = verification
         # Stores all reward information related to daily activities (such as ActivityID)
         self.statistic: dict = statistic
+        self.domain: str = domain
 
     def get_library(self) -> _api_result:
         """Get community works list
@@ -288,20 +308,22 @@ class User:
         Returns:
             _api_result: Physics-Lab-AR API response structure
         """
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/GetLibrary",
-            json={
-                "Identifier": "Discussions",
-                "Language": "Chinese",
-            },
-            headers={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/GetLibrary",
+            header={
                 "Content-Type": "application/json",
                 "x-API-Token": self.token,
                 "x-API-AuthCode": self.auth_code,
             },
+            body={
+                "Identifier": "Discussions",
+                "Language": "Chinese",
+            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_get_library(self) -> Awaitable[_api_result]:
         return await _async_wrapper(self.get_library)
@@ -408,9 +430,16 @@ class User:
         else:
             _exclude_tags = [tag.value for tag in exclude_tags]
 
-        response = requests.post(
-            "https://physics-api-cn.turtlesim.com/Contents/QueryExperiments",
-            json={
+        response = _request.post_https(
+            domain=self.domain,
+            port=443,
+            path="Contents/QueryExperiments",
+            header={
+                "Content-Type": "application/json",
+                "x-API-Token": self.token,
+                "x-API-AuthCode": self.auth_code,
+            },
+            body={
                 "Query": {
                     "Category": category.value,
                     "Languages": languages,
@@ -430,14 +459,9 @@ class User:
                     "ShowAnnouncement": False,
                 }
             },
-            headers={
-                "Content-Type": "application/json",
-                "x-API-Token": self.token,
-                "x-API-AuthCode": self.auth_code,
-            },
         )
 
-        return _check_response(response)
+        return _check_response_json(response)
 
     async def async_query_experiments(
         self,

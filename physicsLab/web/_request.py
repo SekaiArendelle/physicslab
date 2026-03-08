@@ -2,11 +2,10 @@
 
 import json
 import urllib.request
-from physicsLab import errors
-from physicsLab._typing import Optional, Union
+from physicsLab._typing import Union
 
 
-def get_http(domain: str, path: str, port: Optional[int] = None) -> bytes:
+def get_http(domain: str, path: str, port: int = 80) -> bytes:
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"
@@ -15,13 +14,10 @@ def get_http(domain: str, path: str, port: Optional[int] = None) -> bytes:
         raise TypeError(
             f"Parameter path must be of type `str`, but got value {path} of type `{type(path).__name__}`"
         )
-    if not isinstance(port, (int, type(None))):
+    if not isinstance(port, int):
         raise TypeError(
-            f"Parameter port must be of type `Optional[int]`, but got value {port} of type `{type(port).__name__}`"
+            f"Parameter port must be of type `int`, but got value {port} of type `{type(port).__name__}`"
         )
-
-    if port is None:
-        port = 80
 
     url = f"http://{domain}:{port}/{path}"
     req = urllib.request.urlopen(url)
@@ -29,9 +25,7 @@ def get_http(domain: str, path: str, port: Optional[int] = None) -> bytes:
     return req.read()
 
 
-def get_https(
-    domain: str, path: str, port: Optional[int] = None, verify: bool = True
-) -> bytes:
+def get_https(domain: str, path: str, port: int = 443, verify: bool = True) -> bytes:
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"
@@ -40,17 +34,14 @@ def get_https(
         raise TypeError(
             f"Parameter path must be of type `str`, but got value {path} of type `{type(path).__name__}`"
         )
-    if not isinstance(port, (int, type(None))):
+    if not isinstance(port, int):
         raise TypeError(
-            f"Parameter port must be of type `Optional[int]`, but got value {port} of type `{type(port).__name__}`"
+            f"Parameter port must be of type `int`, but got value {port} of type `{type(port).__name__}`"
         )
     if not isinstance(verify, bool):
         raise TypeError(
             f"Parameter verify must be of type `bool`, but got value {verify} of type `{type(verify).__name__}`"
         )
-
-    if port is None:
-        port = 443
 
     if verify == False:
         import ssl
@@ -64,7 +55,11 @@ def get_https(
 
 
 def post_http(
-    domain: str, path: str, header: dict, body: bytes, port: Optional[int] = None
+    domain: str,
+    path: str,
+    header: dict,
+    body: bytes,
+    port: int = 80,
 ) -> dict:
     if not isinstance(domain, str):
         raise TypeError(
@@ -82,13 +77,10 @@ def post_http(
         raise TypeError(
             f"Parameter body must be of type `bytes` or `dict`, but got value {body} of type `{type(body).__name__}`"
         )
-    if not isinstance(port, (int, type(None))):
+    if not isinstance(port, int):
         raise TypeError(
-            f"Parameter port must be of type `Optional[int]`, but got value {port} of type `{type(port).__name__}`"
+            f"Parameter port must be of type `int`, but got value {port} of type `{type(port).__name__}`"
         )
-
-    if port is None:
-        port = 80
 
     if isinstance(body, dict):
         final_body = json.dumps(body).encode("utf-8")
@@ -114,7 +106,7 @@ def post_https(
     path: str,
     header: dict,
     body: Union[bytes, dict],
-    port: Optional[int] = None,
+    port: int = 443,
     verify: bool = True,
 ) -> dict:
     if not isinstance(domain, str):
@@ -133,13 +125,10 @@ def post_https(
         raise TypeError(
             f"Parameter body must be of type `bytes` or `dict`, but got value {body} of type `{type(body).__name__}`"
         )
-    if not isinstance(port, (int, type(None))):
+    if not isinstance(port, int):
         raise TypeError(
-            f"Parameter port must be of type `Optional[int]`, but got value {port} of type `{type(port).__name__}`"
+            f"Parameter port must be of type `int`, but got value {port} of type `{type(port).__name__}`"
         )
-
-    if port is None:
-        port = 443
 
     if verify == False:
         import ssl
