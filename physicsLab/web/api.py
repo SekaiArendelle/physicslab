@@ -20,6 +20,15 @@ from physicsLab.enums import Tag, Category
 from physicsLab._typing import Optional, List, TypedDict, Callable, Awaitable
 
 
+def _serialize_token(token: Optional[str]) -> str:
+    if isinstance(token, str):
+        return token
+    elif token is None:
+        return "null"
+    else:
+        errors.unreachable()
+
+
 async def _async_wrapper(func: Callable, *args, **kwargs):
     if sys.version_info < (3, 9):
         # copied from asyncio.to_thread
@@ -314,7 +323,7 @@ class User:
             path="Contents/GetLibrary",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -436,7 +445,7 @@ class User:
             path="Contents/QueryExperiments",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -522,7 +531,7 @@ class User:
             path="Contents/GetExperiment",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -575,7 +584,7 @@ class User:
             path="Contents/ConfirmExperiment",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -634,7 +643,7 @@ class User:
             path="Contents/RemoveExperiment",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
                 "x-API-Version": plar_ver,
             },
@@ -744,7 +753,7 @@ class User:
             path="Messages/PostComment",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -800,7 +809,7 @@ class User:
             path="Messages/RemoveComment",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -867,7 +876,7 @@ class User:
             path="Messages/GetComments",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -918,7 +927,7 @@ class User:
             path="Contents/GetSummary",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -932,7 +941,7 @@ class User:
                 raise PermissionError("login failed")
             if status_code == 404:
                 raise errors.ResponseFail(
-                    response.json()["code"],
+                    response["code"],
                     "experiment not found(may be you select category wrong)",
                 )
 
@@ -968,7 +977,7 @@ class User:
             path="Contents/GetDerivatives",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1003,7 +1012,7 @@ class User:
             path="Users/GetUser",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={"Name": name},
@@ -1033,7 +1042,7 @@ class User:
             path="Users/GetUser",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={"ID": id},
@@ -1097,7 +1106,7 @@ class User:
             path="Contents/GetProfile",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1151,7 +1160,7 @@ class User:
             path="Contents/StarContent",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1254,7 +1263,7 @@ class User:
             path="Messages/GetMessage",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1309,7 +1318,7 @@ class User:
             path="Messages/GetMessages",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1374,7 +1383,7 @@ class User:
             path="Contents/GetSupporters",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1448,7 +1457,7 @@ class User:
             path="Users/GetRelations",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1499,7 +1508,7 @@ class User:
             path="Users/Follow",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1535,7 +1544,7 @@ class User:
             path="Users/Rename",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1569,7 +1578,7 @@ class User:
             path="Users/ModifyInformation",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1612,7 +1621,7 @@ class User:
             path="Users/ReceiveBonus",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1662,7 +1671,7 @@ class User:
             path="Users/Ban",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
@@ -1704,7 +1713,7 @@ class User:
             path="Users/Unban",
             header={
                 "Content-Type": "application/json",
-                "x-API-Token": self.token,
+                "x-API-Token": _serialize_token(self.token),
                 "x-API-AuthCode": self.auth_code,
             },
             body={
