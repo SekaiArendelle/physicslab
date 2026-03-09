@@ -8,7 +8,7 @@ import queue
 from threading import Thread
 from enum import Enum, unique
 from physicsLab import errors
-from physicsLab._typing import List, Callable, Self, Any
+from physicsLab._typing import List, Callable, Self, Any, Optional
 
 
 class CanceledError(Exception):
@@ -39,7 +39,7 @@ class _Task:
         self.args = args
         self.kwargs = kwargs
         self.res: Any = None
-        self.exception = None
+        self.exception: Optional[Exception] = None
         self.status: _Status = _Status.wait
 
     def has_result(self) -> bool:
@@ -81,6 +81,7 @@ class ThreadPool:
             if _task is _EndOfQueue:
                 self.task_queue.put_nowait(_EndOfQueue)
                 return
+            assert isinstance(_task, _Task)
             _task.status = _Status.running
             try:
                 _task.res = _task.func(*_task.args, **_task.kwargs)
