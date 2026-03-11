@@ -1720,9 +1720,14 @@ def anonymous_login() -> User:
     else:
         plar_version = 2411
 
-    response = requests.post(
-        "http://physics-api-cn.turtlesim.com/Users/Authenticate",
-        json={
+    response = _request.post_https(
+        domain="physics-api-cn.turtlesim.com",
+        port=443,
+        path="Users/Authenticate",
+        header={
+            "Content-Type": "application/json",
+        },
+        body={
             "Login": None,
             "Password": None,
             "Version": plar_version,
@@ -1731,12 +1736,9 @@ def anonymous_login() -> User:
                 "Language": "Chinese",
             },
         },
-        headers={
-            "Content-Type": "application/json",
-        },
     )
 
-    api_result = _check_response(response)
+    api_result = _check_response_json(response)
     assert api_result["AuthCode"] is not None, errors.BUG_REPORT
     return User(
         token=api_result["Token"],
@@ -1773,9 +1775,14 @@ def email_login(email: str, password: str) -> User:
     else:
         plar_version = 2411
 
-    response = requests.post(
-        "http://physics-api-cn.turtlesim.com/Users/Authenticate",
-        json={
+    response = _request.post_https(
+        domain="physics-api-cn.turtlesim.com",
+        port=443,
+        path="Users/Authenticate",
+        header={
+            "Content-Type": "application/json",
+        },
+        body={
             "Login": email,
             "Password": password,
             "Version": plar_version,
@@ -1784,12 +1791,9 @@ def email_login(email: str, password: str) -> User:
                 "Language": "Chinese",
             },
         },
-        headers={
-            "Content-Type": "application/json",
-        },
     )
 
-    api_result = _check_response(response)
+    api_result = _check_response_json(response)
     assert api_result["AuthCode"] is not None, errors.BUG_REPORT
     return User(
         token=api_result["Token"],
@@ -1826,9 +1830,16 @@ def token_login(token: str, auth_code: str) -> User:
     else:
         plar_version = 2411
 
-    response = requests.post(
-        "http://physics-api-cn.turtlesim.com/Users/Authenticate",
-        json={
+    response = _request.post_https(
+        domain="physics-api-cn.turtlesim.com",
+        port=443,
+        path="Users/Authenticate",
+        header={
+            "Content-Type": "application/json",
+            "x-API-Token": token,
+            "x-API-AuthCode": auth_code,
+        },
+        body={
             "Login": None,
             "Password": None,
             "Version": plar_version,
@@ -1837,14 +1848,9 @@ def token_login(token: str, auth_code: str) -> User:
                 "Language": "Chinese",
             },
         },
-        headers={
-            "Content-Type": "application/json",
-            "x-API-Token": token,
-            "x-API-AuthCode": auth_code,
-        },
     )
 
-    api_result = _check_response(response)
+    api_result = _check_response_json(response)
     assert api_result["AuthCode"] is not None, errors.BUG_REPORT
     return User(
         token=api_result["Token"],
