@@ -39,8 +39,8 @@ class Pin(metaclass=_PinMeta):
 
     __slots__ = ("element_self", "_pin_label")
 
-    def __init__(self, input_self: "CircuitBase", _pin_label: int) -> None:
-        self.element_self: "CircuitBase" = input_self
+    def __init__(self, input_self: "_CircuitBase", _pin_label: int) -> None:
+        self.element_self: "_CircuitBase" = input_self
         self._pin_label: int = _pin_label
 
     def __eq__(self, other) -> bool:
@@ -197,6 +197,67 @@ def del_wire(source_pin: Pin, target_pin: Pin) -> None:
     _expe.Wires.remove(Wire(source_pin, target_pin))
 
 
+def _deprecated_register_element_in_stack(
+    self: "_CircuitBase",
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    **kwargs,
+):
+    if not isinstance(x, (float, int)):
+        raise TypeError(
+            f"Parameter x must be of type `int | float`, but got value {x} of type {type(x).__name__}"
+        )
+    if not isinstance(y, (float, int)):
+        raise TypeError(
+            f"Parameter y must be of type `int | float`, but got value {y} of type {type(y).__name__}"
+        )
+    if not isinstance(z, (float, int)):
+        raise TypeError(
+            f"Parameter z must be of type `int | float`, but got value {z} of type {type(z).__name__}"
+        )
+    if not isinstance(elementXYZ, (bool, type(None))):
+        raise TypeError(
+            f"Parameter elementXYZ must be of type `Optional[bool]`, but got value {elementXYZ} of type {type(elementXYZ).__name__}"
+        )
+    if not isinstance(identifier, (str, type(None))):
+        raise TypeError(
+            f"Parameter identifier must be of type `Optional[str]`, but got value {identifier} of type {type(identifier).__name__}"
+        )
+    if not isinstance(experiment, (_Experiment, type(None))):
+        raise TypeError(
+            f"Parameter experiment must be of type `Optional[Experiment]`, but got value {experiment} of type {type(experiment).__name__}"
+        )
+
+    _Expe: _Experiment
+    if experiment is None:
+        _Expe = get_current_experiment()
+    else:
+        _Expe = experiment
+    if _Expe.experiment_type != ExperimentType.Circuit:
+        raise errors.ExperimentTypeError(
+            f"Can't create {self.__class__.__name__} because experiment_type is {_Expe.experiment_type}"
+        )
+    self.experiment = _Expe
+
+    # TODO remove this
+    self.__init__(x, y, z, **kwargs)
+    assert hasattr(self, "data") and isinstance(self.data, dict)
+
+    self._set_identifier(identifier)
+    self.set_position(x, y, z, elementXYZ)
+    self.set_rotation()
+
+    self.experiment.Elements.append(self)
+    self.experiment._id2element[self.data["Identifier"]] = self
+
+    return self
+
 # electricity class's metaClass
 class _CircuitMeta(type):
     def __call__(
@@ -211,55 +272,10 @@ class _CircuitMeta(type):
         experiment: Optional[_Experiment] = None,
         **kwargs,
     ):
-        if not isinstance(x, (float, int)):
-            raise TypeError(
-                f"Parameter x must be of type `int | float`, but got value {x} of type {type(x).__name__}"
-            )
-        if not isinstance(y, (float, int)):
-            raise TypeError(
-                f"Parameter y must be of type `int | float`, but got value {y} of type {type(y).__name__}"
-            )
-        if not isinstance(z, (float, int)):
-            raise TypeError(
-                f"Parameter z must be of type `int | float`, but got value {z} of type {type(z).__name__}"
-            )
-        if not isinstance(elementXYZ, (bool, type(None))):
-            raise TypeError(
-                f"Parameter elementXYZ must be of type `Optional[bool]`, but got value {elementXYZ} of type {type(elementXYZ).__name__}"
-            )
-        if not isinstance(identifier, (str, type(None))):
-            raise TypeError(
-                f"Parameter identifier must be of type `Optional[str]`, but got value {identifier} of type {type(identifier).__name__}"
-            )
-        if not isinstance(experiment, (_Experiment, type(None))):
-            raise TypeError(
-                f"Parameter experiment must be of type `Optional[Experiment]`, but got value {experiment} of type {type(experiment).__name__}"
-            )
-
-        _Expe: _Experiment
-        if experiment is None:
-            _Expe = get_current_experiment()
-        else:
-            _Expe = experiment
-        if _Expe.experiment_type != ExperimentType.Circuit:
-            raise errors.ExperimentTypeError(
-                f"Can't create {cls.__name__} because experiment_type is {_Expe.experiment_type}"
-            )
-
-        self: "CircuitBase" = cls.__new__(cls)
-        self.experiment = _Expe
-
-        self.__init__(x, y, z, **kwargs)
-        assert hasattr(self, "data") and isinstance(self.data, dict)
-
-        self._set_identifier(identifier)
-        self.set_position(x, y, z, elementXYZ)
-        self.set_rotation()
-
-        self.experiment.Elements.append(self)
-        self.experiment._id2element[self.data["Identifier"]] = self
-
-        return self
+        self = cls.__new__(cls)
+        return _deprecated_register_element_in_stack(
+            self, x, y, z, elementXYZ=elementXYZ, identifier=identifier, **kwargs
+        )
 
 
 class _CircuitBase(ElementBase):

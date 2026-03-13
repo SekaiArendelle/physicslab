@@ -979,5 +979,9 @@ class TestCircuitElement(unittest.TestCase):
     def test_methods(self):
             tested_elements = dir(TestAllCircuitElements)
             for cls in self.get_all_elements(CircuitBase):
-                test_method_name = f"test_{cls.__name__.lower()}"
+                if cls.__name__.startswith("_"):
+                    test_method_name = f"test_{cls.__name__[1:].lower()}"
+                else:
+                    # TODO After migrating, this branch should be removed
+                    test_method_name = f"test_{cls.__name__.lower()}"
                 self.assertIn(test_method_name, tested_elements, f"{cls.__name__} has not been tested")
