@@ -46,11 +46,6 @@ class _NE555(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "555 Timer",
@@ -143,8 +138,9 @@ def NE555(
     experiment: Optional[_Experiment] = None,
 ) -> _NE555:
     result = _NE555(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -169,11 +165,6 @@ class _BasicCapacitor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         peak_voltage: num_type = 16,
         capacitance: num_type = 1e-06,
         internal_resistance: num_type = 5,
@@ -339,10 +330,11 @@ def Basic_Capacitor(
     is_ideal: bool = False,
 ) -> _BasicCapacitor:
     result = _BasicCapacitor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         peak_voltage=peak_voltage, capacitance=capacitance, 
         internal_resistance=internal_resistance, is_ideal=is_ideal
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -367,11 +359,6 @@ class _BasicInductor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         rated_current: num_type = 1,
         inductance: num_type = 0.05,
         internal_resistance: num_type = 1,
@@ -542,10 +529,11 @@ def Basic_Inductor(
     is_ideal: bool = False,
 ) -> _BasicInductor:
     result = _BasicInductor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         rated_current=rated_current, inductance=inductance,
         internal_resistance=internal_resistance, is_ideal=is_ideal
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -570,11 +558,6 @@ class _BasicDiode(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Basic Diode",
@@ -634,8 +617,9 @@ def Basic_Diode(
     experiment: Optional[_Experiment] = None,
 ) -> _BasicDiode:
     result = _BasicDiode(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -660,11 +644,6 @@ class _LightEmittingDiode(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Light-Emitting Diode",
@@ -725,8 +704,9 @@ def Light_Emitting_Diode(
     experiment: Optional[_Experiment] = None,
 ) -> _LightEmittingDiode:
     result = _LightEmittingDiode(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -750,11 +730,6 @@ class _GroundComponent(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Ground Component",
@@ -801,8 +776,9 @@ def Ground_Component(
     experiment: Optional[_Experiment] = None,
 ) -> _GroundComponent:
     result = _GroundComponent(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -834,11 +810,6 @@ class _Transformer(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Transformer",
@@ -915,8 +886,9 @@ def Transformer(
     experiment: Optional[_Experiment] = None,
 ) -> _Transformer:
     result = _Transformer(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -950,11 +922,6 @@ class _TappedTransformer(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Tapped Transformer",
@@ -1035,8 +1002,9 @@ def Tapped_Transformer(
     experiment: Optional[_Experiment] = None,
 ) -> _TappedTransformer:
     result = _TappedTransformer(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1068,11 +1036,6 @@ class _MutualInductor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Mutual Inductor",
@@ -1143,8 +1106,9 @@ def Mutual_Inductor(
     experiment: Optional[_Experiment] = None,
 ) -> _MutualInductor:
     result = _MutualInductor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1176,11 +1140,6 @@ class _Rectifier(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Rectifier",
@@ -1244,8 +1203,9 @@ def Rectifier(
     experiment: Optional[_Experiment] = None,
 ) -> _Rectifier:
     result = _Rectifier(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1275,11 +1235,6 @@ class _Transistor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         is_PNP: bool = True,
         gain: num_type = 100,
         max_power: num_type = 1000,
@@ -1414,9 +1369,10 @@ def Transistor(
     max_power: num_type = 1000,
 ) -> _Transistor:
     result = _Transistor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         is_PNP=is_PNP, gain=gain, max_power=max_power
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1446,11 +1402,6 @@ class _Comparator(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Comparator",
@@ -1509,8 +1460,9 @@ def Comparator(
     experiment: Optional[_Experiment] = None,
 ) -> _Comparator:
     result = _Comparator(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1540,11 +1492,6 @@ class _OperationalAmplifier(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         gain: num_type = 10_000_000,
         max_voltage: num_type = 1000,
         min_voltage: num_type = -1000,
@@ -1690,9 +1637,10 @@ def Operational_Amplifier(
     min_voltage: num_type = -1000,
 ) -> _OperationalAmplifier:
     result = _OperationalAmplifier(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         gain=gain, max_voltage=max_voltage, min_voltage=min_voltage
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1726,11 +1674,6 @@ class _RelayComponent(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         pull_in_current: num_type = 0.02,
         rated_current: num_type = 10,
         coil_inductance: num_type = 0.2,
@@ -1886,10 +1829,11 @@ def Relay_Component(
     coil_resistance: num_type = 20,
 ) -> _RelayComponent:
     result = _RelayComponent(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         pull_in_current=pull_in_current, rated_current=rated_current,
         coil_inductance=coil_inductance, coil_resistance=coil_resistance
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1919,11 +1863,6 @@ class _N_MOSFET(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         beta: num_type = 0.027,
         threshold: num_type = 1.5,
         max_power: num_type = 1000,
@@ -2054,9 +1993,10 @@ def N_MOSFET(
     max_power: num_type = 1000,
 ) -> _N_MOSFET:
     result = _N_MOSFET(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         beta=beta, threshold=threshold, max_power=max_power
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2086,11 +2026,6 @@ class _P_MOSFET(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "P-MOSFET",
@@ -2161,8 +2096,9 @@ def P_MOSFET(
     experiment: Optional[_Experiment] = None,
 ) -> _P_MOSFET:
     result = _P_MOSFET(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2187,11 +2123,6 @@ class _CurrentSource(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Current Source",
@@ -2249,8 +2180,9 @@ def Current_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _CurrentSource:
     result = _CurrentSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2322,11 +2254,6 @@ class _SinewaveSource(_SourceElectricity):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         super().__init__(x, y, z)
         self.data["ModelID"] = "Sinewave Source"
@@ -2348,8 +2275,9 @@ def Sinewave_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _SinewaveSource:
     result = _SinewaveSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2370,11 +2298,6 @@ class _SquareSource(_SourceElectricity):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         super().__init__(x, y, z)
         self.data["ModelID"] = "Square Source"
@@ -2396,8 +2319,9 @@ def Square_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _SquareSource:
     result = _SquareSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2418,11 +2342,6 @@ class _TriangleSource(_SourceElectricity):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         super().__init__(x, y, z)
         self.data["ModelID"] = "Triangle Source"
@@ -2444,8 +2363,9 @@ def Triangle_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _TriangleSource:
     result = _TriangleSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2466,11 +2386,6 @@ class _SawtoothSource(_SourceElectricity):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         super().__init__(x, y, z)
         self.data["ModelID"] = "Sawtooth Source"
@@ -2492,8 +2407,9 @@ def Sawtooth_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _SawtoothSource:
     result = _SawtoothSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -2514,11 +2430,6 @@ class _PulseSource(_SourceElectricity):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         super().__init__(x, y, z)
         self.data["ModelID"] = "Pulse Source"
@@ -2540,8 +2451,9 @@ def Pulse_Source(
     experiment: Optional[_Experiment] = None,
 ) -> _PulseSource:
     result = _PulseSource(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,

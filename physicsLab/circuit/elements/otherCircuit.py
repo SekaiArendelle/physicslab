@@ -32,11 +32,6 @@ class _Buzzer(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -97,8 +92,9 @@ def Buzzer(
     experiment: Optional[_Experiment] = None,
 ) -> _Buzzer:
     result = _Buzzer(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -123,11 +119,6 @@ class _SparkGap(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -186,8 +177,9 @@ def Spark_Gap(
     experiment: Optional[_Experiment] = None,
 ) -> _SparkGap:
     result = _SparkGap(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -212,11 +204,6 @@ class _TeslaCoil(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -277,8 +264,9 @@ def Tesla_Coil(
     experiment: Optional[_Experiment] = None,
 ) -> _TeslaCoil:
     result = _TeslaCoil(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -310,11 +298,6 @@ class _ColorLightEmittingDiode(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_l_up_pin", Pin(self, 0)),
@@ -398,8 +381,9 @@ def Color_Light_Emitting_Diode(
     experiment: Optional[_Experiment] = None,
 ) -> _ColorLightEmittingDiode:
     result = _ColorLightEmittingDiode(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -424,11 +408,6 @@ class _DualLightEmittingDiode(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -498,8 +477,9 @@ def Dual_Light_Emitting_Diode(
     experiment: Optional[_Experiment] = None,
 ) -> _DualLightEmittingDiode:
     result = _DualLightEmittingDiode(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -524,11 +504,6 @@ class _ElectricBell(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -589,8 +564,9 @@ def Electric_Bell(
     experiment: Optional[_Experiment] = None,
 ) -> _ElectricBell:
     result = _ElectricBell(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -615,11 +591,6 @@ class _MusicalBox(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -680,8 +651,9 @@ def Musical_Box(
     experiment: Optional[_Experiment] = None,
 ) -> _MusicalBox:
     result = _MusicalBox(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -721,11 +693,6 @@ class _ResistanceLaw(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_l_low_pin", Pin(self, 0)),
@@ -848,8 +815,9 @@ def Resistance_Law(
     experiment: Optional[_Experiment] = None,
 ) -> _ResistanceLaw:
     result = _ResistanceLaw(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -881,11 +849,6 @@ class _Solenoid(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_subred_pin", Pin(self, 0)),
@@ -965,8 +928,9 @@ def Solenoid(
     experiment: Optional[_Experiment] = None,
 ) -> _Solenoid:
     result = _Solenoid(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -991,11 +955,6 @@ class _ElectricFan(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -1072,8 +1031,9 @@ def Electric_Fan(
     experiment: Optional[_Experiment] = None,
 ) -> _ElectricFan:
     result = _ElectricFan(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -1344,6 +1304,7 @@ def Simple_Instrument(
         experiment=experiment, rated_oltage=rated_oltage, volume=volume, bpm=bpm,
         instrument=instrument, is_ideal=is_ideal, is_pulse=is_pulse
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,

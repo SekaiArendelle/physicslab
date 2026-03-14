@@ -139,11 +139,6 @@ class _Accelerometer(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.2290000021457672,
@@ -174,9 +169,10 @@ def Accelerometer(
     response_factor: num_type = 0.2290000021457672,
 ) -> _Accelerometer:
     result = _Accelerometer(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -212,11 +208,6 @@ class _AnalogJoystick(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "Analog Joystick",
@@ -290,8 +281,9 @@ def Analog_Joystick(
     experiment: Optional[_Experiment] = None,
 ) -> _AnalogJoystick:
     result = _AnalogJoystick(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -312,11 +304,6 @@ class _AttitudeSensor(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 180,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
@@ -347,9 +334,10 @@ def Attitude_Sensor(
     response_factor: num_type = 0.0125,
 ) -> _AttitudeSensor:
     result = _AttitudeSensor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -370,11 +358,6 @@ class _GravitySensor(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
@@ -405,9 +388,10 @@ def Gravity_Sensor(
     response_factor: num_type = 0.229,
 ) -> _GravitySensor:
     result = _GravitySensor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -428,11 +412,6 @@ class _Gyroscope(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 150,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
@@ -463,9 +442,10 @@ def Gyroscope(
     response_factor: num_type = 0.0125,
 ) -> _Gyroscope:
     result = _Gyroscope(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -486,11 +466,6 @@ class _LinearAccelerometer(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
@@ -521,9 +496,10 @@ def Linear_Accelerometer(
     response_factor: num_type = 0.229,
 ) -> _LinearAccelerometer:
     result = _LinearAccelerometer(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -544,11 +520,6 @@ class _MagneticFieldSensor(_MemsBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
         ranges: num_type = 0.04,
         shifting: num_type = 3.2,
         response_factor: num_type = 80,
@@ -579,9 +550,10 @@ def Magnetic_Field_Sensor(
     response_factor: num_type = 80,
 ) -> _MagneticFieldSensor:
     result = _MagneticFieldSensor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        x, y, z,
         ranges=ranges, shifting=shifting, response_factor=response_factor
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -606,11 +578,6 @@ class _Photodiode(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -671,8 +638,9 @@ def Photodiode(
     experiment: Optional[_Experiment] = None,
 ) -> _Photodiode:
     result = _Photodiode(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -697,11 +665,6 @@ class _Photoresistor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -762,8 +725,9 @@ def Photoresistor(
     experiment: Optional[_Experiment] = None,
 ) -> _Photoresistor:
     result = _Photoresistor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
@@ -787,11 +751,6 @@ class _ProximitySensor(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
     ) -> None:
         self._all_pins = (("_o_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
@@ -838,8 +797,9 @@ def Proximity_Sensor(
     experiment: Optional[_Experiment] = None,
 ) -> _ProximitySensor:
     result = _ProximitySensor(
-        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+        x, y, z
     )
+    # deprecate
     _deprecated_register_element_in_stack(
         result,
         x,
