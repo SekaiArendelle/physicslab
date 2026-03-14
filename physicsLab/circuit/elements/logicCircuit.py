@@ -3,7 +3,7 @@ from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors
 from physicsLab._core import _Experiment
-from .._circuit_core import CircuitBase, InputPin, OutputPin
+from .._circuit_core import _CircuitBase, InputPin, OutputPin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -17,7 +17,7 @@ from physicsLab._typing import (
 )
 
 
-class _LogicBase(CircuitBase):
+class _LogicBase(_CircuitBase):
     @property
     @final
     def high_level(self) -> num_type:
@@ -61,7 +61,7 @@ class _LogicBase(CircuitBase):
         return value
 
 
-class Logic_Input(_LogicBase):
+class _LogicInput(_LogicBase):
     """逻辑输入"""
 
     _all_pins: Tuple[Tuple[Literal["_o_pin"], OutputPin]]
@@ -155,7 +155,36 @@ class Logic_Input(_LogicBase):
         return 1
 
 
-class Logic_Output(_LogicBase):
+def Logic_Input(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    output_status: bool = False,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _LogicInput:
+    result = _LogicInput(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        output_status=output_status, high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _LogicOutput(_LogicBase):
     """逻辑输出"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], InputPin]]
@@ -217,7 +246,35 @@ class Logic_Output(_LogicBase):
         return 1
 
 
-class _2_Pin_Gate(_LogicBase):
+def Logic_Output(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _LogicOutput:
+    result = _LogicOutput(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _2PinGate(_LogicBase):
     """2引脚门电路基类"""
 
     _all_pins: Tuple[
@@ -280,7 +337,7 @@ class _2_Pin_Gate(_LogicBase):
         return 2
 
 
-class Yes_Gate(_2_Pin_Gate):
+class _YesGate(_2PinGate):
     """是门"""
 
     def __init__(
@@ -309,7 +366,35 @@ class Yes_Gate(_2_Pin_Gate):
         return 2
 
 
-class No_Gate(_2_Pin_Gate):
+def Yes_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _YesGate:
+    result = _YesGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _NoGate(_2PinGate):
     """非门"""
 
     def __init__(
@@ -338,7 +423,35 @@ class No_Gate(_2_Pin_Gate):
         return 2
 
 
-class _3_Pin_Gate(_LogicBase):
+def No_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _NoGate:
+    result = _NoGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _3PinGate(_LogicBase):
     """3引脚门电路基类"""
 
     _all_pins: Tuple[
@@ -409,7 +522,7 @@ class _3_Pin_Gate(_LogicBase):
         return 3
 
 
-class Or_Gate(_3_Pin_Gate):
+class _OrGate(_3PinGate):
     """或门"""
 
     def __init__(
@@ -438,7 +551,35 @@ class Or_Gate(_3_Pin_Gate):
         return 3
 
 
-class And_Gate(_3_Pin_Gate):
+def Or_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _OrGate:
+    result = _OrGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _AndGate(_3PinGate):
     """与门"""
 
     def __init__(
@@ -467,7 +608,35 @@ class And_Gate(_3_Pin_Gate):
         return 3
 
 
-class Nor_Gate(_3_Pin_Gate):
+def And_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _AndGate:
+    result = _AndGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _NorGate(_3PinGate):
     """或非门"""
 
     def __init__(
@@ -496,7 +665,35 @@ class Nor_Gate(_3_Pin_Gate):
         return 3
 
 
-class Nand_Gate(_3_Pin_Gate):
+def Nor_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _NorGate:
+    result = _NorGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _NandGate(_3PinGate):
     """与非门"""
 
     def __init__(
@@ -525,7 +722,35 @@ class Nand_Gate(_3_Pin_Gate):
         return 3
 
 
-class Xor_Gate(_3_Pin_Gate):
+def Nand_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _NandGate:
+    result = _NandGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _XorGate(_3PinGate):
     """异或门"""
 
     def __init__(
@@ -554,7 +779,35 @@ class Xor_Gate(_3_Pin_Gate):
         return 3
 
 
-class Xnor_Gate(_3_Pin_Gate):
+def Xor_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _XorGate:
+    result = _XorGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _XnorGate(_3PinGate):
     """同或门"""
 
     def __init__(
@@ -583,7 +836,35 @@ class Xnor_Gate(_3_Pin_Gate):
         return 3
 
 
-class Imp_Gate(_3_Pin_Gate):
+def Xnor_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _XnorGate:
+    result = _XnorGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ImpGate(_3PinGate):
     """蕴含门"""
 
     def __init__(
@@ -612,7 +893,35 @@ class Imp_Gate(_3_Pin_Gate):
         return 3
 
 
-class Nimp_Gate(_3_Pin_Gate):
+def Imp_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _ImpGate:
+    result = _ImpGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _NimpGate(_3PinGate):
     """蕴含非门"""
 
     def __init__(
@@ -639,6 +948,34 @@ class Nimp_Gate(_3_Pin_Gate):
     @staticmethod
     def count_all_pins() -> int:
         return 3
+
+
+def Nimp_Gate(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _NimpGate:
+    result = _NimpGate(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
 
 
 class _BigElement(_LogicBase):
@@ -676,7 +1013,7 @@ class _BigElement(_LogicBase):
         return 4
 
 
-class Half_Adder(_BigElement):
+class _HalfAdder(_BigElement):
     """半加器"""
 
     _all_pins: Tuple[
@@ -745,7 +1082,35 @@ class Half_Adder(_BigElement):
         return 4
 
 
-class Full_Adder(_BigElement):
+def Half_Adder(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _HalfAdder:
+    result = _HalfAdder(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _FullAdder(_BigElement):
     """全加器"""
 
     _all_pins: Tuple[
@@ -821,7 +1186,35 @@ class Full_Adder(_BigElement):
         return 5
 
 
-class Half_Subtractor(_BigElement):
+def Full_Adder(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _FullAdder:
+    result = _FullAdder(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _HalfSubtractor(_BigElement):
     """半减器"""
 
     _all_pins: Tuple[
@@ -894,7 +1287,35 @@ class Half_Subtractor(_BigElement):
         return 4
 
 
-class Full_Subtractor(_BigElement):
+def Half_Subtractor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _HalfSubtractor:
+    result = _HalfSubtractor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _FullSubtractor(_BigElement):
     """全减器"""
 
     _all_pins: Tuple[
@@ -974,7 +1395,35 @@ class Full_Subtractor(_BigElement):
         return 5
 
 
-class Multiplier(_BigElement):
+def Full_Subtractor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _FullSubtractor:
+    result = _FullSubtractor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Multiplier(_BigElement):
     """二位乘法器"""
 
     _all_pins: Tuple[
@@ -1071,7 +1520,35 @@ class Multiplier(_BigElement):
         return 8
 
 
-class D_Flipflop(_BigElement):
+def Multiplier(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _Multiplier:
+    result = _Multiplier(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _DFlipflop(_BigElement):
     """D触发器"""
 
     _all_pins: Tuple[
@@ -1140,7 +1617,35 @@ class D_Flipflop(_BigElement):
         return 4
 
 
-class T_Flipflop(_BigElement):
+def D_Flipflop(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _DFlipflop:
+    result = _DFlipflop(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _TFlipflop(_BigElement):
     """T'触发器"""
 
     _all_pins: Tuple[
@@ -1209,7 +1714,35 @@ class T_Flipflop(_BigElement):
         return 4
 
 
-class Real_T_Flipflop(_BigElement):
+def T_Flipflop(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _TFlipflop:
+    result = _TFlipflop(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _RealTFlipflop(_BigElement):
     """T触发器"""
 
     _all_pins: Tuple[
@@ -1278,7 +1811,35 @@ class Real_T_Flipflop(_BigElement):
         return 4
 
 
-class JK_Flipflop(_BigElement):
+def Real_T_Flipflop(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _RealTFlipflop:
+    result = _RealTFlipflop(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _JKFlipflop(_BigElement):
     """JK触发器"""
 
     _all_pins: Tuple[
@@ -1354,7 +1915,35 @@ class JK_Flipflop(_BigElement):
         return 5
 
 
-class Counter(_BigElement):
+def JK_Flipflop(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _JKFlipflop:
+    result = _JKFlipflop(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Counter(_BigElement):
     """计数器"""
 
     _all_pins: Tuple[
@@ -1437,7 +2026,35 @@ class Counter(_BigElement):
         return 6
 
 
-class Random_Generator(_BigElement):
+def Counter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _Counter:
+    result = _Counter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _RandomGenerator(_BigElement):
     """随机数发生器"""
 
     _all_pins: Tuple[
@@ -1520,7 +2137,35 @@ class Random_Generator(_BigElement):
         return 6
 
 
-class Eight_Bit_Input(_LogicBase):
+def Random_Generator(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _RandomGenerator:
+    result = _RandomGenerator(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _EightBitInput(_LogicBase):
     """八位输入器"""
 
     is_bigElement: bool = True
@@ -1654,7 +2299,35 @@ class Eight_Bit_Input(_LogicBase):
         return 8
 
 
-class Eight_Bit_Display(_LogicBase):
+def Eight_Bit_Input(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _EightBitInput:
+    result = _EightBitInput(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _EightBitDisplay(_LogicBase):
     """八位显示器"""
 
     is_bigElement = True
@@ -1781,7 +2454,35 @@ class Eight_Bit_Display(_LogicBase):
         return 8
 
 
-class Schmitt_Trigger(CircuitBase):
+def Eight_Bit_Display(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 3,
+    low_level: num_type = 0,
+) -> _EightBitDisplay:
+    result = _EightBitDisplay(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SchmittTrigger(_CircuitBase):
     """施密特触发器"""
 
     _all_pins: Tuple[
@@ -1936,3 +2637,32 @@ class Schmitt_Trigger(CircuitBase):
     @property
     def o(self) -> OutputPin:
         return self._o_pin
+
+
+def Schmitt_Trigger(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    high_level: num_type = 5.0,
+    low_level: Optional[num_type] = None,
+    inverted: bool = False,
+) -> _SchmittTrigger:
+    result = _SchmittTrigger(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        high_level=high_level, low_level=low_level, inverted=inverted
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result

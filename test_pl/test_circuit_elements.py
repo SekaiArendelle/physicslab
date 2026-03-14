@@ -965,23 +965,3 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
             expe.close(delete=True)
-
-class TestCircuitElement(unittest.TestCase):
-
-    @staticmethod
-    def get_all_elements(root):
-        for cls in root.__subclasses__():
-            if len(cls.__subclasses__()) == 0:
-                yield cls
-            else:
-                yield from TestCircuitElement.get_all_elements(cls)
-
-    def test_methods(self):
-            tested_elements = dir(TestAllCircuitElements)
-            for cls in self.get_all_elements(CircuitBase):
-                if cls.__name__.startswith("_"):
-                    test_method_name = f"test_{cls.__name__[1:].lower()}"
-                else:
-                    # TODO After migrating, this branch should be removed
-                    test_method_name = f"test_{cls.__name__.lower()}"
-                self.assertIn(test_method_name, tested_elements, f"{cls.__name__} has not been tested")

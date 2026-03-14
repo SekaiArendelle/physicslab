@@ -2,7 +2,7 @@
 from physicsLab import errors
 from physicsLab._tools import round_data
 from physicsLab._core import _Experiment
-from .._circuit_core import CircuitBase, Pin
+from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -17,7 +17,7 @@ from physicsLab._typing import (
 )
 
 
-class _SwitchBase(CircuitBase):
+class _SwitchBase(_CircuitBase):
     """开关基类"""
 
     def __init__(self, x: num_type, y: num_type, z: num_type, /) -> None:
@@ -41,7 +41,7 @@ class _SwitchBase(CircuitBase):
         return self
 
 
-class Simple_Switch(_SwitchBase):
+class _SimpleSwitch(_SwitchBase):
     """简单开关"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -104,7 +104,32 @@ class Simple_Switch(_SwitchBase):
         return self
 
 
-class SPDT_Switch(_SwitchBase):
+def Simple_Switch(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SimpleSwitch:
+    result = _SimpleSwitch(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SPDTSwitch(_SwitchBase):
     """单刀双掷开关"""
 
     _all_pins: Tuple[
@@ -184,7 +209,32 @@ class SPDT_Switch(_SwitchBase):
         return 3
 
 
-class DPDT_Switch(_SwitchBase):
+def SPDT_Switch(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SPDTSwitch:
+    result = _SPDTSwitch(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _DPDTSwitch(_SwitchBase):
     """双刀双掷开关"""
 
     _all_pins: Tuple[
@@ -286,7 +336,32 @@ class DPDT_Switch(_SwitchBase):
         return 6
 
 
-class Push_Switch(CircuitBase):
+def DPDT_Switch(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _DPDTSwitch:
+    result = _DPDTSwitch(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _PushSwitch(_CircuitBase):
     """按钮开关"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -346,7 +421,32 @@ class Push_Switch(CircuitBase):
         return 2
 
 
-class Air_Switch(CircuitBase):
+def Push_Switch(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _PushSwitch:
+    result = _PushSwitch(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _AirSwitch(_CircuitBase):
     """空气开关"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -427,7 +527,32 @@ class Air_Switch(CircuitBase):
         return self
 
 
-class Incandescent_Lamp(CircuitBase):
+def Air_Switch(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _AirSwitch:
+    result = _AirSwitch(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _IncandescentLamp(_CircuitBase):
     """白炽灯泡"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -496,7 +621,32 @@ class Incandescent_Lamp(CircuitBase):
         return 2
 
 
-class Battery_Source(CircuitBase):
+def Incandescent_Lamp(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _IncandescentLamp:
+    result = _IncandescentLamp(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _BatterySource(_CircuitBase):
     """一节电池"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -598,7 +748,35 @@ class Battery_Source(CircuitBase):
         return 2
 
 
-class Student_Source(CircuitBase):
+def Battery_Source(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    voltage: num_type = 1.5,
+    internal_resistance: num_type = 0,
+) -> _BatterySource:
+    result = _BatterySource(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        voltage=voltage, internal_resistance=internal_resistance
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _StudentSource(_CircuitBase):
     """学生电源"""
 
     _all_pins: Tuple[
@@ -696,7 +874,32 @@ class Student_Source(CircuitBase):
         return self._r_pin
 
 
-class Resistor(CircuitBase):
+def Student_Source(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _StudentSource:
+    result = _StudentSource(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Resistor(_CircuitBase):
     """电阻"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -798,7 +1001,34 @@ class Resistor(CircuitBase):
         )
 
 
-class Fuse_Component(CircuitBase):
+def Resistor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    resistance: num_type = 10,
+) -> _Resistor:
+    result = _Resistor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        resistance=resistance
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _FuseComponent(_CircuitBase):
     """保险丝"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -865,7 +1095,32 @@ class Fuse_Component(CircuitBase):
         return 2
 
 
-class Slide_Rheostat(CircuitBase):
+def Fuse_Component(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _FuseComponent:
+    result = _FuseComponent(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SlideRheostat(_CircuitBase):
     """滑动变阻器"""
 
     _all_pins: Tuple[
@@ -961,7 +1216,32 @@ class Slide_Rheostat(CircuitBase):
         return self._r_up_pin
 
 
-class Multimeter(CircuitBase):
+def Slide_Rheostat(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SlideRheostat:
+    result = _SlideRheostat(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Multimeter(_CircuitBase):
     """多用电表"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -1028,7 +1308,32 @@ class Multimeter(CircuitBase):
         return 2
 
 
-class Galvanometer(CircuitBase):
+def Multimeter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Multimeter:
+    result = _Multimeter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Galvanometer(_CircuitBase):
     """灵敏电流计"""
 
     _all_pins: Tuple[
@@ -1098,7 +1403,32 @@ class Galvanometer(CircuitBase):
         return self._r_pin
 
 
-class Microammeter(CircuitBase):
+def Galvanometer(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Galvanometer:
+    result = _Galvanometer(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Microammeter(_CircuitBase):
     """微安表"""
 
     _all_pins: Tuple[
@@ -1168,7 +1498,32 @@ class Microammeter(CircuitBase):
         return self._r_pin
 
 
-class Electricity_Meter(CircuitBase):
+def Microammeter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Microammeter:
+    result = _Microammeter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ElectricityMeter(_CircuitBase):
     """电能表"""
 
     _all_pins: Tuple[
@@ -1245,7 +1600,32 @@ class Electricity_Meter(CircuitBase):
         return self._r_pin
 
 
-class Resistance_Box(CircuitBase):
+def Electricity_Meter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ElectricityMeter:
+    result = _ElectricityMeter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ResistanceBox(_CircuitBase):
     """电阻箱"""
 
     _all_pins: Tuple[Tuple[Literal["_l_pin"], Pin], Tuple[Literal["_r_pin"], Pin]]
@@ -1337,7 +1717,34 @@ class Resistance_Box(CircuitBase):
         return value
 
 
-class Simple_Ammeter(CircuitBase):
+def Resistance_Box(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    resistance: num_type = 10,
+) -> _ResistanceBox:
+    result = _ResistanceBox(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        resistance=resistance
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SimpleAmmeter(_CircuitBase):
     """直流安培表"""
 
     _all_pins: Tuple[
@@ -1407,7 +1814,32 @@ class Simple_Ammeter(CircuitBase):
         return self._r_pin
 
 
-class Simple_Voltmeter(CircuitBase):
+def Simple_Ammeter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SimpleAmmeter:
+    result = _SimpleAmmeter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SimpleVoltmeter(_CircuitBase):
     """直流电压表"""
 
     _all_pins: Tuple[
@@ -1475,3 +1907,28 @@ class Simple_Voltmeter(CircuitBase):
     @property
     def r(self) -> Pin:
         return self._r_pin
+
+
+def Simple_Voltmeter(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SimpleVoltmeter:
+    result = _SimpleVoltmeter(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result

@@ -3,7 +3,7 @@ import physicsLab.plAR as plar
 from physicsLab import _warn
 
 from physicsLab._core import _Experiment
-from .._circuit_core import CircuitBase, Pin
+from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -20,7 +20,7 @@ from physicsLab._typing import (
 )
 
 
-class Buzzer(CircuitBase):
+class _Buzzer(_CircuitBase):
     """蜂鸣器"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -86,7 +86,32 @@ class Buzzer(CircuitBase):
         return 2
 
 
-class Spark_Gap(CircuitBase):
+def Buzzer(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Buzzer:
+    result = _Buzzer(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SparkGap(_CircuitBase):
     """火花隙"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -150,7 +175,32 @@ class Spark_Gap(CircuitBase):
         return 2
 
 
-class Tesla_Coil(CircuitBase):
+def Spark_Gap(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _SparkGap:
+    result = _SparkGap(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _TeslaCoil(_CircuitBase):
     """特斯拉线圈"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -216,7 +266,32 @@ class Tesla_Coil(CircuitBase):
         return 2
 
 
-class Color_Light_Emitting_Diode(CircuitBase):
+def Tesla_Coil(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _TeslaCoil:
+    result = _TeslaCoil(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ColorLightEmittingDiode(_CircuitBase):
     """彩色发光二极管"""
 
     _all_pins: Tuple[
@@ -312,7 +387,32 @@ class Color_Light_Emitting_Diode(CircuitBase):
         return 4
 
 
-class Dual_Light_Emitting_Diode(CircuitBase):
+def Color_Light_Emitting_Diode(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ColorLightEmittingDiode:
+    result = _ColorLightEmittingDiode(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _DualLightEmittingDiode(_CircuitBase):
     """演示发光二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -387,7 +487,32 @@ class Dual_Light_Emitting_Diode(CircuitBase):
         return 2
 
 
-class Electric_Bell(CircuitBase):
+def Dual_Light_Emitting_Diode(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _DualLightEmittingDiode:
+    result = _DualLightEmittingDiode(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ElectricBell(_CircuitBase):
     """电铃"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -453,7 +578,32 @@ class Electric_Bell(CircuitBase):
         return 2
 
 
-class Musical_Box(CircuitBase):
+def Electric_Bell(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ElectricBell:
+    result = _ElectricBell(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _MusicalBox(_CircuitBase):
     """八音盒"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -519,7 +669,32 @@ class Musical_Box(CircuitBase):
         return 2
 
 
-class Resistance_Law(CircuitBase):
+def Musical_Box(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _MusicalBox:
+    result = _MusicalBox(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ResistanceLaw(_CircuitBase):
     """电阻定律实验"""
 
     _all_pins: Tuple[
@@ -662,7 +837,32 @@ class Resistance_Law(CircuitBase):
         return 8
 
 
-class Solenoid(CircuitBase):
+def Resistance_Law(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ResistanceLaw:
+    result = _ResistanceLaw(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Solenoid(_CircuitBase):
     """通电螺线管"""
 
     _all_pins: Tuple[
@@ -754,7 +954,32 @@ class Solenoid(CircuitBase):
         return 4
 
 
-class Electric_Fan(CircuitBase):
+def Solenoid(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Solenoid:
+    result = _Solenoid(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ElectricFan(_CircuitBase):
     """小电扇"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -836,7 +1061,32 @@ class Electric_Fan(CircuitBase):
         return 2
 
 
-class Simple_Instrument(CircuitBase):
+def Electric_Fan(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ElectricFan:
+    result = _ElectricFan(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _SimpleInstrument(_CircuitBase):
     """简单乐器"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], Pin], Tuple[Literal["_o_pin"], Pin]]
@@ -1070,3 +1320,37 @@ class Simple_Instrument(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 2
+
+
+def Simple_Instrument(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    pitches: Union[List[int], Tuple[int]],
+    elementXYZ: Optional[bool] = None,
+    experiment: Optional[_Experiment] = None,
+    identifier: Optional[str] = None,
+    rated_oltage: num_type = 3.0,
+    volume: num_type = 1,
+    bpm: int = 100,
+    instrument: int = 0,
+    is_ideal: bool = False,
+    is_pulse: bool = True,
+) -> _SimpleInstrument:
+    result = _SimpleInstrument(
+        x, y, z, pitches=pitches, elementXYZ=elementXYZ, identifier=identifier, 
+        experiment=experiment, rated_oltage=rated_oltage, volume=volume, bpm=bpm,
+        instrument=instrument, is_ideal=is_ideal, is_pulse=is_pulse
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result

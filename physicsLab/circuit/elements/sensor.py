@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from physicsLab import errors
-from .._circuit_core import CircuitBase, Pin
+from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._core import _Experiment
-from .logicCircuit import _LogicBase
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -15,7 +14,7 @@ from physicsLab._typing import (
 )
 
 
-class _MemsBase(CircuitBase):
+class _MemsBase(_CircuitBase):
     """三引脚集成式传感器基类"""
 
     _all_pins: Tuple[
@@ -132,7 +131,7 @@ class _MemsBase(CircuitBase):
         return value
 
 
-class Accelerometer(_MemsBase):
+class _Accelerometer(_MemsBase):
     """加速度计"""
 
     def __init__(
@@ -161,7 +160,36 @@ class Accelerometer(_MemsBase):
         return "加速度计"
 
 
-class Analog_Joystick(CircuitBase):
+def Accelerometer(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 2,
+    shifting: num_type = 0.75,
+    response_factor: num_type = 0.2290000021457672,
+) -> _Accelerometer:
+    result = _Accelerometer(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _AnalogJoystick(_CircuitBase):
     """模拟摇杆"""
 
     _all_pins: Tuple[
@@ -251,7 +279,32 @@ class Analog_Joystick(CircuitBase):
         return self._y3_pin
 
 
-class Attitude_Sensor(_MemsBase):
+def Analog_Joystick(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _AnalogJoystick:
+    result = _AnalogJoystick(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _AttitudeSensor(_MemsBase):
     """姿态传感器"""
 
     def __init__(
@@ -280,7 +333,36 @@ class Attitude_Sensor(_MemsBase):
         return "姿态传感器"
 
 
-class Gravity_Sensor(_MemsBase):
+def Attitude_Sensor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 180,
+    shifting: num_type = 2.5,
+    response_factor: num_type = 0.0125,
+) -> _AttitudeSensor:
+    result = _AttitudeSensor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _GravitySensor(_MemsBase):
     """重力加速计"""
 
     def __init__(
@@ -309,7 +391,36 @@ class Gravity_Sensor(_MemsBase):
         return "重力加速计"
 
 
-class Gyroscope(_MemsBase):
+def Gravity_Sensor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 2,
+    shifting: num_type = 0.75,
+    response_factor: num_type = 0.229,
+) -> _GravitySensor:
+    result = _GravitySensor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Gyroscope(_MemsBase):
     """陀螺仪传感器"""
 
     def __init__(
@@ -338,7 +449,36 @@ class Gyroscope(_MemsBase):
         return "陀螺仪传感器"
 
 
-class Linear_Accelerometer(_MemsBase):
+def Gyroscope(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 150,
+    shifting: num_type = 2.5,
+    response_factor: num_type = 0.0125,
+) -> _Gyroscope:
+    result = _Gyroscope(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _LinearAccelerometer(_MemsBase):
     """线性加速度计"""
 
     def __init__(
@@ -367,7 +507,36 @@ class Linear_Accelerometer(_MemsBase):
         return "线性加速度计"
 
 
-class Magnetic_Field_Sensor(_MemsBase):
+def Linear_Accelerometer(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 2,
+    shifting: num_type = 0.75,
+    response_factor: num_type = 0.229,
+) -> _LinearAccelerometer:
+    result = _LinearAccelerometer(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _MagneticFieldSensor(_MemsBase):
     """磁场传感器"""
 
     def __init__(
@@ -396,7 +565,36 @@ class Magnetic_Field_Sensor(_MemsBase):
         return "磁场传感器"
 
 
-class Photodiode(CircuitBase):
+def Magnetic_Field_Sensor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+    ranges: num_type = 0.04,
+    shifting: num_type = 3.2,
+    response_factor: num_type = 80,
+) -> _MagneticFieldSensor:
+    result = _MagneticFieldSensor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment,
+        ranges=ranges, shifting=shifting, response_factor=response_factor
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Photodiode(_CircuitBase):
     """光电二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -462,7 +660,32 @@ class Photodiode(CircuitBase):
         return "光电二极管"
 
 
-class Photoresistor(CircuitBase):
+def Photodiode(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Photodiode:
+    result = _Photodiode(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _Photoresistor(_CircuitBase):
     """光敏电阻"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -528,7 +751,32 @@ class Photoresistor(CircuitBase):
         return "光敏电阻"
 
 
-class Proximity_Sensor(_LogicBase):
+def Photoresistor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _Photoresistor:
+    result = _Photoresistor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result
+
+
+class _ProximitySensor(_CircuitBase):
     """临近传感器"""
 
     _all_pins: Tuple[Tuple[Literal["_o_pin"], Pin]]
@@ -577,3 +825,28 @@ class Proximity_Sensor(_LogicBase):
     @property
     def o(self) -> Pin:
         return self._o_pin
+
+
+def Proximity_Sensor(
+    x: num_type,
+    y: num_type,
+    z: num_type,
+    /,
+    *,
+    elementXYZ: Optional[bool] = None,
+    identifier: Optional[str] = None,
+    experiment: Optional[_Experiment] = None,
+) -> _ProximitySensor:
+    result = _ProximitySensor(
+        x, y, z, elementXYZ=elementXYZ, identifier=identifier, experiment=experiment
+    )
+    _deprecated_register_element_in_stack(
+        result,
+        x,
+        y,
+        z,
+        elementXYZ=elementXYZ,
+        identifier=identifier,
+        experiment=experiment,
+    )
+    return result

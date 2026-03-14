@@ -207,7 +207,6 @@ def _deprecated_register_element_in_stack(
     elementXYZ: Optional[bool] = None,
     identifier: Optional[str] = None,
     experiment: Optional[_Experiment] = None,
-    **kwargs,
 ):
     if not isinstance(x, (float, int)):
         raise TypeError(
@@ -245,8 +244,6 @@ def _deprecated_register_element_in_stack(
         )
     self.experiment = _Expe
 
-    # TODO remove this
-    self.__init__(x, y, z, **kwargs)
     assert hasattr(self, "data") and isinstance(self.data, dict)
 
     self._set_identifier(identifier)
@@ -257,25 +254,6 @@ def _deprecated_register_element_in_stack(
     self.experiment._id2element[self.data["Identifier"]] = self
 
     return self
-
-# electricity class's metaClass
-class _CircuitMeta(type):
-    def __call__(
-        cls,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        elementXYZ: Optional[bool] = None,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
-        **kwargs,
-    ):
-        self = cls.__new__(cls)
-        return _deprecated_register_element_in_stack(
-            self, x, y, z, elementXYZ=elementXYZ, identifier=identifier, **kwargs
-        )
 
 
 class _CircuitBase(ElementBase):
@@ -427,6 +405,3 @@ class _CircuitBase(ElementBase):
 
         self.data["Label"] = name
         return self
-
-class CircuitBase(_CircuitBase, metaclass=_CircuitMeta):
-    """[[deprecate]]"""

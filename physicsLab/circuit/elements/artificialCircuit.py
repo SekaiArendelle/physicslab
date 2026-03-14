@@ -2,7 +2,7 @@
 from physicsLab import errors
 from physicsLab._core import _Experiment
 from physicsLab._tools import round_data
-from .._circuit_core import _CircuitBase, CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
