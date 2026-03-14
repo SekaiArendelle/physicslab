@@ -31,7 +31,7 @@ from ._typing import (
     Callable,
     Tuple,
     final,
-    NoReturn,
+    CircuitElementData,
 )
 
 
@@ -878,7 +878,7 @@ class _Experiment:
 class ElementBase:
     """三大类型实验的元件的基类"""
 
-    data: dict
+    data: CircuitElementData
     experiment: _Experiment
     _position: _tools.position
 
