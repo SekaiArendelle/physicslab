@@ -2,7 +2,7 @@
 from physicsLab import errors
 from physicsLab._core import _Experiment
 from physicsLab._tools import round_data
-from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -17,7 +17,7 @@ from physicsLab._typing import (
 )
 
 
-class _NE555(_CircuitBase):
+class _NE555(CircuitBase):
     """555定时器"""
 
     is_bigElement = True
@@ -157,7 +157,7 @@ def NE555(
     return result
 
 
-class _BasicCapacitor(_CircuitBase):
+class _BasicCapacitor(CircuitBase):
     """电容"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -355,7 +355,7 @@ def Basic_Capacitor(
     return result
 
 
-class _BasicInductor(_CircuitBase):
+class _BasicInductor(CircuitBase):
     """电感"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -558,7 +558,7 @@ def Basic_Inductor(
     return result
 
 
-class _BasicDiode(_CircuitBase):
+class _BasicDiode(CircuitBase):
     """二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -648,7 +648,7 @@ def Basic_Diode(
     return result
 
 
-class _LightEmittingDiode(_CircuitBase):
+class _LightEmittingDiode(CircuitBase):
     """发光二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -739,7 +739,7 @@ def Light_Emitting_Diode(
     return result
 
 
-class _GroundComponent(_CircuitBase):
+class _GroundComponent(CircuitBase):
     """接地元件"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], Pin]]
@@ -815,7 +815,7 @@ def Ground_Component(
     return result
 
 
-class _Transformer(_CircuitBase):
+class _Transformer(CircuitBase):
     """理想变压器"""
 
     _all_pins: Tuple[
@@ -929,7 +929,7 @@ def Transformer(
     return result
 
 
-class _TappedTransformer(_CircuitBase):
+class _TappedTransformer(CircuitBase):
     """中心抽头变压器"""
 
     _all_pins: Tuple[
@@ -1049,7 +1049,7 @@ def Tapped_Transformer(
     return result
 
 
-class _MutualInductor(_CircuitBase):
+class _MutualInductor(CircuitBase):
     """理想互感"""
 
     _all_pins: Tuple[
@@ -1157,7 +1157,7 @@ def Mutual_Inductor(
     return result
 
 
-class _Rectifier(_CircuitBase):
+class _Rectifier(CircuitBase):
     """全波整流器"""
 
     _all_pins: Tuple[
@@ -1258,7 +1258,7 @@ def Rectifier(
     return result
 
 
-class _Transistor(_CircuitBase):
+class _Transistor(CircuitBase):
     """三极管"""
 
     _all_pins: Tuple[
@@ -1429,7 +1429,7 @@ def Transistor(
     return result
 
 
-class _Comparator(_CircuitBase):
+class _Comparator(CircuitBase):
     """比较器"""
 
     _all_pins: Tuple[
@@ -1523,7 +1523,7 @@ def Comparator(
     return result
 
 
-class _OperationalAmplifier(_CircuitBase):
+class _OperationalAmplifier(CircuitBase):
     """运算放大器"""
 
     _all_pins: Tuple[
@@ -1705,7 +1705,7 @@ def Operational_Amplifier(
     return result
 
 
-class _RelayComponent(_CircuitBase):
+class _RelayComponent(CircuitBase):
     """继电器"""
 
     _all_pins: Tuple[
@@ -1902,7 +1902,7 @@ def Relay_Component(
     return result
 
 
-class _N_MOSFET(_CircuitBase):
+class _N_MOSFET(CircuitBase):
     """N-MOSFET"""
 
     _all_pins: Tuple[
@@ -2069,7 +2069,7 @@ def N_MOSFET(
     return result
 
 
-class _P_MOSFET(_CircuitBase):
+class _P_MOSFET(CircuitBase):
     """P-MOSFET"""
 
     _all_pins: Tuple[
@@ -2175,7 +2175,7 @@ def P_MOSFET(
     return result
 
 
-class _CurrentSource(_CircuitBase):
+class _CurrentSource(CircuitBase):
     """电流源"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -2263,7 +2263,7 @@ def Current_Source(
     return result
 
 
-class _SourceElectricity(_CircuitBase):
+class _SourceElectricity(CircuitBase):
     """波形发生器基类"""
 
     _all_pins: Tuple[Tuple[str, Pin], Tuple[str, Pin]]

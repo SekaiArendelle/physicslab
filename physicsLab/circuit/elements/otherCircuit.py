@@ -3,7 +3,7 @@ import physicsLab.plAR as plar
 from physicsLab import _warn
 
 from physicsLab._core import _Experiment
-from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -20,7 +20,7 @@ from physicsLab._typing import (
 )
 
 
-class _Buzzer(_CircuitBase):
+class _Buzzer(CircuitBase):
     """蜂鸣器"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -111,7 +111,7 @@ def Buzzer(
     return result
 
 
-class _SparkGap(_CircuitBase):
+class _SparkGap(CircuitBase):
     """火花隙"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -200,7 +200,7 @@ def Spark_Gap(
     return result
 
 
-class _TeslaCoil(_CircuitBase):
+class _TeslaCoil(CircuitBase):
     """特斯拉线圈"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -291,7 +291,7 @@ def Tesla_Coil(
     return result
 
 
-class _ColorLightEmittingDiode(_CircuitBase):
+class _ColorLightEmittingDiode(CircuitBase):
     """彩色发光二极管"""
 
     _all_pins: Tuple[
@@ -412,7 +412,7 @@ def Color_Light_Emitting_Diode(
     return result
 
 
-class _DualLightEmittingDiode(_CircuitBase):
+class _DualLightEmittingDiode(CircuitBase):
     """演示发光二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -512,7 +512,7 @@ def Dual_Light_Emitting_Diode(
     return result
 
 
-class _ElectricBell(_CircuitBase):
+class _ElectricBell(CircuitBase):
     """电铃"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -603,7 +603,7 @@ def Electric_Bell(
     return result
 
 
-class _MusicalBox(_CircuitBase):
+class _MusicalBox(CircuitBase):
     """八音盒"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -694,7 +694,7 @@ def Musical_Box(
     return result
 
 
-class _ResistanceLaw(_CircuitBase):
+class _ResistanceLaw(CircuitBase):
     """电阻定律实验"""
 
     _all_pins: Tuple[
@@ -862,7 +862,7 @@ def Resistance_Law(
     return result
 
 
-class _Solenoid(_CircuitBase):
+class _Solenoid(CircuitBase):
     """通电螺线管"""
 
     _all_pins: Tuple[
@@ -979,7 +979,7 @@ def Solenoid(
     return result
 
 
-class _ElectricFan(_CircuitBase):
+class _ElectricFan(CircuitBase):
     """小电扇"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -1086,7 +1086,7 @@ def Electric_Fan(
     return result
 
 
-class _SimpleInstrument(_CircuitBase):
+class _SimpleInstrument(CircuitBase):
     """简单乐器"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], Pin], Tuple[Literal["_o_pin"], Pin]]

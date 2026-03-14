@@ -3,7 +3,7 @@ from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors
 from physicsLab._core import _Experiment
-from .._circuit_core import _CircuitBase, InputPin, OutputPin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, InputPin, OutputPin, _deprecated_register_element_in_stack
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -17,7 +17,7 @@ from physicsLab._typing import (
 )
 
 
-class _LogicBase(_CircuitBase):
+class _LogicBase(CircuitBase):
     @property
     @final
     def high_level(self) -> num_type:
@@ -2482,7 +2482,7 @@ def Eight_Bit_Display(
     return result
 
 
-class _SchmittTrigger(_CircuitBase):
+class _SchmittTrigger(CircuitBase):
     """施密特触发器"""
 
     _all_pins: Tuple[

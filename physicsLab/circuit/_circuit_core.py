@@ -39,8 +39,8 @@ class Pin(metaclass=_PinMeta):
 
     __slots__ = ("element_self", "_pin_label")
 
-    def __init__(self, input_self: "_CircuitBase", _pin_label: int) -> None:
-        self.element_self: "_CircuitBase" = input_self
+    def __init__(self, input_self: "CircuitBase", _pin_label: int) -> None:
+        self.element_self: "CircuitBase" = input_self
         self._pin_label: int = _pin_label
 
     def __eq__(self, other) -> bool:
@@ -198,7 +198,7 @@ def del_wire(source_pin: Pin, target_pin: Pin) -> None:
 
 
 def _deprecated_register_element_in_stack(
-    self: "_CircuitBase",
+    self: "CircuitBase",
     x: num_type,
     y: num_type,
     z: num_type,
@@ -256,7 +256,7 @@ def _deprecated_register_element_in_stack(
     return self
 
 
-class _CircuitBase(ElementBase):
+class CircuitBase(ElementBase):
     """所有电学元件的父类"""
 
     experiment: _Experiment  # 元件所属的实验

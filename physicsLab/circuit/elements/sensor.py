@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from physicsLab import errors
-from .._circuit_core import _CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, Pin, _deprecated_register_element_in_stack
 from physicsLab._core import _Experiment
 from physicsLab._typing import (
     Optional,
@@ -14,7 +14,7 @@ from physicsLab._typing import (
 )
 
 
-class _MemsBase(_CircuitBase):
+class _MemsBase(CircuitBase):
     """三引脚集成式传感器基类"""
 
     _all_pins: Tuple[
@@ -189,7 +189,7 @@ def Accelerometer(
     return result
 
 
-class _AnalogJoystick(_CircuitBase):
+class _AnalogJoystick(CircuitBase):
     """模拟摇杆"""
 
     _all_pins: Tuple[
@@ -594,7 +594,7 @@ def Magnetic_Field_Sensor(
     return result
 
 
-class _Photodiode(_CircuitBase):
+class _Photodiode(CircuitBase):
     """光电二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -685,7 +685,7 @@ def Photodiode(
     return result
 
 
-class _Photoresistor(_CircuitBase):
+class _Photoresistor(CircuitBase):
     """光敏电阻"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
@@ -776,7 +776,7 @@ def Photoresistor(
     return result
 
 
-class _ProximitySensor(_CircuitBase):
+class _ProximitySensor(CircuitBase):
     """临近传感器"""
 
     _all_pins: Tuple[Tuple[Literal["_o_pin"], Pin]]
