@@ -878,7 +878,7 @@ class _Experiment:
 class ElementBase:
     """三大类型实验的元件的基类"""
 
-    data: CircuitElementData
+    data: dict
     experiment: _Experiment
     _position: _tools.position
 
@@ -913,8 +913,15 @@ class ElementBase:
             if self in self_list:
                 self_list.remove(self)
 
-        errors.assert_true(hasattr(self, "data"))
-        self.data["Position"] = f"{x},{z},{y}"
+        if hasattr(self, "data"):
+            _data = self.data
+        elif hasattr(self, "_data"):
+            # Simple Instrument
+            # TODO remove this shit
+            _data = self._data
+        else:
+            errors.unreachable()
+        _data["Position"] = f"{x},{z},{y}"
 
         errors.assert_true(hasattr(self, "_position"))
         if self._position in _Expe._position2elements.keys():
@@ -926,6 +933,10 @@ class ElementBase:
 
     @final
     def _set_identifier(self, identifier: Optional[str] = None) -> None:
+        if not isinstance(identifier, (str, type(None))):
+            raise TypeError(
+                f"Parameter identifier must be of type `Optional[str]`, but got `{identifier}` of type `{type(identifier).__name__}`"
+            )
         if identifier is None:
             self.data["Identifier"] = _tools.randString(33)
         else:

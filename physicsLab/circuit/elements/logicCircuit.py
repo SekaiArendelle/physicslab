@@ -3,7 +3,13 @@ from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors
 from physicsLab._core import _Experiment
-from .._circuit_core import CircuitBase, InputPin, OutputPin, _deprecated_register_element_in_stack
+from .._circuit_core import (
+    CircuitBase,
+    InputPin,
+    OutputPin,
+    _deprecated_init_attr_experiment,
+    _deprecated_assign_element_to_experiment,
+)
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -75,6 +81,8 @@ class _LogicInput(_LogicBase):
         output_status: bool = False,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (("_o_pin", OutputPin(self, 0)),)
         for name, pin in self._all_pins:
@@ -100,6 +108,7 @@ class _LogicInput(_LogicBase):
         self.output_status = output_status
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -166,19 +175,18 @@ class Logic_Input(_LogicInput):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            output_status=output_status, high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            output_status=output_status,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _LogicOutput(_LogicBase):
@@ -194,6 +202,8 @@ class _LogicOutput(_LogicBase):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (("_i_pin", InputPin(self, 0)),)
         for name, pin in self._all_pins:
@@ -218,6 +228,7 @@ class _LogicOutput(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -253,19 +264,17 @@ class Logic_Output(_LogicOutput):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _2PinGate(_LogicBase):
@@ -284,7 +293,8 @@ class _2PinGate(_LogicBase):
         z: num_type,
         high_level: num_type,
         low_level: num_type,
-        /,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_i_pin", InputPin(self, 0)),
@@ -312,6 +322,7 @@ class _2PinGate(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -341,9 +352,10 @@ class _YesGate(_2PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Yes Gate"
 
     @final
@@ -371,19 +383,17 @@ class Yes_Gate(_YesGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _NoGate(_2PinGate):
@@ -396,9 +406,10 @@ class _NoGate(_2PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "No Gate"
 
     @final
@@ -426,19 +437,17 @@ class No_Gate(_NoGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _3PinGate(_LogicBase):
@@ -460,7 +469,8 @@ class _3PinGate(_LogicBase):
         z: num_type,
         high_level: num_type,
         low_level: num_type,
-        /,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_i_up_pin", InputPin(self, 0)),
@@ -489,6 +499,7 @@ class _3PinGate(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -522,9 +533,10 @@ class _OrGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Or Gate"
 
     @final
@@ -552,19 +564,17 @@ class Or_Gate(_OrGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _AndGate(_3PinGate):
@@ -577,9 +587,10 @@ class _AndGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "And Gate"
 
     @final
@@ -607,19 +618,17 @@ class And_Gate(_AndGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _NorGate(_3PinGate):
@@ -632,9 +641,10 @@ class _NorGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Nor Gate"
 
     @final
@@ -662,19 +672,17 @@ class Nor_Gate(_NorGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _NandGate(_3PinGate):
@@ -687,9 +695,10 @@ class _NandGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Nand Gate"
 
     @final
@@ -717,19 +726,17 @@ class Nand_Gate(_NandGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _XorGate(_3PinGate):
@@ -742,9 +749,10 @@ class _XorGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Xor Gate"
 
     @final
@@ -772,19 +780,17 @@ class Xor_Gate(_XorGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _XnorGate(_3PinGate):
@@ -797,9 +803,10 @@ class _XnorGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Xnor Gate"
 
     @final
@@ -827,19 +834,17 @@ class Xnor_Gate(_XnorGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _ImpGate(_3PinGate):
@@ -852,9 +857,10 @@ class _ImpGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Imp Gate"
 
     @final
@@ -882,19 +888,17 @@ class Imp_Gate(_ImpGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _NimpGate(_3PinGate):
@@ -907,9 +911,10 @@ class _NimpGate(_3PinGate):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self.data["ModelID"] = "Nimp Gate"
 
     @final
@@ -937,19 +942,17 @@ class Nimp_Gate(_NimpGate):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _BigElement(_LogicBase):
@@ -964,7 +967,8 @@ class _BigElement(_LogicBase):
         z: num_type,
         high_level: num_type,
         low_level: num_type,
-        /,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self.data: CircuitElementData = {
             "ModelID": "",
@@ -981,6 +985,7 @@ class _BigElement(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     @staticmethod
     def count_all_pins() -> int:
@@ -1008,9 +1013,10 @@ class _HalfAdder(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1067,19 +1073,17 @@ class Half_Adder(_HalfAdder):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _FullAdder(_BigElement):
@@ -1105,9 +1109,10 @@ class _FullAdder(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1169,19 +1174,17 @@ class Full_Adder(_FullAdder):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _HalfSubtractor(_BigElement):
@@ -1205,13 +1208,14 @@ class _HalfSubtractor(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Physics-Lab-AR's version less than 2.5.0")
 
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1268,19 +1272,17 @@ class Half_Subtractor(_HalfSubtractor):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _FullSubtractor(_BigElement):
@@ -1306,13 +1308,14 @@ class _FullSubtractor(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Physics-Lab-AR's version less than 2.5.0")
 
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1374,19 +1377,17 @@ class Full_Subtractor(_FullSubtractor):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Multiplier(_BigElement):
@@ -1418,9 +1419,9 @@ class _Multiplier(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -1431,6 +1432,7 @@ class _Multiplier(_BigElement):
             ("_i_lowmid_pin", InputPin(self, 6)),
             ("_i_low_pin", InputPin(self, 7)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "Multiplier"
@@ -1497,19 +1499,17 @@ class Multiplier(_Multiplier):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _DFlipflop(_BigElement):
@@ -1533,15 +1533,16 @@ class _DFlipflop(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
             ("_i_up_pin", InputPin(self, 2)),
             ("_i_low_pin", InputPin(self, 3)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "D Flipflop"
@@ -1592,19 +1593,17 @@ class D_Flipflop(_DFlipflop):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _TFlipflop(_BigElement):
@@ -1628,15 +1627,16 @@ class _TFlipflop(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
             ("_i_up_pin", InputPin(self, 2)),
             ("_i_low_pin", InputPin(self, 3)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "T Flipflop"
@@ -1687,19 +1687,17 @@ class T_Flipflop(_TFlipflop):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _RealTFlipflop(_BigElement):
@@ -1723,15 +1721,16 @@ class _RealTFlipflop(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
             ("_i_up_pin", InputPin(self, 2)),
             ("_i_low_pin", InputPin(self, 3)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "Real-T Flipflop"
@@ -1782,19 +1781,17 @@ class Real_T_Flipflop(_RealTFlipflop):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _JKFlipflop(_BigElement):
@@ -1820,9 +1817,9 @@ class _JKFlipflop(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1830,6 +1827,7 @@ class _JKFlipflop(_BigElement):
             ("_i_mid_pin", InputPin(self, 3)),
             ("_i_low_pin", InputPin(self, 4)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "JK Flipflop"
@@ -1884,19 +1882,17 @@ class JK_Flipflop(_JKFlipflop):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Counter(_BigElement):
@@ -1924,9 +1920,10 @@ class _Counter(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -1993,19 +1990,17 @@ class Counter(_Counter):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _RandomGenerator(_BigElement):
@@ -2033,9 +2028,9 @@ class _RandomGenerator(_BigElement):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
-        # this class is deprecated
-        super().__init__(x, y, z, high_level, low_level)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -2044,6 +2039,7 @@ class _RandomGenerator(_BigElement):
             ("_i_up_pin", InputPin(self, 4)),
             ("_i_low_pin", InputPin(self, 5)),
         )
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.data["ModelID"] = "Random Generator"
@@ -2102,19 +2098,17 @@ class Random_Generator(_RandomGenerator):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _EightBitInput(_LogicBase):
@@ -2148,6 +2142,8 @@ class _EightBitInput(_LogicBase):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_i_up_pin", InputPin(self, 0)),
@@ -2181,6 +2177,7 @@ class _EightBitInput(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def __repr__(self) -> str:
         res = (
@@ -2261,19 +2258,17 @@ class Eight_Bit_Input(_EightBitInput):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _EightBitDisplay(_LogicBase):
@@ -2307,6 +2302,8 @@ class _EightBitDisplay(_LogicBase):
         z: num_type,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_i_up_pin", InputPin(self, 0)),
@@ -2350,6 +2347,7 @@ class _EightBitDisplay(_LogicBase):
         }
         self.high_level = high_level
         self.low_level = low_level
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -2413,19 +2411,17 @@ class Eight_Bit_Display(_EightBitDisplay):
         low_level: num_type = 0,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _SchmittTrigger(CircuitBase):
@@ -2446,6 +2442,8 @@ class _SchmittTrigger(CircuitBase):
         high_level: num_type = 5.0,
         low_level: Optional[num_type] = None,
         inverted: bool = False,
+        elementXYZ: Optional[bool] = None,
+        identifier: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_i_pin", InputPin(self, 0)),
@@ -2477,6 +2475,7 @@ class _SchmittTrigger(CircuitBase):
         self.high_level = high_level
         self.low_level = low_level
         self.inverted = inverted
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(
         self,
@@ -2596,16 +2595,15 @@ class Schmitt_Trigger(_SchmittTrigger):
         inverted: bool = False,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x, y, z,
-            high_level=high_level, low_level=low_level, inverted=inverted
-        )
-        _deprecated_register_element_in_stack(
-            self,
             x,
             y,
             z,
+            high_level=high_level,
+            low_level=low_level,
+            inverted=inverted,
             elementXYZ=elementXYZ,
             identifier=identifier,
-            experiment=experiment,
         )
+        _deprecated_assign_element_to_experiment(self)
