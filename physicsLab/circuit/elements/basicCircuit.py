@@ -1396,7 +1396,7 @@ class Microammeter(_Microammeter):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ)
+        super().__init__(x, y, z, elementXYZ, identifier)
         _deprecated_assign_element_to_experiment(self)
 
 

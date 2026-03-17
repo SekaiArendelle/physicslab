@@ -237,7 +237,6 @@ class CircuitBase(ElementBase):
         self.set_position(x, y, z, elementXYZ)
         self._set_identifier(identifier)
         self.set_rotation()
-        _deprecated_assign_element_to_experiment(self)
 
     def __repr__(self) -> str:
         return (
