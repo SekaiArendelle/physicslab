@@ -6,7 +6,7 @@ import warnings
 import threading
 from .base import *
 from physicsLab.lib import *
-from physicsLab._tools import position
+from physicsLab.coordinate_system import Position
 from physicsLab._core import _ExperimentStack
 
 def my_test_dec(method: Callable):
@@ -711,7 +711,7 @@ class BasicTest(TestCase, ViztracerTool):
 
     @my_test_dec
     def test_translate_elementXYZ(self):
-        o = position(1, 2, -1)
+        o = Position(1, 2, -1)
         for x in range(10):
             for y in range(10):
                 for z in range(10):
