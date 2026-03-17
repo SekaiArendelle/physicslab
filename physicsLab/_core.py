@@ -913,8 +913,15 @@ class ElementBase:
             if self in self_list:
                 self_list.remove(self)
 
-        errors.assert_true(hasattr(self, "data"))
-        self.data["Position"] = f"{x},{z},{y}"
+        if hasattr(self, "data"):
+            _data = self.data
+        elif hasattr(self, "_data"):
+            # Simple Instrument
+            # TODO remove this shit
+            _data = self._data
+        else:
+            errors.unreachable()
+        _data["Position"] = f"{x},{z},{y}"
 
         errors.assert_true(hasattr(self, "_position"))
         if self._position in _Expe._position2elements.keys():

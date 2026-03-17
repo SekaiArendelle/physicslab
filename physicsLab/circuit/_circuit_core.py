@@ -17,7 +17,6 @@ from physicsLab._typing import (
     Optional,
     Self,
     num_type,
-    NoReturn,
     Generate,
     override,
     final,
@@ -197,7 +196,7 @@ def del_wire(source_pin: Pin, target_pin: Pin) -> None:
     _expe.Wires.remove(Wire(source_pin, target_pin))
 
 
-def _deprecated_register_element_in_stack(
+def _deprecated_init_attr_experiment(
     self: "CircuitBase",
     *,
     experiment: Optional[_Experiment] = None,
@@ -218,12 +217,12 @@ def _deprecated_register_element_in_stack(
         )
     self.experiment = _Expe
 
-    assert hasattr(self, "data") and isinstance(self.data, dict)
+    return self
 
+def _deprecated_assign_element_to_experiment(self: "CircuitBase") -> None:
     self.experiment.Elements.append(self)
     self.experiment._id2element[self.data["Identifier"]] = self
 
-    return self
 
 
 class CircuitBase(ElementBase):
@@ -238,6 +237,7 @@ class CircuitBase(ElementBase):
         self.set_position(x, y, z, elementXYZ)
         self._set_identifier(identifier)
         self.set_rotation()
+        _deprecated_assign_element_to_experiment(self)
 
     def __repr__(self) -> str:
         return (

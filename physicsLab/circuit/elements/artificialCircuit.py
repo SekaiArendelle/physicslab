@@ -2,7 +2,7 @@
 from physicsLab import errors
 from physicsLab._core import _Experiment
 from physicsLab._tools import round_data
-from .._circuit_core import CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, Pin, _deprecated_init_attr_experiment, _deprecated_assign_element_to_experiment
 from physicsLab._typing import (
     Optional,
     num_type,
@@ -49,7 +49,6 @@ class _NE555(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "555 Timer",
             "Identifier": Generate,
@@ -84,6 +83,7 @@ class _NE555(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -143,8 +143,9 @@ class NE555(_NE555):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _BasicCapacitor(CircuitBase):
@@ -166,7 +167,6 @@ class _BasicCapacitor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         """@param capacitance: 电容, 单位为F
         @param is_ideal: 是否为理想模式
         @param peak_voltage: 峰值电压, 单位为V
@@ -201,6 +201,7 @@ class _BasicCapacitor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -329,13 +330,14 @@ class Basic_Capacitor(_BasicCapacitor):
         is_ideal: bool = False,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             peak_voltage=peak_voltage, capacitance=capacitance,
             internal_resistance=internal_resistance, is_ideal=is_ideal,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _BasicInductor(CircuitBase):
@@ -357,7 +359,6 @@ class _BasicInductor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         """@param rated_current: 电感额定电流，单位为 A
         @param inductance: 电感，单位为 Henry
         @param internal_resistance: 电感内部阻抗，单位为 Ohm
@@ -392,6 +393,7 @@ class _BasicInductor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -525,13 +527,14 @@ class Basic_Inductor(_BasicInductor):
         is_ideal: bool = False,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             rated_current=rated_current, inductance=inductance,
             internal_resistance=internal_resistance, is_ideal=is_ideal,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _BasicDiode(CircuitBase):
@@ -549,7 +552,6 @@ class _BasicDiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Basic Diode",
             "Identifier": Generate,
@@ -575,6 +577,7 @@ class _BasicDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -610,8 +613,9 @@ class Basic_Diode(_BasicDiode):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _LightEmittingDiode(CircuitBase):
@@ -629,7 +633,6 @@ class _LightEmittingDiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Light-Emitting Diode",
             "Identifier": Generate,
@@ -656,6 +659,7 @@ class _LightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -691,8 +695,9 @@ class Light_Emitting_Diode(_LightEmittingDiode):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _GroundComponent(CircuitBase):
@@ -709,7 +714,6 @@ class _GroundComponent(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Ground Component",
             "Identifier": Generate,
@@ -726,6 +730,7 @@ class _GroundComponent(CircuitBase):
         self._all_pins = (("_i_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -757,8 +762,9 @@ class Ground_Component(_GroundComponent):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Transformer(CircuitBase):
@@ -783,7 +789,6 @@ class _Transformer(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Transformer",
             "Identifier": Generate,
@@ -818,6 +823,7 @@ class _Transformer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -861,8 +867,9 @@ class Transformer(_Transformer):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _TappedTransformer(CircuitBase):
@@ -889,7 +896,6 @@ class _TappedTransformer(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Tapped Transformer",
             "Identifier": Generate,
@@ -924,6 +930,7 @@ class _TappedTransformer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -971,8 +978,9 @@ class Tapped_Transformer(_TappedTransformer):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _MutualInductor(CircuitBase):
@@ -997,7 +1005,6 @@ class _MutualInductor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Mutual Inductor",
             "Identifier": Generate,
@@ -1026,6 +1033,7 @@ class _MutualInductor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1069,8 +1077,9 @@ class Mutual_Inductor(_MutualInductor):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Rectifier(CircuitBase):
@@ -1095,7 +1104,6 @@ class _Rectifier(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Rectifier",
             "Identifier": Generate,
@@ -1117,6 +1125,7 @@ class _Rectifier(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1160,8 +1169,9 @@ class Rectifier(_Rectifier):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Transistor(CircuitBase):
@@ -1187,7 +1197,6 @@ class _Transistor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Transistor",
             "Identifier": Generate,
@@ -1216,6 +1225,7 @@ class _Transistor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1320,12 +1330,13 @@ class Transistor(_Transistor):
         max_power: num_type = 1000,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             is_PNP=is_PNP, gain=gain, max_power=max_power,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Comparator(CircuitBase):
@@ -1348,7 +1359,6 @@ class _Comparator(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Comparator",
             "Identifier": Generate,
@@ -1369,6 +1379,7 @@ class _Comparator(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1408,8 +1419,9 @@ class Comparator(_Comparator):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _OperationalAmplifier(CircuitBase):
@@ -1435,7 +1447,6 @@ class _OperationalAmplifier(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         """@param gain: 增益系数
         @param max_voltage: 最大电压
         @param min_voltage: 最小电压
@@ -1474,6 +1485,7 @@ class _OperationalAmplifier(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1579,12 +1591,13 @@ class Operational_Amplifier(_OperationalAmplifier):
         min_voltage: num_type = -1000,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             gain=gain, max_voltage=max_voltage, min_voltage=min_voltage,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _RelayComponent(CircuitBase):
@@ -1615,7 +1628,6 @@ class _RelayComponent(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Relay Component",
             "Identifier": Generate,
@@ -1649,6 +1661,7 @@ class _RelayComponent(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1768,13 +1781,14 @@ class Relay_Component(_RelayComponent):
         coil_resistance: num_type = 20,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             pull_in_current=pull_in_current, rated_current=rated_current,
             coil_inductance=coil_inductance, coil_resistance=coil_resistance,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _N_MOSFET(CircuitBase):
@@ -1800,7 +1814,6 @@ class _N_MOSFET(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "N-MOSFET",
             "Identifier": Generate,
@@ -1836,6 +1849,7 @@ class _N_MOSFET(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1929,12 +1943,13 @@ class N_MOSFET(_N_MOSFET):
         max_power: num_type = 1000,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             beta=beta, threshold=threshold, max_power=max_power,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _P_MOSFET(CircuitBase):
@@ -1957,7 +1972,6 @@ class _P_MOSFET(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "P-MOSFET",
             "Identifier": Generate,
@@ -1990,6 +2004,7 @@ class _P_MOSFET(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2029,8 +2044,9 @@ class P_MOSFET(_P_MOSFET):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _CurrentSource(CircuitBase):
@@ -2048,7 +2064,6 @@ class _CurrentSource(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": "Current Source",
             "Identifier": Generate,
@@ -2072,6 +2087,7 @@ class _CurrentSource(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2107,8 +2123,9 @@ class Current_Source(_CurrentSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _SourceElectricity(CircuitBase):
@@ -2119,7 +2136,6 @@ class _SourceElectricity(CircuitBase):
     _black_pin: Pin
 
     def __init__(self, x: num_type, y: num_type, z: num_type, /, elementXYZ: Optional[bool] = None, identifier: Optional[str] = None) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self.data: CircuitElementData = {
             "ModelID": Generate,
             "Identifier": Generate,
@@ -2146,6 +2162,7 @@ class _SourceElectricity(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2197,8 +2214,9 @@ class Sinewave_Source(_SinewaveSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _SquareSource(_SourceElectricity):
@@ -2235,8 +2253,9 @@ class Square_Source(_SquareSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _TriangleSource(_SourceElectricity):
@@ -2273,8 +2292,9 @@ class Triangle_Source(_TriangleSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _SawtoothSource(_SourceElectricity):
@@ -2311,8 +2331,9 @@ class Sawtooth_Source(_SawtoothSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _PulseSource(_SourceElectricity):
@@ -2349,5 +2370,6 @@ class Pulse_Source(_PulseSource):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)

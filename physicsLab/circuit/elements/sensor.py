@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from physicsLab import errors
-from .._circuit_core import CircuitBase, Pin, _deprecated_register_element_in_stack
+from .._circuit_core import CircuitBase, Pin, _deprecated_init_attr_experiment, _deprecated_assign_element_to_experiment
 from physicsLab._core import _Experiment
 from physicsLab._typing import (
     Optional,
@@ -27,8 +27,7 @@ class _MemsBase(CircuitBase):
     _z_pin: Pin
 
     def __init__(self, x: num_type, y: num_type, z: num_type, /, elementXYZ: Optional[bool] = None, identifier: Optional[str] = None) -> None:
-        # ensure CircuitBase initialization and propagate elementXYZ
-        super().__init__(x, y, z, elementXYZ, identifier)
+        # setup data & pins first, call CircuitBase initializer at end
         self.data: CircuitElementData = {
             "ModelID": Generate,
             "Identifier": Generate,
@@ -55,6 +54,7 @@ class _MemsBase(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -176,12 +176,12 @@ class Accelerometer(_Accelerometer):
         response_factor: num_type = 0.2290000021457672,
     ) -> None:
         # this class is deprecated
-        # pass elementXYZ down to the base and then register
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z, ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _AnalogJoystick(CircuitBase):
@@ -210,7 +210,7 @@ class _AnalogJoystick(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
+        # build fields first, then call base init
         self.data: CircuitElementData = {
             "ModelID": "Analog Joystick",
             "Identifier": Generate,
@@ -234,6 +234,7 @@ class _AnalogJoystick(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -285,8 +286,9 @@ class Analog_Joystick(_AnalogJoystick):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _AttitudeSensor(_MemsBase):
@@ -332,12 +334,13 @@ class Attitude_Sensor(_AttitudeSensor):
         response_factor: num_type = 0.0125,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _GravitySensor(_MemsBase):
@@ -383,12 +386,13 @@ class Gravity_Sensor(_GravitySensor):
         response_factor: num_type = 0.229,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Gyroscope(_MemsBase):
@@ -434,12 +438,13 @@ class Gyroscope(_Gyroscope):
         response_factor: num_type = 0.0125,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _LinearAccelerometer(_MemsBase):
@@ -485,12 +490,13 @@ class Linear_Accelerometer(_LinearAccelerometer):
         response_factor: num_type = 0.229,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _MagneticFieldSensor(_MemsBase):
@@ -536,12 +542,13 @@ class Magnetic_Field_Sensor(_MagneticFieldSensor):
         response_factor: num_type = 80,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             x, y, z,
             ranges=ranges, shifting=shifting, response_factor=response_factor,
             elementXYZ=elementXYZ, identifier=identifier
         )
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Photodiode(CircuitBase):
@@ -559,7 +566,6 @@ class _Photodiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
             ("_black_pin", Pin(self, 1)),
@@ -586,6 +592,7 @@ class _Photodiode(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
         }
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -621,8 +628,9 @@ class Photodiode(_Photodiode):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _Photoresistor(CircuitBase):
@@ -640,7 +648,6 @@ class _Photoresistor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
             ("_black_pin", Pin(self, 1)),
@@ -667,6 +674,7 @@ class _Photoresistor(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
         }
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -702,8 +710,9 @@ class Photoresistor(_Photoresistor):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
 
 
 class _ProximitySensor(CircuitBase):
@@ -720,7 +729,6 @@ class _ProximitySensor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        super().__init__(x, y, z, elementXYZ, identifier)
         self._all_pins = (("_o_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
@@ -737,6 +745,7 @@ class _ProximitySensor(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
         }
+        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -768,5 +777,6 @@ class Proximity_Sensor(_ProximitySensor):
         experiment: Optional[_Experiment] = None,
     ) -> None:
         # this class is deprecated
+        _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(x, y, z, elementXYZ, identifier)
-        _deprecated_register_element_in_stack(self, experiment=experiment)
+        _deprecated_assign_element_to_experiment(self)
