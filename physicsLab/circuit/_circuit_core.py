@@ -220,8 +220,6 @@ def _deprecated_register_element_in_stack(
 
     assert hasattr(self, "data") and isinstance(self.data, dict)
 
-    self.set_rotation()
-
     self.experiment.Elements.append(self)
     self.experiment._id2element[self.data["Identifier"]] = self
 
@@ -239,6 +237,7 @@ class CircuitBase(ElementBase):
     def __init__(self, x: num_type, y: num_type, z: num_type, elementXYZ: Optional[bool], identifier: Optional[str]) -> None:
         self.set_position(x, y, z, elementXYZ)
         self._set_identifier(identifier)
+        self.set_rotation()
 
     def __repr__(self) -> str:
         return (
