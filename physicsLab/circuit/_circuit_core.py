@@ -3,7 +3,7 @@ import abc
 import inspect
 
 from physicsLab import errors
-from physicsLab import _tools
+from physicsLab import coordinate_system
 
 from physicsLab.enums import ExperimentType, WireColor
 from physicsLab._tools import round_data
@@ -229,7 +229,7 @@ class CircuitBase(ElementBase):
     """所有电学元件的父类"""
 
     experiment: _Experiment  # 元件所属的实验
-    _position: _tools.Position
+    _position: coordinate_system.Position
     is_elementXYZ: bool
     is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
 
@@ -307,7 +307,7 @@ class CircuitBase(ElementBase):
             )
 
         x, y, z = round_data(x), round_data(y), round_data(z)
-        self._position = _tools.Position(x, y, z)
+        self._position = coordinate_system.Position(x, y, z)
 
         # 元件坐标系
         if (

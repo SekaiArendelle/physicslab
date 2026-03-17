@@ -2,13 +2,7 @@
 from random import choice
 from string import ascii_lowercase, ascii_letters, digits
 
-from collections import namedtuple
 from ._typing import num_type
-
-# TODO 元件坐标系也应该由这玩意负责
-# TODO 什么抽象玩意, 直接写成class罢
-Position = namedtuple("position", ["x", "y", "z"])
-
 
 def round_data(num: num_type) -> num_type:
     if not isinstance(num, (int, float)):

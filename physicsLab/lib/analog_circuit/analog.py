@@ -10,6 +10,7 @@ from physicsLab._core import (
     ElementXYZ,
 )
 from physicsLab import _tools
+from physicsLab import coordinate_system
 from physicsLab.circuit.elements import *
 from physicsLab.circuit._circuit_core import Pin, crt_wire, Wire
 from physicsLab._typing import Optional, num_type, List, Set, Dict, FrozenSet, Callable
@@ -97,7 +98,7 @@ class Node:
         ):
             x, y, z = native_to_elementXYZ(x, y, z, _Expe._elementXYZ_origin_position)
         x, y, z = _tools.round_data(x), _tools.round_data(y), _tools.round_data(z)
-        self._pos = _tools.Position(x, y, z)
+        self._pos = coordinate_system.Position(x, y, z)
 
     def extend(self, elements: List[CircuitBase], wires: Set[Wire]) -> Self:
         """扩大元件列表和导线集"""
@@ -150,14 +151,14 @@ class Node:
         return max(z) - min(z)
 
     @property
-    def pos(self) -> _tools.Position:
+    def pos(self) -> coordinate_system.Position:
         """节点位置"""
         x, y, z = self._pos
         if not get_current_experiment().is_elementXYZ:
             x, y, z = elementXYZ_to_native(
                 x, y, z, get_current_experiment()._elementXYZ_origin_position
             )
-        return _tools.Position(x, y, z)
+        return coordinate_system.Position(x, y, z)
 
     def shift(
         self, x: num_type, y: num_type, z: num_type, /, *, elementXYZ: bool = True
@@ -170,7 +171,7 @@ class Node:
         else:
             xe, ye, ze = x, y, z
         xe, ye, ze = _tools.round_data(xe), _tools.round_data(ye), _tools.round_data(ze)
-        self._pos = _tools.Position(
+        self._pos = coordinate_system.Position(
             self._pos.x + xe, self._pos.y + ye, self._pos.z + ze
         )
         for i in self.elements:

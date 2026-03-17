@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from physicsLab import _tools
 from physicsLab import errors
+from physicsLab import coordinate_system
 from physicsLab.enums import ExperimentType
 from physicsLab._core import get_current_experiment, _Experiment, ElementBase
 from physicsLab._typing import num_type, Self, override, final, NoReturn, Optional
@@ -94,7 +95,7 @@ class PlanetBase(ElementBase, metaclass=_PlanetMeta):
             )
 
         x, y, z = _tools.round_data(x), _tools.round_data(y), _tools.round_data(z)
-        self._position = _tools.Position(x, y, z)
+        self._position = coordinate_system.Position(x, y, z)
         return super().set_position(x, y, z)
 
     def set_velocity(self, x_v: num_type, y_v: num_type, z_v: num_type) -> Self:
@@ -116,6 +117,6 @@ class PlanetBase(ElementBase, metaclass=_PlanetMeta):
             or not isinstance(z_a, (int, float))
         ):
             raise TypeError
-        self.acceleration = _tools.Position(x_a, y_a, z_a)
+        self.acceleration = coordinate_system.Position(x_a, y_a, z_a)
         self.data["Acceleration"] = f"{x_a},{z_a},{y_a}"
         return self

@@ -6,7 +6,7 @@ import warnings
 import threading
 from .base import *
 from physicsLab.lib import *
-from physicsLab._tools import Position
+from physicsLab.coordinate_system import Position
 from physicsLab._core import _ExperimentStack
 
 def my_test_dec(method: Callable):
