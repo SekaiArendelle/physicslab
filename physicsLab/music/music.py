@@ -46,14 +46,6 @@ PL_TEMP_PATH = "pltemp.mid"
 
 
 class Midi:
-    # 仅被Midi.sound方法调用
-    # e.g. player=music.Midi.PLAYER.os
-    @unique
-    class PLAYER(Enum):
-        plmidi = 0
-        pygame = 1
-        os = 2
-
     def __init__(
         self, midifile: Union[str, io.IOBase, tempfile._TemporaryFileWrapper]
     ) -> None:
@@ -141,90 +133,6 @@ class Midi:
                 wait_time += msg.time
 
         return res
-
-    # 播放midi类存储的信息
-    def sound(
-        self, player: Optional[PLAYER] = None, is_sourcefile: bool = False
-    ) -> Self:
-        # 使用plmidi播放midi
-        def sound_by_plmidi() -> bool:
-            try:
-                import plmidi
-            except ImportError:
-                return False
-            else:
-                _colorUtils.cprint(_colorUtils.Cyan("sound by using plmidi"))
-
-                try:
-                    plmidi.sound(midifile)
-                except (plmidi.OpenMidiFileError, plmidi.plmidiInitError):
-                    return False
-
-                return True
-
-        # 使用pygame播放midi
-        def sound_by_pygame() -> bool:
-            os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
-            try:
-                from pygame import mixer, time
-            except ImportError:
-                return False
-            else:
-                _colorUtils.cprint(_colorUtils.Cyan("sound by using pygame"))
-
-                # 代码参考自musicpy的play函数
-                mixer.init()
-                mixer.music.load(midifile)
-                try:
-                    mixer.music.play()
-                    while mixer.music.get_busy():
-                        time.delay(10)
-                except KeyboardInterrupt:
-                    pass
-                return True
-
-        # 使用系统调用播放midi
-        def sound_by_os() -> bool:
-            _colorUtils.cprint(_colorUtils.Cyan("sound by using os"))
-
-            if os.path.exists(self.midifile):
-                os.system(f'"{self.midifile}"')
-                return True
-
-            return False
-
-        if not isinstance(player, Midi.PLAYER) and player is not None:
-            raise TypeError
-
-        use_tempfile: bool = False
-        if is_sourcefile:
-            midifile = self.midifile
-        else:
-            with tempfile.NamedTemporaryFile(delete=False) as tmpf:
-                use_tempfile = True
-                midifile = tmpf.name
-                self.write_midi(tmpf)
-
-        try:
-            if player is not None:
-                f = (sound_by_plmidi, sound_by_pygame, sound_by_os)[player.value]
-                if not f():
-                    _warn.warning(f"can not use {f.__name__} to play midi.")
-                return self
-
-            if sound_by_plmidi():
-                pass  # needless to do anything
-            elif sound_by_pygame():
-                pass
-            elif sound_by_os():
-                pass
-            else:
-                _warn.warning("no sound method can be used")
-        finally:
-            if use_tempfile:
-                os.remove(midifile)
-
-        return self
 
     def set_tempo(self, num: num_type = 1) -> Self:
         """将time重设为原来的num倍"""
@@ -374,10 +282,6 @@ class Midi:
                 f"tracks=[track])\n"
                 f"with tempfile.NamedTemporaryFile() as f:\n"
                 f"    mid.save(file=f)\n"
-                f"    f.seek(0)\n"
-                f"    os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'\n"
-                f"    from physicsLab.music import Midi\n"
-                f"    Midi(f).sound()"
             )
 
         return self
