@@ -878,7 +878,6 @@ class _Experiment:
 class ElementBase:
     """三大类型实验的元件的基类"""
 
-    data: dict
     experiment: _Experiment
     _position: coordinate_system.Position
 

@@ -54,28 +54,6 @@ class _NE555(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "555 Timer",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {"高电平": 3.0, "低电平": 0.0, "锁定": 1.0},
-            "Statistics": {
-                "供电": 10,
-                "放电": 0.0,
-                "阈值": 4,
-                "控制": 6.6666666666666666,
-                "触发": 4,
-                "输出": 0,
-                "重设": 10,
-                "接地": 0,
-            },
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self._all_pins = (
             ("_vcc_pin", Pin(self, 0)),
             ("_dis_pin", Pin(self, 1)),
@@ -89,6 +67,31 @@ class _NE555(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "555 Timer",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {"高电平": 3.0, "低电平": 0.0, "锁定": 1.0},
+            "Statistics": {
+                "供电": 10,
+                "放电": 0.0,
+                "阈值": 4,
+                "控制": 6.6666666666666666,
+                "触发": 4,
+                "输出": 0,
+                "重设": 10,
+                "接地": 0,
+            },
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -177,25 +180,6 @@ class _BasicCapacitor(CircuitBase):
         @param peak_voltage: 峰值电压, 单位为V
         @param internal_resistance: 内阻, 单位为Ω
         """
-        self.data: CircuitElementData = {
-            "ModelID": "Basic Capacitor",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "耐压": Generate,
-                "电容": Generate,
-                "内阻": Generate,
-                "理想模式": Generate,
-                "锁定": 1.0,
-            },
-            "Statistics": {},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self.peak_voltage = peak_voltage
         self.capacitance = capacitance
         self.internal_resistance = internal_resistance
@@ -207,6 +191,28 @@ class _BasicCapacitor(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Basic Capacitor",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {
+                "耐压": Generate,
+                "电容": Generate,
+                "内阻": Generate,
+                "理想模式": Generate,
+                "锁定": 1.0,
+            },
+            "Statistics": {},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -374,25 +380,6 @@ class _BasicInductor(CircuitBase):
         @param internal_resistance: 电感内部阻抗，单位为 Ohm
         @param is_ideal: 是否为理想模式
         """
-        self.data: CircuitElementData = {
-            "ModelID": "Basic Inductor",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "额定电流": Generate,
-                "电感": Generate,
-                "内阻": Generate,
-                "锁定": 1.0,
-                "理想模式": Generate,
-            },
-            "Statistics": {"电流": 0.0, "功率": 0.0, "电压": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self.rated_current = rated_current
         self.inductance = inductance
         self.internal_resistance = internal_resistance
@@ -404,6 +391,28 @@ class _BasicInductor(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Basic Inductor",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {
+                "额定电流": Generate,
+                "电感": Generate,
+                "内阻": Generate,
+                "锁定": 1.0,
+                "理想模式": Generate,
+            },
+            "Statistics": {"电流": 0.0, "功率": 0.0, "电压": 0.0},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -567,9 +576,19 @@ class _BasicDiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_red_pin", Pin(self, 0)),
+            ("_black_pin", Pin(self, 1)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Basic Diode",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -580,19 +599,12 @@ class _BasicDiode(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {"电流": 0.0, "电压": 0.0, "功率": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_red_pin", Pin(self, 0)),
-            ("_black_pin", Pin(self, 1)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -648,9 +660,19 @@ class _LightEmittingDiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_red_pin", Pin(self, 0)),
+            ("_black_pin", Pin(self, 1)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Light-Emitting Diode",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -662,19 +684,12 @@ class _LightEmittingDiode(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {"电流1": 0.0, "电压1": 0.0, "功率1": 0.0, "亮度1": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_red_pin", Pin(self, 0)),
-            ("_black_pin", Pin(self, 1)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -729,23 +744,26 @@ class _GroundComponent(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "Ground Component",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {"锁定": 1.0},
-            "Statistics": {"电流": 0},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self._all_pins = (("_i_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Ground Component",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {"锁定": 1.0},
+            "Statistics": {"电流": 0},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -804,9 +822,21 @@ class _Transformer(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_l_up_pin", Pin(self, 0)),
+            ("_r_up_pin", Pin(self, 1)),
+            ("_l_low_pin", Pin(self, 2)),
+            ("_r_low_pin", Pin(self, 3)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Transformer",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -824,21 +854,12 @@ class _Transformer(CircuitBase):
                 "电压2": 0.0,
                 "功率2": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_l_up_pin", Pin(self, 0)),
-            ("_r_up_pin", Pin(self, 1)),
-            ("_l_low_pin", Pin(self, 2)),
-            ("_r_low_pin", Pin(self, 3)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -911,9 +932,22 @@ class _TappedTransformer(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_l_up_pin", Pin(self, 0)),
+            ("_r_up_pin", Pin(self, 1)),
+            ("_l_low_pin", Pin(self, 2)),
+            ("_r_low_pin", Pin(self, 3)),
+            ("_mid_pin", Pin(self, 4)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Tapped Transformer",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -930,22 +964,12 @@ class _TappedTransformer(CircuitBase):
                 "电流2": 0.0,
                 "电压2": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_l_up_pin", Pin(self, 0)),
-            ("_r_up_pin", Pin(self, 1)),
-            ("_l_low_pin", Pin(self, 2)),
-            ("_r_low_pin", Pin(self, 3)),
-            ("_mid_pin", Pin(self, 4)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1020,9 +1044,21 @@ class _MutualInductor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_l_up_pin", Pin(self, 0)),
+            ("_r_up_pin", Pin(self, 1)),
+            ("_l_low_pin", Pin(self, 2)),
+            ("_r_low_pin", Pin(self, 3)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Mutual Inductor",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {"电感1": 4.0, "电感2": 1.0, "耦合系数": 1.0, "锁定": 1.0},
@@ -1034,21 +1070,12 @@ class _MutualInductor(CircuitBase):
                 "电压2": 0.0,
                 "功率2": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_l_up_pin", Pin(self, 0)),
-            ("_r_up_pin", Pin(self, 1)),
-            ("_l_low_pin", Pin(self, 2)),
-            ("_r_low_pin", Pin(self, 3)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1119,19 +1146,6 @@ class _Rectifier(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "Rectifier",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {"前向压降": 0.8, "额定电流": 1.0, "锁定": 1.0},
-            "Statistics": {"电流": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self._all_pins = (
             ("_l_up_pin", Pin(self, 0)),
             ("_r_up_pin", Pin(self, 1)),
@@ -1141,6 +1155,22 @@ class _Rectifier(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Rectifier",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {"前向压降": 0.8, "额定电流": 1.0, "锁定": 1.0},
+            "Statistics": {"电流": 0.0},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1212,24 +1242,6 @@ class _Transistor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "Transistor",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "PNP": Generate,
-                "放大系数": Generate,
-                "最大功率": Generate,
-                "锁定": 1.0,
-            },
-            "Statistics": {"电压BC": 0.0, "电压BE": 0.0, "电压CE": 0.0, "功率": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self.is_PNP = is_PNP
         self.gain = gain
         self.max_power = max_power
@@ -1241,6 +1253,27 @@ class _Transistor(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Transistor",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {
+                "PNP": Generate,
+                "放大系数": Generate,
+                "最大功率": Generate,
+                "锁定": 1.0,
+            },
+            "Statistics": {"电压BC": 0.0, "电压BE": 0.0, "电压CE": 0.0, "功率": 0.0},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1379,19 +1412,6 @@ class _Comparator(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "Comparator",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {"高电平": 3.0, "低电平": 0.0, "锁定": 1.0},
-            "Statistics": {},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self._all_pins = (
             ("_o_pin", Pin(self, 0)),
             ("_i_up_pin", Pin(self, 1)),
@@ -1400,6 +1420,22 @@ class _Comparator(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Comparator",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {"高电平": 3.0, "低电平": 0.0, "锁定": 1.0},
+            "Statistics": {},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1471,9 +1507,23 @@ class _OperationalAmplifier(CircuitBase):
         @param max_voltage: 最大电压
         @param min_voltage: 最小电压
         """
-        self.data: CircuitElementData = {
+        self.gain = gain
+        self.max_voltage = max_voltage
+        self.min_voltage = min_voltage
+        self._all_pins = (
+            ("_i_neg_pin", Pin(self, 0)),
+            ("_i_pos_pin", Pin(self, 1)),
+            ("_o_pin", Pin(self, 2)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Operational Amplifier",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1489,23 +1539,12 @@ class _OperationalAmplifier(CircuitBase):
                 "输出电流": 0,
                 "输出功率": 0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self.gain = gain
-        self.max_voltage = max_voltage
-        self.min_voltage = min_voltage
-        self._all_pins = (
-            ("_i_neg_pin", Pin(self, 0)),
-            ("_i_pos_pin", Pin(self, 1)),
-            ("_o_pin", Pin(self, 2)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1653,26 +1692,6 @@ class _RelayComponent(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
-            "ModelID": "Relay Component",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "开关": 0.0,
-                "线圈电感": Generate,
-                "线圈电阻": Generate,
-                "接通电流": Generate,
-                "额定电流": Generate,
-                "锁定": 1.0,
-            },
-            "Statistics": {},
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
         self.pull_in_current = pull_in_current
         self.rated_current = rated_current
         self.coil_inductance = coil_inductance
@@ -1687,6 +1706,29 @@ class _RelayComponent(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Relay Component",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {
+                "开关": 0.0,
+                "线圈电感": Generate,
+                "线圈电阻": Generate,
+                "接通电流": Generate,
+                "额定电流": Generate,
+                "锁定": 1.0,
+            },
+            "Statistics": {},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -1844,9 +1886,23 @@ class _N_MOSFET(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self.beta = beta
+        self.threshold = threshold
+        self.max_power = max_power
+        self._all_pins = (
+            ("_D_pin", Pin(self, 2)),
+            ("_S_pin", Pin(self, 1)),
+            ("_G_pin", Pin(self, 0)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "N-MOSFET",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1863,23 +1919,12 @@ class _N_MOSFET(CircuitBase):
                 "功率": 0.0,
                 "状态": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self.beta = beta
-        self.threshold = threshold
-        self.max_power = max_power
-        self._all_pins = (
-            ("_D_pin", Pin(self, 2)),
-            ("_S_pin", Pin(self, 1)),
-            ("_G_pin", Pin(self, 0)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2007,9 +2052,20 @@ class _P_MOSFET(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_G_pin", Pin(self, 0)),
+            ("_D_pin", Pin(self, 1)),
+            ("_S_pin", Pin(self, 2)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "P-MOSFET",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2026,20 +2082,12 @@ class _P_MOSFET(CircuitBase):
                 "功率": 0.0,
                 "状态": 1.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_G_pin", Pin(self, 0)),
-            ("_D_pin", Pin(self, 1)),
-            ("_S_pin", Pin(self, 2)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2099,9 +2147,19 @@ class _CurrentSource(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_red_pin", Pin(self, 0)),
+            ("_black_pin", Pin(self, 1)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Current Source",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2110,19 +2168,12 @@ class _CurrentSource(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_red_pin", Pin(self, 0)),
-            ("_black_pin", Pin(self, 1)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2179,9 +2230,19 @@ class _SourceElectricity(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
-        self.data: CircuitElementData = {
+        self._all_pins = (
+            ("_red_pin", Pin(self, 0)),
+            ("_black_pin", Pin(self, 1)),
+        )
+        for name, pin in self._all_pins:
+            setattr(self, name, pin)
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": Generate,
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2193,19 +2254,12 @@ class _SourceElectricity(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {"电流": 0.0, "功率": 0.0, "电压": -3.0},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        self._all_pins = (
-            ("_red_pin", Pin(self, 0)),
-            ("_black_pin", Pin(self, 1)),
-        )
-        for name, pin in self._all_pins:
-            setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)

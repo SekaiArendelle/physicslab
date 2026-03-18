@@ -6,7 +6,7 @@ from physicsLab import errors
 from physicsLab import coordinate_system
 
 from physicsLab.enums import ExperimentType, WireColor
-from physicsLab._tools import round_data, randString
+from physicsLab._tools import randString
 from physicsLab._core import (
     _Experiment,
     get_current_experiment,
@@ -230,6 +230,7 @@ class CircuitBase(ElementBase):
 
     experiment: _Experiment  # 元件所属的实验
     _position: coordinate_system.Position
+    _rotation: coordinate_system.Rotation
     is_elementXYZ: bool
     identifier: str
     is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
@@ -263,9 +264,7 @@ class CircuitBase(ElementBase):
         return self.data["Properties"]
 
     @final
-    def set_rotation(
-        self, x_r: num_type, y_r: num_type, z_r: num_type
-    ) -> Self:
+    def set_rotation(self, x_r: num_type, y_r: num_type, z_r: num_type) -> Self:
         """设置元件的角度"""
         if not isinstance(x_r, (int, float)):
             raise TypeError(
@@ -280,8 +279,7 @@ class CircuitBase(ElementBase):
                 f"Parameter z_r must be of type `int | float`, but got value {z_r} of type `{type(z_r).__name__}`"
             )
 
-        x_r, y_r, z_r = round_data(x_r), round_data(y_r), round_data(z_r)
-        self.data["Rotation"] = f"{x_r},{z_r},{y_r}"
+        self._rotation = coordinate_system.Rotation(x_r, y_r, z_r)
         return self
 
     @override
@@ -310,27 +308,34 @@ class CircuitBase(ElementBase):
                 f"Parameter elementXYZ must be of type `Optional[bool]`, but got value {elementXYZ} of type `{type(elementXYZ).__name__}`"
             )
 
-        x, y, z = round_data(x), round_data(y), round_data(z)
         self._position = coordinate_system.Position(x, y, z)
 
+        _Expe: _Experiment = self.experiment
+
         # 元件坐标系
-        if (
-            elementXYZ is True
-            or self.experiment.is_elementXYZ is True
-            and elementXYZ is None
-        ):
+        if elementXYZ is True or _Expe.is_elementXYZ is True and elementXYZ is None:
             x, y, z = elementXYZ_to_native(
                 x,
                 y,
                 z,
-                self.experiment._elementXYZ_origin_position,
+                _Expe._elementXYZ_origin_position,
                 is_bigElement=self.is_bigElement,
             )
             self.is_elementXYZ = True
         else:
             self.is_elementXYZ = False
 
-        return super().set_position(x, y, z)
+        for self_list in _Expe._position2elements.values():
+            if self in self_list:
+                self_list.remove(self)
+
+        errors.assert_true(hasattr(self, "_position"))
+        if self._position in _Expe._position2elements.keys():
+            _Expe._position2elements[self._position].append(self)
+        else:
+            _Expe._position2elements[self._position] = [self]
+
+        return self
 
     @property
     @final

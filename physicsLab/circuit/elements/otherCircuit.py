@@ -46,9 +46,13 @@ class _Buzzer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Buzzer",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": 1.0},
@@ -60,13 +64,12 @@ class _Buzzer(CircuitBase):
                 "电压": 0.0,
                 "电流": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -128,9 +131,13 @@ class _SparkGap(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Spark Gap",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -140,13 +147,12 @@ class _SparkGap(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {"瞬间功率": 0.0, "瞬间电流": 0.0, "瞬间电压": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -208,9 +214,13 @@ class _TeslaCoil(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Tesla Coil",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -222,13 +232,12 @@ class _TeslaCoil(CircuitBase):
                 "锁定": 1.0,
             },
             "Statistics": {"瞬间功率": 0.0, "瞬间电流": 0.0, "瞬间电压": 0.0},
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -299,9 +308,13 @@ class _ColorLightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Color Light-Emitting Diode",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -326,13 +339,12 @@ class _ColorLightEmittingDiode(CircuitBase):
                 "功率3": 0.0,
                 "亮度3": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -402,9 +414,13 @@ class _DualLightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Dual Light-Emitting Diode",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -425,13 +441,12 @@ class _DualLightEmittingDiode(CircuitBase):
                 "功率2": 0.0,
                 "亮度2": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -493,9 +508,13 @@ class _ElectricBell(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Electric Bell",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": 1.0},
@@ -507,13 +526,12 @@ class _ElectricBell(CircuitBase):
                 "电压": 0.0,
                 "电流": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -575,9 +593,13 @@ class _MusicalBox(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Musical Box",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": 1.0},
@@ -589,13 +611,12 @@ class _MusicalBox(CircuitBase):
                 "电压": 0.0,
                 "电流": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -678,9 +699,13 @@ class _ResistanceLaw(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Resistance Law",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -724,13 +749,12 @@ class _ResistanceLaw(CircuitBase):
                 "电压3": 0.0,
                 "电流3": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -825,9 +849,13 @@ class _Solenoid(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Solenoid",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -848,13 +876,12 @@ class _Solenoid(CircuitBase):
                 "磁通量": 0.0,
                 "电压-外线圈": 0.0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
@@ -924,9 +951,13 @@ class _ElectricFan(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self.data: CircuitElementData = {
+        super().__init__(x, y, z, elementXYZ, identifier)
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
             "ModelID": "Electric Fan",
-            "Identifier": Generate,
+            "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -954,13 +985,12 @@ class _ElectricFan(CircuitBase):
                 "输入功率": 0,
                 "输出功率": 0,
             },
-            "Position": Generate,
-            "Rotation": Generate,
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
-        super().__init__(x, y, z, elementXYZ, identifier)
 
     @final
     @staticmethod
