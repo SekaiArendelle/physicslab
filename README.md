@@ -3,7 +3,7 @@
 ![输入图片说明](./cover.jpg)
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![support-version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![support-version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)
 
 ## 警告
 本项目最初的作用只是作者用来学习Python。膨胀的需求将一个小脚本变为如今上万行的项目，是对代码结构的巨大冲击，以及脚本语言动态的特性，使得该项目的代码结构较为混乱。并且由于精力有限，我不会打算用静态语言重写整个项目。但我仍然会非常有限的维护该项目（如果你确实需要的话）。
