@@ -95,6 +95,10 @@ class _SimpleSwitch(_SwitchBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Simple Switch",
             "Identifier": self.identifier,
@@ -191,6 +195,10 @@ class _SPDTSwitch(_SwitchBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "SPDT Switch",
             "Identifier": self.identifier,
@@ -312,6 +320,10 @@ class _DPDTSwitch(_SwitchBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "DPDT Switch",
             "Identifier": self.identifier,
@@ -408,6 +420,10 @@ class _PushSwitch(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Push Switch",
             "Identifier": self.identifier,
@@ -487,6 +503,10 @@ class _AirSwitch(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Air Switch",
             "Identifier": self.identifier,
@@ -587,6 +607,10 @@ class _IncandescentLamp(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Incandescent Lamp",
             "Identifier": self.identifier,
@@ -691,6 +715,10 @@ class _BatterySource(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Battery Source",
             "Identifier": self.identifier,
@@ -797,6 +825,10 @@ class _StudentSource(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Student Source",
             "Identifier": self.identifier,
@@ -913,6 +945,10 @@ class _Resistor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Resistor",
             "Identifier": self.identifier,
@@ -1019,6 +1055,10 @@ class _FuseComponent(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Fuse Component",
             "Identifier": self.identifier,
@@ -1114,6 +1154,10 @@ class _SlideRheostat(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Slide Rheostat",
             "Identifier": self.identifier,
@@ -1220,6 +1264,10 @@ class _Multimeter(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Multimeter",
             "Identifier": self.identifier,
@@ -1312,6 +1360,10 @@ class _Galvanometer(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Galvanometer",
             "Identifier": self.identifier,
@@ -1401,6 +1453,10 @@ class _Microammeter(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Microammeter",
             "Identifier": self.identifier,
@@ -1493,6 +1549,10 @@ class _ElectricityMeter(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Electricity Meter",
             "Identifier": self.identifier,
@@ -1588,6 +1648,10 @@ class _ResistanceBox(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Resistance Box",
             "Identifier": self.identifier,
@@ -1686,6 +1750,10 @@ class _SimpleAmmeter(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Simple Ammeter",
             "Identifier": self.identifier,
@@ -1775,6 +1843,10 @@ class _SimpleVoltmeter(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Simple Voltmeter",
             "Identifier": self.identifier,

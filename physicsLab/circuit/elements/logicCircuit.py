@@ -66,6 +66,10 @@ class _LogicInput(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Logic Input",
             "Identifier": self.identifier,
@@ -175,6 +179,10 @@ class _LogicOutput(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Logic Output",
             "Identifier": self.identifier,
@@ -322,6 +330,10 @@ class _YesGate(_2PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Yes Gate",
             "Identifier": self.identifier,
@@ -387,6 +399,10 @@ class _NoGate(_2PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "No Gate",
             "Identifier": self.identifier,
@@ -524,6 +540,10 @@ class _OrGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Or Gate",
             "Identifier": self.identifier,
@@ -598,6 +618,10 @@ class _AndGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "And Gate",
             "Identifier": self.identifier,
@@ -672,6 +696,10 @@ class _NorGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Nor Gate",
             "Identifier": self.identifier,
@@ -746,6 +774,10 @@ class _NandGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Nand Gate",
             "Identifier": self.identifier,
@@ -820,6 +852,10 @@ class _XorGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Xor Gate",
             "Identifier": self.identifier,
@@ -894,6 +930,10 @@ class _XnorGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Xnor Gate",
             "Identifier": self.identifier,
@@ -968,6 +1008,10 @@ class _ImpGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Imp Gate",
             "Identifier": self.identifier,
@@ -1042,6 +1086,10 @@ class _NimpGate(_3PinGate):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Nimp Gate",
             "Identifier": self.identifier,
@@ -1167,6 +1215,10 @@ class _HalfAdder(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Half Adder",
             "Identifier": self.identifier,
@@ -1283,6 +1335,10 @@ class _FullAdder(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Full Adder",
             "Identifier": self.identifier,
@@ -1403,6 +1459,10 @@ class _HalfSubtractor(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Half Subtractor",
             "Identifier": self.identifier,
@@ -1522,6 +1582,10 @@ class _FullSubtractor(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Full Subtractor",
             "Identifier": self.identifier,
@@ -1651,6 +1715,10 @@ class _Multiplier(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Multiplier",
             "Identifier": self.identifier,
@@ -1780,6 +1848,10 @@ class _DFlipflop(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "D Flipflop",
             "Identifier": self.identifier,
@@ -1893,6 +1965,10 @@ class _TFlipflop(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "T Flipflop",
             "Identifier": self.identifier,
@@ -2006,6 +2082,10 @@ class _RealTFlipflop(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Real-T Flipflop",
             "Identifier": self.identifier,
@@ -2122,6 +2202,10 @@ class _JKFlipflop(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "JK Flipflop",
             "Identifier": self.identifier,
@@ -2245,6 +2329,10 @@ class _Counter(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Counter",
             "Identifier": self.identifier,
@@ -2372,6 +2460,10 @@ class _RandomGenerator(_BigElement):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Random Generator",
             "Identifier": self.identifier,
@@ -2527,6 +2619,10 @@ class _EightBitInput(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "8bit Input",
             "Identifier": self.identifier,
@@ -2706,6 +2802,10 @@ class _EightBitDisplay(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Eight Bit Display",
             "Identifier": self.identifier,
@@ -2850,6 +2950,10 @@ class _SchmittTrigger(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Schmitt Trigger",
             "Identifier": self.identifier,

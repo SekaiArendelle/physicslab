@@ -134,6 +134,10 @@ class _Accelerometer(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Accelerometer",
             "Identifier": self.identifier,
@@ -231,6 +235,10 @@ class _AnalogJoystick(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Analog Joystick",
             "Identifier": self.identifier,
@@ -328,6 +336,10 @@ class _AttitudeSensor(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Attitude Sensor",
             "Identifier": self.identifier,
@@ -412,6 +424,10 @@ class _GravitySensor(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Gravity Sensor",
             "Identifier": self.identifier,
@@ -496,6 +512,10 @@ class _Gyroscope(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Gyroscope",
             "Identifier": self.identifier,
@@ -580,6 +600,10 @@ class _LinearAccelerometer(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Linear Accelerometer",
             "Identifier": self.identifier,
@@ -664,6 +688,10 @@ class _MagneticFieldSensor(_MemsBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Magnetic Field Sensor",
             "Identifier": self.identifier,
@@ -745,6 +773,10 @@ class _Photodiode(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Photodiode",
             "Identifier": self.identifier,
@@ -830,6 +862,10 @@ class _Photoresistor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Photoresistor",
             "Identifier": self.identifier,
@@ -911,6 +947,10 @@ class _ProximitySensor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Proximity Sensor",
             "Identifier": self.identifier,

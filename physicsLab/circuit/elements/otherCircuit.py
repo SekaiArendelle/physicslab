@@ -49,6 +49,10 @@ class _Buzzer(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Buzzer",
             "Identifier": self.identifier,
@@ -134,6 +138,10 @@ class _SparkGap(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Spark Gap",
             "Identifier": self.identifier,
@@ -217,6 +225,10 @@ class _TeslaCoil(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Tesla Coil",
             "Identifier": self.identifier,
@@ -311,6 +323,10 @@ class _ColorLightEmittingDiode(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Color Light-Emitting Diode",
             "Identifier": self.identifier,
@@ -417,6 +433,10 @@ class _DualLightEmittingDiode(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Dual Light-Emitting Diode",
             "Identifier": self.identifier,
@@ -511,6 +531,10 @@ class _ElectricBell(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Electric Bell",
             "Identifier": self.identifier,
@@ -596,6 +620,10 @@ class _MusicalBox(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Musical Box",
             "Identifier": self.identifier,
@@ -702,6 +730,10 @@ class _ResistanceLaw(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Resistance Law",
             "Identifier": self.identifier,
@@ -852,6 +884,10 @@ class _Solenoid(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Solenoid",
             "Identifier": self.identifier,
@@ -954,6 +990,10 @@ class _ElectricFan(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Electric Fan",
             "Identifier": self.identifier,
@@ -1085,6 +1125,10 @@ class _SimpleInstrument(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         if not all(isinstance(a_pitch, int) for a_pitch in self.pitches):
             raise TypeError
         if not all(0 <= a_pitch < 128 for a_pitch in self.pitches):

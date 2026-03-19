@@ -69,6 +69,10 @@ class _NE555(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "555 Timer",
             "Identifier": self.identifier,
@@ -215,6 +219,10 @@ class _BasicCapacitor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Basic Capacitor",
             "Identifier": self.identifier,
@@ -358,6 +366,10 @@ class _BasicInductor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Basic Inductor",
             "Identifier": self.identifier,
@@ -472,6 +484,10 @@ class _BasicDiode(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Basic Diode",
             "Identifier": self.identifier,
@@ -556,6 +572,10 @@ class _LightEmittingDiode(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Light-Emitting Diode",
             "Identifier": self.identifier,
@@ -637,6 +657,10 @@ class _GroundComponent(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Ground Component",
             "Identifier": self.identifier,
@@ -720,6 +744,10 @@ class _Transformer(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Transformer",
             "Identifier": self.identifier,
@@ -831,6 +859,10 @@ class _TappedTransformer(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Tapped Transformer",
             "Identifier": self.identifier,
@@ -942,6 +974,10 @@ class _MutualInductor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Mutual Inductor",
             "Identifier": self.identifier,
@@ -1044,6 +1080,10 @@ class _Rectifier(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Rectifier",
             "Identifier": self.identifier,
@@ -1159,6 +1199,10 @@ class _Transistor(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Transistor",
             "Identifier": self.identifier,
@@ -1277,6 +1321,10 @@ class _Comparator(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Comparator",
             "Identifier": self.identifier,
@@ -1394,6 +1442,10 @@ class _OperationalAmplifier(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Operational Amplifier",
             "Identifier": self.identifier,
@@ -1547,6 +1599,10 @@ class _RelayComponent(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Relay Component",
             "Identifier": self.identifier,
@@ -1684,6 +1740,10 @@ class _N_MOSFET(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "N-MOSFET",
             "Identifier": self.identifier,
@@ -1796,6 +1856,10 @@ class _P_MOSFET(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "P-MOSFET",
             "Identifier": self.identifier,
@@ -1890,6 +1954,10 @@ class _CurrentSource(CircuitBase):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Current Source",
             "Identifier": self.identifier,
@@ -2003,6 +2071,10 @@ class _SinewaveSource(_SourceElectricity):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Sinewave Source",
             "Identifier": self.identifier,
@@ -2064,6 +2136,10 @@ class _SquareSource(_SourceElectricity):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Square Source",
             "Identifier": self.identifier,
@@ -2125,6 +2201,10 @@ class _TriangleSource(_SourceElectricity):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Triangle Source",
             "Identifier": self.identifier,
@@ -2186,6 +2266,10 @@ class _SawtoothSource(_SourceElectricity):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Sawtooth Source",
             "Identifier": self.identifier,
@@ -2247,6 +2331,10 @@ class _PulseSource(_SourceElectricity):
 
     @property
     def data(self) -> CircuitElementData:
+        # [[depreccated]]
+        return self.as_dict()
+
+    def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Pulse Source",
             "Identifier": self.identifier,
