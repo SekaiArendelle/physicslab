@@ -145,9 +145,9 @@ class Wire:
 
     def release(self) -> dict:
         return {
-            "Source": self.Source.element_self.data["Identifier"],
+            "Source": self.Source.element_self.identifier,
             "SourcePin": self.Source._pin_label,
-            "Target": self.Target.element_self.data["Identifier"],
+            "Target": self.Target.element_self.identifier,
             "TargetPin": self.Target._pin_label,
             "ColorName": f"{self.color.value}色导线",
         }
@@ -222,7 +222,7 @@ def _deprecated_init_attr_experiment(
 
 def _deprecated_assign_element_to_experiment(self: "CircuitBase") -> None:
     self.experiment.Elements.append(self)
-    self.experiment._id2element[self.data["Identifier"]] = self
+    self.experiment._id2element[self.identifier] = self
 
 
 class CircuitBase(ElementBase):
@@ -259,12 +259,6 @@ class CircuitBase(ElementBase):
             f"({self._position.x}, {self._position.y}, {self._position.z}, "
             f"elementXYZ={self.is_elementXYZ})"
         )
-
-    @property
-    @final
-    def properties(self) -> dict:
-        """返回元件的属性"""
-        return self.data["Properties"]
 
     @final
     def set_rotation(self, x_r: num_type, y_r: num_type, z_r: num_type) -> Self:
@@ -359,28 +353,6 @@ class CircuitBase(ElementBase):
             )
 
         self._lock_status = value
-
-    @property
-    @final
-    def modelID(self) -> str:
-        """存档的modelID"""
-        assert not isinstance(self.data["ModelID"], type(Generate))
-        return self.data["ModelID"]
-
-    @abc.abstractmethod
-    def all_pins(self) -> Iterator[Tuple[str, Pin]]:
-        raise NotImplementedError
-
-    @final
-    @classmethod
-    def get_all_pins_property(cls):
-        """获取该元件的所有引脚对应的property"""
-        # deprecated
-        for name, obj in inspect.getmembers(cls):
-            if isinstance(obj, property):
-                property_type = obj.fget.__annotations__.get("return")
-                if isinstance(property_type, type(Pin)):
-                    yield name, obj
 
     @final
     def rename(self, name: str) -> Self:

@@ -705,7 +705,7 @@ class LinearNode(Node):
                 z,
                 elementXYZ=True,
                 inverted=True,
-                high_level=(b if positive else -b) / oa1.properties["增益系数"],
+                high_level=(b if positive else -b) / oa1.as_dict()["Properties"]["增益系数"],
             )
             crt_wire(st1.o, oa1.i_pos if positive else oa1.i_neg)
             self.elements.append(st1)
