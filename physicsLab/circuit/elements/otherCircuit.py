@@ -14,7 +14,6 @@ from physicsLab._typing import (
     num_type,
     CircuitElementData,
     Self,
-    Generate,
     Union,
     List,
     override,
@@ -1070,49 +1069,14 @@ class _SimpleInstrument(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        self._data: CircuitElementData = {
-            "ModelID": "Simple Instrument",
-            "Identifier": Generate,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "额定电压": Generate,
-                "额定功率": 0.3,
-                "音量": Generate,
-                "音高": Generate,
-                "节拍": Generate,
-                "锁定": 1.0,
-                "和弦": Generate,
-                "乐器": Generate,
-                "理想模式": Generate,
-                "脉冲": Generate,
-                "电平": 0.0,
-            },
-            "Statistics": {
-                "瞬间功率": 0,
-                "瞬间电流": 0,
-                "瞬间电压": 0,
-                "功率": 0,
-                "电压": 0,
-                "电流": 0,
-            },
-            "Position": Generate,
-            "Rotation": Generate,
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
-
         self.pitches: List[int] = list(pitches)
+        self.set_rated_oltage(rated_oltage)
+        self.set_volume(volume)
+        self.set_bpm(bpm)
+        self.set_instrument(instrument)
+        self.set_is_ideal(is_ideal)
+        self.set_is_pulse(is_pulse)
         super().__init__(x, y, z, elementXYZ, identifier)
-        self.set_properties(
-            rated_oltage=rated_oltage,
-            volume=volume,
-            bpm=bpm,
-            instrument=instrument,
-            is_ideal=is_ideal,
-            is_pulse=is_pulse,
-        )
 
     @final
     @staticmethod
@@ -1130,73 +1094,86 @@ class _SimpleInstrument(CircuitBase):
         if plar_version is not None and plar_version < (2, 4, 7):
             _warn.warning("Physics-Lab-AR's version less than 2.4.7")
 
-        # TODO 是否需要先清空所有 "音高"
+        properties = {
+            "额定电压": self._rated_oltage,
+            "额定功率": 0.3,
+            "音量": self._volume,
+            "节拍": self._bpm,
+            "锁定": 1.0,
+            "乐器": self._instrument,
+            "理想模式": int(self._is_ideal),
+            "脉冲": int(self._is_pulse),
+            "电平": 0.0,
+        }
         for i, a_pitch in enumerate(self.pitches):
             if i == 0:
-                self._data["Properties"]["音高"] = a_pitch
+                properties["音高"] = a_pitch
             else:
-                self._data["Properties"][f"音高{i}"] = a_pitch
-        self._data["Properties"]["和弦"] = len(self.pitches)
+                properties[f"音高{i}"] = a_pitch
+        properties["和弦"] = len(self.pitches)
 
-        return self._data
+        return {
+            "ModelID": "Simple Instrument",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": properties,
+            "Statistics": {
+                "瞬间功率": 0,
+                "瞬间电流": 0,
+                "瞬间电压": 0,
+                "功率": 0,
+                "电压": 0,
+                "电流": 0,
+            },
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
-    @data.setter
-    def data(self, data: CircuitElementData) -> None:
-        self._data = data
+    def set_rated_oltage(self, value: num_type) -> None:
+        if not isinstance(value, (int, float)):
+            raise TypeError(
+                f"rated_oltage must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self._rated_oltage = value
 
-    def set_properties(
-        self,
-        *,
-        rated_oltage: Optional[num_type] = None,
-        volume: Optional[num_type] = None,
-        bpm: Optional[int] = None,
-        instrument: Optional[int] = None,
-        is_ideal: Optional[bool] = None,
-        is_pulse: Optional[bool] = None,
-    ) -> Self:
-        if not isinstance(rated_oltage, (int, float, type(None))):
+    def set_volume(self, value: num_type) -> None:
+        if not isinstance(value, (int, float)):
             raise TypeError(
-                f"Parameter rated_oltage must be of type `Optional[int | float]`, but got value {rated_oltage} of type `{type(rated_oltage).__name__}`"
+                f"volume must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
             )
-        if not isinstance(volume, (int, float, type(None))):
-            raise TypeError(
-                f"Parameter volume must be of type `Optional[int | float]`, but got value {volume} of type `{type(volume).__name__}`"
-            )
-        if not isinstance(bpm, (int, type(None))):
-            raise TypeError(
-                f"Parameter bpm must be of type `Optional[int]`, but got value {bpm} of type `{type(bpm).__name__}`"
-            )
-        if not isinstance(instrument, (int, type(None))):
-            raise TypeError(
-                f"Parameter instrument must be of type `Optional[int]`, but got value {instrument} of type `{type(instrument).__name__}`"
-            )
-        if not isinstance(is_ideal, (bool, type(None))):
-            raise TypeError(
-                f"Parameter is_ideal must be of type `Optional[bool]`, but got value {is_ideal} of type `{type(is_ideal).__name__}`"
-            )
-        if not isinstance(is_pulse, (bool, type(None))):
-            raise TypeError(
-                f"Parameter is_pulse must be of type `Optional[bool]`, but got value {is_pulse} of type `{type(is_pulse).__name__}`"
-            )
+        self._volume = value
 
-        if rated_oltage is not None:
-            self.properties["额定电压"] = rated_oltage
-        if volume is not None:
-            self.properties["音量"] = volume
-        if bpm is not None:
-            self.properties["节拍"] = bpm
-        if instrument is not None:
-            self.properties["乐器"] = instrument
-        if is_ideal is not None:
-            self.properties["理想模式"] = int(is_ideal)
-        if is_pulse is not None:
-            self.properties["脉冲"] = int(is_pulse)
+    def set_bpm(self, value: int) -> None:
+        if not isinstance(value, int):
+            raise TypeError(
+                f"bpm must be of type `int`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self._bpm = value
 
-        assert instrument is not None and bpm is not None and volume is not None
-        if not 0 <= instrument <= 128 or not 20 <= bpm <= 240 or not 0 <= volume <= 1:
-            raise ValueError
+    def set_instrument(self, value: int) -> None:
+        if not isinstance(value, int):
+            raise TypeError(
+                f"instrument must be of type `int`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self._instrument = value
 
-        return self
+    def set_is_ideal(self, value: bool) -> None:
+        if not isinstance(value, bool):
+            raise TypeError(
+                f"is_ideal must be of type `bool`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self._is_ideal = value
+
+    def set_is_pulse(self, value: bool) -> None:
+        if not isinstance(value, bool):
+            raise TypeError(
+                f"is_pulse must be of type `bool`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self._is_pulse = value
 
     @property
     def i(self) -> Pin:
@@ -1215,12 +1192,12 @@ class _SimpleInstrument(CircuitBase):
             f"Simple_Instrument({self._position.x}, {self._position.y}, {self._position.z}, "
             f"elementXYZ={self.is_elementXYZ}, "
             f"pitches={self.pitches}, "
-            f"instrument={self.properties['乐器']}, "
-            f"bpm={self._data['Properties']['节拍']}, "
-            f"volume={self._data['Properties']['音量']}, "
-            f"rated_oltage={self._data['Properties']['额定电压']}, "
-            f"is_ideal={bool(self._data['Properties']['理想模式'])}, "
-            f"is_pulse={bool(self._data['Properties']['脉冲'])}"
+            f"instrument={self._instrument}, "
+            f"bpm={self._bpm}, "
+            f"volume={self._volume}, "
+            f"rated_oltage={self._rated_oltage}, "
+            f"is_ideal={self._is_ideal}, "
+            f"is_pulse={self._is_pulse}"
             f")"
         )
 

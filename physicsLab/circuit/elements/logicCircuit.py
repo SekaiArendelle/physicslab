@@ -274,27 +274,6 @@ class _2PinGate(CircuitBase):
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier)
 
-    @property
-    def data(self) -> CircuitElementData:
-        return {
-            "ModelID": "",
-            "Identifier": self.identifier,
-            "IsBroken": False,
-            "IsLocked": False,
-            "Properties": {
-                "高电平": self.high_level,
-                "低电平": self.low_level,
-                "最大电流": 0.1,
-                "锁定": 1.0,
-            },
-            "Statistics": {},
-            "Position": self._position.as_postion_str_in_plsav(),
-            "Rotation": self._rotation.as_rotation_str_in_plsav(),
-            "DiagramCached": False,
-            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
-            "DiagramRotation": 0,
-        }
-
     def all_pins(
         self,
     ) -> Iterator[Tuple[str, Union[InputPin, OutputPin]]]:
@@ -336,6 +315,27 @@ class _YesGate(_2PinGate):
     @staticmethod
     def count_all_pins() -> int:
         return 2
+
+    @property
+    def data(self) -> CircuitElementData:
+        return {
+            "ModelID": "Yes Gate",
+            "Identifier": self.identifier,
+            "IsBroken": False,
+            "IsLocked": False,
+            "Properties": {
+                "高电平": self.high_level,
+                "低电平": self.low_level,
+                "最大电流": 0.1,
+                "锁定": 1.0,
+            },
+            "Statistics": {},
+            "Position": self._position.as_postion_str_in_plsav(),
+            "Rotation": self._rotation.as_rotation_str_in_plsav(),
+            "DiagramCached": False,
+            "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
+            "DiagramRotation": 0,
+        }
 
 
 class Yes_Gate(_YesGate):
