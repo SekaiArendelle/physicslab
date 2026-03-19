@@ -545,6 +545,13 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
             self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.input_num, 0)
+            chip.input_num = 5
+            self.assertEqual(chip.input_num, 5)
+            try:
+                chip.input_num = -1
+            except ValueError:
+                pass
             expe.close(delete=True)
 
     def test_eight_bit_display(self):

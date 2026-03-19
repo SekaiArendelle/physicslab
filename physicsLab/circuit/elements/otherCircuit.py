@@ -1145,6 +1145,8 @@ class _SimpleInstrument(CircuitBase):
             raise TypeError(
                 f"volume must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
             )
+        if not 0 <= value <= 1:
+            raise ValueError(f"volume must be in range [0, 1], but got {value}")
         self._volume = value
 
     def set_bpm(self, value: int) -> None:
@@ -1152,6 +1154,8 @@ class _SimpleInstrument(CircuitBase):
             raise TypeError(
                 f"bpm must be of type `int`, but got value {value} of type `{type(value).__name__}`"
             )
+        if not 20 <= value <= 240:
+            raise ValueError(f"bpm must be in range [20, 240], but got {value}")
         self._bpm = value
 
     def set_instrument(self, value: int) -> None:
@@ -1159,6 +1163,8 @@ class _SimpleInstrument(CircuitBase):
             raise TypeError(
                 f"instrument must be of type `int`, but got value {value} of type `{type(value).__name__}`"
             )
+        if not 0 <= value <= 128:
+            raise ValueError(f"instrument must be in range [0, 128], but got {value}")
         self._instrument = value
 
     def set_is_ideal(self, value: bool) -> None:

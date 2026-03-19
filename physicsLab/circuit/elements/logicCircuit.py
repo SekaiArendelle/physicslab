@@ -2462,6 +2462,10 @@ class _EightBitInput(CircuitBase):
 
     is_bigElement: bool = True
 
+    _input_num: int
+    low_level: num_type
+    high_level: num_type
+
     _all_pins: Tuple[
         Tuple[Literal["_i_up_pin"], InputPin],
         Tuple[Literal["_i_upmid_pin"], InputPin],
@@ -2486,11 +2490,16 @@ class _EightBitInput(CircuitBase):
         x: num_type,
         y: num_type,
         z: num_type,
+        input_num: int,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
     ) -> None:
+        if not isinstance(input_num, int):
+            raise TypeError(
+                f"input_num must be of type `int`, but got value `{input_num}` of type {type(input_num).__name__}"
+            )
         if not isinstance(high_level, (int, float)):
             raise TypeError(
                 f"high_level must be of type `int | float`, but got value `{high_level}` of type {type(high_level).__name__}"
@@ -2499,6 +2508,7 @@ class _EightBitInput(CircuitBase):
             raise TypeError(
                 f"low_level must be of type `int | float`, but got value `{low_level}` of type {type(low_level).__name__}"
             )
+        self.input_num = input_num
         self.high_level: num_type = high_level
         self.low_level: num_type = low_level
         self._all_pins = (
@@ -2523,6 +2533,7 @@ class _EightBitInput(CircuitBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
+                "十进制": self.input_num,
                 "高电平": self.high_level,
                 "低电平": self.low_level,
                 "锁定": 1.0,
@@ -2538,12 +2549,25 @@ class _EightBitInput(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Eight_Bit_Input({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ})"
+            f"elementXYZ={self.is_elementXYZ}, "
+            f"input_num={self.input_num})"
         )
 
-    # TODO 改为@property
-    def set_num(self, num: int):
-        pass
+    @property
+    def input_num(self) -> int:
+        return self._input_num
+
+    @input_num.setter
+    def input_num(self, value: int) -> None:
+        if not isinstance(value, int):
+            raise TypeError(
+                f"input_num must be of type `int`, but got value `{value}` of type {type(value).__name__}"
+            )
+        if not (0 <= value <= 0xff):
+            raise ValueError(
+                f"input_num must be between 0 and 8 (inclusive), but got {value}"
+            )
+        self._input_num = value
 
     def all_pins(
         self,
@@ -2600,6 +2624,7 @@ class Eight_Bit_Input(_EightBitInput):
         z: num_type,
         /,
         *,
+        input_num: int = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
@@ -2612,6 +2637,7 @@ class Eight_Bit_Input(_EightBitInput):
             x,
             y,
             z,
+            input_num=input_num,
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
