@@ -44,6 +44,7 @@ class _MemsBase(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         self.set_ranges(ranges)
         self.set_shifting(shifting)
@@ -55,7 +56,7 @@ class _MemsBase(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -121,6 +122,7 @@ class _Accelerometer(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -133,6 +135,7 @@ class _Accelerometer(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -159,6 +162,7 @@ class _Accelerometer(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -182,6 +186,7 @@ class Accelerometer(_Accelerometer):
         shifting: num_type = 0.75,
         response_factor: num_type = 0.2290000021457672,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -195,6 +200,7 @@ class Accelerometer(_Accelerometer):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -225,6 +231,7 @@ class _AnalogJoystick(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # build fields first, then call base init
         self._all_pins = (
@@ -237,7 +244,7 @@ class _AnalogJoystick(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -257,6 +264,7 @@ class _AnalogJoystick(CircuitBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
@@ -308,10 +316,11 @@ class Analog_Joystick(_AnalogJoystick):
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label=label)
         _deprecated_assign_element_to_experiment(self)
 
 
@@ -329,6 +338,7 @@ class _AttitudeSensor(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -341,6 +351,7 @@ class _AttitudeSensor(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -367,6 +378,7 @@ class _AttitudeSensor(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -390,6 +402,7 @@ class Attitude_Sensor(_AttitudeSensor):
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -403,6 +416,7 @@ class Attitude_Sensor(_AttitudeSensor):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -421,6 +435,7 @@ class _GravitySensor(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -433,6 +448,7 @@ class _GravitySensor(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -459,6 +475,7 @@ class _GravitySensor(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -482,6 +499,7 @@ class Gravity_Sensor(_GravitySensor):
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -495,6 +513,7 @@ class Gravity_Sensor(_GravitySensor):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -513,6 +532,7 @@ class _Gyroscope(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -525,6 +545,7 @@ class _Gyroscope(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -551,6 +572,7 @@ class _Gyroscope(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -574,6 +596,7 @@ class Gyroscope(_Gyroscope):
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -587,6 +610,7 @@ class Gyroscope(_Gyroscope):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -605,6 +629,7 @@ class _LinearAccelerometer(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -617,6 +642,7 @@ class _LinearAccelerometer(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -643,6 +669,7 @@ class _LinearAccelerometer(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -666,6 +693,7 @@ class Linear_Accelerometer(_LinearAccelerometer):
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -679,6 +707,7 @@ class Linear_Accelerometer(_LinearAccelerometer):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -697,6 +726,7 @@ class _MagneticFieldSensor(_MemsBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         super().__init__(
@@ -709,6 +739,7 @@ class _MagneticFieldSensor(_MemsBase):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
 
     @property
@@ -735,6 +766,7 @@ class _MagneticFieldSensor(_MemsBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     @final
@@ -758,6 +790,7 @@ class Magnetic_Field_Sensor(_MagneticFieldSensor):
         shifting: num_type = 3.2,
         response_factor: num_type = 80,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
@@ -771,6 +804,7 @@ class Magnetic_Field_Sensor(_MagneticFieldSensor):
             elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
+            label=label,
         )
         _deprecated_assign_element_to_experiment(self)
 
@@ -790,6 +824,7 @@ class _Photodiode(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -797,7 +832,7 @@ class _Photodiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -824,6 +859,7 @@ class _Photodiode(CircuitBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
@@ -859,10 +895,11 @@ class Photodiode(_Photodiode):
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label=label)
         _deprecated_assign_element_to_experiment(self)
 
 
@@ -881,6 +918,7 @@ class _Photoresistor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0)),
@@ -888,7 +926,7 @@ class _Photoresistor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -915,6 +953,7 @@ class _Photoresistor(CircuitBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
@@ -950,10 +989,11 @@ class Photoresistor(_Photoresistor):
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label=label)
         _deprecated_assign_element_to_experiment(self)
 
 
@@ -971,11 +1011,12 @@ class _ProximitySensor(CircuitBase):
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         self._all_pins = (("_o_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -995,6 +1036,7 @@ class _ProximitySensor(CircuitBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
@@ -1026,8 +1068,9 @@ class Proximity_Sensor(_ProximitySensor):
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
+        label: Optional[str] = None,
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label=label)
         _deprecated_assign_element_to_experiment(self)

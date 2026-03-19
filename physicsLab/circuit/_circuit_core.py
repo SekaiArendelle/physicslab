@@ -235,6 +235,7 @@ class CircuitBase(ElementBase):
     identifier: str
     is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
     _lock_status: bool
+    _label: Optional[str]
 
     def __init__(
         self,
@@ -244,6 +245,7 @@ class CircuitBase(ElementBase):
         elementXYZ: Optional[bool],
         identifier: Optional[str],
         lock_status: bool,
+        label: Optional[str],
     ) -> None:
         self.set_position(x, y, z, elementXYZ)
         if identifier is None:
@@ -252,6 +254,7 @@ class CircuitBase(ElementBase):
             self.identifier = identifier
         self.set_rotation(0, 0, 180)
         self.lock_status = lock_status
+        self.label = label
 
     def __repr__(self) -> str:
         return (
@@ -354,17 +357,17 @@ class CircuitBase(ElementBase):
 
         self._lock_status = value
 
+    @property
     @final
-    def rename(self, name: str) -> Self:
-        """重命名元件
+    def label(self) -> Optional[str]:
+        return self._label
 
-        Args:
-            name: 将元件重命名为name
-        """
-        if not isinstance(name, str):
+    @label.setter
+    @final
+    def label(self, value: Optional[str]) -> None:
+        if not isinstance(value, (str, type(None))):
             raise TypeError(
-                f"Parameter name must be of type `str`, but got value {name} of type `{type(name).__name__}`"
+                f"label must be of type `Optional[str]`, but got value {value} of type `{type(value).__name__}`"
             )
 
-        self.data["Label"] = name
-        return self
+        self._label = value

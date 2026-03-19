@@ -19,3 +19,4 @@ class CircuitElementData(TypedDict):
     DiagramCached: bool
     DiagramPosition: Dict[Any, Any]
     DiagramRotation: int
+    Label: Optional[str]

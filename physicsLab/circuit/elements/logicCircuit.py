@@ -39,6 +39,7 @@ class _LogicInput(CircuitBase):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -63,7 +64,7 @@ class _LogicInput(CircuitBase):
         self._all_pins = (("_o_pin", OutputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -74,6 +75,7 @@ class _LogicInput(CircuitBase):
         return {
             "ModelID": "Logic Input",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -131,6 +133,7 @@ class Logic_Input(_LogicInput):
         output_status: bool = False,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -144,6 +147,7 @@ class Logic_Input(_LogicInput):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -164,6 +168,7 @@ class _LogicOutput(CircuitBase):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -179,7 +184,7 @@ class _LogicOutput(CircuitBase):
         self._all_pins = (("_i_pin", InputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -190,6 +195,7 @@ class _LogicOutput(CircuitBase):
         return {
             "ModelID": "Logic Output",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -238,6 +244,7 @@ class Logic_Output(_LogicOutput):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -250,6 +257,7 @@ class Logic_Output(_LogicOutput):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -273,6 +281,7 @@ class _2PinGate(CircuitBase):
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -291,7 +300,7 @@ class _2PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -323,9 +332,10 @@ class _YesGate(_2PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @final
     @staticmethod
@@ -345,6 +355,7 @@ class _YesGate(_2PinGate):
         return {
             "ModelID": "Yes Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -375,6 +386,7 @@ class Yes_Gate(_YesGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -387,6 +399,7 @@ class Yes_Gate(_YesGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -404,9 +417,10 @@ class _NoGate(_2PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -417,6 +431,7 @@ class _NoGate(_2PinGate):
         return {
             "ModelID": "No Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -456,6 +471,7 @@ class No_Gate(_NoGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -468,6 +484,7 @@ class No_Gate(_NoGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -494,6 +511,7 @@ class _3PinGate(CircuitBase):
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -513,7 +531,7 @@ class _3PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -549,9 +567,10 @@ class _OrGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -562,6 +581,7 @@ class _OrGate(_3PinGate):
         return {
             "ModelID": "Or Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -601,6 +621,7 @@ class Or_Gate(_OrGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -613,6 +634,7 @@ class Or_Gate(_OrGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -630,9 +652,10 @@ class _AndGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -643,6 +666,7 @@ class _AndGate(_3PinGate):
         return {
             "ModelID": "And Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -682,6 +706,7 @@ class And_Gate(_AndGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -694,6 +719,7 @@ class And_Gate(_AndGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -711,9 +737,10 @@ class _NorGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -724,6 +751,7 @@ class _NorGate(_3PinGate):
         return {
             "ModelID": "Nor Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -763,6 +791,7 @@ class Nor_Gate(_NorGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -775,6 +804,7 @@ class Nor_Gate(_NorGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -792,9 +822,10 @@ class _NandGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -805,6 +836,7 @@ class _NandGate(_3PinGate):
         return {
             "ModelID": "Nand Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -844,6 +876,7 @@ class Nand_Gate(_NandGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -856,6 +889,7 @@ class Nand_Gate(_NandGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -873,9 +907,10 @@ class _XorGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -886,6 +921,7 @@ class _XorGate(_3PinGate):
         return {
             "ModelID": "Xor Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -925,6 +961,7 @@ class Xor_Gate(_XorGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -937,6 +974,7 @@ class Xor_Gate(_XorGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -954,9 +992,10 @@ class _XnorGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -967,6 +1006,7 @@ class _XnorGate(_3PinGate):
         return {
             "ModelID": "Xnor Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1006,6 +1046,7 @@ class Xnor_Gate(_XnorGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1018,6 +1059,7 @@ class Xnor_Gate(_XnorGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1035,9 +1077,10 @@ class _ImpGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -1048,6 +1091,7 @@ class _ImpGate(_3PinGate):
         return {
             "ModelID": "Imp Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1087,6 +1131,7 @@ class Imp_Gate(_ImpGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1099,6 +1144,7 @@ class Imp_Gate(_ImpGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1116,9 +1162,10 @@ class _NimpGate(_3PinGate):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
 
     @property
     def data(self) -> CircuitElementData:
@@ -1129,6 +1176,7 @@ class _NimpGate(_3PinGate):
         return {
             "ModelID": "Nimp Gate",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1168,6 +1216,7 @@ class Nimp_Gate(_NimpGate):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1180,6 +1229,7 @@ class Nimp_Gate(_NimpGate):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1199,6 +1249,7 @@ class _BigElement(CircuitBase):
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -1211,7 +1262,7 @@ class _BigElement(CircuitBase):
             )
         self.high_level: num_type = high_level
         self.low_level: num_type = low_level
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @staticmethod
     def count_all_pins() -> int:
@@ -1241,9 +1292,10 @@ class _HalfAdder(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1262,6 +1314,7 @@ class _HalfAdder(_BigElement):
         return {
             "ModelID": "Half Adder",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1321,6 +1374,7 @@ class Half_Adder(_HalfAdder):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1333,6 +1387,7 @@ class Half_Adder(_HalfAdder):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1363,9 +1418,10 @@ class _FullAdder(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1385,6 +1441,7 @@ class _FullAdder(_BigElement):
         return {
             "ModelID": "Full Adder",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1448,6 +1505,7 @@ class Full_Adder(_FullAdder):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1460,6 +1518,7 @@ class Full_Adder(_FullAdder):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1488,9 +1547,10 @@ class _HalfSubtractor(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Half Subtractor is not supported in this version of plAR")
@@ -1512,6 +1572,7 @@ class _HalfSubtractor(_BigElement):
         return {
             "ModelID": "Half Subtractor",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1571,6 +1632,7 @@ class Half_Subtractor(_HalfSubtractor):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1583,6 +1645,7 @@ class Half_Subtractor(_HalfSubtractor):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1613,12 +1676,13 @@ class _FullSubtractor(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Full Subtractor is not supported in this version of plAR")
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1638,6 +1702,7 @@ class _FullSubtractor(_BigElement):
         return {
             "ModelID": "Full Subtractor",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1701,6 +1766,7 @@ class Full_Subtractor(_FullSubtractor):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1713,6 +1779,7 @@ class Full_Subtractor(_FullSubtractor):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1749,9 +1816,10 @@ class _Multiplier(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -1774,6 +1842,7 @@ class _Multiplier(_BigElement):
         return {
             "ModelID": "Multiplier",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1849,6 +1918,7 @@ class Multiplier(_Multiplier):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1861,6 +1931,7 @@ class Multiplier(_Multiplier):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -1889,9 +1960,10 @@ class _DFlipflop(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1910,6 +1982,7 @@ class _DFlipflop(_BigElement):
         return {
             "ModelID": "D Flipflop",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -1969,6 +2042,7 @@ class D_Flipflop(_DFlipflop):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -1981,6 +2055,7 @@ class D_Flipflop(_DFlipflop):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2009,9 +2084,10 @@ class _TFlipflop(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2030,6 +2106,7 @@ class _TFlipflop(_BigElement):
         return {
             "ModelID": "T Flipflop",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2089,6 +2166,7 @@ class T_Flipflop(_TFlipflop):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2101,6 +2179,7 @@ class T_Flipflop(_TFlipflop):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2129,9 +2208,10 @@ class _RealTFlipflop(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2150,6 +2230,7 @@ class _RealTFlipflop(_BigElement):
         return {
             "ModelID": "Real-T Flipflop",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2209,6 +2290,7 @@ class Real_T_Flipflop(_RealTFlipflop):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2221,6 +2303,7 @@ class Real_T_Flipflop(_RealTFlipflop):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2251,9 +2334,10 @@ class _JKFlipflop(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2273,6 +2357,7 @@ class _JKFlipflop(_BigElement):
         return {
             "ModelID": "JK Flipflop",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2336,6 +2421,7 @@ class JK_Flipflop(_JKFlipflop):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2348,6 +2434,7 @@ class JK_Flipflop(_JKFlipflop):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2380,9 +2467,10 @@ class _Counter(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -2403,6 +2491,7 @@ class _Counter(_BigElement):
         return {
             "ModelID": "Counter",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2470,6 +2559,7 @@ class Counter(_Counter):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2482,6 +2572,7 @@ class Counter(_Counter):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2514,9 +2605,10 @@ class _RandomGenerator(_BigElement):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -2537,6 +2629,7 @@ class _RandomGenerator(_BigElement):
         return {
             "ModelID": "Random Generator",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2604,6 +2697,7 @@ class Random_Generator(_RandomGenerator):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2616,6 +2710,7 @@ class Random_Generator(_RandomGenerator):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2659,6 +2754,7 @@ class _EightBitInput(CircuitBase):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(input_num, int):
@@ -2688,7 +2784,7 @@ class _EightBitInput(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -2699,6 +2795,7 @@ class _EightBitInput(CircuitBase):
         return {
             "ModelID": "8bit Input",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2799,6 +2896,7 @@ class Eight_Bit_Input(_EightBitInput):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2812,6 +2910,7 @@ class Eight_Bit_Input(_EightBitInput):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -2850,6 +2949,7 @@ class _EightBitDisplay(CircuitBase):
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -2874,7 +2974,7 @@ class _EightBitDisplay(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -2885,6 +2985,7 @@ class _EightBitDisplay(CircuitBase):
         return {
             "ModelID": "Eight Bit Display",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -2960,6 +3061,7 @@ class Eight_Bit_Display(_EightBitDisplay):
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
         low_level: num_type = 0,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -2972,6 +3074,7 @@ class Eight_Bit_Display(_EightBitDisplay):
             low_level=low_level,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
@@ -3000,6 +3103,7 @@ class _SchmittTrigger(CircuitBase):
         inverted: bool = False,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         if not isinstance(high_level, (int, float)):
@@ -3025,7 +3129,7 @@ class _SchmittTrigger(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status)
+        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
     @property
     def data(self) -> CircuitElementData:
@@ -3036,6 +3140,7 @@ class _SchmittTrigger(CircuitBase):
         return {
             "ModelID": "Schmitt Trigger",
             "Identifier": self.identifier,
+            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -3098,6 +3203,7 @@ class Schmitt_Trigger(_SchmittTrigger):
         high_level: num_type = 5.0,
         low_level: Optional[num_type] = None,
         inverted: bool = False,
+        label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
@@ -3111,6 +3217,7 @@ class Schmitt_Trigger(_SchmittTrigger):
             inverted=inverted,
             elementXYZ=elementXYZ,
             identifier=identifier,
+            label=label,
             lock_status=lock_status,
         )
         _deprecated_assign_element_to_experiment(self)
