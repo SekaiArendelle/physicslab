@@ -185,19 +185,19 @@ class _BasicCapacitor(CircuitBase):
         """
         if not isinstance(peak_voltage, (int, float)):
             raise TypeError(
-                f"peak_voltage must be of type `int | float`, but got value `{self.peak_voltage}` of type {type(self.peak_voltage).__name__}"
+                f"peak_voltage must be of type `int | float`, but got value `{peak_voltage}` of type {type(peak_voltage).__name__}"
             )
         if not isinstance(capacitance, (int, float)):
             raise TypeError(
-                f"capacitance must be of type `int | float`, but got value `{self.capacitance}` of type {type(self.capacitance).__name__}"
+                f"capacitance must be of type `int | float`, but got value `{capacitance}` of type {type(capacitance).__name__}"
             )
         if not isinstance(internal_resistance, (int, float)):
             raise TypeError(
-                f"internal_resistance must be of type `int | float`, but got value `{self.internal_resistance}` of type {type(self.internal_resistance).__name__}"
+                f"internal_resistance must be of type `int | float`, but got value `{internal_resistance}` of type {type(internal_resistance).__name__}"
             )
         if not isinstance(is_ideal, bool):
             raise TypeError(
-                f"is_ideal must be of type `bool`, but got value `{self.is_ideal}` of type {type(self.is_ideal).__name__}"
+                f"is_ideal must be of type `bool`, but got value `{is_ideal}` of type {type(is_ideal).__name__}"
             )
 
         self.peak_voltage: num_type = peak_voltage
