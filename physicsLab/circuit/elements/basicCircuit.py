@@ -298,7 +298,7 @@ class _DPDTSwitch(_SwitchBase):
     def switch_state(self, value: PDTSwitchState) -> None:
         if not isinstance(value, PDTSwitchState):
             raise TypeError(
-                f"switch_state must be of type `SPDTSwitchState`, but got value `{value}` of type `{type(value).__name__}`"
+                f"switch_state must be of type `PDTSwitchState`, but got value `{value}` of type `{type(value).__name__}`"
             )
         self._switch_state = value
 
