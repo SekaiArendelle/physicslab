@@ -52,6 +52,10 @@ class _LogicInput(CircuitBase):
             raise TypeError(
                 f"output_status must be of type `bool`, but got value `{output_status}` of type {type(output_status).__name__}"
             )
+        if low_level > high_level:
+            raise ValueError(
+                f"low_level ({low_level}) must be less than or equal to high_level ({high_level})"
+            )
         self.high_level: num_type = high_level
         self.low_level: num_type = low_level
         self.output_status: bool = output_status
