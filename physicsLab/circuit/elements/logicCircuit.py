@@ -2518,7 +2518,7 @@ class _EightBitInput(CircuitBase):
     @property
     def data(self) -> CircuitElementData:
         return {
-            "ModelID": "Eight Bit Input",
+            "ModelID": "8bit Input",
             "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
