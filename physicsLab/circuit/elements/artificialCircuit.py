@@ -1366,15 +1366,15 @@ class _OperationalAmplifier(CircuitBase):
         """
         if not isinstance(gain, (int, float)):
             raise TypeError(
-                f"gain must be of type `int | float`, but got value `{self.gain}` of type `{type(self.gain).__name__}`"
+                f"gain must be of type `int | float`, but got value `{gain}` of type `{type(gain).__name__}`"
             )
         if not isinstance(max_voltage, (int, float)):
             raise TypeError(
-                f"max_voltage must be of type `int | float`, but got value `{self.max_voltage}` of type `{type(self.max_voltage).__name__}`"
+                f"max_voltage must be of type `int | float`, but got value `{max_voltage}` of type `{type(max_voltage).__name__}`"
             )
         if not isinstance(min_voltage, (int, float)):
             raise TypeError(
-                f"min_voltage must be of type `int | float`, but got value `{self.min_voltage}` of type `{type(self.min_voltage).__name__}`"
+                f"min_voltage must be of type `int | float`, but got value `{min_voltage}` of type `{type(min_voltage).__name__}`"
             )
         if min_voltage >= max_voltage:
             raise ValueError("min_voltage must less than max_voltage")
