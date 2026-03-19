@@ -364,10 +364,10 @@ class CircuitBase(ElementBase):
 
     @label.setter
     @final
-    def label(self, name: Optional[str]) -> None:
-        if not isinstance(name, (str, type(None))):
+    def label(self, value: Optional[str]) -> None:
+        if not isinstance(value, (str, type(None))):
             raise TypeError(
-                f"Parameter name must be of type `str`, but got value {name} of type `{type(name).__name__}`"
+                f"label must be of type `Optional[str]`, but got value {value} of type `{type(value).__name__}`"
             )
 
-        self._label = name
+        self._label = value
