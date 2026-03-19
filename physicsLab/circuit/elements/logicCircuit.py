@@ -2790,6 +2790,10 @@ class _SchmittTrigger(CircuitBase):
     ) -> Iterator[Tuple[str, Union[InputPin, OutputPin]]]:
         return iter(self._all_pins)
 
+    @staticmethod
+    def count_all_pins() -> int:
+        return 2
+
     @final
     @staticmethod
     def zh_name() -> str:

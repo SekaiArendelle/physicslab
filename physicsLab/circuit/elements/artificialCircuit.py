@@ -1376,7 +1376,7 @@ class _OperationalAmplifier(CircuitBase):
             raise TypeError(
                 f"min_voltage must be of type `int | float`, but got value `{self.min_voltage}` of type `{type(self.min_voltage).__name__}`"
             )
-        if self.min_voltage >= self.max_voltage:
+        if min_voltage >= max_voltage:
             raise ValueError("min_voltage must less than max_voltage")
 
         self.gain: num_type = gain

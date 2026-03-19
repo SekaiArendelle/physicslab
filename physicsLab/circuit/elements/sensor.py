@@ -11,7 +11,6 @@ from physicsLab._typing import (
     Optional,
     num_type,
     CircuitElementData,
-    Generate,
     final,
     Iterator,
     Tuple,
