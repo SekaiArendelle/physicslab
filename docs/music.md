@@ -35,9 +35,6 @@ with Experiment(OpenMode.load_by_sav_name, "example"):
 from physicsLab import *
 
 m = music.Midi("example.mid")
-m.sound() # 播放该midi，此方法会尝试使用plmidi, pygame与系统调用来播放
-m.sound(player=music.Midi.PLAYER.PYGAME) # 指定使用pygame播放midi
-# 共有PLAYER.plmidi, PLAYER.pygame, PLAYER.os三个参数
 
 m.to_piece() # 将Midi类转换为Piece类
 
@@ -51,31 +48,6 @@ m.write_midi("path") # 导出midi到指定路径
 
 # .pl.py: 生成一种可以运行后可以易于编辑, 且运行后就可以生成在物实对应的电路的文件结构
 m.write_plpy() # 将文件以.pl.py的格式导出
-```
-
-### Midi.sound() # 播放midi
-
-我最推荐使用我为physicsLab专门写的二进制拓展：`plmidi`  
-下载plmidi:
-
-```shell
-pip install plmidi
-```
-
-但`pygame`也有播放midi的功能，你也可以下载pygame：
-
-```shell
-pip install pygame
-```
-
-如果上述两个package都不存在，那么physicsLab会尝试系统调用播放midi。  
-
-通过调用Midi的sound方法来播放midi：
-
-```python
-from physicsLab import *
-
-music.Midi("/your/path/of/midi").sound()
 ```
 
 > Note: 参数的作用之类的在源码的注释中可以找到  
