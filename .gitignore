@@ -12,7 +12,6 @@ physicsLabSav/
 
 *.txt
 *.json
-*.mid
 *.coverage
 *.lnk
 *.png
@@ -25,7 +24,7 @@ physicsLabSav/
 
 # special file of physicsLab
 *.sav
-!test_pl/data/*.sav
+!tests/data/*.sav
 *.mido.py
 *.pl.py
 *.test.*
