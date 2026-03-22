@@ -314,20 +314,6 @@ class BasicTest(TestCase):
             crt_wires(c.outputs, d.inputs)
             expe.close(delete=True)
 
-    # 测试打开实验类型与文件不吻合
-    # @my_test_dec
-    # def test_ExperimentType(self):
-    #     with Experiment(OpenMode.crt, "__test___ExperimentType__", ExperimentType.Electromagnetism, force_crt=True) as expe:
-    #         try:
-    #             PositiveCharge(0, 0, 0)
-    #             Logic_Input(0, 0, 0)
-    #         except ExperimentTypeError:
-    #             pass
-    #         else:
-    #             raise TestFail
-    #         finally:
-    #             expe.close(delete=True)
-
     @my_test_dec
     def test_super_and_gate(self):
         with Experiment(OpenMode.crt, "__test___super_and_gate__", ExperimentType.Circuit, force_crt=True) as expe:
@@ -563,16 +549,6 @@ class BasicTest(TestCase):
             pass
         else:
             raise TestFail
-
-    # @my_test_dec
-    # def test___exit__(self):
-    #     try:
-    #         with Experiment(OpenMode.crt, "__test___exit__", ExperimentType.Circuit, force_crt=True) as expe:
-    #             PositiveCharge(0, 0, 0)
-    #     except ExperimentTypeError:
-    #         pass
-    #     else:
-    #         raise TestFail
 
     @my_test_dec
     def test_count_all_pins(self):

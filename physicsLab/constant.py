@@ -3,9 +3,7 @@ import pathlib
 import platform
 
 if platform.system() != "Windows":
-    QUANTAM_PHYSICS_STORAGE_DIR = pathlib.Path(
-        "physicsLabSav"
-    )
+    QUANTAM_PHYSICS_STORAGE_DIR = pathlib.Path("physicsLabSav")
 
     QUANTAM_PHYSICS_EXPERIMENT_DIR = QUANTAM_PHYSICS_STORAGE_DIR
 else:

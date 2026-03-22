@@ -255,7 +255,10 @@ def _dict_to_element(element_dict: dict) -> ElectromagnetismBase:
 
 
 def generate_a_new_sav_path() -> pathlib.Path:
-    return pathlib.Path(constant.QUANTAM_PHYSICS_EXPERIMENT_DIR / str(uuid.uuid4())).with_suffix(".sav")
+    return pathlib.Path(
+        constant.QUANTAM_PHYSICS_EXPERIMENT_DIR / str(uuid.uuid4())
+    ).with_suffix(".sav")
+
 
 def crt_electromagnetism_experiment(name: Optional[str]) -> ElectromagnetismExperiment:
     return ElectromagnetismExperiment(name)
@@ -337,9 +340,10 @@ def load_electromagnetism_experiment_by_sav_name(
 
     return load_electromagnetism_experiment_by_file_path(file), file
 
-def load_electromagnetism_experiment_from_app(content_id: str,
-        category: Category,
-        user: User = anonymous_login()) -> ElectromagnetismExperiment:
+
+def load_electromagnetism_experiment_from_app(
+    content_id: str, category: Category, user: User = anonymous_login()
+) -> ElectromagnetismExperiment:
     if not isinstance(content_id, str):
         raise TypeError(
             f"content_id must be of type `str`, but got value {content_id} of type {type(content_id).__name__}`"
