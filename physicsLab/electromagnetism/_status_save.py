@@ -34,6 +34,15 @@ class ElectromagnetismStatusSave:
         self.__id2element[element.identifier] = element
         self.__position2element[element.position] = element
 
+    def remove_element(self, element: _base.ElectromagnetismBase) -> None:
+        if not isinstance(element, _base.ElectromagnetismBase):
+            raise TypeError(
+                f"parameter element must be of type `ElectromagnetismBase`, but got value {element} of type {type(element).__name__}"
+            )
+        self.__elements.remove(element)
+        del self.__id2element[element.identifier]
+        del self.__position2element[element.position]
+
     def get_element_by_id(self, identifier: str) -> _base.ElectromagnetismBase:
         if not isinstance(identifier, str):
             raise TypeError(

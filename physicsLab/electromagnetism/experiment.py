@@ -73,6 +73,9 @@ class ElectromagnetismExperiment:
 
         return self
 
+    def del_a_element(self, element: ElectromagnetismBase) -> None:
+        self.status_save.remove_element(element)
+
     def get_elements_count(self) -> int:
         return len(self.status_save.elements)
 
