@@ -124,6 +124,20 @@ class TestElectromagnetismExperiment(unittest.TestCase):
             # check lock status via as_dict
             self.assertEqual(field.as_dict()["Properties"]["锁定"], 0.0)
 
+    def test_merge(self):
+        with experiment.crt_electromagnetism_experiment(None) as expe:
+            charge = elements.NegativeCharge(Position(0, 0, 0))
+            magnet = elements.BarMagnet(Position(1, 0, 0))
+            expe.crt_elements(charge, magnet)
+            self.assertEqual(expe.get_elements_count(), 2)
+            with experiment.crt_electromagnetism_experiment(None) as expe2:
+                compass = elements.Compass(Position(0, 1, 0))
+                field = elements.UniformMagneticField(Position(1, 1, 0))
+                expe2.crt_elements(compass, field)
+                self.assertEqual(expe2.get_elements_count(), 2)
+                expe.merge(expe2)
+                self.assertEqual(expe.get_elements_count(), 4)
+
 
 if __name__ == "__main__":
     unittest.main()

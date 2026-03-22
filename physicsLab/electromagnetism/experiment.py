@@ -176,6 +176,16 @@ class ElectromagnetismExperiment:
 
         path.write_text(json.dumps(self.as_plsav_dict()), encoding="utf-8")
 
+    def merge(self, other: "ElectromagnetismExperiment") -> Self:
+        if not isinstance(other, ElectromagnetismExperiment):
+            raise TypeError(
+                f"parameter other must be of type `ElectromagnetismExperiment`, but got value {other} of type {type(other).__name__}"
+            )
+
+        self.status_save.append_range(other.status_save)
+
+        return self
+
 
 def _dict_to_element(element_dict: dict) -> ElectromagnetismBase:
     model_id = element_dict["ModelID"]
