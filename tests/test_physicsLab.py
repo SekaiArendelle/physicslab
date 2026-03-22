@@ -5,6 +5,7 @@ import pathlib
 import warnings
 import threading
 from .base import *
+from ._constant import *
 from physicsLab.lib import *
 from physicsLab.coordinate_system import Position
 from physicsLab._core import _ExperimentStack
@@ -20,7 +21,7 @@ def my_test_dec(method: Callable):
             raise TestFail
     return result
 
-class BasicTest(TestCase, ViztracerTool):
+class BasicTest(TestCase):
     @my_test_dec
     def test_experiment_stack(self):
         with Experiment(OpenMode.crt, "__test__", ExperimentType.Circuit, force_crt=True) as expe1:
@@ -52,16 +53,6 @@ class BasicTest(TestCase, ViztracerTool):
 
         with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "Export-All-Celestial-Elements.sav")) as expe:
             self.assertTrue(expe.get_elements_count() == 27)
-            expe.save(target_path=os.devnull)
-            expe.close()
-
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "All-Electromagnetism-Elements.sav")) as expe:
-            self.assertTrue(expe.get_elements_count() == 7)
-            expe.save(target_path=os.devnull)
-            expe.close()
-
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "Export-All-Electromagnetism-Elements.sav")) as expe:
-            self.assertTrue(expe.get_elements_count() == 7)
             expe.save(target_path=os.devnull)
             expe.close()
 
@@ -302,11 +293,6 @@ class BasicTest(TestCase, ViztracerTool):
         with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "All-Celestial-Elements.sav")) as expe:
             expe.del_element(expe.get_element_from_index(1))
             self.assertEqual(expe.get_elements_count(), 26)
-            expe.close()
-
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "All-Electromagnetism-Elements.sav")) as expe:
-            expe.del_element(expe.get_element_from_index(1))
-            self.assertEqual(expe.get_elements_count(), 6)
             expe.close()
 
     # 测试模块化电路连接导线

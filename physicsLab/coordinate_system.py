@@ -42,6 +42,18 @@ class Position:
     def as_postion_str_in_plsav(self) -> str:
         return f"{self.x},{self.z},{self.y}"
 
+def construct_position_from_plsav_str(position_str: str) -> Position:
+    try:
+        x_str, z_str, y_str = position_str.split(",")
+        x = float(x_str)
+        y = float(y_str)
+        z = float(z_str)
+        return Position(x, y, z)
+    except Exception as e:
+        raise ValueError(
+            f"Failed to parse position string `{position_str}` in plsav format. Expected format: `x,z,y` where x, y, z are numbers. Error: {e}"
+        )
+
 class Rotation:
     x: num_type
     y: num_type
@@ -84,3 +96,14 @@ class Rotation:
     def as_rotation_str_in_plsav(self) -> str:
         return f"{self.x},{self.z},{self.y}"
 
+def construct_rotation_from_plsav_str(rotation_str: str) -> Rotation:
+    try:
+        x_str, z_str, y_str = rotation_str.split(",")
+        x = float(x_str)
+        y = float(y_str)
+        z = float(z_str)
+        return Rotation(x, y, z)
+    except Exception as e:
+        raise ValueError(
+            f"Failed to parse rotation string `{rotation_str}` in plsav format. Expected format: `x,z,y` where x, y, z are numbers. Error: {e}"
+        )

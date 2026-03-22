@@ -2,7 +2,7 @@
 from datetime import datetime
 from .base import *
 
-class WebTest(IsolatedAsyncioTestCase, ViztracerTool):
+class WebTest(IsolatedAsyncioTestCase):
     @staticmethod
     async def test_get_start_page():
         await web.async_get_start_page()
