@@ -37,7 +37,7 @@ class ElectromagnetismStatusSave:
         self.__id2element[element.identifier] = element
         self.__position2element[element.position] = element
 
-    def append_range(self, other: ElectromagnetismStatusSave) -> None:
+    def append_range(self, other: "ElectromagnetismStatusSave") -> None:
         if not isinstance(other, ElectromagnetismStatusSave):
             raise TypeError(
                 f"parameter other must be of type `ElectromagnetismStatusSave`, but got value {other} of type {type(other).__name__}"
