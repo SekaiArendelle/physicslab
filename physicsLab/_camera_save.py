@@ -1,26 +1,44 @@
 import json
+from enum import Enum, unique
 from physicsLab._typing import num_type
 from physicsLab import coordinate_system
 
+@unique
+class CameraMode(Enum):
+    three_dimensional = 0
+    two_dimensional = 1
+
 
 class CameraSave:
+    __camera_mode: CameraMode
     __distance: num_type
     __vision_center: coordinate_system.Position
     __target_rotation: coordinate_system.Rotation
 
     def __init__(
         self,
-        distance: num_type = 2,
-        vision_center: coordinate_system.Position = coordinate_system.Position(
-            0, 0, 0.88
-        ),
-        target_rotation: coordinate_system.Rotation = coordinate_system.Rotation(
-            90, 0, 0
-        ),
+        camera_mode: CameraMode,
+        distance: num_type,
+        vision_center: coordinate_system.Position,
+        target_rotation: coordinate_system.Rotation,
     ) -> None:
+        self.camera_mode = camera_mode
         self.distance = distance
         self.vision_center = vision_center
         self.target_rotation = target_rotation
+
+    @property
+    def camera_mode(self) -> CameraMode:
+        return self.__camera_mode
+
+    @camera_mode.setter
+    def camera_mode(self, camera_mode: CameraMode) -> None:
+        if not isinstance(camera_mode, CameraMode):
+            raise TypeError(
+                f"camera_mode must be of type `CameraMode`, but got value {camera_mode} of type {type(camera_mode).__name__}"
+            )
+
+        self.__camera_mode = camera_mode
 
     @property
     def distance(self) -> num_type:
@@ -63,7 +81,7 @@ class CameraSave:
 
     def as_dict(self) -> dict:
         return {
-            "Mode": 1,
+            "Mode": self.camera_mode.value,
             "Distance": self.distance,
             "VisionCenter": self.vision_center.as_postion_str_in_plsav(),
             "TargetRotation": self.target_rotation.as_rotation_str_in_plsav(),

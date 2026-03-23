@@ -8,7 +8,7 @@ from physicsLab import coordinate_system
 from physicsLab.enums import Category
 from physicsLab.web import User, anonymous_login
 from . import elements
-from ._camera_save import CameraSave
+from physicsLab._camera_save import CameraMode, CameraSave
 from ._status_save import ElectromagnetismStatusSave
 from ._base import ElectromagnetismBase
 from physicsLab._typing import Self, Optional, Tuple
@@ -20,7 +20,14 @@ class ElectromagnetismExperiment:
     __camera_save: CameraSave
 
     def __init__(
-        self, name: Optional[str], camera_save: CameraSave = CameraSave()
+        self,
+        name: Optional[str],
+        camera_save: CameraSave = CameraSave(
+            CameraMode.two_dimensional,
+            2,
+            coordinate_system.Position(0, 0, 0.88),
+            coordinate_system.Rotation(90, 0, 0),
+        ),
     ) -> None:
         self.name = name
         self.status_save = ElectromagnetismStatusSave()
