@@ -575,7 +575,7 @@ class Sun(CelestialBase):
         return "太阳"
 
 
-class Blue_Giant(CelestialBase):
+class BlueGiant(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -632,7 +632,7 @@ class Blue_Giant(CelestialBase):
         return "蓝巨星"
 
 
-class Red_Giant(CelestialBase):
+class RedGiant(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -689,7 +689,7 @@ class Red_Giant(CelestialBase):
         return "红巨星"
 
 
-class Red_Dwarf(CelestialBase):
+class RedDwarf(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -746,7 +746,7 @@ class Red_Dwarf(CelestialBase):
         return "红矮星"
 
 
-class White_Dwarf(CelestialBase):
+class WhiteDwarf(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -860,7 +860,7 @@ class Blackhole(CelestialBase):
         return "黑洞"
 
 
-class Fantasy_Star(CelestialBase):
+class FantasyStar(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -974,7 +974,7 @@ class Moon(CelestialBase):
         return "月球"
 
 
-class Chocolate_Ball(CelestialBase):
+class ChocolateBall(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
