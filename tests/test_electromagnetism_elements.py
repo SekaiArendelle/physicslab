@@ -12,7 +12,7 @@ import pathlib
 import unittest
 import _constant
 import base
-from physicsLab import Position, Category
+from physicsLab import Position, Velocity, Category
 from physicsLab.electromagnetism import elements
 from physicsLab.electromagnetism import experiment
 
@@ -63,66 +63,87 @@ class TestElectromagnetismExperiment(unittest.TestCase):
 
     def test_negative_charge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            charge = elements.NegativeCharge(Position(0, 0, 0))
-            expe.crt_elements(charge)
-            self.assertIsInstance(charge.as_dict(), dict)
-            self.assertEqual(charge.position, Position(0, 0, 0))
+            _instance = elements.NegativeCharge(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(charge.as_dict()["Properties"]["锁定"], 1.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
     def test_positive_charge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            charge = elements.PositiveCharge(Position(0, 0, 0))
-            expe.crt_elements(charge)
-            self.assertIsInstance(charge.as_dict(), dict)
-            self.assertEqual(charge.position, Position(0, 0, 0))
+            _instance = elements.PositiveCharge(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(charge.as_dict()["Properties"]["锁定"], 1.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
     def test_negative_test_charge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            charge = elements.NegativeTestCharge(Position(0, 0, 0))
-            expe.crt_elements(charge)
-            self.assertIsInstance(charge.as_dict(), dict)
-            self.assertEqual(charge.position, Position(0, 0, 0))
+            _instance = elements.NegativeTestCharge(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(charge.as_dict()["Properties"]["锁定"], 0.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
 
     def test_positive_test_charge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            charge = elements.PositiveTestCharge(Position(0, 0, 0))
-            expe.crt_elements(charge)
-            self.assertIsInstance(charge.as_dict(), dict)
-            self.assertEqual(charge.position, Position(0, 0, 0))
+            _instance = elements.PositiveTestCharge(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(charge.as_dict()["Properties"]["锁定"], 0.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
 
     def test_bar_magnet(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            magnet = elements.BarMagnet(Position(0, 0, 0))
-            expe.crt_elements(magnet)
-            self.assertIsInstance(magnet.as_dict(), dict)
-            self.assertEqual(magnet.position, Position(0, 0, 0))
+            _instance = elements.BarMagnet(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(magnet.as_dict()["Properties"]["锁定"], 1.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
     def test_compass(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            compass = elements.Compass(Position(0, 0, 0))
-            expe.crt_elements(compass)
-            self.assertIsInstance(compass.as_dict(), dict)
-            self.assertEqual(compass.position, Position(0, 0, 0))
+            _instance = elements.Compass(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(compass.as_dict()["Properties"]["锁定"], 1.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
     def test_uniform_magnetic_field(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
-            field = elements.UniformMagneticField(Position(0, 0, 0))
-            expe.crt_elements(field)
-            self.assertIsInstance(field.as_dict(), dict)
-            self.assertEqual(field.position, Position(0, 0, 0))
+            _instance = elements.UniformMagneticField(
+                Position(0, 0, 0), velocity=Velocity(0.1, 0.2, 0.3)
+            )
+            expe.crt_elements(_instance)
+            self.assertIsInstance(_instance.as_dict(), dict)
+            self.assertEqual(_instance.position, Position(0, 0, 0))
+            self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
-            self.assertEqual(field.as_dict()["Properties"]["锁定"], 0.0)
+            self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
 
     def test_merge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:

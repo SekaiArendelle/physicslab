@@ -13,7 +13,7 @@ from ._core import (
     ElementXYZ,
 )
 
-from .coordinate_system import Position
+from .coordinate_system import *
 
 # 实验, 标签类型
 from .enums import ExperimentType, Category, Tag, OpenMode, WireColor, GetUserMode

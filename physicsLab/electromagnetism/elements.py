@@ -9,8 +9,9 @@ class NegativeCharge(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -19,7 +20,7 @@ class NegativeCharge(ElectromagnetismBase):
             "Properties": {"锁定": 1.0, "强度": -1e-07, "质量": 0.1},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -34,8 +35,9 @@ class PositiveCharge(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -44,7 +46,7 @@ class PositiveCharge(ElectromagnetismBase):
             "Properties": {"锁定": 1.0, "强度": 1e-07, "质量": 0.1},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -59,8 +61,9 @@ class NegativeTestCharge(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -69,7 +72,7 @@ class NegativeTestCharge(ElectromagnetismBase):
             "Properties": {"锁定": 0.0, "强度": -1e-10, "质量": 5e-06},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -84,8 +87,9 @@ class PositiveTestCharge(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -94,7 +98,7 @@ class PositiveTestCharge(ElectromagnetismBase):
             "Properties": {"锁定": 0.0, "强度": -1e-10, "质量": 5e-06},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -109,8 +113,9 @@ class BarMagnet(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -119,7 +124,7 @@ class BarMagnet(ElectromagnetismBase):
             "Properties": {"锁定": 1.0, "强度": 1.0, "质量": 10.0},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -134,8 +139,9 @@ class Compass(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -144,7 +150,7 @@ class Compass(ElectromagnetismBase):
             "Properties": {"锁定": 1.0},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
@@ -159,8 +165,9 @@ class UniformMagneticField(ElectromagnetismBase):
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
     ) -> None:
-        super().__init__(position, rotation, identifier)
+        super().__init__(position, rotation, identifier, velocity)
 
     def as_dict(self) -> dict:
         return {
@@ -169,7 +176,7 @@ class UniformMagneticField(ElectromagnetismBase):
             "Properties": {"锁定": 0.0, "强度": 1000.0, "方向": 1.0},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
-            "Velocity": "0,0,0",
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": "0,0,0",
         }
 
