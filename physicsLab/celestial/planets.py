@@ -1,7 +1,6 @@
 import uuid
 from ._base import CelestialBase
 from physicsLab import coordinate_system
-from . import triple_vector
 from physicsLab._typing import final
 
 
@@ -9,8 +8,8 @@ class Mercury(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -66,8 +65,8 @@ class Venus(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -123,8 +122,8 @@ class Earth(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -180,8 +179,8 @@ class Mars(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -237,8 +236,8 @@ class Jupiter(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -294,8 +293,8 @@ class Saturn(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -351,8 +350,8 @@ class Uranus(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -408,8 +407,8 @@ class Neptune(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -465,8 +464,8 @@ class Pluto(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -522,8 +521,8 @@ class Sun(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -579,8 +578,8 @@ class BlueGiant(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -636,8 +635,8 @@ class RedGiant(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -693,8 +692,8 @@ class RedDwarf(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -750,8 +749,8 @@ class WhiteDwarf(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -807,8 +806,8 @@ class Blackhole(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -864,8 +863,8 @@ class FantasyStar(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -921,8 +920,8 @@ class Moon(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -978,8 +977,8 @@ class ChocolateBall(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1035,8 +1034,8 @@ class Continential(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1092,8 +1091,8 @@ class Arctic(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1149,8 +1148,8 @@ class Arid(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1206,8 +1205,8 @@ class Barren(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1263,8 +1262,8 @@ class Desert(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1320,8 +1319,8 @@ class Jungle(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1377,8 +1376,8 @@ class Toxic(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1434,8 +1433,8 @@ class Lava(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)
@@ -1491,8 +1490,8 @@ class Ocean(CelestialBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity = triple_vector.Velocity(0, 0, 0),
-        acceleration: triple_vector.Acceleration = triple_vector.Acceleration(0, 0, 0),
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
     ) -> None:
         super().__init__(position, velocity, acceleration, identifier)

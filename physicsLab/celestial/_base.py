@@ -1,21 +1,20 @@
 import abc
 from physicsLab import coordinate_system
-from . import triple_vector
 
 
 class CelestialBase:
     """Base class for celestial elements"""
 
     __position: coordinate_system.Position
-    __velocity: triple_vector.Velocity
-    __acceleration: triple_vector.Acceleration
+    __velocity: coordinate_system.Velocity
+    __acceleration: coordinate_system.Acceleration
     __identifier: str
 
     def __init__(
         self,
         position: coordinate_system.Position,
-        velocity: triple_vector.Velocity,
-        acceleration: triple_vector.Acceleration,
+        velocity: coordinate_system.Velocity,
+        acceleration: coordinate_system.Acceleration,
         identifier: str,
     ) -> None:
         self.position = position
@@ -50,12 +49,12 @@ class CelestialBase:
         self.__position = position
 
     @property
-    def velocity(self) -> triple_vector.Velocity:
+    def velocity(self) -> coordinate_system.Velocity:
         return self.__velocity
 
     @velocity.setter
-    def velocity(self, velocity: triple_vector.Velocity) -> None:
-        if not isinstance(velocity, triple_vector.Velocity):
+    def velocity(self, velocity: coordinate_system.Velocity) -> None:
+        if not isinstance(velocity, coordinate_system.Velocity):
             raise TypeError(
                 f"velocity must be of type `Velocity`, but got value {velocity} of type {type(velocity).__name__}"
             )
@@ -63,12 +62,12 @@ class CelestialBase:
         self.__velocity = velocity
 
     @property
-    def acceleration(self) -> triple_vector.Acceleration:
+    def acceleration(self) -> coordinate_system.Acceleration:
         return self.__acceleration
 
     @acceleration.setter
-    def acceleration(self, acceleration: triple_vector.Acceleration) -> None:
-        if not isinstance(acceleration, triple_vector.Acceleration):
+    def acceleration(self, acceleration: coordinate_system.Acceleration) -> None:
+        if not isinstance(acceleration, coordinate_system.Acceleration):
             raise TypeError(
                 f"acceleration must be of type `Acceleration`, but got value {acceleration} of type {type(acceleration).__name__}"
             )
