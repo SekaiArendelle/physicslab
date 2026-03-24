@@ -280,12 +280,6 @@ def _dict_to_element(element_dict: dict) -> ElectromagnetismBase:
         errors.unreachable()
 
 
-def generate_a_new_sav_path() -> pathlib.Path:
-    return pathlib.Path(
-        constant.QUANTAM_PHYSICS_EXPERIMENT_DIR / str(uuid.uuid4())
-    ).with_suffix(".sav")
-
-
 def crt_electromagnetism_experiment(name: Optional[str]) -> ElectromagnetismExperiment:
     return ElectromagnetismExperiment(name)
 

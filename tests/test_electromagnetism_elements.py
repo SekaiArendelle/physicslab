@@ -12,7 +12,7 @@ import pathlib
 import unittest
 import _constant
 import base
-from physicsLab import Position, Velocity, Category
+from physicsLab import Position, Velocity, Category, generate_a_new_sav_path
 from physicsLab.electromagnetism import elements
 from physicsLab.electromagnetism import experiment
 
@@ -49,7 +49,7 @@ class TestElectromagnetismExperiment(unittest.TestCase):
         if path is None:
             experiment.crt_electromagnetism_experiment(
                 "__test_load_electromagnetism_experiment_by_sav_name__"
-            ).save_to(experiment.generate_a_new_sav_path())
+            ).save_to(generate_a_new_sav_path())
         expe, filepath = experiment.load_electromagnetism_experiment_by_sav_name(
             "__test_load_electromagnetism_experiment_by_sav_name__"
         )
