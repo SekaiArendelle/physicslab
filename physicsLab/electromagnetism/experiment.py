@@ -23,7 +23,7 @@ class ElectromagnetismExperiment:
         self,
         name: Optional[str],
         camera_save: CameraSave = CameraSave(
-            CameraMode.two_dimensional,
+            CameraMode.electromagnetism_mode,
             2,
             coordinate_system.Position(0, 0, 0.88),
             coordinate_system.Rotation(90, 0, 0),

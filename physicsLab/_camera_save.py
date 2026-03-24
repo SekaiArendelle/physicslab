@@ -5,8 +5,9 @@ from physicsLab import coordinate_system
 
 @unique
 class CameraMode(Enum):
-    three_dimensional = 0
-    two_dimensional = 1
+    circuit_mode = 0
+    electromagnetism_mode = 1
+    celestial_mode = 2
 
 
 class CameraSave:
