@@ -97,6 +97,15 @@ class ElectromagnetismExperiment:
     def get_elements_count(self) -> int:
         return len(self.status_save.elements)
 
+    def get_element_by_index(self, index: int) -> ElectromagnetismBase:
+        return self.status_save.get_element_by_index(index)
+
+    def get_element_by_id(self, identifier: str) -> ElectromagnetismBase:
+        return self.status_save.get_element_by_id(identifier)
+
+    def get_element_by_position(self, position: coordinate_system.Position) -> ElectromagnetismBase:
+        return self.status_save.get_element_by_position(position)
+
     def as_plsav_dict(self) -> dict:
         return {
             "Type": 4,

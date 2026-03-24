@@ -54,6 +54,13 @@ class ElectromagnetismStatusSave:
         del self.__id2element[element.identifier]
         del self.__position2element[element.position]
 
+    def get_element_by_index(self, index: int) -> _base.ElectromagnetismBase:
+        if not isinstance(index, int):
+            raise TypeError(
+                f"parameter index must be of type `int`, but got value {index} of type {type(index).__name__}"
+            )
+        return self.__elements[index]
+
     def get_element_by_id(self, identifier: str) -> _base.ElectromagnetismBase:
         if not isinstance(identifier, str):
             raise TypeError(
