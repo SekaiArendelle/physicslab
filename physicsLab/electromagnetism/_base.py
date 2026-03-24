@@ -8,6 +8,7 @@ class ElectromagnetismBase:
     __position: coordinate_system.Position
     __rotation: coordinate_system.Rotation
     __velocity: coordinate_system.Velocity
+    __angular_velocity: coordinate_system.AngularVelocity
     __identifier: str
     __lock_status: bool
 
@@ -17,12 +18,14 @@ class ElectromagnetismBase:
         rotation: coordinate_system.Rotation,
         identifier: str,
         velocity: coordinate_system.Velocity,
+        angular_velocity: coordinate_system.AngularVelocity,
         lock_status: bool,
     ) -> None:
         self.position = position
         self.rotation = rotation
         self.identifier = identifier
         self.velocity = velocity
+        self.angular_velocity = angular_velocity
         self.lock_status = lock_status
 
     @property
@@ -89,6 +92,21 @@ class ElectromagnetismBase:
             )
 
         self.__velocity = velocity
+
+    @property
+    def angular_velocity(self) -> coordinate_system.AngularVelocity:
+        return self.__angular_velocity
+
+    @angular_velocity.setter
+    def angular_velocity(
+        self, angular_velocity: coordinate_system.AngularVelocity
+    ) -> None:
+        if not isinstance(angular_velocity, coordinate_system.AngularVelocity):
+            raise TypeError(
+                f"angular_velocity must be of type `AngularVelocity`, but got value {angular_velocity} of type {type(angular_velocity).__name__}"
+            )
+
+        self.__angular_velocity = angular_velocity
 
     @staticmethod
     @abc.abstractmethod
