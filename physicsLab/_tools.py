@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from random import choice
 from string import ascii_lowercase, ascii_letters, digits
 

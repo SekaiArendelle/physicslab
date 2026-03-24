@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import math
 from types import FunctionType
 

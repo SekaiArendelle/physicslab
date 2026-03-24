@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """Wrapper for Physics-Lab-AR web API
 Except for experiment upload API which is encapsulated in class Experiment's __upload
 This file provides support for multi-threaded style API calls

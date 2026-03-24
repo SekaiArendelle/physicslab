@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from typing import Union, Callable, Tuple
 
 from physicsLab import _warn

@@ -50,7 +50,9 @@ class CelestialStatusSave:
     @main_identifier.setter
     def main_identifier(self, value: str) -> None:
         if not isinstance(value, str):
-            raise TypeError(f"main_identifier must be of type `str`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"main_identifier must be of type `str`, but got value {value} of type {type(value).__name__}"
+            )
         self.__main_identifier = value
 
     @property
@@ -60,7 +62,9 @@ class CelestialStatusSave:
     @world_time.setter
     def world_time(self, value: num_type) -> None:
         if not isinstance(value, (float, int)):
-            raise TypeError(f"world_time must be of type `float | int`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"world_time must be of type `float | int`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__world_time = value
 
@@ -71,7 +75,9 @@ class CelestialStatusSave:
     @scaling_name.setter
     def scaling_name(self, value: str) -> None:
         if not isinstance(value, str):
-            raise TypeError(f"scaling_name must be of type `str`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"scaling_name must be of type `str`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__scaling_name = value
 
@@ -82,7 +88,9 @@ class CelestialStatusSave:
     @length_scale.setter
     def length_scale(self, value: num_type) -> None:
         if not isinstance(value, (float, int)):
-            raise TypeError(f"length_scale must be of type `float | int`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"length_scale must be of type `float | int`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__length_scale = value
 
@@ -93,7 +101,9 @@ class CelestialStatusSave:
     @size_linear.setter
     def size_linear(self, value: num_type) -> None:
         if not isinstance(value, (float, int)):
-            raise TypeError(f"size_linear must be of type `float | int`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"size_linear must be of type `float | int`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__size_linear = value
 
@@ -104,7 +114,9 @@ class CelestialStatusSave:
     @size_nonlinear.setter
     def size_nonlinear(self, value: num_type) -> None:
         if not isinstance(value, (float, int)):
-            raise TypeError(f"size_nonlinear must be of type `float | int`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"size_nonlinear must be of type `float | int`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__size_nonlinear = value
 
@@ -115,7 +127,9 @@ class CelestialStatusSave:
     @star_present.setter
     def star_present(self, value: bool) -> None:
         if not isinstance(value, bool):
-            raise TypeError(f"star_present must be of type `bool`, but got value {value} of type {type(value).__name__}")
+            raise TypeError(
+                f"star_present must be of type `bool`, but got value {value} of type {type(value).__name__}"
+            )
 
         self.__star_present = value
 
@@ -159,7 +173,9 @@ class CelestialStatusSave:
             )
         return self.__id2element[identifier]
 
-    def get_element_by_position(self, position: coordinate_system.Position) -> _base.CelestialBase:
+    def get_element_by_position(
+        self, position: coordinate_system.Position
+    ) -> _base.CelestialBase:
         if not isinstance(position, coordinate_system.Position):
             raise TypeError(
                 f"parameter position must be of type `Position`, but got value {position} of type {type(position).__name__}"
@@ -169,7 +185,9 @@ class CelestialStatusSave:
     def as_dict(self) -> dict:
         return {
             "MainIdentifier": self.main_identifier,
-            "Elements": {element.identifier: element.as_dict() for element in self.elements},
+            "Elements": {
+                element.identifier: element.as_dict() for element in self.elements
+            },
             "WorldTime": self.world_time,
             "ScalingName": self.scaling_name,
             "LengthScale": self.length_scale,

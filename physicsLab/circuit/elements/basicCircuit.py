@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from physicsLab import errors
 from physicsLab._tools import round_data
 from physicsLab._core import _Experiment

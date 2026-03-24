@@ -87,7 +87,11 @@ class NegativeTestCharge(ElectromagnetismBase):
         return {
             "ModelID": "Negative Test Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": int(self.lock_status), "强度": -1e-10, "质量": 5e-06},
+            "Properties": {
+                "锁定": int(self.lock_status),
+                "强度": -1e-10,
+                "质量": 5e-06,
+            },
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -119,7 +123,11 @@ class PositiveTestCharge(ElectromagnetismBase):
         return {
             "ModelID": "Positive Test Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": int(self.lock_status), "强度": -1e-10, "质量": 5e-06},
+            "Properties": {
+                "锁定": int(self.lock_status),
+                "强度": -1e-10,
+                "质量": 5e-06,
+            },
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),

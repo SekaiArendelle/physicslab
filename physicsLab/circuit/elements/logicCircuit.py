@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors

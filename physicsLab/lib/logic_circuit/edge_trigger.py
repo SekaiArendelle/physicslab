@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from physicsLab._core import get_current_experiment
 from physicsLab.circuit import elements
 from physicsLab.circuit._circuit_core import InputPin, OutputPin, crt_wire

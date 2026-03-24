@@ -102,7 +102,9 @@ class CelestialExperiment:
     def get_element_by_id(self, identifier: str) -> CelestialBase:
         return self.status_save.get_element_by_id(identifier)
 
-    def get_element_by_position(self, position: coordinate_system.Position) -> CelestialBase:
+    def get_element_by_position(
+        self, position: coordinate_system.Position
+    ) -> CelestialBase:
         return self.status_save.get_element_by_position(position)
 
     def as_plsav_dict(self) -> dict:
@@ -203,9 +205,15 @@ class CelestialExperiment:
 def _dict_to_element(element_dict: dict) -> CelestialBase:
     model_id = element_dict["Model"]
     identifier = element_dict["Identifier"]
-    position = coordinate_system.construct_position_from_plsav_str(element_dict["Position"])
-    velocity = coordinate_system.construct_velocity_from_plsav_str(element_dict["Velocity"])
-    acceleration = coordinate_system.construct_acceleration_from_plsav_str(element_dict["Acceleration"])
+    position = coordinate_system.construct_position_from_plsav_str(
+        element_dict["Position"]
+    )
+    velocity = coordinate_system.construct_velocity_from_plsav_str(
+        element_dict["Velocity"]
+    )
+    acceleration = coordinate_system.construct_acceleration_from_plsav_str(
+        element_dict["Acceleration"]
+    )
 
     if model_id == "Mercury":
         return planets.Mercury(position, velocity, acceleration, identifier)

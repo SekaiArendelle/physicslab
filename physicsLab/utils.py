@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import uuid
 import pathlib
 from datetime import datetime

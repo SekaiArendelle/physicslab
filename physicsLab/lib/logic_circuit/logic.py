@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import physicsLab.errors as errors
 
 from .super_logic_gate import Const_NoGate, Super_AndGate

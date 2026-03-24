@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """
 The reason why I (Arendelle (GitHub id: GoodenoughPhysicsLab) 2381642961@qq.com)
 copy this file is that when I install mido, it will download some exe, and it's

@@ -103,7 +103,10 @@ class ElectromagnetismExperiment:
     def get_element_by_id(self, identifier: str) -> ElectromagnetismBase:
         return self.status_save.get_element_by_id(identifier)
 
-    def get_element_by_position(self, position: coordinate_system.Position) -> ElectromagnetismBase:
+    def get_element_by_position(
+        self,
+        position: coordinate_system.Position,
+    ) -> ElectromagnetismBase:
         return self.status_save.get_element_by_position(position)
 
     def as_plsav_dict(self) -> dict:

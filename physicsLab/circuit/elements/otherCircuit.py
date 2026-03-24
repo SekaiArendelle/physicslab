@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import physicsLab.plAR as plar
 from physicsLab import _warn
 
@@ -13,7 +12,6 @@ from physicsLab._typing import (
     Optional,
     num_type,
     CircuitElementData,
-    Self,
     Union,
     List,
     override,

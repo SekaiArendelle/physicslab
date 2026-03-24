@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-import abc
-import inspect
-
 from physicsLab import errors
 from physicsLab import coordinate_system
 

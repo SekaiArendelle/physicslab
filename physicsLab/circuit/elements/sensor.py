@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from physicsLab import errors
 from .._circuit_core import (
     CircuitBase,
     Pin,

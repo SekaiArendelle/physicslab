@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from .wires import crt_wires, UnitPin
 from physicsLab._tools import round_data
 from physicsLab.circuit import elements, Pin, crt_wire, OutputPin, InputPin

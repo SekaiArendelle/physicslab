@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """在 Python3.14之前, Thread.join 在 Windows 上会阻塞异常的传播, 详见:
     https://www.bilibili.com/video/BV1au411q7LN/?spm_id_from=333.999.0.0
 

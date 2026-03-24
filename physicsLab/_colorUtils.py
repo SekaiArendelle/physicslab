@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """在命令行打印出有颜色的字
 为physicsLab最基础, 最底层的设施,
 所以不能依赖physicsLab的任何其他设施, 包括 errors.py

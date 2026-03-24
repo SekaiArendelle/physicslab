@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 ''' 生成 class User 的所有方法的api的文档
 '''
 import os

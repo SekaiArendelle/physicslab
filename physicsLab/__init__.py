@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 """Python API for Physics-Lab-AR"""
 
 from .physicsLab_version import __version__
