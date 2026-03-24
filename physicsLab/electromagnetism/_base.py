@@ -9,18 +9,34 @@ class ElectromagnetismBase:
     __rotation: coordinate_system.Rotation
     __velocity: coordinate_system.Velocity
     __identifier: str
+    __lock_status: bool
 
     def __init__(
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation,
         identifier: str,
-        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        velocity: coordinate_system.Velocity,
+        lock_status: bool,
     ) -> None:
         self.position = position
         self.rotation = rotation
         self.identifier = identifier
         self.velocity = velocity
+        self.lock_status = lock_status
+
+    @property
+    def lock_status(self) -> bool:
+        return self.__lock_status
+
+    @lock_status.setter
+    def lock_status(self, lock_status: bool) -> None:
+        if not isinstance(lock_status, bool):
+            raise TypeError(
+                f"lock_status must be of type `bool`, but got value {lock_status} of type {type(lock_status).__name__}"
+            )
+
+        self.__lock_status = lock_status
 
     @property
     def identifier(self) -> str:
@@ -73,6 +89,13 @@ class ElectromagnetismBase:
             )
 
         self.__velocity = velocity
+
+    @staticmethod
+    @abc.abstractmethod
+    def zh_name() -> str:
+        raise NotImplementedError(
+            "The method `zh_name` must be implemented in the subclass"
+        )
 
     @abc.abstractmethod
     def as_dict(self) -> dict:

@@ -10,14 +10,15 @@ class NegativeCharge(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = True,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Negative Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 1.0, "强度": -1e-07, "质量": 0.1},
+            "Properties": {"锁定": int(self.lock_status), "强度": -1e-07, "质量": 0.1},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -36,14 +37,15 @@ class PositiveCharge(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = True,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Positive Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 1.0, "强度": 1e-07, "质量": 0.1},
+            "Properties": {"锁定": int(self.lock_status), "强度": 1e-07, "质量": 0.1},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -62,14 +64,15 @@ class NegativeTestCharge(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = False,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Negative Test Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 0.0, "强度": -1e-10, "质量": 5e-06},
+            "Properties": {"锁定": int(self.lock_status), "强度": -1e-10, "质量": 5e-06},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -88,14 +91,15 @@ class PositiveTestCharge(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = False,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Positive Test Charge",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 0.0, "强度": -1e-10, "质量": 5e-06},
+            "Properties": {"锁定": int(self.lock_status), "强度": -1e-10, "质量": 5e-06},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -114,14 +118,15 @@ class BarMagnet(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = True,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Bar Magnet",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 1.0, "强度": 1.0, "质量": 10.0},
+            "Properties": {"锁定": int(self.lock_status), "强度": 1.0, "质量": 10.0},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -140,14 +145,15 @@ class Compass(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = True,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Compass",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 1.0},
+            "Properties": {"锁定": int(self.lock_status)},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
@@ -166,14 +172,15 @@ class UniformMagneticField(ElectromagnetismBase):
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
         identifier: str = str(uuid.uuid4()),
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        lock_status: bool = False,
     ) -> None:
-        super().__init__(position, rotation, identifier, velocity)
+        super().__init__(position, rotation, identifier, velocity, lock_status)
 
     def as_dict(self) -> dict:
         return {
             "ModelID": "Uniform Magnetic Field",
             "Identifier": self.identifier,
-            "Properties": {"锁定": 0.0, "强度": 1000.0, "方向": 1.0},
+            "Properties": {"锁定": int(self.lock_status), "强度": 1000.0, "方向": 1.0},
             "Position": self.position.as_postion_str_in_plsav(),
             "Rotation": self.rotation.as_rotation_str_in_plsav(),
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
