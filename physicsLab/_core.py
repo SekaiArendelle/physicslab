@@ -344,21 +344,6 @@ class _Experiment:
                 "Elements": [a_element.data for a_element in self.Elements],
                 "Wires": [a_wire.release() for a_wire in self.Wires],
             }
-        elif self.experiment_type == ExperimentType.Celestial:
-            status_save: dict = {
-                "MainIdentifier": None,
-                "Elements": {
-                    a_element.data["Identifier"]: a_element.data
-                    for a_element in self.Elements
-                },
-                "WorldTime": 0.0,
-                "ScalingName": "内太阳系",
-                "LengthScale": 1.0,
-                "SizeLinear": 0.0001,
-                "SizeNonlinear": 0.5,
-                "StarPresent": False,
-                "Setting": None,
-            }
         else:
             errors.unreachable()
 
@@ -430,10 +415,6 @@ class _Experiment:
                     _colorUtils.Green(
                         f"{self.get_elements_count()} elements, {self.get_wires_count()} wires."
                     )
-                )
-            elif self.experiment_type == ExperimentType.Celestial:
-                _colorUtils.cprint(
-                    _colorUtils.Green(f"{self.get_elements_count()} elements.")
                 )
             else:
                 errors.unreachable()
