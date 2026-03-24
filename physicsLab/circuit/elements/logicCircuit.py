@@ -66,7 +66,6 @@ class _LogicInput(CircuitBase):
             setattr(self, name, pin)
         super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
 
-
     def as_dict(self) -> CircuitElementData:
         return {
             "ModelID": "Logic Input",
@@ -334,7 +333,17 @@ class _YesGate(_2PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x,
+            y,
+            z,
+            high_level,
+            low_level,
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
 
     @final
     @staticmethod
@@ -418,7 +427,9 @@ class _NoGate(_2PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -567,7 +578,9 @@ class _OrGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -651,7 +664,9 @@ class _AndGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -735,7 +750,9 @@ class _NorGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -819,7 +836,9 @@ class _NandGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -903,7 +922,9 @@ class _XorGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -987,7 +1008,9 @@ class _XnorGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1071,7 +1094,9 @@ class _ImpGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1155,7 +1180,9 @@ class _NimpGate(_3PinGate):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1284,7 +1311,9 @@ class _HalfAdder(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1409,7 +1438,9 @@ class _FullAdder(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1537,7 +1568,9 @@ class _HalfSubtractor(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Half Subtractor is not supported in this version of plAR")
@@ -1668,7 +1701,9 @@ class _FullSubtractor(_BigElement):
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Full Subtractor is not supported in this version of plAR")
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -1804,7 +1839,9 @@ class _Multiplier(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -1947,7 +1984,9 @@ class _DFlipflop(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2070,7 +2109,9 @@ class _TFlipflop(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2193,7 +2234,9 @@ class _RealTFlipflop(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2318,7 +2361,9 @@ class _JKFlipflop(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_low_pin", OutputPin(self, 1)),
@@ -2450,7 +2495,9 @@ class _Counter(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -2587,7 +2634,9 @@ class _RandomGenerator(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        super().__init__(x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+        )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
             ("_o_upmid_pin", OutputPin(self, 1)),
@@ -2802,7 +2851,7 @@ class _EightBitInput(CircuitBase):
             raise TypeError(
                 f"input_num must be of type `int`, but got value `{value}` of type {type(value).__name__}"
             )
-        if not (0 <= value <= 0xff):
+        if not (0 <= value <= 0xFF):
             raise ValueError(
                 f"input_num must be between 0 and 8 (inclusive), but got {value}"
             )

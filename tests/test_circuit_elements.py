@@ -1956,6 +1956,12 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.as_dict()["Label"], "Test label")
             expe.close(delete=True)
 
+            # check switch state
+            self.assertEqual(chip.switch_state, SwitchState.OFF)
+            chip.switch_state = SwitchState.ON
+            self.assertEqual(chip.switch_state, SwitchState.ON)
+            self.assertEqual(chip.data["Properties"]["开关"], 1)
+
     def test_incandescent_lamp(self):
         with Experiment(OpenMode.crt, "__test_basic_circuit_incandescent_lamp__", ExperimentType.Circuit, force_crt=True) as expe:
             chip = Incandescent_Lamp(1, 1, 1)

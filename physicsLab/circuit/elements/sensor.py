@@ -1015,7 +1015,12 @@ class _ProximitySensor(CircuitBase):
             "Identifier": self.identifier,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"高电平": 3, "低电平": 0, "输出阻抗": 10000, "锁定": int(self.lock_status)},
+            "Properties": {
+                "高电平": 3,
+                "低电平": 0,
+                "输出阻抗": 10000,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {},
             "Position": self._position.as_postion_str_in_plsav(),
             "Rotation": self._rotation.as_rotation_str_in_plsav(),

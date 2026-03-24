@@ -1026,7 +1026,12 @@ class _MutualInductor(CircuitBase):
             "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"电感1": 4.0, "电感2": 1.0, "耦合系数": 1.0, "锁定": int(self.lock_status)},
+            "Properties": {
+                "电感1": 4.0,
+                "电感2": 1.0,
+                "耦合系数": 1.0,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {
                 "电流1": 0.0,
                 "电压1": 0.0,
@@ -1137,7 +1142,11 @@ class _Rectifier(CircuitBase):
             "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"前向压降": 0.8, "额定电流": 1.0, "锁定": int(self.lock_status)},
+            "Properties": {
+                "前向压降": 0.8,
+                "额定电流": 1.0,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {"电流": 0.0},
             "Position": self._position.as_postion_str_in_plsav(),
             "Rotation": self._rotation.as_rotation_str_in_plsav(),

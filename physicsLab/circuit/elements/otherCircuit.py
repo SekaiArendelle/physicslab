@@ -56,7 +56,11 @@ class _Buzzer(CircuitBase):
             "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": int(self.lock_status)},
+            "Properties": {
+                "额定电压": 3.0,
+                "额定功率": 0.3,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {
                 "瞬间功率": 0.0,
                 "瞬间电流": 0.0,
@@ -558,7 +562,11 @@ class _ElectricBell(CircuitBase):
             "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": int(self.lock_status)},
+            "Properties": {
+                "额定电压": 3.0,
+                "额定功率": 0.3,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {
                 "瞬间功率": 0.0,
                 "瞬间电流": 0.0,
@@ -651,7 +659,11 @@ class _MusicalBox(CircuitBase):
             "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
-            "Properties": {"额定电压": 3.0, "额定功率": 0.3, "锁定": int(self.lock_status)},
+            "Properties": {
+                "额定电压": 3.0,
+                "额定功率": 0.3,
+                "锁定": int(self.lock_status),
+            },
             "Statistics": {
                 "瞬间功率": 0.0,
                 "瞬间电流": 0.0,
@@ -1172,7 +1184,7 @@ class _SimpleInstrument(CircuitBase):
             raise ValueError
 
         plar_version = plar.get_plAR_version()
-        if (plar_version is not None and plar_version < (2, 4, 7)):
+        if plar_version is not None and plar_version < (2, 4, 7):
             _warn.warning("Physics-Lab-AR's version less than 2.4.7")
 
         properties = {
