@@ -12,7 +12,7 @@ import pathlib
 import unittest
 import _constant
 import base
-from physicsLab import Position, Velocity, Category
+from physicsLab import Position, Velocity, Category, generate_a_new_sav_path
 from physicsLab.electromagnetism import elements
 from physicsLab.electromagnetism import experiment
 
@@ -49,7 +49,7 @@ class TestElectromagnetismExperiment(unittest.TestCase):
         if path is None:
             experiment.crt_electromagnetism_experiment(
                 "__test_load_electromagnetism_experiment_by_sav_name__"
-            ).save_to(experiment.generate_a_new_sav_path())
+            ).save_to(generate_a_new_sav_path())
         expe, filepath = experiment.load_electromagnetism_experiment_by_sav_name(
             "__test_load_electromagnetism_experiment_by_sav_name__"
         )
@@ -61,6 +61,22 @@ class TestElectromagnetismExperiment(unittest.TestCase):
         ) as expe:
             self.assertEqual(expe.get_elements_count(), 7)
 
+    def test_merge(self):
+        with experiment.crt_electromagnetism_experiment(None) as expe:
+            charge = elements.NegativeCharge(Position(0, 0, 0))
+            magnet = elements.BarMagnet(Position(1, 0, 0))
+            expe.crt_elements(charge, magnet)
+            self.assertEqual(expe.get_elements_count(), 2)
+            with experiment.crt_electromagnetism_experiment(None) as expe2:
+                compass = elements.Compass(Position(0, 1, 0))
+                field = elements.UniformMagneticField(Position(1, 1, 0))
+                expe2.crt_elements(compass, field)
+                self.assertEqual(expe2.get_elements_count(), 2)
+                expe.merge(expe2)
+                self.assertEqual(expe.get_elements_count(), 4)
+
+
+class TestElectromagnetismElement(unittest.TestCase):
     def test_negative_charge(self):
         with experiment.crt_electromagnetism_experiment(None) as expe:
             _instance = elements.NegativeCharge(
@@ -144,21 +160,6 @@ class TestElectromagnetismExperiment(unittest.TestCase):
             self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
-
-    def test_merge(self):
-        with experiment.crt_electromagnetism_experiment(None) as expe:
-            charge = elements.NegativeCharge(Position(0, 0, 0))
-            magnet = elements.BarMagnet(Position(1, 0, 0))
-            expe.crt_elements(charge, magnet)
-            self.assertEqual(expe.get_elements_count(), 2)
-            with experiment.crt_electromagnetism_experiment(None) as expe2:
-                compass = elements.Compass(Position(0, 1, 0))
-                field = elements.UniformMagneticField(Position(1, 1, 0))
-                expe2.crt_elements(compass, field)
-                self.assertEqual(expe2.get_elements_count(), 2)
-                expe.merge(expe2)
-                self.assertEqual(expe.get_elements_count(), 4)
-
 
 if __name__ == "__main__":
     unittest.main()

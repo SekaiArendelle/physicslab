@@ -195,8 +195,6 @@ class Experiment(_Experiment):
             else:  # 读取物实导出的存档只含有.sav的Experiment部分
                 if _temp["Type"] == ExperimentType.Circuit.value:
                     self.PlSav = copy.deepcopy(savTemplate.Circuit)
-                elif _temp["Type"] == ExperimentType.Celestial.value:
-                    self.PlSav = copy.deepcopy(savTemplate.Celestial)
                 else:
                     errors.unreachable()
 
@@ -265,8 +263,6 @@ class Experiment(_Experiment):
 
             if _experiment["Type"] == ExperimentType.Circuit.value:
                 self.PlSav = copy.deepcopy(savTemplate.Circuit)
-            elif _experiment["Type"] == ExperimentType.Celestial.value:
-                self.PlSav = copy.deepcopy(savTemplate.Celestial)
             else:
                 errors.unreachable()
 
@@ -347,16 +343,6 @@ class Experiment(_Experiment):
                 }
                 self.VisionCenter: coordinate_system.Position = coordinate_system.Position(0, -0.45, 1.08)
                 self.TargetRotation: coordinate_system.Position = coordinate_system.Position(50, 0, 0)
-            elif self.experiment_type == ExperimentType.Celestial:
-                self.PlSav: dict = copy.deepcopy(savTemplate.Celestial)
-                self.CameraSave: dict = {
-                    "Mode": 2,
-                    "Distance": 2.75,
-                    "VisionCenter": Generate,
-                    "TargetRotation": Generate,
-                }
-                self.VisionCenter: coordinate_system.Position = coordinate_system.Position(0, 0, 1.08)
-                self.TargetRotation: coordinate_system.Position = coordinate_system.Position(90, 0, 0)
             else:
                 errors.unreachable()
 
@@ -394,8 +380,6 @@ class Experiment(_Experiment):
             if self.experiment_type == ExperimentType.Circuit:
                 self.__load_elements(status_sav["Elements"])
                 self.__load_wires(status_sav["Wires"])
-            elif self.experiment_type == ExperimentType.Celestial:
-                self.__load_elements(list(status_sav["Elements"].values()))
             else:
                 errors.unreachable()
 
@@ -419,8 +403,6 @@ class Experiment(_Experiment):
             # 是否将该实验在全局范围中设置为元件坐标系
             self._is_elementXYZ: bool = False
             self.Wires: set = set()  # Set[Wire] # 存档对应的导线
-        elif self.PlSav["Experiment"]["Type"] == ExperimentType.Celestial.value:
-            self.experiment_type = ExperimentType.Celestial
         else:
             errors.unreachable()
 
@@ -499,11 +481,6 @@ class Experiment(_Experiment):
                 r_x, r_y, r_z = rotation[0], rotation[2], rotation[1]
                 obj.set_rotation(r_x, r_y, r_z)
 
-            elif self.experiment_type == ExperimentType.Celestial:
-                obj = self.crt_element(
-                    element["Model"], x, y, z, identifier=element["Identifier"]
-                )
-                obj.data = element
             else:
                 errors.unreachable()
 
@@ -547,7 +524,5 @@ class Experiment(_Experiment):
                 return circuit.Eight_Bit_Display(x, y, z, **kwargs)
             else:
                 return eval(f"circuit.{name}({x}, {y}, {z}, **{kwargs})")
-        elif self.experiment_type == ExperimentType.Celestial:
-            return eval(f"celestial.{name}({x}, {y}, {z}, **{kwargs})")
         else:
             errors.unreachable()

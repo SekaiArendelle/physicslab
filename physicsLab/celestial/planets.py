@@ -1,27 +1,22 @@
-# -*- coding: utf-8 -*-
-from physicsLab._core import _Experiment
-from physicsLab.savTemplate import Generate
-from ._planetbase import PlanetBase
-from physicsLab._typing import (
-    num_type,
-    Optional,
-    final,
-)
+import uuid
+from ._base import CelestialBase
+from physicsLab import coordinate_system
+from physicsLab._typing import final
 
 
-class Mercury(PlanetBase):
+class Mercury(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Mercury",
             "Override": None,
             "Name": "水星",
@@ -44,9 +39,9 @@ class Mercury(PlanetBase):
             "Albedo": 0.11900000274181366,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -66,19 +61,19 @@ class Mercury(PlanetBase):
         return "水星"
 
 
-class Venus(PlanetBase):
+class Venus(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Venus",
             "Override": None,
             "Name": "金星",
@@ -101,9 +96,9 @@ class Venus(PlanetBase):
             "Albedo": 0.75,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -123,19 +118,19 @@ class Venus(PlanetBase):
         return "金星"
 
 
-class Earth(PlanetBase):
+class Earth(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Earth",
             "Override": None,
             "Name": "地球",
@@ -158,9 +153,9 @@ class Earth(PlanetBase):
             "Albedo": 0.28999999165534973,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -180,19 +175,19 @@ class Earth(PlanetBase):
         return "地球"
 
 
-class Mars(PlanetBase):
+class Mars(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Mars",
             "Override": None,
             "Name": "火星",
@@ -215,9 +210,9 @@ class Mars(PlanetBase):
             "Albedo": 0.1599999964237213,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -237,19 +232,19 @@ class Mars(PlanetBase):
         return "火星"
 
 
-class Jupiter(PlanetBase):
+class Jupiter(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Jupiter",
             "Override": None,
             "Name": "木星",
@@ -272,9 +267,9 @@ class Jupiter(PlanetBase):
             "Albedo": 0.34299999475479126,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -294,19 +289,19 @@ class Jupiter(PlanetBase):
         return "木星"
 
 
-class Saturn(PlanetBase):
+class Saturn(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Saturn",
             "Override": None,
             "Name": "土星",
@@ -329,9 +324,9 @@ class Saturn(PlanetBase):
             "Albedo": 0.34200000762939453,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -351,19 +346,19 @@ class Saturn(PlanetBase):
         return "土星"
 
 
-class Uranus(PlanetBase):
+class Uranus(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Uranus",
             "Override": None,
             "Name": "天王星",
@@ -386,9 +381,9 @@ class Uranus(PlanetBase):
             "Albedo": 0.30000001192092896,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -408,19 +403,19 @@ class Uranus(PlanetBase):
         return "天王星"
 
 
-class Neptune(PlanetBase):
+class Neptune(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Neptune",
             "Override": None,
             "Name": "海王星",
@@ -443,9 +438,9 @@ class Neptune(PlanetBase):
             "Albedo": 0.28999999165534973,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -465,19 +460,19 @@ class Neptune(PlanetBase):
         return "海王星"
 
 
-class Pluto(PlanetBase):
+class Pluto(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Pluto",
             "Override": None,
             "Name": "冥王星",
@@ -500,9 +495,9 @@ class Pluto(PlanetBase):
             "Albedo": 0.4000000059604645,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -522,19 +517,19 @@ class Pluto(PlanetBase):
         return "冥王星"
 
 
-class Sun(PlanetBase):
+class Sun(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Sun",
             "Override": None,
             "Name": "太阳",
@@ -557,9 +552,9 @@ class Sun(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -579,19 +574,19 @@ class Sun(PlanetBase):
         return "太阳"
 
 
-class Blue_Giant(PlanetBase):
+class BlueGiant(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Blue Giant",
             "Override": None,
             "Name": "蓝巨星",
@@ -614,9 +609,9 @@ class Blue_Giant(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -636,19 +631,19 @@ class Blue_Giant(PlanetBase):
         return "蓝巨星"
 
 
-class Red_Giant(PlanetBase):
+class RedGiant(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Red Giant",
             "Override": None,
             "Name": "红巨星",
@@ -671,9 +666,9 @@ class Red_Giant(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -693,19 +688,19 @@ class Red_Giant(PlanetBase):
         return "红巨星"
 
 
-class Red_Dwarf(PlanetBase):
+class RedDwarf(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Red Dwarf",
             "Override": None,
             "Name": "红矮星",
@@ -728,9 +723,9 @@ class Red_Dwarf(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -750,19 +745,19 @@ class Red_Dwarf(PlanetBase):
         return "红矮星"
 
 
-class White_Dwarf(PlanetBase):
+class WhiteDwarf(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "White Dwarf",
             "Override": None,
             "Name": "白矮星",
@@ -785,9 +780,9 @@ class White_Dwarf(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -807,19 +802,19 @@ class White_Dwarf(PlanetBase):
         return "白矮星"
 
 
-class Blackhole(PlanetBase):
+class Blackhole(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Blackhole",
             "Override": None,
             "Name": "黑洞",
@@ -842,9 +837,9 @@ class Blackhole(PlanetBase):
             "Albedo": 0.699999988079071,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -864,19 +859,19 @@ class Blackhole(PlanetBase):
         return "黑洞"
 
 
-class Fantasy_Star(PlanetBase):
+class FantasyStar(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Fantasy Star",
             "Override": None,
             "Name": "幻想恒星",
@@ -899,9 +894,9 @@ class Fantasy_Star(PlanetBase):
             "Albedo": 0.0,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -921,19 +916,19 @@ class Fantasy_Star(PlanetBase):
         return "幻想恒星"
 
 
-class Moon(PlanetBase):
+class Moon(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Moon",
             "Override": None,
             "Name": "月球",
@@ -956,9 +951,9 @@ class Moon(PlanetBase):
             "Albedo": 0.12300000339746475,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -978,19 +973,19 @@ class Moon(PlanetBase):
         return "月球"
 
 
-class Chocolate_Ball(PlanetBase):
+class ChocolateBall(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Chocolate Ball",
             "Override": None,
             "Name": "巧克力球",
@@ -1013,9 +1008,9 @@ class Chocolate_Ball(PlanetBase):
             "Albedo": 0.10000000149011612,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1035,19 +1030,19 @@ class Chocolate_Ball(PlanetBase):
         return "巧克力球"
 
 
-class Continential(PlanetBase):
+class Continential(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Continential",
             "Override": None,
             "Name": "大陆行星",
@@ -1070,9 +1065,9 @@ class Continential(PlanetBase):
             "Albedo": 0.2449134993567892,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": 0.0,
             "OmegaUC": 0.0,
@@ -1092,19 +1087,19 @@ class Continential(PlanetBase):
         return "大陆行星"
 
 
-class Arctic(PlanetBase):
+class Arctic(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Arctic",
             "Override": None,
             "Name": "封冻行星",
@@ -1127,9 +1122,9 @@ class Arctic(PlanetBase):
             "Albedo": 0.4125203241191535,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1149,19 +1144,19 @@ class Arctic(PlanetBase):
         return "封冻行星"
 
 
-class Arid(PlanetBase):
+class Arid(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Arid",
             "Override": None,
             "Name": "干旱行星",
@@ -1184,9 +1179,9 @@ class Arid(PlanetBase):
             "Albedo": 0.12364274350842841,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1206,19 +1201,19 @@ class Arid(PlanetBase):
         return "干旱行星"
 
 
-class Barren(PlanetBase):
+class Barren(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Barren",
             "Override": None,
             "Name": "贫瘠行星",
@@ -1241,9 +1236,9 @@ class Barren(PlanetBase):
             "Albedo": 0.10571566044065506,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1263,19 +1258,19 @@ class Barren(PlanetBase):
         return "贫瘠行星"
 
 
-class Desert(PlanetBase):
+class Desert(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Desert",
             "Override": None,
             "Name": "沙漠行星",
@@ -1298,9 +1293,9 @@ class Desert(PlanetBase):
             "Albedo": 0.21723898875306347,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1320,19 +1315,19 @@ class Desert(PlanetBase):
         return "沙漠行星"
 
 
-class Jungle(PlanetBase):
+class Jungle(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Jungle",
             "Override": None,
             "Name": "丛林行星",
@@ -1355,9 +1350,9 @@ class Jungle(PlanetBase):
             "Albedo": 0.10596970288294205,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1377,19 +1372,19 @@ class Jungle(PlanetBase):
         return "丛林行星"
 
 
-class Toxic(PlanetBase):
+class Toxic(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Toxic",
             "Override": None,
             "Name": "剧毒行星",
@@ -1412,9 +1407,9 @@ class Toxic(PlanetBase):
             "Albedo": 0.11500446600565795,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1434,19 +1429,19 @@ class Toxic(PlanetBase):
         return "剧毒行星"
 
 
-class Lava(PlanetBase):
+class Lava(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Lava",
             "Override": None,
             "Name": "熔岩行星",
@@ -1469,9 +1464,9 @@ class Lava(PlanetBase):
             "Albedo": 0.2376526732503912,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,
@@ -1491,19 +1486,19 @@ class Lava(PlanetBase):
         return "熔岩行星"
 
 
-class Ocean(PlanetBase):
+class Ocean(CelestialBase):
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
-        /,
-        *,
-        identifier: Optional[str] = None,
-        experiment: Optional[_Experiment] = None,
+        position: coordinate_system.Position,
+        velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
+        acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(0, 0, 0),
+        identifier: str = str(uuid.uuid4()),
     ) -> None:
-        self.data = {
-            "Identifier": Generate,
+        super().__init__(position, velocity, acceleration, identifier)
+
+    def as_dict(self) -> dict:
+        return {
+            "Identifier": self.identifier,
             "Model": "Ocean",
             "Override": None,
             "Name": "海洋行星",
@@ -1526,9 +1521,9 @@ class Ocean(PlanetBase):
             "Albedo": 0.2213094047766173,
             "PowerAbsorbtion": 0.0,
             "PlanetariumBalance": 0.0,
-            "Position": Generate,
-            "Velocity": Generate,
-            "Acceleration": Generate,
+            "Position": self.position.as_postion_str_in_plsav(),
+            "Velocity": self.velocity.as_velocity_str_in_plsav(),
+            "Acceleration": self.acceleration.as_acceleration_str_in_plsav(),
             "Period": 0.0,
             "Eccentricity": "NaN",
             "OmegaUC": 0.0,

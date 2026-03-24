@@ -8,8 +8,6 @@ class ExperimentType(Enum):
 
     # 电学实验
     Circuit = 0
-    # 天体物理实验
-    Celestial = 3
 
 
 @unique

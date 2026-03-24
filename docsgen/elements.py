@@ -77,7 +77,7 @@ class {cls.__name__}(CircuitBase):
 '''
 
     planet_table = ""
-    for cls in get_all_elements(PlanetBase):
+    for cls in get_all_elements(CelestialBase):
         planet_table += f'''
     <tr>
         <td>{cls.zh_name()}</td>

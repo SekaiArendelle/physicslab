@@ -46,36 +46,12 @@ class BasicTest(TestCase):
             expe.save(target_path=os.devnull)
             expe.close()
 
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "All-Celestial-Elements.sav")) as expe:
-            self.assertTrue(expe.get_elements_count() == 27)
-            expe.save(target_path=os.devnull)
-            expe.close()
-
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "Export-All-Celestial-Elements.sav")) as expe:
-            self.assertTrue(expe.get_elements_count() == 27)
-            expe.save(target_path=os.devnull)
-            expe.close()
-
     @my_test_dec
     def test_load_from_app(self):
-        def task1():
-            with Experiment(OpenMode.load_by_plar_app, "6774ffb4c45f930f41ccedf8", Category.Discussion) as expe:
-                self.assertTrue(expe.get_elements_count() == 91)
-                expe.save(target_path=os.devnull)
-                expe.close()
-
-        def task2():
-            with Experiment(OpenMode.load_by_plar_app, "677500138c54132a83289f9c", Category.Discussion, user=user) as expe:
-                self.assertTrue(expe.get_elements_count() == 27)
-                expe.save(target_path=os.devnull)
-                expe.close()
-
-        thread1 = threading.Thread(target=task1)
-        thraed2 = threading.Thread(target=task2)
-        thread1.start()
-        thraed2.start()
-        thread1.join()
-        thraed2.join()
+        with Experiment(OpenMode.load_by_plar_app, "6774ffb4c45f930f41ccedf8", Category.Discussion) as expe:
+            self.assertTrue(expe.get_elements_count() == 91)
+            expe.save(target_path=os.devnull)
+            expe.close()
 
     @my_test_dec
     def test_double_load_error(self):
@@ -281,10 +257,6 @@ class BasicTest(TestCase):
             self.assertEqual(expe.get_elements_count(), 90)
             expe.close()
 
-        with Experiment(OpenMode.load_by_filepath, os.path.join(TEST_DATA_DIR, "All-Celestial-Elements.sav")) as expe:
-            expe.del_element(expe.get_element_from_index(1))
-            self.assertEqual(expe.get_elements_count(), 26)
-            expe.close()
 
     # 测试模块化电路连接导线
     @my_test_dec
