@@ -126,6 +126,7 @@ class CelestialStatusSave:
             )
         self.__elements.append(element)
         self.__id2element[element.identifier] = element
+        self.__position2element[element.position] = element
 
     def append_range(self, other: "CelestialStatusSave") -> None:
         if not isinstance(other, CelestialStatusSave):
@@ -142,6 +143,7 @@ class CelestialStatusSave:
             )
         self.__elements.remove(element)
         del self.__id2element[element.identifier]
+        del self.__position2element[element.position]
 
     def get_element_by_index(self, index: int) -> _base.CelestialBase:
         if not isinstance(index, int):

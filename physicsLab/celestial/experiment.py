@@ -1,6 +1,9 @@
 import time
+import json
+import pathlib
 from physicsLab import coordinate_system
 from ._status_save import CelestialStatusSave
+from ._base import CelestialBase
 from physicsLab._typing import Self, Optional
 from physicsLab._camera_save import CameraMode, CameraSave
 
@@ -23,6 +26,12 @@ class CelestialExperiment:
         self.name = name
         self.status_save = CelestialStatusSave()
         self.camera_save = camera_save
+
+    def __enter__(self) -> Self:
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
+        pass
 
     @property
     def name(self) -> Optional[str]:
@@ -63,8 +72,33 @@ class CelestialExperiment:
 
         self.__camera_save = camera_save
 
+    def crt_a_element(self, element: CelestialBase) -> Self:
+        self.status_save.append_element(element)
+
+        return self
+
+    def crt_elements(self, *elements: CelestialBase) -> Self:
+        for element in elements:
+            self.crt_a_element(element)
+
+        return self
+
+    def del_a_element(self, element: CelestialBase) -> Self:
+        self.status_save.remove_element(element)
+
+        return self
+
     def get_elements_count(self) -> int:
         return len(self.status_save.elements)
+
+    def get_element_by_index(self, index: int) -> CelestialBase:
+        return self.status_save.get_element_by_index(index)
+
+    def get_element_by_id(self, identifier: str) -> CelestialBase:
+        return self.status_save.get_element_by_id(identifier)
+
+    def get_element_by_position(self, position: coordinate_system.Position) -> CelestialBase:
+        return self.status_save.get_element_by_position(position)
 
     def as_plsav_dict(self) -> dict:
         return {
@@ -83,7 +117,7 @@ class CelestialExperiment:
             },
             "ID": None,
             "Summary": {
-                "Type": 6,
+                "Type": 3,
                 "ParentID": None,
                 "ParentName": None,
                 "ParentCategory": None,
@@ -92,7 +126,7 @@ class CelestialExperiment:
                 "Coauthors": [],
                 "Description": None,
                 "LocalizedDescription": None,
-                "Tags": ["Type-6"],
+                "Tags": ["Type-3"],
                 "ModelID": None,
                 "ModelName": None,
                 "ModelTags": [],
@@ -130,7 +164,7 @@ class CelestialExperiment:
             "CreationDate": 0,
             "Speed": 1.0,
             "SpeedMinimum": 0.1,
-            "SpeedMaximum": 2.0,
+            "SpeedMaximum": 10.0,
             "SpeedReal": 0.0,
             "Paused": False,
             "Version": 0,
@@ -141,3 +175,21 @@ class CelestialExperiment:
             "Bookmarks": {},
             "Interfaces": {"Play-Expanded": False, "Chart-Expanded": False},
         }
+
+    def save_to(self, path: pathlib.Path) -> None:
+        if not isinstance(path, pathlib.Path):
+            raise TypeError(
+                f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
+            )
+
+        path.write_text(json.dumps(self.as_plsav_dict()), encoding="utf-8")
+
+    def merge(self, other: "CelestialExperiment") -> Self:
+        if not isinstance(other, CelestialExperiment):
+            raise TypeError(
+                f"parameter other must be of type `CelestialExperiment`, but got value {other} of type {type(other).__name__}"
+            )
+
+        self.status_save.append_range(other.status_save)
+
+        return self
