@@ -1,4 +1,5 @@
 from physicsLab._core import _Experiment
+from physicsLab import coordinate_system
 from physicsLab._tools import round_data
 from .._circuit_core import (
     CircuitBase,
@@ -45,9 +46,7 @@ class _NE555(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -65,7 +64,13 @@ class _NE555(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -153,7 +158,13 @@ class NE555(_NE555):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -175,9 +186,7 @@ class _BasicCapacitor(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         peak_voltage: num_type = 16,
         capacitance: num_type = 1e-06,
         internal_resistance: num_type = 5,
@@ -220,7 +229,13 @@ class _BasicCapacitor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -297,9 +312,7 @@ class Basic_Capacitor(_BasicCapacitor):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             peak_voltage=peak_voltage,
             capacitance=capacitance,
             internal_resistance=internal_resistance,
@@ -330,9 +343,7 @@ class _BasicInductor(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         rated_current: num_type = 1,
         inductance: num_type = 0.05,
         internal_resistance: num_type = 1,
@@ -375,7 +386,13 @@ class _BasicInductor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -457,9 +474,7 @@ class Basic_Inductor(_BasicInductor):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             rated_current=rated_current,
             inductance=inductance,
             internal_resistance=internal_resistance,
@@ -486,9 +501,7 @@ class _BasicDiode(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -500,7 +513,13 @@ class _BasicDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -561,7 +580,13 @@ class Basic_Diode(_BasicDiode):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -579,9 +604,7 @@ class _LightEmittingDiode(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -593,7 +616,13 @@ class _LightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -655,7 +684,13 @@ class Light_Emitting_Diode(_LightEmittingDiode):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -672,9 +707,7 @@ class _GroundComponent(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -683,7 +716,13 @@ class _GroundComponent(CircuitBase):
         self._all_pins = (("_i_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -734,7 +773,13 @@ class Ground_Component(_GroundComponent):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -759,9 +804,7 @@ class _Transformer(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -775,7 +818,13 @@ class _Transformer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -851,7 +900,13 @@ class Transformer(_Transformer):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -878,9 +933,7 @@ class _TappedTransformer(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -895,7 +948,13 @@ class _TappedTransformer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -974,7 +1033,13 @@ class Tapped_Transformer(_TappedTransformer):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -999,9 +1064,7 @@ class _MutualInductor(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1015,7 +1078,13 @@ class _MutualInductor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1090,7 +1159,13 @@ class Mutual_Inductor(_MutualInductor):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -1115,9 +1190,7 @@ class _Rectifier(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1131,7 +1204,13 @@ class _Rectifier(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1198,7 +1277,13 @@ class Rectifier(_Rectifier):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -1224,9 +1309,7 @@ class _Transistor(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         is_PNP: bool = True,
         gain: num_type = 100,
         max_power: num_type = 1000,
@@ -1259,7 +1342,13 @@ class _Transistor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1340,9 +1429,7 @@ class Transistor(_Transistor):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             is_PNP=is_PNP,
             gain=gain,
             max_power=max_power,
@@ -1373,9 +1460,7 @@ class _Comparator(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1388,7 +1473,13 @@ class _Comparator(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1447,7 +1538,13 @@ class Comparator(_Comparator):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -1473,9 +1570,7 @@ class _OperationalAmplifier(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         gain: num_type = 10_000_000,
         max_voltage: num_type = 1000,
         min_voltage: num_type = -1000,
@@ -1514,7 +1609,13 @@ class _OperationalAmplifier(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1598,9 +1699,7 @@ class Operational_Amplifier(_OperationalAmplifier):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             gain=gain,
             max_voltage=max_voltage,
             min_voltage=min_voltage,
@@ -1635,9 +1734,7 @@ class _RelayComponent(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         pull_in_current: num_type = 0.02,
         rated_current: num_type = 10,
         coil_inductance: num_type = 0.2,
@@ -1678,7 +1775,13 @@ class _RelayComponent(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1757,9 +1860,7 @@ class Relay_Component(_RelayComponent):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             pull_in_current=pull_in_current,
             rated_current=rated_current,
             coil_inductance=coil_inductance,
@@ -1791,9 +1892,7 @@ class _N_MOSFET(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         beta: num_type = 0.027,
         threshold: num_type = 1.5,
         max_power: num_type = 1000,
@@ -1826,7 +1925,13 @@ class _N_MOSFET(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1901,9 +2006,7 @@ class N_MOSFET(_N_MOSFET):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             beta=beta,
             threshold=threshold,
             max_power=max_power,
@@ -1934,9 +2037,7 @@ class _P_MOSFET(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1949,7 +2050,13 @@ class _P_MOSFET(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2020,7 +2127,13 @@ class P_MOSFET(_P_MOSFET):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2038,9 +2151,7 @@ class _CurrentSource(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -2052,7 +2163,13 @@ class _CurrentSource(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2111,7 +2228,13 @@ class Current_Source(_CurrentSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2129,9 +2252,7 @@ class _SourceElectricity(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         /,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
@@ -2144,7 +2265,13 @@ class _SourceElectricity(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(
+            position,
+            elementXYZ,
+            identifier,
+            lock_status,
+            label,
+        )
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -2167,16 +2294,14 @@ class _SinewaveSource(_SourceElectricity):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, elementXYZ, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2223,7 +2348,13 @@ class Sinewave_Source(_SinewaveSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2237,16 +2368,14 @@ class _SquareSource(_SourceElectricity):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, elementXYZ, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2293,7 +2422,13 @@ class Square_Source(_SquareSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2307,16 +2442,14 @@ class _TriangleSource(_SourceElectricity):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, elementXYZ, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2363,7 +2496,13 @@ class Triangle_Source(_TriangleSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2377,16 +2516,14 @@ class _SawtoothSource(_SourceElectricity):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, elementXYZ, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2433,7 +2570,13 @@ class Sawtooth_Source(_SawtoothSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property
@@ -2447,16 +2590,14 @@ class _PulseSource(_SourceElectricity):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, elementXYZ, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2503,7 +2644,13 @@ class Pulse_Source(_PulseSource):
     ) -> None:
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
-        super().__init__(x, y, z, elementXYZ, identifier, label, lock_status)
+        super().__init__(
+            coordinate_system.Position(x, y, z),
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
+        )
         _deprecated_assign_element_to_experiment(self)
 
     @property

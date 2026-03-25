@@ -234,15 +234,18 @@ class CircuitBase(ElementBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         elementXYZ: Optional[bool],
         identifier: Optional[str],
         lock_status: bool,
         label: Optional[str],
     ) -> None:
-        self.set_position(x, y, z, elementXYZ)
+        if not isinstance(position, coordinate_system.Position):
+            raise TypeError(
+                f"position must be an instance of coordinate_system.Position, "
+                f"got {type(position).__name__}"
+            )
+        self.set_position(position.x, position.y, position.z, elementXYZ)
         if identifier is None:
             self.identifier = randString(33)
         else:

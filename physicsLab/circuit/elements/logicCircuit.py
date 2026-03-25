@@ -19,6 +19,7 @@ from physicsLab._typing import (
     Union,
     Literal,
 )
+from physicsLab import coordinate_system
 
 
 class _LogicInput(CircuitBase):
@@ -30,9 +31,7 @@ class _LogicInput(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         output_status: bool = False,
         high_level: num_type = 3,
         low_level: num_type = 0,
@@ -63,7 +62,7 @@ class _LogicInput(CircuitBase):
         self._all_pins = (("_o_pin", OutputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -133,9 +132,7 @@ class Logic_Input(_LogicInput):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             output_status=output_status,
             high_level=high_level,
             low_level=low_level,
@@ -159,9 +156,7 @@ class _LogicOutput(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -182,7 +177,7 @@ class _LogicOutput(CircuitBase):
         self._all_pins = (("_i_pin", InputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -243,9 +238,7 @@ class Logic_Output(_LogicOutput):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -271,9 +264,7 @@ class _2PinGate(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
@@ -297,7 +288,7 @@ class _2PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -322,9 +313,7 @@ class _YesGate(_2PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -333,9 +322,7 @@ class _YesGate(_2PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x,
-            y,
-            z,
+            position,
             high_level,
             low_level,
             elementXYZ,
@@ -394,9 +381,7 @@ class Yes_Gate(_YesGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -416,9 +401,7 @@ class _NoGate(_2PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -427,7 +410,7 @@ class _NoGate(_2PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -480,9 +463,7 @@ class No_Gate(_NoGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -511,9 +492,7 @@ class _3PinGate(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
@@ -538,7 +517,7 @@ class _3PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -567,9 +546,7 @@ class _OrGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -578,7 +555,7 @@ class _OrGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -631,9 +608,7 @@ class Or_Gate(_OrGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -653,9 +628,7 @@ class _AndGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -664,7 +637,7 @@ class _AndGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -717,9 +690,7 @@ class And_Gate(_AndGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -739,9 +710,7 @@ class _NorGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -750,7 +719,7 @@ class _NorGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -803,9 +772,7 @@ class Nor_Gate(_NorGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -825,9 +792,7 @@ class _NandGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -836,7 +801,7 @@ class _NandGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -889,9 +854,7 @@ class Nand_Gate(_NandGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -911,9 +874,7 @@ class _XorGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -922,7 +883,7 @@ class _XorGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -975,9 +936,7 @@ class Xor_Gate(_XorGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -997,9 +956,7 @@ class _XnorGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1008,7 +965,7 @@ class _XnorGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -1061,9 +1018,7 @@ class Xnor_Gate(_XnorGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1083,9 +1038,7 @@ class _ImpGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1094,7 +1047,7 @@ class _ImpGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -1147,9 +1100,7 @@ class Imp_Gate(_ImpGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1169,9 +1120,7 @@ class _NimpGate(_3PinGate):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1180,7 +1129,13 @@ class _NimpGate(_3PinGate):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position,
+            high_level,
+            low_level,
+            elementXYZ,
+            identifier,
+            label,
+            lock_status,
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -1233,9 +1188,7 @@ class Nimp_Gate(_NimpGate):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1257,9 +1210,7 @@ class _BigElement(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
         elementXYZ: Optional[bool] = None,
@@ -1277,7 +1228,7 @@ class _BigElement(CircuitBase):
             )
         self.high_level: num_type = high_level
         self.low_level: num_type = low_level
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     @staticmethod
     def count_all_pins() -> int:
@@ -1300,9 +1251,7 @@ class _HalfAdder(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1311,7 +1260,7 @@ class _HalfAdder(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1392,9 +1341,7 @@ class Half_Adder(_HalfAdder):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1427,9 +1374,7 @@ class _FullAdder(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1438,7 +1383,7 @@ class _FullAdder(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1524,9 +1469,7 @@ class Full_Adder(_FullAdder):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1557,9 +1500,7 @@ class _HalfSubtractor(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1568,7 +1509,7 @@ class _HalfSubtractor(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
@@ -1652,9 +1593,7 @@ class Half_Subtractor(_HalfSubtractor):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1687,9 +1626,7 @@ class _FullSubtractor(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1701,7 +1638,7 @@ class _FullSubtractor(_BigElement):
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Full Subtractor is not supported in this version of plAR")
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1787,9 +1724,7 @@ class Full_Subtractor(_FullSubtractor):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1828,9 +1763,7 @@ class _Multiplier(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1839,7 +1772,7 @@ class _Multiplier(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1940,9 +1873,7 @@ class Multiplier(_Multiplier):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -1973,9 +1904,7 @@ class _DFlipflop(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -1984,7 +1913,7 @@ class _DFlipflop(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2065,9 +1994,7 @@ class D_Flipflop(_DFlipflop):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2098,9 +2025,7 @@ class _TFlipflop(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2109,7 +2034,7 @@ class _TFlipflop(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2190,9 +2115,7 @@ class T_Flipflop(_TFlipflop):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2223,9 +2146,7 @@ class _RealTFlipflop(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2234,7 +2155,7 @@ class _RealTFlipflop(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2315,9 +2236,7 @@ class Real_T_Flipflop(_RealTFlipflop):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2350,9 +2269,7 @@ class _JKFlipflop(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2361,7 +2278,7 @@ class _JKFlipflop(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2447,9 +2364,7 @@ class JK_Flipflop(_JKFlipflop):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2484,9 +2399,7 @@ class _Counter(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2495,7 +2408,7 @@ class _Counter(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2586,9 +2499,7 @@ class Counter(_Counter):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2623,9 +2534,7 @@ class _RandomGenerator(_BigElement):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2634,7 +2543,7 @@ class _RandomGenerator(_BigElement):
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            x, y, z, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, elementXYZ, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2725,9 +2634,7 @@ class Random_Generator(_RandomGenerator):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -2772,9 +2679,7 @@ class _EightBitInput(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         input_num: int,
         high_level: num_type = 3,
         low_level: num_type = 0,
@@ -2810,7 +2715,7 @@ class _EightBitInput(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2923,9 +2828,7 @@ class Eight_Bit_Input(_EightBitInput):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             input_num=input_num,
             high_level=high_level,
             low_level=low_level,
@@ -2967,9 +2870,7 @@ class _EightBitDisplay(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
         elementXYZ: Optional[bool] = None,
@@ -2999,7 +2900,7 @@ class _EightBitDisplay(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -3087,9 +2988,7 @@ class Eight_Bit_Display(_EightBitDisplay):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             elementXYZ=elementXYZ,
@@ -3119,9 +3018,7 @@ class _SchmittTrigger(CircuitBase):
 
     def __init__(
         self,
-        x: num_type,
-        y: num_type,
-        z: num_type,
+        position: coordinate_system.Position,
         high_level: num_type = 5.0,
         low_level: Optional[num_type] = None,
         inverted: bool = False,
@@ -3153,7 +3050,7 @@ class _SchmittTrigger(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(x, y, z, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, elementXYZ, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -3228,9 +3125,7 @@ class Schmitt_Trigger(_SchmittTrigger):
         # this class is deprecated
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
-            x,
-            y,
-            z,
+            coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
             inverted=inverted,
