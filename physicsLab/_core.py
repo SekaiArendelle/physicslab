@@ -801,7 +801,7 @@ class _Experiment:
         # TODO 对天体与电学实验的支持可能不太好吧
         for a_element in other.Elements:
             a_element = copy.deepcopy(a_element, memo={id(a_element.experiment): self})
-            e_x, e_y, e_z = a_element.get_position()
+            e_x, e_y, e_z = a_element.position
             if self.experiment_type == ExperimentType.Circuit:
                 if elementXYZ and not a_element.is_elementXYZ:
                     e_x, e_y, e_z = native_to_elementXYZ(
@@ -852,7 +852,7 @@ class ElementBase:
     """三大类型实验的元件的基类"""
 
     experiment: _Experiment
-    _position: coordinate_system.Position
+    __position: coordinate_system.Position
 
     def __init__(self) -> None:
         raise NotImplementedError
@@ -889,10 +889,10 @@ class ElementBase:
         self.data["Position"] = f"{x},{z},{y}"
 
         errors.assert_true(hasattr(self, "_position"))
-        if self._position in _Expe._position2elements.keys():
-            _Expe._position2elements[self._position].append(self)
+        if self.__position in _Expe._position2elements.keys():
+            _Expe._position2elements[self.__position].append(self)
         else:
-            _Expe._position2elements[self._position] = [self]
+            _Expe._position2elements[self.__position] = [self]
 
         return self
 
@@ -907,11 +907,9 @@ class ElementBase:
         else:
             self.data["Identifier"] = identifier
 
-    @final
-    def get_position(self) -> coordinate_system.Position:
-        """获取元件的坐标"""
-        errors.assert_true(hasattr(self, "_position"))
-        return copy.deepcopy(self._position)
+    @property
+    def position(self) -> coordinate_system.Position:
+        return self.__position
 
     @final
     def get_index(self) -> int:

@@ -14,7 +14,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -41,7 +41,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -67,7 +67,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -93,7 +93,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -119,7 +119,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -145,7 +145,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -171,7 +171,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -197,7 +197,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -223,7 +223,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -249,7 +249,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -276,7 +276,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -302,7 +302,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -328,7 +328,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -354,7 +354,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -380,7 +380,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -406,7 +406,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -432,7 +432,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -458,7 +458,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -484,7 +484,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -510,7 +510,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -536,7 +536,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -563,7 +563,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -589,7 +589,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -615,7 +615,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -641,7 +641,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -667,7 +667,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -693,7 +693,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -719,7 +719,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -745,7 +745,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -771,7 +771,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -797,7 +797,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -823,7 +823,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -849,7 +849,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -875,7 +875,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -901,7 +901,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -927,7 +927,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -953,7 +953,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -979,7 +979,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1005,7 +1005,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1031,7 +1031,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1057,7 +1057,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1083,7 +1083,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1109,7 +1109,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1135,7 +1135,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1161,7 +1161,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1194,7 +1194,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1220,7 +1220,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1247,7 +1247,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1273,7 +1273,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1299,7 +1299,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1325,7 +1325,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1351,7 +1351,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1377,7 +1377,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1403,7 +1403,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1429,7 +1429,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1455,7 +1455,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1481,7 +1481,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1507,7 +1507,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1533,7 +1533,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1559,7 +1559,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1585,7 +1585,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1611,7 +1611,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1637,7 +1637,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1663,7 +1663,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1689,7 +1689,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1715,7 +1715,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1741,7 +1741,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1767,7 +1767,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1793,7 +1793,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1820,7 +1820,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1851,7 +1851,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1882,7 +1882,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1913,7 +1913,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1939,7 +1939,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1971,7 +1971,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -1997,7 +1997,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2023,7 +2023,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2049,7 +2049,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2075,7 +2075,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2101,7 +2101,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2127,7 +2127,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2153,7 +2153,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2179,7 +2179,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2205,7 +2205,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2231,7 +2231,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2257,7 +2257,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
@@ -2283,7 +2283,7 @@ class TestAllCircuitElements(unittest.TestCase):
             self.assertEqual(chip.count_all_pins(), len(list(chip.all_pins())))
             self.assertTrue(hasattr(chip, 'data'))
             self.assertIsInstance(chip.data, dict)
-            self.assertEqual(chip.get_position(), Position(1, 1, 1))
+            self.assertEqual(chip.position, Position(1, 1, 1))
 
             # check lock status
             self.assertEqual(chip.lock_status, True)
