@@ -38,7 +38,6 @@ class _MemsBase(CircuitBase):
         ranges: num_type,
         shifting: num_type,
         response_factor: num_type,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -53,7 +52,7 @@ class _MemsBase(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
@@ -114,7 +113,6 @@ class _Accelerometer(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.2290000021457672,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -125,7 +123,6 @@ class _Accelerometer(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -167,7 +164,6 @@ class Accelerometer(_Accelerometer):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
@@ -183,7 +179,6 @@ class Accelerometer(_Accelerometer):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -216,7 +211,6 @@ class _AnalogJoystick(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -232,7 +226,7 @@ class _AnalogJoystick(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -295,7 +289,6 @@ class Analog_Joystick(_AnalogJoystick):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
@@ -305,7 +298,6 @@ class Analog_Joystick(_AnalogJoystick):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             lock_status,
             label=label,
@@ -326,7 +318,6 @@ class _AttitudeSensor(_MemsBase):
         ranges: num_type = 180,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -337,7 +328,6 @@ class _AttitudeSensor(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -379,7 +369,6 @@ class Attitude_Sensor(_AttitudeSensor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 180,
@@ -395,7 +384,6 @@ class Attitude_Sensor(_AttitudeSensor):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -416,7 +404,6 @@ class _GravitySensor(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -427,7 +414,6 @@ class _GravitySensor(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -469,7 +455,6 @@ class Gravity_Sensor(_GravitySensor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
@@ -485,7 +470,6 @@ class Gravity_Sensor(_GravitySensor):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -506,7 +490,6 @@ class _Gyroscope(_MemsBase):
         ranges: num_type = 150,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -517,7 +500,6 @@ class _Gyroscope(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -559,7 +541,6 @@ class Gyroscope(_Gyroscope):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 150,
@@ -575,7 +556,6 @@ class Gyroscope(_Gyroscope):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -596,7 +576,6 @@ class _LinearAccelerometer(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -607,7 +586,6 @@ class _LinearAccelerometer(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -649,7 +627,6 @@ class Linear_Accelerometer(_LinearAccelerometer):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 2,
@@ -665,7 +642,6 @@ class Linear_Accelerometer(_LinearAccelerometer):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -686,7 +662,6 @@ class _MagneticFieldSensor(_MemsBase):
         ranges: num_type = 0.04,
         shifting: num_type = 3.2,
         response_factor: num_type = 80,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -697,7 +672,6 @@ class _MagneticFieldSensor(_MemsBase):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -739,7 +713,6 @@ class Magnetic_Field_Sensor(_MagneticFieldSensor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         ranges: num_type = 0.04,
@@ -755,7 +728,6 @@ class Magnetic_Field_Sensor(_MagneticFieldSensor):
             ranges=ranges,
             shifting=shifting,
             response_factor=response_factor,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             lock_status=lock_status,
             label=label,
@@ -777,7 +749,6 @@ class _Photodiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -788,7 +759,7 @@ class _Photodiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -842,7 +813,6 @@ class Photodiode(_Photodiode):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
@@ -852,7 +822,6 @@ class Photodiode(_Photodiode):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             lock_status,
             label=label,
@@ -874,7 +843,6 @@ class _Photoresistor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -885,7 +853,7 @@ class _Photoresistor(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -939,7 +907,6 @@ class Photoresistor(_Photoresistor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
@@ -949,7 +916,6 @@ class Photoresistor(_Photoresistor):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             lock_status,
             label=label,
@@ -970,7 +936,6 @@ class _ProximitySensor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -978,7 +943,7 @@ class _ProximitySensor(CircuitBase):
         self._all_pins = (("_o_pin", Pin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1026,7 +991,6 @@ class Proximity_Sensor(_ProximitySensor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         lock_status: bool = True,
@@ -1036,7 +1000,6 @@ class Proximity_Sensor(_ProximitySensor):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             lock_status,
             label=label,

@@ -7,7 +7,6 @@ from physicsLab._core import (
     _Experiment,
     get_current_experiment,
     ElementBase,
-    elementXYZ_to_native,
 )
 from physicsLab._typing import (
     Optional,
@@ -226,7 +225,6 @@ class CircuitBase(ElementBase):
     experiment: _Experiment  # 元件所属的实验
     _position: coordinate_system.Position
     _rotation: coordinate_system.Rotation
-    is_elementXYZ: bool
     identifier: str
     is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
     _lock_status: bool
@@ -235,7 +233,6 @@ class CircuitBase(ElementBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool],
         identifier: Optional[str],
         lock_status: bool,
         label: Optional[str],
@@ -245,7 +242,7 @@ class CircuitBase(ElementBase):
                 f"position must be an instance of coordinate_system.Position, "
                 f"got {type(position).__name__}"
             )
-        self.set_position(position.x, position.y, position.z, elementXYZ)
+        self.set_position(position.x, position.y, position.z)
         if identifier is None:
             self.identifier = randString(33)
         else:
@@ -258,7 +255,7 @@ class CircuitBase(ElementBase):
         return (
             f"{self.__class__.__name__}"
             f"({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ})"
+            f")"
         )
 
     @final
@@ -286,7 +283,6 @@ class CircuitBase(ElementBase):
         x: num_type,
         y: num_type,
         z: num_type,
-        elementXYZ: Optional[bool] = None,
     ) -> Self:
         """设置元件的位置"""
         if not isinstance(x, (int, float)):
@@ -301,27 +297,9 @@ class CircuitBase(ElementBase):
             raise TypeError(
                 f"Parameter z must be of type `int | float`, but got value {z} of type `{type(z).__name__}`"
             )
-        if not isinstance(elementXYZ, (bool, type(None))):
-            raise TypeError(
-                f"Parameter elementXYZ must be of type `Optional[bool]`, but got value {elementXYZ} of type `{type(elementXYZ).__name__}`"
-            )
-
         self._position = coordinate_system.Position(x, y, z)
 
         _Expe: _Experiment = self.experiment
-
-        # 元件坐标系
-        if elementXYZ is True or _Expe.is_elementXYZ is True and elementXYZ is None:
-            x, y, z = elementXYZ_to_native(
-                x,
-                y,
-                z,
-                _Expe._elementXYZ_origin_position,
-                is_bigElement=self.is_bigElement,
-            )
-            self.is_elementXYZ = True
-        else:
-            self.is_elementXYZ = False
 
         for self_list in _Expe._position2elements.values():
             if self in self_list:

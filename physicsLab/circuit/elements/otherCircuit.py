@@ -33,7 +33,6 @@ class _Buzzer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -44,7 +43,7 @@ class _Buzzer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -102,7 +101,6 @@ class Buzzer(_Buzzer):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -112,7 +110,6 @@ class Buzzer(_Buzzer):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -134,7 +131,6 @@ class _SparkGap(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -145,7 +141,7 @@ class _SparkGap(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -197,7 +193,6 @@ class Spark_Gap(_SparkGap):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -207,7 +202,6 @@ class Spark_Gap(_SparkGap):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -229,7 +223,6 @@ class _TeslaCoil(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -240,7 +233,7 @@ class _TeslaCoil(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -294,7 +287,6 @@ class Tesla_Coil(_TeslaCoil):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -304,7 +296,6 @@ class Tesla_Coil(_TeslaCoil):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -333,7 +324,6 @@ class _ColorLightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -346,7 +336,7 @@ class _ColorLightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -421,7 +411,6 @@ class Color_Light_Emitting_Diode(_ColorLightEmittingDiode):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -431,7 +420,6 @@ class Color_Light_Emitting_Diode(_ColorLightEmittingDiode):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -453,7 +441,6 @@ class _DualLightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -464,7 +451,7 @@ class _DualLightEmittingDiode(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -527,7 +514,6 @@ class Dual_Light_Emitting_Diode(_DualLightEmittingDiode):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -537,7 +523,6 @@ class Dual_Light_Emitting_Diode(_DualLightEmittingDiode):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -559,7 +544,6 @@ class _ElectricBell(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -570,7 +554,7 @@ class _ElectricBell(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -628,7 +612,6 @@ class Electric_Bell(_ElectricBell):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -638,7 +621,6 @@ class Electric_Bell(_ElectricBell):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -660,7 +642,6 @@ class _MusicalBox(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -671,7 +652,7 @@ class _MusicalBox(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -729,7 +710,6 @@ class Musical_Box(_MusicalBox):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -739,7 +719,6 @@ class Musical_Box(_MusicalBox):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -776,7 +755,6 @@ class _ResistanceLaw(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -793,7 +771,7 @@ class _ResistanceLaw(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -903,7 +881,6 @@ class Resistance_Law(_ResistanceLaw):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -913,7 +890,6 @@ class Resistance_Law(_ResistanceLaw):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -942,7 +918,6 @@ class _Solenoid(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -955,7 +930,7 @@ class _Solenoid(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1026,7 +1001,6 @@ class Solenoid(_Solenoid):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1036,7 +1010,6 @@ class Solenoid(_Solenoid):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1058,7 +1031,6 @@ class _ElectricFan(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1069,7 +1041,7 @@ class _ElectricFan(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1139,7 +1111,6 @@ class Electric_Fan(_ElectricFan):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1149,7 +1120,6 @@ class Electric_Fan(_ElectricFan):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1174,7 +1144,6 @@ class _SimpleInstrument(CircuitBase):
         /,
         *,
         pitches: Union[List[int], Tuple[int]],
-        elementXYZ: Optional[bool] = None,
         experiment: Optional[_Experiment] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1207,7 +1176,7 @@ class _SimpleInstrument(CircuitBase):
         self.set_instrument(instrument)
         self.set_is_ideal(is_ideal)
         self.set_is_pulse(is_pulse)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     @final
     @staticmethod
@@ -1327,7 +1296,7 @@ class _SimpleInstrument(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Simple_Instrument({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
+            f""
             f"pitches={self.pitches}, "
             f"instrument={self._instrument}, "
             f"bpm={self._bpm}, "
@@ -1391,7 +1360,6 @@ class Simple_Instrument(_SimpleInstrument):
         /,
         *,
         pitches: Union[List[int], Tuple[int]],
-        elementXYZ: Optional[bool] = None,
         experiment: Optional[_Experiment] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
@@ -1408,7 +1376,6 @@ class Simple_Instrument(_SimpleInstrument):
         super().__init__(
             coordinate_system.Position(x, y, z),
             pitches=pitches,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             experiment=experiment,
             label=label,

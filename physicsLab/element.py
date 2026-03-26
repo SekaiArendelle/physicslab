@@ -330,7 +330,6 @@ class Experiment(_Experiment):
             )
 
             if self.experiment_type == ExperimentType.Circuit:
-                self._is_elementXYZ: bool = False
                 self.PlSav: dict = copy.deepcopy(savTemplate.Circuit)
                 self.Wires: set = set()  # Set[Wire] # 存档对应的导线
                 # 存档对应的StatusSave, 存放实验元件，导线（如果是电学实验的话）
@@ -349,8 +348,6 @@ class Experiment(_Experiment):
         else:
             errors.unreachable()
 
-        if self.experiment_type == ExperimentType.Circuit:
-            self._elementXYZ_origin_position = coordinate_system.Position(0, 0, 0)
 
         assert isinstance(self.open_mode, OpenMode)
         assert isinstance(self._position2elements, dict)
@@ -364,8 +361,6 @@ class Experiment(_Experiment):
         assert isinstance(self.experiment_type, ExperimentType)
         if self.experiment_type == ExperimentType.Circuit:
             assert isinstance(self.Wires, set)
-            assert isinstance(self._is_elementXYZ, bool)
-            assert isinstance(self._elementXYZ_origin_position, coordinate_system.Position)
 
         _ExperimentStack.push(self)
 
@@ -400,7 +395,6 @@ class Experiment(_Experiment):
         if self.PlSav["Experiment"]["Type"] == ExperimentType.Circuit.value:
             self.experiment_type = ExperimentType.Circuit
             # 是否将该实验在全局范围中设置为元件坐标系
-            self._is_elementXYZ: bool = False
             self.Wires: set = set()  # Set[Wire] # 存档对应的导线
         else:
             errors.unreachable()
@@ -458,7 +452,6 @@ class Experiment(_Experiment):
                         z,
                         pitches=pitches,
                         identifier=element["Identifier"],
-                        elementXYZ=False,
                         instrument=int(element["Properties"].get("乐器", 0)),
                         volume=element["Properties"]["音量"],
                         rated_oltage=element["Properties"]["额定电压"],
@@ -471,7 +464,6 @@ class Experiment(_Experiment):
                         x,
                         y,
                         z,
-                        elementXYZ=False,
                         identifier=element["Identifier"],
                     )
                     obj.data["Properties"] = element["Properties"]

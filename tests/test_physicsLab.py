@@ -170,26 +170,6 @@ class BasicTest(TestCase):
         else:
             raise TestFail
 
-    @my_test_dec
-    def test_elementXYZ_2(self):
-        with Experiment(OpenMode.crt, "__test__", ExperimentType.Circuit, force_crt=True) as expe:
-            expe.is_elementXYZ = True
-            for x in range(10):
-                for y in range(10):
-                    Yes_Gate(x, y, 0)
-            for x in range(10):
-                for y in [y * 2 + 10 for y in range(5)]:
-                    Multiplier(x, y, 0)
-
-            crt_wire(expe.get_element_from_index(1).o, expe.get_element_from_position(0, 1, 0)[0].i)
-            crt_wire(
-                expe.get_element_from_index(2).i,
-                expe.get_element_from_index(3).o,
-                expe.get_element_from_index(4).i
-            )
-            self.assertEqual(expe.get_wires_count(), 3)
-            self.assertEqual(expe.get_elements_count(), 150)
-            expe.close(delete=True)
 
     @my_test_dec
     def test_open_a_lot_of_experiments(self):
@@ -262,11 +242,11 @@ class BasicTest(TestCase):
     @my_test_dec
     def test_merge_experiment(self):
         with Experiment(OpenMode.crt, "__test___merge_experiment__", ExperimentType.Circuit, force_crt=True) as expe:
-            crt_wire(Logic_Input(0, 0, 0).o, Logic_Output(1, 0, 0, elementXYZ=True).i)
+            crt_wire(Logic_Input(0, 0, 0).o, Logic_Output(1, 0, 0).i)
 
             with Experiment(OpenMode.crt, "__test___merge_experiment_sub__", ExperimentType.Circuit, force_crt=True) as exp2:
                 Logic_Output(0, 0, 0.1)
-                exp2.merge(expe, 1, 0, 0, elementXYZ=True)
+                exp2.merge(expe, 1, 0, 0)
 
                 self.assertEqual(exp2.get_elements_count(), 3)
                 exp2.close(delete=True)
@@ -296,7 +276,7 @@ class BasicTest(TestCase):
 
             with Experiment(OpenMode.crt, "__test___merge_experiment2_sub__", ExperimentType.Circuit, force_crt=True) as exp2:
                 Logic_Output(0, 0, 0.1)
-                exp2.merge(expe, 1, 0, 0, elementXYZ=True)
+                exp2.merge(expe, 1, 0, 0)
                 a = exp2.get_element_from_position(1, 0, 0)[0]
                 crt_wire(a.i, a.o)
 
@@ -379,13 +359,3 @@ class BasicTest(TestCase):
         self.assertTrue(isinstance(OutputPin, type(Pin)))
         self.assertFalse(isinstance(ElementBase, type(Pin)))
 
-    @my_test_dec
-    def test_translate_elementXYZ(self):
-        o = Position(1, 2, -1)
-        for x in range(10):
-            for y in range(10):
-                for z in range(10):
-                    x_, y_, z_ = elementXYZ_to_native(*native_to_elementXYZ(x, y, z, o), o)
-                    assert x == x_
-                    assert y == y_
-                    assert z == z_
