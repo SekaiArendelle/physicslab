@@ -1296,7 +1296,6 @@ class _SimpleInstrument(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Simple_Instrument({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"pitches={self.pitches}, "
             f"instrument={self._instrument}, "
             f"bpm={self._bpm}, "

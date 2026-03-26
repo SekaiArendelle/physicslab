@@ -92,7 +92,6 @@ class _LogicInput(CircuitBase):
     def __repr__(self) -> str:
         res = (
             f"Logic_Input({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"output_status={self.output_status})"
         )
         return res
@@ -2666,7 +2665,6 @@ class _EightBitInput(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Eight_Bit_Input({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"input_num={self.input_num})"
         )
 
@@ -3009,7 +3007,6 @@ class _SchmittTrigger(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Schmitt_Trigger({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"high_level={self.high_level}, "
             f"low_level={self.low_level}, "
             f"inverted={self.inverted})"

@@ -277,7 +277,6 @@ class _BasicCapacitor(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Basic_Capacitor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"peak_voltage={self.peak_voltage}, "
             f"capacitance={self.capacitance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -435,7 +434,6 @@ class _BasicInductor(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Basic_Inductor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"rated_current={self.rated_current}, "
             f"inductance={self.inductance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -1601,7 +1599,6 @@ class _OperationalAmplifier(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Operational_Amplifier({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"gain={self.gain}, "
             f"max_voltage={self.max_voltage}, "
             f"min_voltage={self.min_voltage})"

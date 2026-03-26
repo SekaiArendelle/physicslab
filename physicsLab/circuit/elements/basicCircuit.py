@@ -117,7 +117,6 @@ class _SimpleSwitch(_SwitchBase):
     def __repr__(self) -> str:
         res = (
             f"Simple_Switch({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"switch_state={self.switch_state})"
         )
 
@@ -226,7 +225,6 @@ class _SPDTSwitch(_SwitchBase):
     def __repr__(self) -> str:
         res = (
             f"SPDT_Switch({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"switch_state={self.switch_state})"
         )
 
@@ -360,7 +358,6 @@ class _DPDTSwitch(_SwitchBase):
     def __repr__(self) -> str:
         res = (
             f"DPDT_Switch({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"switch_state={self.switch_state})"
         )
 
@@ -596,7 +593,6 @@ class _AirSwitch(CircuitBase):
     def __repr__(self) -> str:
         res = (
             f"Air_Switch({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"switch_state={self.switch_state})"
         )
 
@@ -1063,7 +1059,6 @@ class _Resistor(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Resistor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f""
             f"resistance={self.resistance})"
         )
 
