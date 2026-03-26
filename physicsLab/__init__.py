@@ -34,8 +34,6 @@ from physicsLab.plAR import *
 from physicsLab.utils import *
 
 from physicsLab import web
-from physicsLab import lib
-from physicsLab import music
 
 import os
 
