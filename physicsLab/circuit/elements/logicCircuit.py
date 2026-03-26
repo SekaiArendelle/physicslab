@@ -35,7 +35,6 @@ class _LogicInput(CircuitBase):
         output_status: bool = False,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -62,7 +61,7 @@ class _LogicInput(CircuitBase):
         self._all_pins = (("_o_pin", OutputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -93,7 +92,6 @@ class _LogicInput(CircuitBase):
     def __repr__(self) -> str:
         res = (
             f"Logic_Input({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"output_status={self.output_status})"
         )
         return res
@@ -120,7 +118,6 @@ class Logic_Input(_LogicInput):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         output_status: bool = False,
@@ -136,7 +133,6 @@ class Logic_Input(_LogicInput):
             output_status=output_status,
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -159,7 +155,6 @@ class _LogicOutput(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -177,7 +172,7 @@ class _LogicOutput(CircuitBase):
         self._all_pins = (("_i_pin", InputPin(self, 0)),)
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -227,7 +222,6 @@ class Logic_Output(_LogicOutput):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -241,7 +235,6 @@ class Logic_Output(_LogicOutput):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -267,7 +260,6 @@ class _2PinGate(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -288,7 +280,7 @@ class _2PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -316,7 +308,6 @@ class _YesGate(_2PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -325,7 +316,6 @@ class _YesGate(_2PinGate):
             position,
             high_level,
             low_level,
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -370,7 +360,6 @@ class Yes_Gate(_YesGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -384,7 +373,6 @@ class Yes_Gate(_YesGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -404,13 +392,12 @@ class _NoGate(_2PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -452,7 +439,6 @@ class No_Gate(_NoGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -466,7 +452,6 @@ class No_Gate(_NoGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -495,7 +480,6 @@ class _3PinGate(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -517,7 +501,7 @@ class _3PinGate(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def all_pins(
         self,
@@ -549,13 +533,12 @@ class _OrGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -597,7 +580,6 @@ class Or_Gate(_OrGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -611,7 +593,6 @@ class Or_Gate(_OrGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -631,13 +612,12 @@ class _AndGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -679,7 +659,6 @@ class And_Gate(_AndGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -693,7 +672,6 @@ class And_Gate(_AndGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -713,13 +691,12 @@ class _NorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -761,7 +738,6 @@ class Nor_Gate(_NorGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -775,7 +751,6 @@ class Nor_Gate(_NorGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -795,13 +770,12 @@ class _NandGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -843,7 +817,6 @@ class Nand_Gate(_NandGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -857,7 +830,6 @@ class Nand_Gate(_NandGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -877,13 +849,12 @@ class _XorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -925,7 +896,6 @@ class Xor_Gate(_XorGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -939,7 +909,6 @@ class Xor_Gate(_XorGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -959,13 +928,12 @@ class _XnorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -1007,7 +975,6 @@ class Xnor_Gate(_XnorGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1021,7 +988,6 @@ class Xnor_Gate(_XnorGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1041,13 +1007,12 @@ class _ImpGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
 
     def as_dict(self) -> CircuitElementData:
@@ -1089,7 +1054,6 @@ class Imp_Gate(_ImpGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1103,7 +1067,6 @@ class Imp_Gate(_ImpGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1123,7 +1086,6 @@ class _NimpGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1132,7 +1094,6 @@ class _NimpGate(_3PinGate):
             position,
             high_level,
             low_level,
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1177,7 +1138,6 @@ class Nimp_Gate(_NimpGate):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1191,7 +1151,6 @@ class Nimp_Gate(_NimpGate):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1213,7 +1172,6 @@ class _BigElement(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1228,7 +1186,7 @@ class _BigElement(CircuitBase):
             )
         self.high_level: num_type = high_level
         self.low_level: num_type = low_level
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     @staticmethod
     def count_all_pins() -> int:
@@ -1254,13 +1212,12 @@ class _HalfAdder(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1330,7 +1287,6 @@ class Half_Adder(_HalfAdder):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1344,7 +1300,6 @@ class Half_Adder(_HalfAdder):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1377,13 +1332,12 @@ class _FullAdder(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1458,7 +1412,6 @@ class Full_Adder(_FullAdder):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1472,7 +1425,6 @@ class Full_Adder(_FullAdder):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1503,13 +1455,12 @@ class _HalfSubtractor(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         plAR_version = plAR.get_plAR_version()
         if plAR_version is not None and plAR_version < (2, 5, 0):
@@ -1582,7 +1533,6 @@ class Half_Subtractor(_HalfSubtractor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1596,7 +1546,6 @@ class Half_Subtractor(_HalfSubtractor):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1629,7 +1578,6 @@ class _FullSubtractor(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1638,7 +1586,7 @@ class _FullSubtractor(_BigElement):
         if plAR_version is not None and plAR_version < (2, 5, 0):
             _warn.warning("Full Subtractor is not supported in this version of plAR")
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1713,7 +1661,6 @@ class Full_Subtractor(_FullSubtractor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1727,7 +1674,6 @@ class Full_Subtractor(_FullSubtractor):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1766,13 +1712,12 @@ class _Multiplier(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1862,7 +1807,6 @@ class Multiplier(_Multiplier):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1876,7 +1820,6 @@ class Multiplier(_Multiplier):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1907,13 +1850,12 @@ class _DFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -1983,7 +1925,6 @@ class D_Flipflop(_DFlipflop):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -1997,7 +1938,6 @@ class D_Flipflop(_DFlipflop):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2028,13 +1968,12 @@ class _TFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2104,7 +2043,6 @@ class T_Flipflop(_TFlipflop):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2118,7 +2056,6 @@ class T_Flipflop(_TFlipflop):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2149,13 +2086,12 @@ class _RealTFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2225,7 +2161,6 @@ class Real_T_Flipflop(_RealTFlipflop):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2239,7 +2174,6 @@ class Real_T_Flipflop(_RealTFlipflop):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2272,13 +2206,12 @@ class _JKFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2353,7 +2286,6 @@ class JK_Flipflop(_JKFlipflop):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2367,7 +2299,6 @@ class JK_Flipflop(_JKFlipflop):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2402,13 +2333,12 @@ class _Counter(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2488,7 +2418,6 @@ class Counter(_Counter):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2502,7 +2431,6 @@ class Counter(_Counter):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2537,13 +2465,12 @@ class _RandomGenerator(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         super().__init__(
-            position, high_level, low_level, elementXYZ, identifier, label, lock_status
+            position, high_level, low_level, identifier, label, lock_status
         )
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0)),
@@ -2623,7 +2550,6 @@ class Random_Generator(_RandomGenerator):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2637,7 +2563,6 @@ class Random_Generator(_RandomGenerator):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2683,7 +2608,6 @@ class _EightBitInput(CircuitBase):
         input_num: int,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -2715,7 +2639,7 @@ class _EightBitInput(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2741,7 +2665,6 @@ class _EightBitInput(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Eight_Bit_Input({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"input_num={self.input_num})"
         )
 
@@ -2817,7 +2740,6 @@ class Eight_Bit_Input(_EightBitInput):
         /,
         *,
         input_num: int = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2832,7 +2754,6 @@ class Eight_Bit_Input(_EightBitInput):
             input_num=input_num,
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2873,7 +2794,6 @@ class _EightBitDisplay(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -2900,7 +2820,7 @@ class _EightBitDisplay(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2977,7 +2897,6 @@ class Eight_Bit_Display(_EightBitDisplay):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 3,
@@ -2991,7 +2910,6 @@ class Eight_Bit_Display(_EightBitDisplay):
             coordinate_system.Position(x, y, z),
             high_level=high_level,
             low_level=low_level,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -3022,7 +2940,6 @@ class _SchmittTrigger(CircuitBase):
         high_level: num_type = 5.0,
         low_level: Optional[num_type] = None,
         inverted: bool = False,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -3050,7 +2967,7 @@ class _SchmittTrigger(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, elementXYZ, identifier, lock_status, label)
+        super().__init__(position, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -3090,7 +3007,6 @@ class _SchmittTrigger(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Schmitt_Trigger({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"high_level={self.high_level}, "
             f"low_level={self.low_level}, "
             f"inverted={self.inverted})"
@@ -3113,7 +3029,6 @@ class Schmitt_Trigger(_SchmittTrigger):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         high_level: num_type = 5.0,
@@ -3129,7 +3044,6 @@ class Schmitt_Trigger(_SchmittTrigger):
             high_level=high_level,
             low_level=low_level,
             inverted=inverted,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,

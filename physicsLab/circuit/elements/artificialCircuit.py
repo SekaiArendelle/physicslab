@@ -47,7 +47,6 @@ class _NE555(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -66,7 +65,6 @@ class _NE555(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -150,7 +148,6 @@ class NE555(_NE555):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -160,7 +157,6 @@ class NE555(_NE555):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -191,7 +187,6 @@ class _BasicCapacitor(CircuitBase):
         capacitance: num_type = 1e-06,
         internal_resistance: num_type = 5,
         is_ideal: bool = False,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -231,7 +226,6 @@ class _BasicCapacitor(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -283,7 +277,6 @@ class _BasicCapacitor(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Basic_Capacitor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"peak_voltage={self.peak_voltage}, "
             f"capacitance={self.capacitance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -299,7 +292,6 @@ class Basic_Capacitor(_BasicCapacitor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         peak_voltage: num_type = 16,
@@ -317,7 +309,6 @@ class Basic_Capacitor(_BasicCapacitor):
             capacitance=capacitance,
             internal_resistance=internal_resistance,
             is_ideal=is_ideal,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -348,7 +339,6 @@ class _BasicInductor(CircuitBase):
         inductance: num_type = 0.05,
         internal_resistance: num_type = 1,
         is_ideal: bool = False,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -388,7 +378,6 @@ class _BasicInductor(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -445,7 +434,6 @@ class _BasicInductor(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Basic_Inductor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"rated_current={self.rated_current}, "
             f"inductance={self.inductance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -461,7 +449,6 @@ class Basic_Inductor(_BasicInductor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         rated_current: num_type = 1,
@@ -479,7 +466,6 @@ class Basic_Inductor(_BasicInductor):
             inductance=inductance,
             internal_resistance=internal_resistance,
             is_ideal=is_ideal,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -502,7 +488,6 @@ class _BasicDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -515,7 +500,6 @@ class _BasicDiode(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -572,7 +556,6 @@ class Basic_Diode(_BasicDiode):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -582,7 +565,6 @@ class Basic_Diode(_BasicDiode):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -605,7 +587,6 @@ class _LightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -618,7 +599,6 @@ class _LightEmittingDiode(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -676,7 +656,6 @@ class Light_Emitting_Diode(_LightEmittingDiode):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -686,7 +665,6 @@ class Light_Emitting_Diode(_LightEmittingDiode):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -708,7 +686,6 @@ class _GroundComponent(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -718,7 +695,6 @@ class _GroundComponent(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -765,7 +741,6 @@ class Ground_Component(_GroundComponent):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -775,7 +750,6 @@ class Ground_Component(_GroundComponent):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -805,7 +779,6 @@ class _Transformer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -820,7 +793,6 @@ class _Transformer(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -892,7 +864,6 @@ class Transformer(_Transformer):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -902,7 +873,6 @@ class Transformer(_Transformer):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -934,7 +904,6 @@ class _TappedTransformer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -950,7 +919,6 @@ class _TappedTransformer(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1025,7 +993,6 @@ class Tapped_Transformer(_TappedTransformer):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1035,7 +1002,6 @@ class Tapped_Transformer(_TappedTransformer):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1065,7 +1031,6 @@ class _MutualInductor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1080,7 +1045,6 @@ class _MutualInductor(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1151,7 +1115,6 @@ class Mutual_Inductor(_MutualInductor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1161,7 +1124,6 @@ class Mutual_Inductor(_MutualInductor):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1191,7 +1153,6 @@ class _Rectifier(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1206,7 +1167,6 @@ class _Rectifier(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1269,7 +1229,6 @@ class Rectifier(_Rectifier):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1279,7 +1238,6 @@ class Rectifier(_Rectifier):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1313,7 +1271,6 @@ class _Transistor(CircuitBase):
         is_PNP: bool = True,
         gain: num_type = 100,
         max_power: num_type = 1000,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1344,7 +1301,6 @@ class _Transistor(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1386,7 +1342,7 @@ class _Transistor(CircuitBase):
     def __repr__(self) -> str:
         res = (
             f"Transistor({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, is_PNP={self.is_PNP}"
+            f"is_PNP={self.is_PNP}"
         )
 
         # TODO 不论是否是默认参数都显示写到res里
@@ -1417,7 +1373,6 @@ class Transistor(_Transistor):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         is_PNP: bool = True,
@@ -1433,7 +1388,6 @@ class Transistor(_Transistor):
             is_PNP=is_PNP,
             gain=gain,
             max_power=max_power,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1461,7 +1415,6 @@ class _Comparator(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1475,7 +1428,6 @@ class _Comparator(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1530,7 +1482,6 @@ class Comparator(_Comparator):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -1540,7 +1491,6 @@ class Comparator(_Comparator):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -1574,7 +1524,6 @@ class _OperationalAmplifier(CircuitBase):
         gain: num_type = 10_000_000,
         max_voltage: num_type = 1000,
         min_voltage: num_type = -1000,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1611,7 +1560,6 @@ class _OperationalAmplifier(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1651,7 +1599,6 @@ class _OperationalAmplifier(CircuitBase):
     def __repr__(self) -> str:
         return (
             f"Operational_Amplifier({self._position.x}, {self._position.y}, {self._position.z}, "
-            f"elementXYZ={self.is_elementXYZ}, "
             f"gain={self.gain}, "
             f"max_voltage={self.max_voltage}, "
             f"min_voltage={self.min_voltage})"
@@ -1687,7 +1634,6 @@ class Operational_Amplifier(_OperationalAmplifier):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         gain: num_type = 10_000_000,
@@ -1703,7 +1649,6 @@ class Operational_Amplifier(_OperationalAmplifier):
             gain=gain,
             max_voltage=max_voltage,
             min_voltage=min_voltage,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1739,7 +1684,6 @@ class _RelayComponent(CircuitBase):
         rated_current: num_type = 10,
         coil_inductance: num_type = 0.2,
         coil_resistance: num_type = 20,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1777,7 +1721,6 @@ class _RelayComponent(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1847,7 +1790,6 @@ class Relay_Component(_RelayComponent):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         pull_in_current: num_type = 0.02,
@@ -1865,7 +1807,6 @@ class Relay_Component(_RelayComponent):
             rated_current=rated_current,
             coil_inductance=coil_inductance,
             coil_resistance=coil_resistance,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -1896,7 +1837,6 @@ class _N_MOSFET(CircuitBase):
         beta: num_type = 0.027,
         threshold: num_type = 1.5,
         max_power: num_type = 1000,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -1927,7 +1867,6 @@ class _N_MOSFET(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -1994,7 +1933,6 @@ class N_MOSFET(_N_MOSFET):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         beta: num_type = 0.027,
@@ -2010,7 +1948,6 @@ class N_MOSFET(_N_MOSFET):
             beta=beta,
             threshold=threshold,
             max_power=max_power,
-            elementXYZ=elementXYZ,
             identifier=identifier,
             label=label,
             lock_status=lock_status,
@@ -2038,7 +1975,6 @@ class _P_MOSFET(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -2052,7 +1988,6 @@ class _P_MOSFET(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -2119,7 +2054,6 @@ class P_MOSFET(_P_MOSFET):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2129,7 +2063,6 @@ class P_MOSFET(_P_MOSFET):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2152,7 +2085,6 @@ class _CurrentSource(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -2165,7 +2097,6 @@ class _CurrentSource(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -2220,7 +2151,6 @@ class Current_Source(_CurrentSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2230,7 +2160,6 @@ class Current_Source(_CurrentSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2254,7 +2183,6 @@ class _SourceElectricity(CircuitBase):
         self,
         position: coordinate_system.Position,
         /,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
@@ -2267,7 +2195,6 @@ class _SourceElectricity(CircuitBase):
             setattr(self, name, pin)
         super().__init__(
             position,
-            elementXYZ,
             identifier,
             lock_status,
             label,
@@ -2295,13 +2222,12 @@ class _SinewaveSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(position, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2340,7 +2266,6 @@ class Sinewave_Source(_SinewaveSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2350,7 +2275,6 @@ class Sinewave_Source(_SinewaveSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2369,13 +2293,12 @@ class _SquareSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(position, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2414,7 +2337,6 @@ class Square_Source(_SquareSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2424,7 +2346,6 @@ class Square_Source(_SquareSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2443,13 +2364,12 @@ class _TriangleSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(position, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2488,7 +2408,6 @@ class Triangle_Source(_TriangleSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2498,7 +2417,6 @@ class Triangle_Source(_TriangleSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2517,13 +2435,12 @@ class _SawtoothSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(position, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2562,7 +2479,6 @@ class Sawtooth_Source(_SawtoothSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2572,7 +2488,6 @@ class Sawtooth_Source(_SawtoothSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
@@ -2591,13 +2506,12 @@ class _PulseSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
         # this class is deprecated
-        super().__init__(position, elementXYZ, identifier, label, lock_status)
+        super().__init__(position, identifier, label, lock_status)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -2636,7 +2550,6 @@ class Pulse_Source(_PulseSource):
         z: num_type,
         /,
         *,
-        elementXYZ: Optional[bool] = None,
         identifier: Optional[str] = None,
         experiment: Optional[_Experiment] = None,
         label: Optional[str] = None,
@@ -2646,7 +2559,6 @@ class Pulse_Source(_PulseSource):
         _deprecated_init_attr_experiment(self, experiment=experiment)
         super().__init__(
             coordinate_system.Position(x, y, z),
-            elementXYZ,
             identifier,
             label,
             lock_status,
