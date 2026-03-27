@@ -21,12 +21,12 @@ class _SwitchBase(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
 
 class SimpleSwitch(_SwitchBase):
@@ -37,18 +37,18 @@ class SimpleSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         switch_state: SwitchState = SwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         super().__init__(
             position,
+            rotation,
             identifier,
             lock_status,
             label,
-            rotation,
         )
         self.switch_state = switch_state
         self._all_pins = (
@@ -131,13 +131,13 @@ class SPDTSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         switch_state: PDTSwitchState = PDTSwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
         self.switch_state = switch_state
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -230,11 +230,11 @@ class DPDTSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         switch_state: PDTSwitchState = PDTSwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_low_pin", Pin(self, 0, "l_low")),
@@ -244,7 +244,7 @@ class DPDTSwitch(_SwitchBase):
             ("_mid_up_pin", Pin(self, 4, "mid_up")),
             ("_r_up_pin", Pin(self, 5, "r_up")),
         )
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
         self.switch_state = switch_state
         for name, pin in self._all_pins:
             setattr(self, name, pin)
@@ -333,10 +333,10 @@ class PushSwitch(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0, "red")),
@@ -344,7 +344,7 @@ class PushSwitch(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -393,11 +393,11 @@ class AirSwitch(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
         switch_state: SwitchState = SwitchState.OFF,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0, "red")),
@@ -406,7 +406,7 @@ class AirSwitch(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.switch_state = switch_state
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -480,10 +480,10 @@ class IncandescentLamp(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0, "red")),
@@ -491,7 +491,7 @@ class IncandescentLamp(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -554,12 +554,12 @@ class BatterySource(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         voltage: num_type = 1.5,
         internal_resistance: num_type = 0,
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         if not isinstance(voltage, (int, float)):
             raise TypeError(
@@ -579,7 +579,7 @@ class BatterySource(CircuitBase):
 
         self.voltage = voltage
         self.internal_resistance = internal_resistance
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -642,10 +642,10 @@ class StudentSource(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -655,7 +655,7 @@ class StudentSource(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -733,11 +733,11 @@ class Resistor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         resistance: num_type = 10,
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         if not isinstance(resistance, (int, float)):
             raise TypeError(
@@ -751,7 +751,7 @@ class Resistor(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.resistance = resistance
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -822,10 +822,10 @@ class FuseComponent(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0, "red")),
@@ -833,7 +833,7 @@ class FuseComponent(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -900,10 +900,10 @@ class SlideRheostat(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_low_pin", Pin(self, 0, "l_low")),
@@ -913,7 +913,7 @@ class SlideRheostat(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -988,10 +988,10 @@ class Multimeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_red_pin", Pin(self, 0, "red")),
@@ -999,7 +999,7 @@ class Multimeter(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1059,10 +1059,10 @@ class Galvanometer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -1071,7 +1071,7 @@ class Galvanometer(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1128,10 +1128,10 @@ class Microammeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -1140,7 +1140,7 @@ class Microammeter(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1199,10 +1199,10 @@ class ElectricityMeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -1212,7 +1212,7 @@ class ElectricityMeter(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1269,11 +1269,11 @@ class ResistanceBox(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         resistance: num_type = 10,
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         if not isinstance(resistance, (int, float)):
             raise TypeError(
@@ -1287,7 +1287,7 @@ class ResistanceBox(CircuitBase):
         for name, pin in self._all_pins:
             setattr(self, name, pin)
         self.resistance = resistance
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1352,10 +1352,10 @@ class SimpleAmmeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -1364,7 +1364,7 @@ class SimpleAmmeter(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {
@@ -1426,10 +1426,10 @@ class SimpleVoltmeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
         identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
-        rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 180),
     ) -> None:
         self._all_pins = (
             ("_l_pin", Pin(self, 0, "l")),
@@ -1438,7 +1438,7 @@ class SimpleVoltmeter(CircuitBase):
         )
         for name, pin in self._all_pins:
             setattr(self, name, pin)
-        super().__init__(position, identifier, lock_status, label, rotation)
+        super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
         return {

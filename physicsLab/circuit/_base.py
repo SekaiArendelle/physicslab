@@ -12,10 +12,10 @@ class CircuitBase:
     def __init__(
         self,
         position: coordinate_system.Position,
+        rotation: coordinate_system.Rotation,
         identifier: str,
         lock_status: bool,
         label: Optional[str],
-        rotation: coordinate_system.Rotation,
     ) -> None:
         if not isinstance(position, coordinate_system.Position):
             raise TypeError(
