@@ -1,3 +1,4 @@
+import uuid
 from physicsLab import coordinate_system
 from physicsLab._tools import round_data
 from .._circuit_core import CircuitBase, Pin
@@ -40,7 +41,7 @@ class NE555(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -150,7 +151,7 @@ class BasicCapacitor(CircuitBase):
         capacitance: num_type = 1e-06,
         internal_resistance: num_type = 5,
         is_ideal: bool = False,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -264,7 +265,7 @@ class BasicInductor(CircuitBase):
         inductance: num_type = 0.05,
         internal_resistance: num_type = 1,
         is_ideal: bool = False,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -375,7 +376,7 @@ class BasicDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -444,7 +445,7 @@ class LightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -513,7 +514,7 @@ class GroundComponent(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -576,7 +577,7 @@ class Transformer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -671,7 +672,7 @@ class TappedTransformer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -768,7 +769,7 @@ class MutualInductor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -860,7 +861,7 @@ class Rectifier(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -948,7 +949,7 @@ class Transistor(CircuitBase):
         is_PNP: bool = True,
         gain: num_type = 100,
         max_power: num_type = 1000,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1056,7 +1057,7 @@ class Comparator(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1135,7 +1136,7 @@ class OperationalAmplifier(CircuitBase):
         gain: num_type = 10_000_000,
         max_voltage: num_type = 1000,
         min_voltage: num_type = -1000,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1259,7 +1260,7 @@ class RelayComponent(CircuitBase):
         rated_current: num_type = 10,
         coil_inductance: num_type = 0.2,
         coil_resistance: num_type = 20,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1374,7 +1375,7 @@ class N_MOSFET(CircuitBase):
         beta: num_type = 0.027,
         threshold: num_type = 1.5,
         max_power: num_type = 1000,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1476,7 +1477,7 @@ class P_MOSFET(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1556,7 +1557,7 @@ class CurrentSource(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1624,7 +1625,7 @@ class _SourceElectricity(CircuitBase):
         self,
         position: coordinate_system.Position,
         /,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1662,7 +1663,7 @@ class SinewaveSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1703,7 +1704,7 @@ class SquareSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1744,7 +1745,7 @@ class TriangleSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1785,7 +1786,7 @@ class SawtoothSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1826,7 +1827,7 @@ class PulseSource(_SourceElectricity):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:

@@ -1,3 +1,4 @@
+import uuid
 from physicsLab import coordinate_system
 from physicsLab._tools import round_data
 from .._circuit_core import CircuitBase, Pin
@@ -20,7 +21,7 @@ class _SwitchBase(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -36,7 +37,7 @@ class SimpleSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         switch_state: SwitchState = SwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -129,7 +130,7 @@ class SPDTSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         switch_state: PDTSwitchState = PDTSwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -228,7 +229,7 @@ class DPDTSwitch(_SwitchBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         switch_state: PDTSwitchState = PDTSwitchState.OFF,
         lock_status: bool = True,
         label: Optional[str] = None,
@@ -331,7 +332,7 @@ class PushSwitch(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -391,7 +392,7 @@ class AirSwitch(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
         switch_state: SwitchState = SwitchState.OFF,
@@ -478,7 +479,7 @@ class IncandescentLamp(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -554,7 +555,7 @@ class BatterySource(CircuitBase):
         position: coordinate_system.Position,
         voltage: num_type = 1.5,
         internal_resistance: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -640,7 +641,7 @@ class StudentSource(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -732,7 +733,7 @@ class Resistor(CircuitBase):
         self,
         position: coordinate_system.Position,
         resistance: num_type = 10,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -820,7 +821,7 @@ class FuseComponent(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -898,7 +899,7 @@ class SlideRheostat(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -986,7 +987,7 @@ class Multimeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1057,7 +1058,7 @@ class Galvanometer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1126,7 +1127,7 @@ class Microammeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1197,7 +1198,7 @@ class ElectricityMeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1268,7 +1269,7 @@ class ResistanceBox(CircuitBase):
         self,
         position: coordinate_system.Position,
         resistance: num_type = 10,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1350,7 +1351,7 @@ class SimpleAmmeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -1424,7 +1425,7 @@ class SimpleVoltmeter(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:

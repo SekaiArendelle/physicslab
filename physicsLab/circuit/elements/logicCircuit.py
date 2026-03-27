@@ -1,3 +1,4 @@
+import uuid
 from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors
@@ -27,7 +28,7 @@ class LogicInput(CircuitBase):
         output_status: bool = False,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -112,7 +113,7 @@ class LogicOutput(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -184,7 +185,7 @@ class _2PinGate(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -231,7 +232,7 @@ class YesGate(_2PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -282,7 +283,7 @@ class NoGate(_2PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -337,7 +338,7 @@ class _3PinGate(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -389,7 +390,7 @@ class OrGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -435,7 +436,7 @@ class AndGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -481,7 +482,7 @@ class NorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -527,7 +528,7 @@ class NandGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -573,7 +574,7 @@ class XorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -619,7 +620,7 @@ class XnorGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -665,7 +666,7 @@ class ImpGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -711,7 +712,7 @@ class NimpGate(_3PinGate):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -764,7 +765,7 @@ class _BigElement(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type,
         low_level: num_type,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -803,7 +804,7 @@ class HalfAdder(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -890,7 +891,7 @@ class FullAdder(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -980,7 +981,7 @@ class HalfSubtractor(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1070,7 +1071,7 @@ class FullSubtractor(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1171,7 +1172,7 @@ class Multiplier(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1276,7 +1277,7 @@ class DFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1361,7 +1362,7 @@ class TFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1446,7 +1447,7 @@ class RealTFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1533,7 +1534,7 @@ class JKFlipflop(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1627,7 +1628,7 @@ class Counter(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1726,7 +1727,7 @@ class RandomGenerator(_BigElement):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1836,7 +1837,7 @@ class EightBitInput(CircuitBase):
         input_num: int,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -1987,7 +1988,7 @@ class EightBitDisplay(CircuitBase):
         position: coordinate_system.Position,
         high_level: num_type = 3,
         low_level: num_type = 0,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -2100,7 +2101,7 @@ class SchmittTrigger(CircuitBase):
         high_level: num_type = 5.0,
         low_level: Optional[num_type] = None,
         inverted: bool = False,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:

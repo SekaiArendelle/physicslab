@@ -195,7 +195,7 @@ class CircuitBase:
     experiment: _Experiment  # 元件所属的实验
     _position: coordinate_system.Position
     _rotation: coordinate_system.Rotation
-    identifier: str
+    __identifier: str
     is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
     _lock_status: bool
     _label: Optional[str]
@@ -203,7 +203,7 @@ class CircuitBase:
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str],
+        identifier: str,
         lock_status: bool,
         label: Optional[str],
     ) -> None:
@@ -213,13 +213,22 @@ class CircuitBase:
                 f"got {type(position).__name__}"
             )
         self.set_position(position.x, position.y, position.z)
-        if identifier is None:
-            self.identifier = randString(33)
-        else:
-            self.identifier = identifier
+        self.identifier = identifier
         self.set_rotation(0, 0, 180)
         self.lock_status = lock_status
         self.label = label
+
+    @property
+    def identifier(self) -> str:
+        return self.__identifier
+
+    @identifier.setter
+    def identifier(self, value: str) -> None:
+        if not isinstance(value, str):
+            raise TypeError(
+                f"identifier must be of type `str`, but got value {value} of type `{type(value).__name__}`"
+            )
+        self.__identifier = value
 
     def __repr__(self) -> str:
         return (

@@ -1,3 +1,4 @@
+import uuid
 from physicsLab import coordinate_system
 from .._circuit_core import CircuitBase, Pin
 from physicsLab._typing import (
@@ -21,9 +22,9 @@ class _MemsBase(CircuitBase):
     _x_pin: Pin
     _y_pin: Pin
     _z_pin: Pin
-    _ranges: num_type
-    _shifting: num_type
-    _response_factor: num_type
+    __ranges: num_type
+    __shifting: num_type
+    __response_factor: num_type
 
     def __init__(
         self,
@@ -31,13 +32,13 @@ class _MemsBase(CircuitBase):
         ranges: num_type,
         shifting: num_type,
         response_factor: num_type,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
-        self.set_ranges(ranges)
-        self.set_shifting(shifting)
-        self.set_response_factor(response_factor)
+        self.ranges = ranges
+        self.shifting = shifting
+        self.response_factor = response_factor
         self._all_pins = (
             ("_x_pin", Pin(self, 0)),
             ("_y_pin", Pin(self, 1)),
@@ -66,35 +67,41 @@ class _MemsBase(CircuitBase):
     def z(self) -> Pin:
         return self._z_pin
 
-    def get_ranges(self) -> num_type:
-        return self._ranges
+    @property
+    def ranges(self) -> num_type:
+        return self.__ranges
 
-    def set_ranges(self, value: num_type) -> None:
+    @ranges.setter
+    def ranges(self, value: num_type) -> None:
         if not isinstance(value, (int, float)):
             raise TypeError(
                 f"ranges must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
             )
-        self._ranges = value
+        self.__ranges = value
 
-    def get_shifting(self) -> num_type:
-        return self._shifting
+    @property
+    def shifting(self) -> num_type:
+        return self.__shifting
 
-    def set_shifting(self, value: num_type) -> None:
+    @shifting.setter
+    def shifting(self, value: num_type) -> None:
         if not isinstance(value, (int, float)):
             raise TypeError(
                 f"shifting must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
             )
-        self._shifting = value
+        self.__shifting = value
 
-    def get_response_factor(self) -> num_type:
-        return self._response_factor
+    @property
+    def response_factor(self) -> num_type:
+        return self.__response_factor
 
-    def set_response_factor(self, value: num_type) -> None:
+    @response_factor.setter
+    def response_factor(self, value: num_type) -> None:
         if not isinstance(value, (int, float)):
             raise TypeError(
                 f"response_factor must be of type `int | float`, but got value {value} of type `{type(value).__name__}`"
             )
-        self._response_factor = value
+        self.__response_factor = value
 
 
 class Accelerometer(_MemsBase):
@@ -105,7 +112,7 @@ class Accelerometer(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.2290000021457672,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -127,10 +134,10 @@ class Accelerometer(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -168,7 +175,7 @@ class AnalogJoystick(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -246,7 +253,7 @@ class AttitudeSensor(_MemsBase):
         ranges: num_type = 180,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -268,10 +275,10 @@ class AttitudeSensor(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -297,7 +304,7 @@ class GravitySensor(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -319,10 +326,10 @@ class GravitySensor(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -348,7 +355,7 @@ class Gyroscope(_MemsBase):
         ranges: num_type = 150,
         shifting: num_type = 2.5,
         response_factor: num_type = 0.0125,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -370,10 +377,10 @@ class Gyroscope(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -399,7 +406,7 @@ class LinearAccelerometer(_MemsBase):
         ranges: num_type = 2,
         shifting: num_type = 0.75,
         response_factor: num_type = 0.229,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -421,10 +428,10 @@ class LinearAccelerometer(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -450,7 +457,7 @@ class MagneticFieldSensor(_MemsBase):
         ranges: num_type = 0.04,
         shifting: num_type = 3.2,
         response_factor: num_type = 80,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -472,10 +479,10 @@ class MagneticFieldSensor(_MemsBase):
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
-                "量程": self._ranges,
+                "量程": self.ranges,
                 "输出阻抗": 10000,
-                "偏移": self._shifting,
-                "响应系数": self._response_factor,
+                "偏移": self.shifting,
+                "响应系数": self.response_factor,
                 "锁定": int(self.lock_status),
             },
             "Statistics": {},
@@ -502,7 +509,7 @@ class Photodiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -567,7 +574,7 @@ class Photoresistor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:
@@ -631,7 +638,7 @@ class ProximitySensor(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         lock_status: bool = True,
         label: Optional[str] = None,
     ) -> None:

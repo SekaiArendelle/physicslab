@@ -1,3 +1,4 @@
+import uuid
 import physicsLab.plAR as plar
 from physicsLab import _warn
 from physicsLab import coordinate_system
@@ -26,7 +27,7 @@ class Buzzer(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -95,7 +96,7 @@ class SparkGap(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -158,7 +159,7 @@ class TeslaCoil(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -230,7 +231,7 @@ class ColorLightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -318,7 +319,7 @@ class DualLightEmittingDiode(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -392,7 +393,7 @@ class ElectricBell(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -461,7 +462,7 @@ class MusicalBox(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -545,7 +546,7 @@ class ResistanceLaw(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -679,7 +680,7 @@ class Solenoid(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -763,7 +764,7 @@ class ElectricFan(CircuitBase):
     def __init__(
         self,
         position: coordinate_system.Position,
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
@@ -847,7 +848,7 @@ class SimpleInstrument(CircuitBase):
         /,
         *,
         pitches: Union[List[int], Tuple[int]],
-        identifier: Optional[str] = None,
+        identifier: str = str(uuid.uuid4()),
         label: Optional[str] = None,
         rated_oltage: num_type = 3.0,
         volume: num_type = 1,
