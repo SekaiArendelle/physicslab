@@ -18,7 +18,6 @@ from physicsLab._typing import (
 
 
 class Buzzer(CircuitBase):
-    """蜂鸣器"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -88,7 +87,6 @@ class Buzzer(CircuitBase):
 
 
 class SparkGap(CircuitBase):
-    """火花隙"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -152,7 +150,6 @@ class SparkGap(CircuitBase):
 
 
 class TeslaCoil(CircuitBase):
-    """特斯拉线圈"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -218,7 +215,6 @@ class TeslaCoil(CircuitBase):
 
 
 class ColorLightEmittingDiode(CircuitBase):
-    """彩色发光二极管"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -314,7 +310,6 @@ class ColorLightEmittingDiode(CircuitBase):
 
 
 class DualLightEmittingDiode(CircuitBase):
-    """演示发光二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -389,7 +384,6 @@ class DualLightEmittingDiode(CircuitBase):
 
 
 class ElectricBell(CircuitBase):
-    """电铃"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -459,7 +453,6 @@ class ElectricBell(CircuitBase):
 
 
 class MusicalBox(CircuitBase):
-    """八音盒"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -529,7 +522,6 @@ class MusicalBox(CircuitBase):
 
 
 class ResistanceLaw(CircuitBase):
-    """电阻定律实验"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_low_pin"], Pin],
@@ -672,7 +664,6 @@ class ResistanceLaw(CircuitBase):
 
 
 class Solenoid(CircuitBase):
-    """通电螺线管"""
 
     _all_pins: Tuple[
         Tuple[Literal["_subred_pin"], Pin],
@@ -764,7 +755,6 @@ class Solenoid(CircuitBase):
 
 
 class ElectricFan(CircuitBase):
-    """小电扇"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -846,7 +836,6 @@ class ElectricFan(CircuitBase):
 
 
 class SimpleInstrument(CircuitBase):
-    """简单乐器"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], Pin], Tuple[Literal["_o_pin"], Pin]]
     _i_pin: Pin
@@ -1061,5 +1050,3 @@ class SimpleInstrument(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 2
-
-

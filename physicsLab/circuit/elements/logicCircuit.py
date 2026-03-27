@@ -16,7 +16,6 @@ from physicsLab import coordinate_system
 
 
 class LogicInput(CircuitBase):
-    """逻辑输入"""
 
     _all_pins: Tuple[Tuple[Literal["_o_pin"], OutputPin]]
     _o_pin: OutputPin
@@ -104,7 +103,6 @@ class LogicInput(CircuitBase):
 
 
 class LogicOutput(CircuitBase):
-    """逻辑输出"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], InputPin]]
     _i_pin: InputPin
@@ -174,7 +172,6 @@ class LogicOutput(CircuitBase):
 
 
 class _2PinGate(CircuitBase):
-    """2引脚门电路基类"""
 
     _all_pins: Tuple[
         Tuple[Literal["_i_pin"], InputPin], Tuple[Literal["_o_pin"], OutputPin]
@@ -228,7 +225,6 @@ class _2PinGate(CircuitBase):
 
 
 class YesGate(_2PinGate):
-    """是门"""
 
     def __init__(
         self,
@@ -280,7 +276,6 @@ class YesGate(_2PinGate):
 
 
 class NoGate(_2PinGate):
-    """非门"""
 
     def __init__(
         self,
@@ -327,7 +322,6 @@ class NoGate(_2PinGate):
 
 
 class _3PinGate(CircuitBase):
-    """3引脚门电路基类"""
 
     _all_pins: Tuple[
         Tuple[Literal["_i_up_pin"], InputPin],
@@ -389,7 +383,6 @@ class _3PinGate(CircuitBase):
 
 
 class OrGate(_3PinGate):
-    """或门"""
 
     def __init__(
         self,
@@ -436,7 +429,6 @@ class OrGate(_3PinGate):
 
 
 class AndGate(_3PinGate):
-    """与门"""
 
     def __init__(
         self,
@@ -483,7 +475,6 @@ class AndGate(_3PinGate):
 
 
 class NorGate(_3PinGate):
-    """或非门"""
 
     def __init__(
         self,
@@ -530,7 +521,6 @@ class NorGate(_3PinGate):
 
 
 class NandGate(_3PinGate):
-    """与非门"""
 
     def __init__(
         self,
@@ -577,7 +567,6 @@ class NandGate(_3PinGate):
 
 
 class XorGate(_3PinGate):
-    """异或门"""
 
     def __init__(
         self,
@@ -624,7 +613,6 @@ class XorGate(_3PinGate):
 
 
 class XnorGate(_3PinGate):
-    """同或门"""
 
     def __init__(
         self,
@@ -671,7 +659,6 @@ class XnorGate(_3PinGate):
 
 
 class ImpGate(_3PinGate):
-    """蕴含门"""
 
     def __init__(
         self,
@@ -718,7 +705,6 @@ class ImpGate(_3PinGate):
 
 
 class NimpGate(_3PinGate):
-    """蕴含非门"""
 
     def __init__(
         self,
@@ -770,7 +756,6 @@ class NimpGate(_3PinGate):
 
 
 class _BigElement(CircuitBase):
-    """2体积元件父类"""
 
     is_bigElement = True
 
@@ -801,7 +786,6 @@ class _BigElement(CircuitBase):
 
 
 class HalfAdder(_BigElement):
-    """半加器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -887,7 +871,6 @@ class HalfAdder(_BigElement):
 
 
 class FullAdder(_BigElement):
-    """全加器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -980,7 +963,6 @@ class FullAdder(_BigElement):
 
 
 class HalfSubtractor(_BigElement):
-    """半减器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1069,7 +1051,6 @@ class HalfSubtractor(_BigElement):
 
 
 class FullSubtractor(_BigElement):
-    """全减器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1165,7 +1146,6 @@ class FullSubtractor(_BigElement):
 
 
 class Multiplier(_BigElement):
-    """二位乘法器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1279,7 +1259,6 @@ class Multiplier(_BigElement):
 
 
 class DFlipflop(_BigElement):
-    """D触发器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1365,7 +1344,6 @@ class DFlipflop(_BigElement):
 
 
 class TFlipflop(_BigElement):
-    """T'触发器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1451,7 +1429,6 @@ class TFlipflop(_BigElement):
 
 
 class RealTFlipflop(_BigElement):
-    """T触发器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1537,7 +1514,6 @@ class RealTFlipflop(_BigElement):
 
 
 class JKFlipflop(_BigElement):
-    """JK触发器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1630,7 +1606,6 @@ class JKFlipflop(_BigElement):
 
 
 class Counter(_BigElement):
-    """计数器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1730,7 +1705,6 @@ class Counter(_BigElement):
 
 
 class RandomGenerator(_BigElement):
-    """随机数发生器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_up_pin"], OutputPin],
@@ -1830,7 +1804,6 @@ class RandomGenerator(_BigElement):
 
 
 class EightBitInput(CircuitBase):
-    """八位输入器"""
 
     is_bigElement: bool = True
 
@@ -1987,7 +1960,6 @@ class EightBitInput(CircuitBase):
 
 
 class EightBitDisplay(CircuitBase):
-    """八位显示器"""
 
     is_bigElement = True
 
@@ -2111,7 +2083,6 @@ class EightBitDisplay(CircuitBase):
 
 
 class SchmittTrigger(CircuitBase):
-    """施密特触发器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_i_pin"], InputPin],
@@ -2208,5 +2179,3 @@ class SchmittTrigger(CircuitBase):
     @property
     def o(self) -> OutputPin:
         return self._o_pin
-
-

@@ -12,7 +12,6 @@ from physicsLab._typing import (
 
 
 class _MemsBase(CircuitBase):
-    """三引脚集成式传感器基类"""
 
     _all_pins: Tuple[
         Tuple[Literal["_x_pin"], Pin],
@@ -99,7 +98,6 @@ class _MemsBase(CircuitBase):
 
 
 class Accelerometer(_MemsBase):
-    """加速度计"""
 
     def __init__(
         self,
@@ -151,7 +149,6 @@ class Accelerometer(_MemsBase):
 
 
 class AnalogJoystick(CircuitBase):
-    """模拟摇杆"""
 
     _all_pins: Tuple[
         Tuple[Literal["_x1_pin"], Pin],
@@ -242,7 +239,6 @@ class AnalogJoystick(CircuitBase):
 
 
 class AttitudeSensor(_MemsBase):
-    """姿态传感器"""
 
     def __init__(
         self,
@@ -294,7 +290,6 @@ class AttitudeSensor(_MemsBase):
 
 
 class GravitySensor(_MemsBase):
-    """重力加速计"""
 
     def __init__(
         self,
@@ -346,7 +341,6 @@ class GravitySensor(_MemsBase):
 
 
 class Gyroscope(_MemsBase):
-    """陀螺仪传感器"""
 
     def __init__(
         self,
@@ -398,7 +392,6 @@ class Gyroscope(_MemsBase):
 
 
 class LinearAccelerometer(_MemsBase):
-    """线性加速度计"""
 
     def __init__(
         self,
@@ -450,7 +443,6 @@ class LinearAccelerometer(_MemsBase):
 
 
 class MagneticFieldSensor(_MemsBase):
-    """磁场传感器"""
 
     def __init__(
         self,
@@ -502,7 +494,6 @@ class MagneticFieldSensor(_MemsBase):
 
 
 class Photodiode(CircuitBase):
-    """光电二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -568,7 +559,6 @@ class Photodiode(CircuitBase):
 
 
 class Photoresistor(CircuitBase):
-    """光敏电阻"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -634,7 +624,6 @@ class Photoresistor(CircuitBase):
 
 
 class ProximitySensor(CircuitBase):
-    """临近传感器"""
 
     _all_pins: Tuple[Tuple[Literal["_o_pin"], Pin]]
     _o_pin: Pin
@@ -687,5 +676,3 @@ class ProximitySensor(CircuitBase):
     @property
     def o(self) -> Pin:
         return self._o_pin
-
-

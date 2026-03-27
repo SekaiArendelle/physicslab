@@ -15,7 +15,6 @@ from physicsLab._typing import (
 
 
 class NE555(CircuitBase):
-    """555定时器"""
 
     is_bigElement = True
 
@@ -135,7 +134,6 @@ class NE555(CircuitBase):
 
 
 class BasicCapacitor(CircuitBase):
-    """电容"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -250,7 +248,6 @@ class BasicCapacitor(CircuitBase):
 
 
 class BasicInductor(CircuitBase):
-    """电感"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -370,7 +367,6 @@ class BasicInductor(CircuitBase):
 
 
 class BasicDiode(CircuitBase):
-    """二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -440,7 +436,6 @@ class BasicDiode(CircuitBase):
 
 
 class LightEmittingDiode(CircuitBase):
-    """发光二极管"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -511,7 +506,6 @@ class LightEmittingDiode(CircuitBase):
 
 
 class GroundComponent(CircuitBase):
-    """接地元件"""
 
     _all_pins: Tuple[Tuple[Literal["_i_pin"], Pin]]
     _i_pin: Pin
@@ -567,7 +561,6 @@ class GroundComponent(CircuitBase):
 
 
 class Transformer(CircuitBase):
-    """理想变压器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -661,7 +654,6 @@ class Transformer(CircuitBase):
 
 
 class TappedTransformer(CircuitBase):
-    """中心抽头变压器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -761,7 +753,6 @@ class TappedTransformer(CircuitBase):
 
 
 class MutualInductor(CircuitBase):
-    """理想互感"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -854,7 +845,6 @@ class MutualInductor(CircuitBase):
 
 
 class Rectifier(CircuitBase):
-    """全波整流器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -939,7 +929,6 @@ class Rectifier(CircuitBase):
 
 
 class Transistor(CircuitBase):
-    """三极管"""
 
     _all_pins: Tuple[
         Tuple[Literal["_B_pin"], Pin],
@@ -1054,7 +1043,6 @@ class Transistor(CircuitBase):
 
 
 class Comparator(CircuitBase):
-    """比较器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_o_pin"], Pin],
@@ -1128,7 +1116,6 @@ class Comparator(CircuitBase):
 
 
 class OperationalAmplifier(CircuitBase):
-    """运算放大器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_i_neg_pin"], Pin],
@@ -1251,7 +1238,6 @@ class OperationalAmplifier(CircuitBase):
 
 
 class RelayComponent(CircuitBase):
-    """继电器"""
 
     _all_pins: Tuple[
         Tuple[Literal["_l_up_pin"], Pin],
@@ -1372,7 +1358,6 @@ class RelayComponent(CircuitBase):
 
 
 class N_MOSFET(CircuitBase):
-    """N-MOSFET"""
 
     _all_pins: Tuple[
         Tuple[Literal["_D_pin"], Pin],
@@ -1478,7 +1463,6 @@ class N_MOSFET(CircuitBase):
 
 
 class P_MOSFET(CircuitBase):
-    """P-MOSFET"""
 
     _all_pins: Tuple[
         Tuple[Literal["_G_pin"], Pin],
@@ -1564,7 +1548,6 @@ class P_MOSFET(CircuitBase):
 
 
 class CurrentSource(CircuitBase):
-    """电流源"""
 
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
@@ -1632,7 +1615,6 @@ class CurrentSource(CircuitBase):
 
 
 class _SourceElectricity(CircuitBase):
-    """波形发生器基类"""
 
     _all_pins: Tuple[Tuple[str, Pin], Tuple[str, Pin]]
     _red_pin: Pin
@@ -1676,7 +1658,6 @@ class _SourceElectricity(CircuitBase):
 
 
 class SinewaveSource(_SourceElectricity):
-    """正弦波发生器"""
 
     def __init__(
         self,
@@ -1718,7 +1699,6 @@ class SinewaveSource(_SourceElectricity):
 
 
 class SquareSource(_SourceElectricity):
-    """方波发生器"""
 
     def __init__(
         self,
@@ -1760,7 +1740,6 @@ class SquareSource(_SourceElectricity):
 
 
 class TriangleSource(_SourceElectricity):
-    """三角波发生器"""
 
     def __init__(
         self,
@@ -1802,7 +1781,6 @@ class TriangleSource(_SourceElectricity):
 
 
 class SawtoothSource(_SourceElectricity):
-    """锯齿波发生器"""
 
     def __init__(
         self,
@@ -1844,7 +1822,6 @@ class SawtoothSource(_SourceElectricity):
 
 
 class PulseSource(_SourceElectricity):
-    """尖峰波发生器"""
 
     def __init__(
         self,
@@ -1883,5 +1860,3 @@ class PulseSource(_SourceElectricity):
     @staticmethod
     def zh_name() -> str:
         return "尖峰波发生器"
-
-
