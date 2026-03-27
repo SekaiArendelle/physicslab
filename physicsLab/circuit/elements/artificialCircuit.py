@@ -16,9 +16,6 @@ from physicsLab._typing import (
 
 
 class NE555(CircuitBase):
-
-    is_bigElement = True
-
     _all_pins: Tuple[
         Tuple[Literal["_vcc_pin"], Pin],
         Tuple[Literal["_dis_pin"], Pin],

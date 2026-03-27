@@ -192,11 +192,9 @@ def del_wire(source_pin: Pin, target_pin: Pin) -> None:
 class CircuitBase:
     """所有电学元件的父类"""
 
-    experiment: _Experiment  # 元件所属的实验
     _position: coordinate_system.Position
     _rotation: coordinate_system.Rotation
     __identifier: str
-    is_bigElement = False  # 该元件是否是逻辑电路的两体积元件
     _lock_status: bool
     _label: Optional[str]
 

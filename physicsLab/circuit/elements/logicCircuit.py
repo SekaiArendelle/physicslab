@@ -757,9 +757,6 @@ class NimpGate(_3PinGate):
 
 
 class _BigElement(CircuitBase):
-
-    is_bigElement = True
-
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1805,9 +1802,6 @@ class RandomGenerator(_BigElement):
 
 
 class EightBitInput(CircuitBase):
-
-    is_bigElement: bool = True
-
     _input_num: int
     low_level: num_type
     high_level: num_type
@@ -1961,9 +1955,6 @@ class EightBitInput(CircuitBase):
 
 
 class EightBitDisplay(CircuitBase):
-
-    is_bigElement = True
-
     _all_pins: Tuple[
         Tuple[Literal["_i_up_pin"], InputPin],
         Tuple[Literal["_i_upmid_pin"], InputPin],
