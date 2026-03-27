@@ -64,7 +64,7 @@ class OpenMode(Enum):
 
 
 @unique
-class WireColor(Enum):
+class ColorOfWire(Enum):
     black = "黑"
     blue = "蓝"
     red = "红"

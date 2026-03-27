@@ -1,2 +1,2 @@
-from ._circuit_core import *
+from ._base import *
 from .elements import *

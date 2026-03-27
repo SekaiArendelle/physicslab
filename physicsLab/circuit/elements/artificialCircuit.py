@@ -1,7 +1,7 @@
 import uuid
 from physicsLab import coordinate_system
 from physicsLab._tools import round_data
-from .._circuit_core import CircuitBase, Pin
+from .._base import CircuitBase, Pin
 from physicsLab._typing import (
     Optional,
     num_type,

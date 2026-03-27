@@ -2,7 +2,7 @@ import uuid
 from physicsLab import plAR
 from physicsLab import _warn
 from physicsLab import errors
-from .._circuit_core import CircuitBase, InputPin, OutputPin
+from .._base import CircuitBase, InputPin, OutputPin
 from physicsLab._typing import (
     Optional,
     num_type,

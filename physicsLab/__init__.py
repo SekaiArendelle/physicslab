@@ -13,7 +13,7 @@ from ._core import (
 from .coordinate_system import *
 
 # 实验, 标签类型
-from .enums import ExperimentType, Category, Tag, OpenMode, WireColor, GetUserMode
+from .enums import ExperimentType, Category, Tag, OpenMode, ColorOfWire, GetUserMode
 
 # 电学实验
 from .circuit import *

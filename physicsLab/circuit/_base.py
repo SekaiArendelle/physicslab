@@ -2,7 +2,6 @@ import abc
 from physicsLab import errors
 from physicsLab import coordinate_system
 
-from physicsLab.enums import ExperimentType, WireColor
 from physicsLab._core import get_current_experiment
 from physicsLab._typing import Optional, List, CircuitElementData
 
@@ -70,111 +69,6 @@ class OutputPin(Pin):
 
     def __init__(self, input_self, pinLabel: int) -> None:
         super().__init__(input_self, pinLabel)
-
-
-class Wire:
-    """导线"""
-
-    __slots__ = ("Source", "Target", "color")
-
-    def __init__(
-        self, source_pin: Pin, target_pin: Pin, color: WireColor = WireColor.blue
-    ) -> None:
-        if not isinstance(source_pin, Pin):
-            raise TypeError(
-                f"Parameter source_pin must be of type `Pin`, but got value {source_pin} of type `{type(source_pin).__name__}`"
-            )
-        if not isinstance(target_pin, Pin):
-            raise TypeError(
-                f"Parameter target_pin must be of type `Pin`, but got value {target_pin} of type `{type(target_pin).__name__}`"
-            )
-        if not isinstance(color, WireColor):
-            raise TypeError(
-                f"Parameter color must be of type `WireColor`, but got value {color} of type `{type(color).__name__}`"
-            )
-
-        if source_pin.element_self.experiment is not target_pin.element_self.experiment:
-            raise errors.InvalidWireError("can't link wire in two experiment")
-
-        if source_pin == target_pin:
-            raise errors.InvalidWireError("can't link wire to itself")
-
-        self.Source: Pin = source_pin
-        self.Target: Pin = target_pin
-        self.color: WireColor = color
-
-    def __hash__(self) -> int:
-        return hash(self.Source) + hash(self.Target)
-
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, Wire):
-            return False
-
-        # 判断两个导线是否相等与导线的颜色无关
-        if (
-            self.Source == other.Source
-            and self.Target == other.Target
-            or self.Source == other.Target
-            and self.Target == other.Source
-        ):
-            return True
-        else:
-            return False
-
-    def __repr__(self) -> str:
-        return f"crt_wire({self.Source.export_str()}, {self.Target.export_str()}, color={self.color})"
-
-    def release(self) -> dict:
-        return {
-            "Source": self.Source.element_self.identifier,
-            "SourcePin": self.Source._pin_label,
-            "Target": self.Target.element_self.identifier,
-            "TargetPin": self.Target._pin_label,
-            "ColorName": f"{self.color.value}色导线",
-        }
-
-
-def crt_wire(*pins: Pin, color: WireColor = WireColor.blue) -> List[Wire]:
-    """连接导线"""
-    if not all(isinstance(a_pin, Pin) for a_pin in pins):
-        raise TypeError(f"Parameter pins must be of type `tuple[Pin]`")
-    if not isinstance(color, WireColor):
-        raise TypeError(
-            f"Parameter color must be of type `WireColor`, but got value {color} of type `{type(color).__name__}`"
-        )
-    if len(pins) <= 1:
-        raise ValueError("pins must be more than 1")
-
-    _expe = get_current_experiment()
-    if _expe.experiment_type != ExperimentType.Circuit:
-        raise errors.ExperimentTypeError
-
-    res: List[Wire] = []
-    for i in range(len(pins) - 1):
-        source_pin, target_pin = pins[i], pins[i + 1]
-        a_wire = Wire(source_pin, target_pin, color)
-        res.append(a_wire)
-        _expe.Wires.add(a_wire)
-
-    return res
-
-
-def del_wire(source_pin: Pin, target_pin: Pin) -> None:
-    """删除导线"""
-    if not isinstance(source_pin, Pin):
-        raise TypeError(
-            f"Parameter source_pin must be of type `Pin`, but got value {source_pin} of type `{type(source_pin).__name__}`"
-        )
-    if not isinstance(target_pin, Pin):
-        raise TypeError(
-            f"Parameter target_pin must be of type `Pin`, but got value {target_pin} of type `{type(target_pin).__name__}`"
-        )
-
-    _expe = get_current_experiment()
-    if _expe.experiment_type != ExperimentType.Circuit:
-        raise errors.ExperimentTypeError
-
-    _expe.Wires.remove(Wire(source_pin, target_pin))
 
 
 class CircuitBase:
