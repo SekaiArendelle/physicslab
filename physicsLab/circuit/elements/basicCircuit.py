@@ -1,6 +1,5 @@
 import uuid
 from physicsLab import coordinate_system
-from physicsLab._tools import round_data
 from .._base import CircuitBase
 from ..pin import Pin
 from physicsLab.enums import SwitchState, PDTSwitchState
@@ -94,7 +93,6 @@ class SimpleSwitch(_SwitchBase):
         return {
             "ModelID": "Simple Switch",
             "Identifier": self.identifier,
-            "Label": self.label,
             "IsBroken": False,
             "IsLocked": False,
             "Properties": {
@@ -107,6 +105,7 @@ class SimpleSwitch(_SwitchBase):
             "DiagramCached": False,
             "DiagramPosition": {"X": 0, "Y": 0, "Z": 0, "Magnitude": 0},
             "DiagramRotation": 0,
+            "Label": self.label,
         }
 
     def __repr__(self) -> str:
@@ -801,11 +800,6 @@ class Resistor(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 2
-
-    def fix_resistance(self) -> Self:
-        """修正电阻值的浮点误差"""
-        self.resistance = round_data(self.resistance)
-        return self
 
     def __repr__(self) -> str:
         return (

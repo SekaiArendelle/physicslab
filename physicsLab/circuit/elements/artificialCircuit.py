@@ -1,6 +1,5 @@
 import uuid
 from physicsLab import coordinate_system
-from physicsLab._tools import round_data
 from .._base import CircuitBase
 from ..pin import Pin
 from physicsLab._typing import (
@@ -334,11 +333,6 @@ class BasicInductor(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 2
-
-    def fix_inductance(self) -> Self:
-        """修正电感值的浮点误差"""
-        self.inductance = round_data(self.inductance)
-        return self
 
     @override
     def __repr__(self) -> str:

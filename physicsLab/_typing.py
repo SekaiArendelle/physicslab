@@ -2,20 +2,18 @@
 from typing import *
 from typing_extensions import *
 
-from physicsLab.savTemplate import Generate
-
 num_type: TypeAlias = Union[int, float]
 
 
 class CircuitElementData(TypedDict):
-    ModelID: Union[str, Type[Generate]]
+    ModelID: str
     IsBroken: bool
     IsLocked: bool
-    Identifier: Union[str, Type[Generate]]
+    Identifier: str
     Properties: Dict[Any, Any]
     Statistics: Dict[Any, Any]
-    Position: Union[str, Type[Generate]]
-    Rotation: Union[str, Type[Generate]]
+    Position: str
+    Rotation: str
     DiagramCached: bool
     DiagramPosition: Dict[Any, Any]
     DiagramRotation: int

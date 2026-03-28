@@ -1,5 +1,5 @@
 import uuid
-import physicsLab.plAR as plar
+import physicsLab.quantum_physics as plar
 from physicsLab import _warn
 from physicsLab import coordinate_system
 

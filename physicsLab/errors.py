@@ -23,8 +23,7 @@ from physicsLab._typing import Optional
 
 BUG_REPORT: str = (
     "please send a bug-report at "
-    "https://github.com/GoodenoughPhysicsLab/physicsLab/issues or "
-    "https://gitee.com/script2000/physicsLab/issues "
+    "https://github.com/SekaiArendelle/physicsLab/issues "
     "with your code, *.sav and traceback / coredump for Python"
 )
 
