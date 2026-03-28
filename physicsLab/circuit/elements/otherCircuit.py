@@ -1,6 +1,5 @@
 import uuid
-import physicsLab.quantum_physics as plar
-from physicsLab import _warn
+from physicsLab import quantum_physics
 from physicsLab import coordinate_system
 
 from .._base import CircuitBase
@@ -891,9 +890,11 @@ class SimpleInstrument(CircuitBase):
         if not all(0 <= a_pitch < 128 for a_pitch in self.pitches):
             raise ValueError
 
-        plar_version = plar.get_plAR_version()
+        plar_version = quantum_physics.get_quantum_physics_version()
         if plar_version is not None and plar_version < (2, 4, 7):
-            _warn.warning("Physics-Lab-AR's version less than 2.4.7")
+            raise NotImplementedError(
+                "SimpleInstrument is not supported in Quantum Physics version below 2.4.7"
+            )
 
         properties = {
             "额定电压": self._rated_oltage,

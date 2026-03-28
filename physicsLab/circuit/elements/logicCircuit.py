@@ -1,6 +1,5 @@
 import uuid
-from physicsLab import plAR
-from physicsLab import _warn
+from physicsLab import quantum_physics
 from .._base import CircuitBase
 from ..pin import InputPin, OutputPin
 from physicsLab._typing import (
@@ -1054,9 +1053,6 @@ class HalfSubtractor(_BigElement):
             label,
             lock_status,
         )
-        plAR_version = plAR.get_plAR_version()
-        if plAR_version is not None and plAR_version < (2, 5, 0):
-            _warn.warning("Half Subtractor is not supported in this version of plAR")
         self._all_pins = (
             ("_o_up_pin", OutputPin(self, 0, "o_up")),
             ("_o_low_pin", OutputPin(self, 1, "o_low")),
@@ -1067,6 +1063,11 @@ class HalfSubtractor(_BigElement):
             setattr(self, name, pin)
 
     def as_dict(self) -> CircuitElementData:
+        version = quantum_physics.get_quantum_physics_version()
+        if version is not None and version < (2, 5, 0):
+            raise NotImplementedError(
+                "HalfSubtractor is not supported in Quantum Physics version below 2.5.0"
+            )
         return {
             "ModelID": "Half Subtractor",
             "Identifier": self.identifier,
@@ -1141,9 +1142,6 @@ class FullSubtractor(_BigElement):
         label: Optional[str] = None,
         lock_status: bool = True,
     ) -> None:
-        plAR_version = plAR.get_plAR_version()
-        if plAR_version is not None and plAR_version < (2, 5, 0):
-            _warn.warning("Full Subtractor is not supported in this version of plAR")
         super().__init__(
             position,
             rotation,
@@ -1164,6 +1162,15 @@ class FullSubtractor(_BigElement):
             setattr(self, name, pin)
 
     def as_dict(self) -> CircuitElementData:
+        # TODO get version by passing parameter from constructor
+        # Maybe I should store version in class CircuitExperiment, and raise this
+        # exception in some method like crt_a_element
+        # TODO so as to class HalfSubtractor, SimpleInstrument
+        version = quantum_physics.get_quantum_physics_version()
+        if version is not None and version < (2, 5, 0):
+            raise NotImplementedError(
+                "FullSubtractor is not supported in Quantum Physics version below 2.5.0"
+            )
         return {
             "ModelID": "Full Subtractor",
             "Identifier": self.identifier,

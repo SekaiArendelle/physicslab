@@ -14,7 +14,7 @@ import requests
 
 from . import _request
 
-from physicsLab import plAR
+from physicsLab import quantum_physics
 from physicsLab import enums
 from physicsLab import errors
 from physicsLab.enums import Tag, Category
@@ -619,7 +619,7 @@ class User:
                 f"Parameter `reason` must be of type `str` or None, but got value `{reason}` of type `{type(reason).__name__}`"
             )
 
-        _plar_ver = plAR.get_plAR_version()
+        _plar_ver = quantum_physics.get_quantum_physics_version()
         plar_ver = (
             f"{_plar_ver[0]}{_plar_ver[1]}{_plar_ver[2]}"
             if _plar_ver is not None
@@ -1719,7 +1719,7 @@ def anonymous_login(
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> User:
     """Anonymous login to Physics-Lab-AR"""
-    plar_version = plAR.get_plAR_version()
+    plar_version = quantum_physics.get_quantum_physics_version()
     if plar_version is not None:
         plar_version = int(f"{plar_version[0]}{plar_version[1]}{plar_version[2]}")
     else:
@@ -1779,7 +1779,7 @@ def email_login(
             f"Parameter password must be of type `str`, but got value {password} of type `{type(password).__name__}`"
         )
 
-    plar_version = plAR.get_plAR_version()
+    plar_version = quantum_physics.get_quantum_physics_version()
     if plar_version is not None:
         plar_version = int(f"{plar_version[0]}{plar_version[1]}{plar_version[2]}")
     else:
@@ -1839,7 +1839,7 @@ def token_login(
             f"Parameter password must be of type `str`, but got value {auth_code} of type `{type(auth_code).__name__}`"
         )
 
-    plar_version = plAR.get_plAR_version()
+    plar_version = quantum_physics.get_quantum_physics_version()
     if plar_version is not None:
         plar_version = int(f"{plar_version[0]}{plar_version[1]}{plar_version[2]}")
     else:
