@@ -1,16 +1,10 @@
 from physicsLab.enums import ColorOfWire
 
+
 class WireInfo:
     __color: ColorOfWire
 
-    def __init__(
-        self, color: ColorOfWire = ColorOfWire.blue
-    ) -> None:
-        if not isinstance(color, ColorOfWire):
-            raise TypeError(
-                f"Parameter color must be of type `WireColor`, but got value {color} of type `{type(color).__name__}`"
-            )
-
+    def __init__(self, color: ColorOfWire = ColorOfWire.blue) -> None:
         self.color = color
 
     @property

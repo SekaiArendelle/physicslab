@@ -1,5 +1,5 @@
 from ._base import CircuitBase
-from physicsLab import errors
+
 
 class Pin:
     __element: CircuitBase

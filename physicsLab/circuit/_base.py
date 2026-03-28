@@ -1,6 +1,7 @@
 import abc
 from physicsLab import coordinate_system
-from physicsLab._typing import Optional, CircuitElementData, Iterator, Tuple
+from physicsLab._typing import Optional, CircuitElementData
+
 
 class CircuitBase:
     __position: coordinate_system.Position
