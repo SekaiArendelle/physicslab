@@ -284,8 +284,11 @@ def load_celestial_experiment_by_file_path(
         raise TypeError(
             f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
         )
+    if not path.exists() or not path.is_file():
+        raise errors.ExperimentNotExistError(f'File "{path}" does not exist')
 
-    plasv_dict = json.loads(path.read_text(encoding="utf-8"))
+    with open(path, 'r', encoding='utf-8') as f:
+        plasv_dict = json.load(f)
     if plasv_dict["Type"] != 3:
         raise errors.ExperimentTypeError(
             f'"{path}" does not contain a celestial experiment'

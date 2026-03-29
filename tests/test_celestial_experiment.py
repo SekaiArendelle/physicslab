@@ -10,6 +10,8 @@ sys.path.append(LIBRARY_DIR)
 
 import _user
 import pathlib
+import inspect
+import re
 import unittest
 import _constant
 from physicsLab import (
@@ -22,9 +24,11 @@ from physicsLab import (
     load_celestial_experiment_by_file_path,
     load_celestial_experiment_from_app,
     load_celestial_experiment_by_sav_name,
-    ElementNotExistError
+    ElementNotExistError,
+    ExperimentNotExistError,
 )
 from physicsLab.celestial import planets
+from physicsLab.celestial._base import CelestialBase
 
 
 class TestCelestialExperiment(unittest.TestCase):
@@ -119,6 +123,12 @@ class TestCelestialExperiment(unittest.TestCase):
 
             with self.assertRaises(ElementNotExistError):
                 expe.get_element_by_position(Position(1, 1, 1))
+
+    def  test_load_nonexistent_file_path(self):
+        with self.assertRaises(ExperimentNotExistError):
+            load_celestial_experiment_by_file_path(
+                pathlib.Path(_constant.TEST_DATA_DIR) / "nonexistent_file.sav"
+            )
 
 
 class TestCelestialElements(unittest.TestCase):
@@ -370,6 +380,33 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Ocean")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+    def test_all_celestial_classes_are_covered(self):
+        all_celestial_classes = {
+            name
+            for name, obj in inspect.getmembers(planets, inspect.isclass)
+            if issubclass(obj, CelestialBase)
+            and obj is not CelestialBase
+            and obj.__module__.startswith("physicsLab.celestial.")
+            and not name.startswith("_")
+        }
+
+        covered_classes = set()
+        for method_name, method in inspect.getmembers(self.__class__, inspect.isfunction):
+            if not method_name.startswith("test_"):
+                continue
+            if method_name == "test_all_celestial_classes_are_covered":
+                continue
+
+            source = inspect.getsource(method)
+            covered_classes.update(re.findall(r"planets\.(\w+)\(", source))
+
+        missing = sorted(all_celestial_classes - covered_classes)
+        self.assertEqual(
+            missing,
+            [],
+            msg=f"Missing TestCelestialElements coverage for: {', '.join(missing)}",
+        )
 
 
 if __name__ == "__main__":

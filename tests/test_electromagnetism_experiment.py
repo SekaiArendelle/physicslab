@@ -9,6 +9,8 @@ sys.path.append(SCRIPT_DIR)
 sys.path.append(LIBRARY_DIR)
 
 import pathlib
+import inspect
+import re
 import unittest
 import _constant
 import _user
@@ -23,8 +25,10 @@ from physicsLab import (
     load_electromagnetism_experiment_by_sav_name,
     crt_electromagnetism_experiment,
     ElementNotExistError,
+    ExperimentNotExistError,
 )
 from physicsLab.electromagnetism import elements
+from physicsLab.electromagnetism._base import ElectromagnetismBase
 
 
 class TestElectromagnetismExperiment(unittest.TestCase):
@@ -118,6 +122,12 @@ class TestElectromagnetismExperiment(unittest.TestCase):
             with self.assertRaises(ElementNotExistError):
                 expe.get_element_by_position(Position(2, 0, 0))
 
+    def test_load_nonexistent_file_path(self):
+        with self.assertRaises(ExperimentNotExistError):
+            load_electromagnetism_experiment_by_file_path(
+                pathlib.Path(_constant.TEST_DATA_DIR) / "nonexistent_file.sav"
+            )
+
 
 class TestElectromagnetismElements(unittest.TestCase):
     def test_negative_charge(self):
@@ -203,6 +213,33 @@ class TestElectromagnetismElements(unittest.TestCase):
             self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
+
+    def test_all_electromagnetism_classes_are_covered(self):
+        all_electromagnetism_classes = {
+            name
+            for name, obj in inspect.getmembers(elements, inspect.isclass)
+            if issubclass(obj, ElectromagnetismBase)
+            and obj is not ElectromagnetismBase
+            and obj.__module__.startswith("physicsLab.electromagnetism.")
+            and not name.startswith("_")
+        }
+
+        covered_classes = set()
+        for method_name, method in inspect.getmembers(self.__class__, inspect.isfunction):
+            if not method_name.startswith("test_"):
+                continue
+            if method_name == "test_all_electromagnetism_classes_are_covered":
+                continue
+
+            source = inspect.getsource(method)
+            covered_classes.update(re.findall(r"elements\.(\w+)\(", source))
+
+        missing = sorted(all_electromagnetism_classes - covered_classes)
+        self.assertEqual(
+            missing,
+            [],
+            msg=f"Missing TestElectromagnetismElements coverage for: {', '.join(missing)}",
+        )
 
 
 if __name__ == "__main__":

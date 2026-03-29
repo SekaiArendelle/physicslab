@@ -18,11 +18,13 @@ def unreachable() -> NoReturn:
 
 
 class InvalidWireError(Exception):
-    def __init__(self, msg: str):
-        self.msg = msg
+    __msg: str
 
-    def __str__(self):
-        return self.msg
+    def __init__(self, msg: str) -> None:
+        self.__msg = msg
+
+    def __str__(self) -> str:
+        return self.__msg
 
 
 class InvalidSavError(Exception):
@@ -32,21 +34,6 @@ class InvalidSavError(Exception):
         return "The archive file is incorrect"
 
 
-class ExperimentOpenedError(Exception):
-    """已打开实验"""
-
-    def __str__(self):
-        return "The experiment has been opened"
-
-
-class ExperimentClosedError(Exception):
-    """未打开实验"""
-
-    def __str__(self):
-        return "The experiment has been closed"
-
-
-# TODO 强化报错信息：将实验的具体信息也打印出来
 class ExperimentExistError(Exception):
     """实验已存在"""
 
@@ -64,32 +51,19 @@ class ExperimentNotExistError(Exception):
         return self.err_msg
 
 
-class ExperimentHasCrtError(Exception):
-    """实验已创建"""
-
-    def __str__(self):
-        return "The experiment has been created"
-
-
-class ExperimentHasNotCrtError(Exception):
-    """实验未创建"""
-
-    def __str__(self):
-        return "The experiment has not been created"
-
-
 class ExperimentTypeError(Exception):
-    """打开的实验与调用的元件不符"""
+    """The experiment type is incorrect"""
+
+    __err_msg: str
 
     def __init__(
         self,
-        err_msg: str = "The type of experiment does not match the element",
+        err_msg: str
     ) -> None:
-        self.err_msg = err_msg
+        self.__err_msg = err_msg
 
     def __str__(self) -> str:
-        return self.err_msg
-
+        return self.__err_msg
 
 class ElementNotExistError(Exception):
     def __init__(self, err_msg: str = "Can't find element") -> None:

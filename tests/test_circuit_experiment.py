@@ -9,6 +9,8 @@ sys.path.append(SCRIPT_DIR)
 sys.path.append(LIBRARY_DIR)
 
 import pathlib
+import inspect
+import re
 import unittest
 
 import _user
@@ -20,13 +22,14 @@ from physicsLab import (
     ColorOfWire,
     generate_a_new_sav_path,
     Category,
-    ElementExistError,
-    ElementNotExistError,
     crt_circuit_experiment,
     load_circuit_experiment_by_file_path,
     load_circuit_experiment_by_sav_name,
     load_circuit_experiment_from_app,
     find_path_of_sav_name,
+    ElementExistError,
+    ElementNotExistError,
+    ExperimentNotExistError,
 )
 from physicsLab.circuit import elements
 from physicsLab.circuit._base import CircuitBase
@@ -154,6 +157,12 @@ class TestCircuitExperiment(unittest.TestCase):
             self.assertEqual(expe.get_element_by_position(a.position), a)
             with self.assertRaises(ElementNotExistError):
                 expe.get_element_by_position(Position(1, 1, 1))
+
+    def test_load_nonexistent_file_path(self):
+        with self.assertRaises(ExperimentNotExistError):
+            load_circuit_experiment_by_file_path(
+                pathlib.Path(_constant.TEST_DATA_DIR) / "nonexistent_file.sav"
+            )
 
 
 class TestCircuitElements(unittest.TestCase):
@@ -743,6 +752,33 @@ class TestCircuitElements(unittest.TestCase):
             _instance = elements.YesGate(Position(1, 2, 3), Rotation(0, 0, 180))
             expe.crt_a_element(_instance)
             self._assert_element_common(_instance, "Yes Gate")
+
+    def test_all_circuit_element_subclasses_are_covered(self):
+        all_element_subclasses = {
+            name
+            for name, obj in inspect.getmembers(elements, inspect.isclass)
+            if issubclass(obj, CircuitBase)
+            and obj is not CircuitBase
+            and obj.__module__.startswith("physicsLab.circuit.elements.")
+            and not name.startswith("_")
+        }
+
+        covered_classes = set()
+        for method_name, method in inspect.getmembers(self.__class__, inspect.isfunction):
+            if not method_name.startswith("test_"):
+                continue
+            if method_name == "test_all_circuit_element_subclasses_are_covered":
+                continue
+
+            source = inspect.getsource(method)
+            covered_classes.update(re.findall(r"elements\.(\w+)\(", source))
+
+        missing = sorted(all_element_subclasses - covered_classes)
+        self.assertEqual(
+            missing,
+            [],
+            msg=f"Missing TestCircuitElements coverage for: {', '.join(missing)}",
+        )
 
 
 if __name__ == "__main__":
