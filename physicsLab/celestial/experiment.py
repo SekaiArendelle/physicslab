@@ -1,8 +1,8 @@
 import time
 import json
 import pathlib
-from physicsLab import constant
 from physicsLab import errors
+from physicsLab.utils import find_path_of_sav_name
 from physicsLab import coordinate_system
 from physicsLab.enums import Category
 from physicsLab.web import User, anonymous_login
@@ -312,32 +312,6 @@ def load_celestial_experiment_by_file_path(
             result.crt_a_element(_dict_to_element(element_dict))
 
         return result
-
-
-def find_path_of_sav_name(sav_name: str) -> Optional[pathlib.Path]:
-    if not isinstance(sav_name, str):
-        raise TypeError(
-            f"sav_name must be of type `str`, but got value {sav_name} of type {type(sav_name).__name__}"
-        )
-
-    for file in constant.QUANTAM_PHYSICS_EXPERIMENT_DIR.glob("*.sav"):
-        if not file.is_file():
-            continue
-
-        plsav_dict: dict = json.loads(file.read_text(encoding="utf-8"))
-        if "Summary" not in plsav_dict.keys():
-            continue
-        summary_dict: Optional[dict] = plsav_dict["Summary"]
-        if summary_dict is None:
-            continue
-        if "Subject" in summary_dict.keys():
-            if summary_dict["Subject"] == sav_name:
-                return file
-        elif "Subject" in plsav_dict.keys():
-            if plsav_dict["Subject"] == sav_name:
-                return file
-
-    return None
 
 
 def load_celestial_experiment_by_sav_name(
