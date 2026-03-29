@@ -6,7 +6,7 @@ import setuptools
 physicsLab_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "physicsLab")
 sys.path.append(physicsLab_dir)
 
-import physicsLab_version as v
+import version as v
 
 setuptools.setup(
     name="physicsLab",
