@@ -1,5 +1,6 @@
 import json
 from physicsLab import coordinate_system
+from physicsLab import errors
 from physicsLab._typing import List, Dict
 from . import _base
 
@@ -33,9 +34,13 @@ class ElectromagnetismStatusSave:
             raise TypeError(
                 f"parameter element must be of type `ElectromagnetismBase`, but got value {element} of type {type(element).__name__}"
             )
-        self.__elements.append(element)
-        self.__id2element[element.identifier] = element
-        self.__position2element[element.position] = element
+        if element.identifier in self.id2element:
+            raise errors.ElementExistError(
+                f"An element with identifier {element.identifier} already exists"
+            )
+        self.elements.append(element)
+        self.id2element[element.identifier] = element
+        self.position2element[element.position] = element
 
     def append_range(self, other: "ElectromagnetismStatusSave") -> None:
         if not isinstance(other, ElectromagnetismStatusSave):
@@ -50,16 +55,16 @@ class ElectromagnetismStatusSave:
             raise TypeError(
                 f"parameter element must be of type `ElectromagnetismBase`, but got value {element} of type {type(element).__name__}"
             )
-        self.__elements.remove(element)
-        del self.__id2element[element.identifier]
-        del self.__position2element[element.position]
+        self.elements.remove(element)
+        del self.id2element[element.identifier]
+        del self.position2element[element.position]
 
     def get_element_by_index(self, index: int) -> _base.ElectromagnetismBase:
         if not isinstance(index, int):
             raise TypeError(
                 f"parameter index must be of type `int`, but got value {index} of type {type(index).__name__}"
             )
-        return self.__elements[index]
+        return self.elements[index]
 
     def get_element_by_id(self, identifier: str) -> _base.ElectromagnetismBase:
         if not isinstance(identifier, str):
@@ -67,7 +72,7 @@ class ElectromagnetismStatusSave:
                 f"parameter identifier must be of type `str`, but got value {identifier} of type {type(identifier).__name__}"
             )
 
-        return self.__id2element[identifier]
+        return self.id2element[identifier]
 
     def get_element_by_position(
         self, position: coordinate_system.Position
@@ -77,7 +82,7 @@ class ElectromagnetismStatusSave:
                 f"parameter position must be of type `Position`, but got value {position} of type {type(position).__name__}"
             )
 
-        return self.__position2element[position]
+        return self.position2element[position]
 
     def as_dict(self) -> dict:
         return {

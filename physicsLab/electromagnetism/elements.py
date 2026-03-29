@@ -1,20 +1,22 @@
 import uuid
 from physicsLab import coordinate_system
 from ._base import ElectromagnetismBase
-
+from physicsLab._typing import Optional
 
 class NegativeCharge(ElectromagnetismBase):
     def __init__(
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = True,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -40,13 +42,15 @@ class PositiveCharge(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = True,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -72,13 +76,15 @@ class NegativeTestCharge(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = False,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -108,13 +114,15 @@ class PositiveTestCharge(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = False,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -144,13 +152,15 @@ class BarMagnet(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = True,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -176,13 +186,15 @@ class Compass(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = True,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )
@@ -208,13 +220,15 @@ class UniformMagneticField(ElectromagnetismBase):
         self,
         position: coordinate_system.Position,
         rotation: coordinate_system.Rotation = coordinate_system.Rotation(0, 0, 0),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
         velocity: coordinate_system.Velocity = coordinate_system.Velocity(0, 0, 0),
         angular_velocity: coordinate_system.AngularVelocity = coordinate_system.AngularVelocity(
             0, 0, 0
         ),
         lock_status: bool = False,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(
             position, rotation, identifier, velocity, angular_velocity, lock_status
         )

@@ -1,7 +1,7 @@
 import uuid
 from ._base import CelestialBase
 from physicsLab import coordinate_system
-from physicsLab._typing import final
+from physicsLab._typing import final, Optional
 
 
 class Mercury(CelestialBase):
@@ -12,8 +12,10 @@ class Mercury(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -71,8 +73,10 @@ class Venus(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -130,8 +134,10 @@ class Earth(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -189,8 +195,10 @@ class Mars(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -248,8 +256,10 @@ class Jupiter(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -307,8 +317,10 @@ class Saturn(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -366,8 +378,10 @@ class Uranus(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -425,8 +439,10 @@ class Neptune(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -484,8 +500,10 @@ class Pluto(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -543,8 +561,10 @@ class Sun(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -602,8 +622,10 @@ class BlueGiant(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -661,8 +683,10 @@ class RedGiant(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -720,8 +744,10 @@ class RedDwarf(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -779,8 +805,10 @@ class WhiteDwarf(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -838,8 +866,10 @@ class Blackhole(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -897,8 +927,10 @@ class FantasyStar(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -956,8 +988,10 @@ class Moon(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1015,8 +1049,10 @@ class ChocolateBall(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1074,8 +1110,10 @@ class Continential(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1133,8 +1171,10 @@ class Arctic(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1192,8 +1232,10 @@ class Arid(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1251,8 +1293,10 @@ class Barren(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1310,8 +1354,10 @@ class Desert(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1369,8 +1415,10 @@ class Jungle(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1428,8 +1476,10 @@ class Toxic(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1487,8 +1537,10 @@ class Lava(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
@@ -1546,8 +1598,10 @@ class Ocean(CelestialBase):
         acceleration: coordinate_system.Acceleration = coordinate_system.Acceleration(
             0, 0, 0
         ),
-        identifier: str = str(uuid.uuid4()),
+        identifier: Optional[str] = None,
     ) -> None:
+        if identifier is None:
+            identifier = str(uuid.uuid4())
         super().__init__(position, velocity, acceleration, identifier)
 
     def as_dict(self) -> dict:
