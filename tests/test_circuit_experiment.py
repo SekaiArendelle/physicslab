@@ -21,6 +21,7 @@ from physicsLab import (
     generate_a_new_sav_path,
     Category,
     ElementExistError,
+    ElementNotExistError,
     crt_circuit_experiment,
     load_circuit_experiment_by_file_path,
     load_circuit_experiment_by_sav_name,
@@ -129,6 +130,30 @@ class TestCircuitExperiment(unittest.TestCase):
             expe.crt_a_element(a)
             with self.assertRaises(ElementExistError):
                 expe.crt_a_element(a)
+
+    def test_get_element_by_index(self):
+        with crt_circuit_experiment(None) as expe:
+            a = elements.LogicInput(Position(0, 0, 0), Rotation(0, 0, 180))
+            expe.crt_a_element(a)
+            self.assertEqual(expe.get_element_by_index(0), a)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_index(1)
+
+    def test_get_element_by_id(self):
+        with crt_circuit_experiment(None) as expe:
+            a = elements.LogicInput(Position(0, 0, 0), Rotation(0, 0, 180))
+            expe.crt_a_element(a)
+            self.assertEqual(expe.get_element_by_id(a.identifier), a)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_id("nonexistent_id")
+
+    def test_get_element_by_position(self):
+        with crt_circuit_experiment(None) as expe:
+            a = elements.LogicInput(Position(0, 0, 0), Rotation(0, 0, 180))
+            expe.crt_a_element(a)
+            self.assertEqual(expe.get_element_by_position(a.position), a)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_position(Position(1, 1, 1))
 
 
 class TestCircuitElements(unittest.TestCase):

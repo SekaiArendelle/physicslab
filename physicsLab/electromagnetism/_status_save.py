@@ -68,12 +68,17 @@ class ElectromagnetismStatusSave:
             raise errors.ElementNotExistError(
                 f"parameter index out of range, index: {index}, but elements count is {len(self.elements)}"
             )
+
         return self.elements[index]
 
     def get_element_by_id(self, identifier: str) -> _base.ElectromagnetismBase:
         if not isinstance(identifier, str):
             raise TypeError(
                 f"parameter identifier must be of type `str`, but got value {identifier} of type {type(identifier).__name__}"
+            )
+        if identifier not in self.id2element:
+            raise errors.ElementNotExistError(
+                f"Can't find element with identifier {identifier}"
             )
 
         return self.id2element[identifier]
@@ -84,6 +89,10 @@ class ElectromagnetismStatusSave:
         if not isinstance(position, coordinate_system.Position):
             raise TypeError(
                 f"parameter position must be of type `Position`, but got value {position} of type {type(position).__name__}"
+            )
+        if position not in self.position2element:
+            raise errors.ElementNotExistError(
+                f"Can't find element with position {position}"
             )
 
         return self.position2element[position]

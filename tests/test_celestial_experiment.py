@@ -22,9 +22,9 @@ from physicsLab import (
     load_celestial_experiment_by_file_path,
     load_celestial_experiment_from_app,
     load_celestial_experiment_by_sav_name,
+    ElementNotExistError
 )
 from physicsLab.celestial import planets
-from physicsLab.celestial import experiment
 
 
 class TestCelestialExperiment(unittest.TestCase):
@@ -86,6 +86,39 @@ class TestCelestialExperiment(unittest.TestCase):
         ) as expe:
             self.assertTrue(expe.get_elements_count() == 27)
             expe.save_to(pathlib.Path(os.devnull))
+
+    def test_get_element_by_index(self):
+        with crt_celestial_experiment(None) as expe:
+            sun = planets.Sun(Position(0, 0, 0))
+            earth = planets.Earth(Position(10, 0, 0))
+            expe.crt_elements(sun, earth)
+            self.assertEqual(expe.get_element_by_index(0), sun)
+            self.assertEqual(expe.get_element_by_index(1), earth)
+
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_index(2)
+
+    def test_get_element_by_id(self):
+        with crt_celestial_experiment(None) as expe:
+            sun = planets.Sun(Position(0, 0, 0))
+            earth = planets.Earth(Position(10, 0, 0))
+            expe.crt_elements(sun, earth)
+            self.assertEqual(expe.get_element_by_id(sun.identifier), sun)
+            self.assertEqual(expe.get_element_by_id(earth.identifier), earth)
+
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_id("nonexistent_id")
+
+    def test_get_element_by_position(self):
+        with crt_celestial_experiment(None) as expe:
+            sun = planets.Sun(Position(0, 0, 0))
+            earth = planets.Earth(Position(10, 0, 0))
+            expe.crt_elements(sun, earth)
+            self.assertEqual(expe.get_element_by_position(sun.position), sun)
+            self.assertEqual(expe.get_element_by_position(earth.position), earth)
+
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_position(Position(1, 1, 1))
 
 
 class TestCelestialElements(unittest.TestCase):

@@ -22,9 +22,9 @@ from physicsLab import (
     load_electromagnetism_experiment_from_app,
     load_electromagnetism_experiment_by_sav_name,
     crt_electromagnetism_experiment,
+    ElementNotExistError,
 )
 from physicsLab.electromagnetism import elements
-from physicsLab.electromagnetism import experiment
 
 
 class TestElectromagnetismExperiment(unittest.TestCase):
@@ -87,6 +87,36 @@ class TestElectromagnetismExperiment(unittest.TestCase):
                 self.assertEqual(expe2.get_elements_count(), 2)
                 expe.merge(expe2)
                 self.assertEqual(expe.get_elements_count(), 4)
+
+    def test_get_element_by_index(self):
+        with crt_electromagnetism_experiment(None) as expe:
+            charge = elements.NegativeCharge(Position(0, 0, 0))
+            magnet = elements.BarMagnet(Position(1, 0, 0))
+            expe.crt_elements(charge, magnet)
+            self.assertEqual(expe.get_element_by_index(0), charge)
+            self.assertEqual(expe.get_element_by_index(1), magnet)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_index(2)
+
+    def test_get_element_by_id(self):
+        with crt_electromagnetism_experiment(None) as expe:
+            charge = elements.NegativeCharge(Position(0, 0, 0))
+            magnet = elements.BarMagnet(Position(1, 0, 0))
+            expe.crt_elements(charge, magnet)
+            self.assertEqual(expe.get_element_by_id(charge.identifier), charge)
+            self.assertEqual(expe.get_element_by_id(magnet.identifier), magnet)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_id("nonexistent_id")
+
+    def test_get_element_by_position(self):
+        with crt_electromagnetism_experiment(None) as expe:
+            charge = elements.NegativeCharge(Position(0, 0, 0))
+            magnet = elements.BarMagnet(Position(1, 0, 0))
+            expe.crt_elements(charge, magnet)
+            self.assertEqual(expe.get_element_by_position(Position(0, 0, 0)), charge)
+            self.assertEqual(expe.get_element_by_position(Position(1, 0, 0)), magnet)
+            with self.assertRaises(ElementNotExistError):
+                expe.get_element_by_position(Position(2, 0, 0))
 
 
 class TestElectromagnetismElements(unittest.TestCase):
