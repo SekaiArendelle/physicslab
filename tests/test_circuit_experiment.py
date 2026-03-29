@@ -66,6 +66,11 @@ class TestCircuitExperiment(unittest.TestCase):
             expe.clear_wires()
             self.assertEqual(expe.get_wires_count(), 0)
 
+            d = elements.LogicInput(Position(3, 0, 0), Rotation(0, 0, 180))
+            e = elements.LogicInput(Position(4, 0, 0), Rotation(0, 0, 180))
+            with self.assertRaises(ElementNotExistError):
+                expe.crt_a_wire(d.o, e.o)
+
     def test_load_all_element(self):
         with load_circuit_experiment_by_file_path(
             pathlib.Path(_constant.TEST_DATA_DIR) / "All-Circuit-Elements.sav"

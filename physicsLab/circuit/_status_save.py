@@ -105,6 +105,14 @@ class CircuitStatusSave:
             raise ValueError(
                 f"There is already a wire between source_pin {source_pin} and target_pin {target_pin}"
             )
+        if source_pin.element.identifier not in self.id2element:
+            raise errors.ElementNotExistError(
+                f"Can't find element with identifier {source_pin.element.identifier}"
+            )
+        if target_pin.element.identifier not in self.id2element:
+            raise errors.ElementNotExistError(
+                f"Can't find element with identifier {target_pin.element.identifier}"
+            )
 
         if source_pin not in self.circuit_graph:
             self.circuit_graph.add_node(source_pin)
