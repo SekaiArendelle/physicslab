@@ -115,6 +115,12 @@ class CircuitBase:
             "Subclasses of CircuitBase must implement the count_all_pins method"
         )
 
+    @abc.abstractmethod
+    def to_constructor_str(self) -> str:
+        raise NotImplementedError(
+            "Subclasses of CircuitBase must implement the to_constructor_str method"
+        )
+
 
 class Pin:
     __element: CircuitBase

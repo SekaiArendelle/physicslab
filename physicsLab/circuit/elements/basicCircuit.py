@@ -113,8 +113,8 @@ class SimpleSwitch(_SwitchBase):
     def to_constructor_str(self) -> str:
         return (
             f"SimpleSwitch("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"switch_state=SwitchState.{self.switch_state.name}, "
             f"identifier={self.identifier!r}, "
             f"lock_status={self.lock_status}, "
@@ -195,8 +195,8 @@ class SPDTSwitch(_SwitchBase):
     def to_constructor_str(self) -> str:
         return (
             f"SPDTSwitch("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"switch_state=PDTSwitchState.{self.switch_state.name}, "
             f"identifier={self.identifier!r}, "
             f"lock_status={self.lock_status}, "
@@ -302,8 +302,8 @@ class DPDTSwitch(_SwitchBase):
     def to_constructor_str(self) -> str:
         return (
             f"DPDTSwitch("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"switch_state=PDTSwitchState.{self.switch_state.name}, "
             f"identifier={self.identifier!r}, "
             f"lock_status={self.lock_status}, "
@@ -388,6 +388,16 @@ class PushSwitch(CircuitBase):
     @property
     def black(self) -> Pin:
         return self._black_pin
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"PushSwitch("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -483,8 +493,8 @@ class AirSwitch(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"AirSwitch("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"identifier={self.identifier!r}, "
             f"lock_status={self.lock_status}, "
             f"label={self.label!r}, "
@@ -554,6 +564,16 @@ class IncandescentLamp(CircuitBase):
     @property
     def black(self) -> Pin:
         return self._black_pin
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"IncandescentLamp("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -636,6 +656,18 @@ class BatterySource(CircuitBase):
     @property
     def black(self) -> Pin:
         return self._black_pin
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"BatterySource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"voltage={self.voltage}, "
+            f"internal_resistance={self.internal_resistance}, "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -722,6 +754,16 @@ class StudentSource(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"StudentSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -833,8 +875,8 @@ class Resistor(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"Resistor("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"resistance={self.resistance}, "
             f"identifier={self.identifier!r}, "
             f"lock_status={self.lock_status}, "
@@ -903,6 +945,16 @@ class FuseComponent(CircuitBase):
     @property
     def black(self) -> Pin:
         return self._black_pin
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"FuseComponent("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -984,6 +1036,16 @@ class SlideRheostat(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"SlideRheostat("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -1069,6 +1131,16 @@ class Multimeter(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Multimeter("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1127,6 +1199,16 @@ class Galvanometer(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"Galvanometer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -1198,6 +1280,16 @@ class Microammeter(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"Microammeter("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -1272,6 +1364,16 @@ class ElectricityMeter(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"ElectricityMeter("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -1362,6 +1464,17 @@ class ResistanceBox(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"ResistanceBox("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"resistance={self.resistance}, "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1433,6 +1546,16 @@ class SimpleAmmeter(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"SimpleAmmeter("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod
@@ -1508,6 +1631,16 @@ class SimpleVoltmeter(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"SimpleVoltmeter("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"lock_status={self.lock_status}, "
+            f"label={self.label!r})"
+        )
 
     @final
     @staticmethod

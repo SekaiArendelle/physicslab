@@ -85,6 +85,16 @@ class NE555(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"NE555("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -233,8 +243,8 @@ class BasicCapacitor(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"BasicCapacitor("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"peak_voltage={self.peak_voltage}, "
             f"capacitance={self.capacitance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -351,8 +361,8 @@ class BasicInductor(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"BasicInductor("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"rated_current={self.rated_current}, "
             f"inductance={self.inductance}, "
             f"internal_resistance={self.internal_resistance}, "
@@ -418,6 +428,16 @@ class BasicDiode(CircuitBase):
     @property
     def black(self) -> Pin:
         return self._black_pin
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"BasicDiode("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -486,6 +506,16 @@ class LightEmittingDiode(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"LightEmittingDiode("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -533,6 +563,16 @@ class GroundComponent(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"GroundComponent("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -611,6 +651,16 @@ class Transformer(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"Transformer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -703,6 +753,16 @@ class TappedTransformer(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"TappedTransformer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -797,6 +857,16 @@ class MutualInductor(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"MutualInductor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -877,6 +947,16 @@ class Rectifier(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"Rectifier("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -992,8 +1072,8 @@ class Transistor(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"Transistor("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"is_PNP={self.is_PNP}, "
             f"gain={self.gain}, "
             f"max_power={self.max_power}, "
@@ -1062,6 +1142,16 @@ class Comparator(CircuitBase):
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"Comparator("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -1179,8 +1269,8 @@ class OperationalAmplifier(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"OperationalAmplifier("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"gain={self.gain}, "
             f"max_voltage={self.max_voltage}, "
             f"min_voltage={self.min_voltage}, "
@@ -1298,6 +1388,20 @@ class RelayComponent(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"RelayComponent("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"pull_in_current={self.pull_in_current}, "
+            f"rated_current={self.rated_current}, "
+            f"coil_inductance={self.coil_inductance}, "
+            f"coil_resistance={self.coil_resistance}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1408,6 +1512,19 @@ class N_MOSFET(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"N_MOSFET("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"beta={self.beta}, "
+            f"threshold={self.threshold}, "
+            f"max_power={self.max_power}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1490,6 +1607,16 @@ class P_MOSFET(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"P_MOSFET("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1566,6 +1693,16 @@ class CurrentSource(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"CurrentSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1610,6 +1747,16 @@ class _SourceElectricity(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"_SourceElectricity("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @staticmethod
     def count_all_pins() -> int:
         return 2
@@ -1651,6 +1798,16 @@ class SinewaveSource(_SourceElectricity):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"SinewaveSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -1695,6 +1852,16 @@ class SquareSource(_SourceElectricity):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"SquareSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1737,6 +1904,16 @@ class TriangleSource(_SourceElectricity):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"TriangleSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -1781,6 +1958,16 @@ class SawtoothSource(_SourceElectricity):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"SawtoothSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -1823,6 +2010,16 @@ class PulseSource(_SourceElectricity):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"PulseSource("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod

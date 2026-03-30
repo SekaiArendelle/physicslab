@@ -66,6 +66,16 @@ class Buzzer(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Buzzer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -130,6 +140,16 @@ class SparkGap(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"SparkGap("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -197,6 +217,16 @@ class TeslaCoil(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"TeslaCoil("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -287,6 +317,16 @@ class ColorLightEmittingDiode(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"ColorLightEmittingDiode("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -371,6 +411,16 @@ class DualLightEmittingDiode(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"DualLightEmittingDiode("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -442,6 +492,16 @@ class ElectricBell(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"ElectricBell("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -512,6 +572,16 @@ class MusicalBox(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"MusicalBox("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -633,6 +703,16 @@ class ResistanceLaw(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"ResistanceLaw("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -742,6 +822,16 @@ class Solenoid(CircuitBase):
             "DiagramRotation": 0,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Solenoid("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -832,6 +922,16 @@ class ElectricFan(CircuitBase):
             "DiagramPosition": {"X": 0, "Y": 0, "Magnitude": 0.0},
             "DiagramRotation": 0,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"ElectricFan("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -1051,8 +1151,8 @@ class SimpleInstrument(CircuitBase):
     def to_constructor_str(self) -> str:
         return (
             f"SimpleInstrument("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"rotation=coordinate_system.Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
             f"pitches={self.pitches!r}, "
             f"identifier={self.identifier!r}, "
             f"label={self.label!r}, "

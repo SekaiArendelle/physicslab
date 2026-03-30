@@ -189,6 +189,10 @@ class TestCircuitElements(unittest.TestCase):
         if "锁定" in _instance.as_dict()["Properties"]:
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0)
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
+
     def test_accelerometer(self):
         with crt_circuit_experiment(None) as expe:
             _instance = elements.Accelerometer(Position(1, 2, 3), Rotation(0, 0, 180))

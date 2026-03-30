@@ -51,6 +51,19 @@ class _MemsBase(CircuitBase):
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
         return iter(self._all_pins)
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"_MemsBase("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @staticmethod
     def count_all_pins() -> int:
         return 3
@@ -152,6 +165,19 @@ class Accelerometer(_MemsBase):
             "Label": self.label,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Accelerometer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -219,6 +245,16 @@ class AnalogJoystick(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 6
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"AnalogJoystick("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -298,6 +334,19 @@ class AttitudeSensor(_MemsBase):
             "Label": self.label,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"AttitudeSensor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -351,6 +400,19 @@ class GravitySensor(_MemsBase):
             "DiagramRotation": 0,
             "Label": self.label,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"GravitySensor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -406,6 +468,19 @@ class Gyroscope(_MemsBase):
             "Label": self.label,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Gyroscope("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -460,6 +535,19 @@ class LinearAccelerometer(_MemsBase):
             "Label": self.label,
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"LinearAccelerometer("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -513,6 +601,19 @@ class MagneticFieldSensor(_MemsBase):
             "DiagramRotation": 0,
             "Label": self.label,
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"MagneticFieldSensor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"ranges={self.ranges}, "
+            f"shifting={self.shifting}, "
+            f"response_factor={self.response_factor}, "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
@@ -581,6 +682,16 @@ class Photodiode(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Photodiode("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -648,6 +759,16 @@ class Photoresistor(CircuitBase):
     def black(self) -> Pin:
         return self._black_pin
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Photoresistor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
+
     @final
     @staticmethod
     def zh_name() -> str:
@@ -700,6 +821,16 @@ class ProximitySensor(CircuitBase):
     @staticmethod
     def count_all_pins() -> int:
         return 1
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"ProximitySensor("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"label={self.label!r}, "
+            f"lock_status={self.lock_status})"
+        )
 
     @final
     @staticmethod
