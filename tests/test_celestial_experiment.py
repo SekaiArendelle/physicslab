@@ -17,6 +17,7 @@ import _constant
 from physicsLab import (
     Position,
     Velocity,
+    Acceleration,
     generate_a_new_sav_path,
     Category,
     find_path_of_sav_name,
@@ -141,6 +142,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_venus(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Venus(Position(1, 2, 3))
@@ -149,6 +154,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Venus")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_sun(self):
         expe = crt_celestial_experiment(None)
@@ -162,6 +171,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Mass"], 1989100.0)
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_earth(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Earth(Position(1, 2, 3), velocity=Velocity(0, 1, 0))
@@ -172,6 +185,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Name"], "地球")
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_mars(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Mars(Position(1, 2, 3))
@@ -180,6 +197,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Mars")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_jupiter(self):
         expe = crt_celestial_experiment(None)
@@ -190,6 +211,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_saturn(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Saturn(Position(1, 2, 3))
@@ -198,6 +223,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Saturn")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_uranus(self):
         expe = crt_celestial_experiment(None)
@@ -208,6 +237,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_neptune(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Neptune(Position(1, 2, 3))
@@ -216,6 +249,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Neptune")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_pluto(self):
         expe = crt_celestial_experiment(None)
@@ -226,6 +263,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_blue_giant(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.BlueGiant(Position(1, 2, 3))
@@ -234,6 +275,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Blue Giant")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_red_giant(self):
         expe = crt_celestial_experiment(None)
@@ -244,6 +289,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_red_dwarf(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.RedDwarf(Position(1, 2, 3))
@@ -253,6 +302,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_white_dwarf(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.WhiteDwarf(Position(1, 2, 3))
@@ -261,6 +314,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "White Dwarf")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_blackhole(self):
         expe = crt_celestial_experiment(None)
@@ -272,6 +329,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_fantasy_star(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.FantasyStar(Position(1, 2, 3))
@@ -280,6 +341,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Fantasy Star")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_moon(self):
         expe = crt_celestial_experiment(None)
@@ -291,6 +356,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_chocolate_ball(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.ChocolateBall(Position(1, 2, 3))
@@ -299,6 +368,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Chocolate Ball")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_continential(self):
         expe = crt_celestial_experiment(None)
@@ -309,6 +382,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_arctic(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Arctic(Position(1, 2, 3))
@@ -317,6 +394,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Arctic")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_arid(self):
         expe = crt_celestial_experiment(None)
@@ -327,6 +408,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_barren(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Barren(Position(1, 2, 3))
@@ -335,6 +420,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Barren")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_desert(self):
         expe = crt_celestial_experiment(None)
@@ -345,6 +434,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_jungle(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Jungle(Position(1, 2, 3))
@@ -353,6 +446,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Jungle")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_toxic(self):
         expe = crt_celestial_experiment(None)
@@ -363,6 +460,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_lava(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Lava(Position(1, 2, 3))
@@ -372,6 +473,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
+
     def test_ocean(self):
         expe = crt_celestial_experiment(None)
         _instance = planets.Ocean(Position(1, 2, 3))
@@ -380,6 +485,10 @@ class TestCelestialElements(unittest.TestCase):
         self.assertEqual(_instance.as_dict()["Model"], "Ocean")
         self.assertEqual(_instance.position, Position(1, 2, 3))
         self.assertEqual(_instance.as_dict()["Position"], "1,3,2")
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"planets.{constructor_str}")
 
     def test_all_celestial_classes_are_covered(self):
         all_celestial_classes = {

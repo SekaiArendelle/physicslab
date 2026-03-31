@@ -62,9 +62,9 @@ class Mercury(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Mercury("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -132,9 +132,9 @@ class Venus(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Venus("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -202,9 +202,9 @@ class Earth(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Earth("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -272,9 +272,9 @@ class Mars(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Mars("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -342,9 +342,9 @@ class Jupiter(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Jupiter("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -412,9 +412,9 @@ class Saturn(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Saturn("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -482,9 +482,9 @@ class Uranus(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Uranus("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -552,9 +552,9 @@ class Neptune(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Neptune("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -622,9 +622,9 @@ class Pluto(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Pluto("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -692,9 +692,9 @@ class Sun(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Sun("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -762,9 +762,9 @@ class BlueGiant(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"BlueGiant("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -832,9 +832,9 @@ class RedGiant(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"RedGiant("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -902,9 +902,9 @@ class RedDwarf(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"RedDwarf("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -972,9 +972,9 @@ class WhiteDwarf(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"WhiteDwarf("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1042,9 +1042,9 @@ class Blackhole(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Blackhole("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1112,9 +1112,9 @@ class FantasyStar(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"FantasyStar("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1182,9 +1182,9 @@ class Moon(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Moon("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1252,9 +1252,9 @@ class ChocolateBall(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"ChocolateBall("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1322,9 +1322,9 @@ class Continential(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Continential("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1392,9 +1392,9 @@ class Arctic(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Arctic("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1462,9 +1462,9 @@ class Arid(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Arid("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1532,9 +1532,9 @@ class Barren(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Barren("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1602,9 +1602,9 @@ class Desert(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Desert("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1672,9 +1672,9 @@ class Jungle(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Jungle("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1742,9 +1742,9 @@ class Toxic(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Toxic("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1812,9 +1812,9 @@ class Lava(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Lava("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
@@ -1882,9 +1882,9 @@ class Ocean(CelestialBase):
     def to_constructor_str(self) -> str:
         return (
             f"Ocean("
-            f"position=coordinate_system.Position({self.position.x}, {self.position.y}, {self.position.z}), "
-            f"velocity=coordinate_system.Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
-            f"acceleration=coordinate_system.Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"acceleration=Acceleration({self.acceleration.x}, {self.acceleration.y}, {self.acceleration.z}), "
             f"identifier={self.identifier!r})"
         )
 
