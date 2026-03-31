@@ -16,7 +16,9 @@ import _constant
 import _user
 from physicsLab import (
     Position,
+    Rotation,
     Velocity,
+    AngularVelocity,
     Category,
     generate_a_new_sav_path,
     find_path_of_sav_name,
@@ -142,6 +144,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
+
     def test_positive_charge(self):
         with crt_electromagnetism_experiment(None) as expe:
             _instance = elements.PositiveCharge(
@@ -153,6 +159,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
 
     def test_negative_test_charge(self):
         with crt_electromagnetism_experiment(None) as expe:
@@ -166,6 +176,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
+
     def test_positive_test_charge(self):
         with crt_electromagnetism_experiment(None) as expe:
             _instance = elements.PositiveTestCharge(
@@ -177,6 +191,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
 
     def test_bar_magnet(self):
         with crt_electromagnetism_experiment(None) as expe:
@@ -190,6 +208,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
+
     def test_compass(self):
         with crt_electromagnetism_experiment(None) as expe:
             _instance = elements.Compass(
@@ -202,6 +224,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 1.0)
 
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
+
     def test_uniform_magnetic_field(self):
         with crt_electromagnetism_experiment(None) as expe:
             _instance = elements.UniformMagneticField(
@@ -213,6 +239,10 @@ class TestElectromagnetismElements(unittest.TestCase):
             self.assertEqual(_instance.velocity, Velocity(0.1, 0.2, 0.3))
             # check lock status via as_dict
             self.assertEqual(_instance.as_dict()["Properties"]["锁定"], 0.0)
+
+        constructor_str = _instance.to_constructor_str()
+        self.assertIsInstance(constructor_str, str)
+        eval(f"elements.{constructor_str}")
 
     def test_all_electromagnetism_classes_are_covered(self):
         all_electromagnetism_classes = {

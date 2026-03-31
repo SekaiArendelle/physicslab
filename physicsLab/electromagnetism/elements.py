@@ -33,6 +33,16 @@ class NegativeCharge(ElectromagnetismBase):
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"NegativeCharge("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
+
     @staticmethod
     def zh_name() -> str:
         return "负电荷"
@@ -66,6 +76,16 @@ class PositiveCharge(ElectromagnetismBase):
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"PositiveCharge("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
 
     @staticmethod
     def zh_name() -> str:
@@ -105,6 +125,16 @@ class NegativeTestCharge(ElectromagnetismBase):
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"NegativeTestCharge("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
+
     @staticmethod
     def zh_name() -> str:
         return "正试验电荷"
@@ -143,6 +173,16 @@ class PositiveTestCharge(ElectromagnetismBase):
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"PositiveTestCharge("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
+
     @staticmethod
     def zh_name() -> str:
         return "负试验电荷"
@@ -176,6 +216,16 @@ class BarMagnet(ElectromagnetismBase):
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"BarMagnet("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
 
     @staticmethod
     def zh_name() -> str:
@@ -211,6 +261,16 @@ class Compass(ElectromagnetismBase):
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
 
+    def to_constructor_str(self) -> str:
+        return (
+            f"Compass("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
+
     @staticmethod
     def zh_name() -> str:
         return "指南针"
@@ -244,6 +304,16 @@ class UniformMagneticField(ElectromagnetismBase):
             "Velocity": self.velocity.as_velocity_str_in_plsav(),
             "AngularVelocity": self.angular_velocity.as_angular_velocity_str_in_plsav(),
         }
+
+    def to_constructor_str(self) -> str:
+        return (
+            f"UniformMagneticField("
+            f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
+            f"rotation=Rotation({self.rotation.x}, {self.rotation.y}, {self.rotation.z}), "
+            f"identifier={self.identifier!r}, "
+            f"velocity=Velocity({self.velocity.x}, {self.velocity.y}, {self.velocity.z}), "
+            f"angular_velocity=AngularVelocity({self.angular_velocity.x}, {self.angular_velocity.y}, {self.angular_velocity.z}))"
+        )
 
     @staticmethod
     def zh_name() -> str:
