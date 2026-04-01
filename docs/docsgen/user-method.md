@@ -19,7 +19,7 @@ async def async_ban(self, target_id: str, reason: str, length: int) -> Awaitable
 
 ## Confirm experiment publication
 ```Python
-def confirm_experiment(self, summary_id: str, category: physicsLab.enums.Category, image_counter: int) -> dict
+def confirm_experiment(self, summary_id: str, category: physicslab.enums.Category, image_counter: int) -> dict
 ```
 
 Args:
@@ -36,7 +36,7 @@ Notes:
 
 async version api:
 ```Python
-async def async_confirm_experiment(self, summary_id: str, category: physicsLab.enums.Category, image_counter: int) -> Awaitable[dict]
+async def async_confirm_experiment(self, summary_id: str, category: physicslab.enums.Category, image_counter: int) -> Awaitable[dict]
 ```
 
 ## Follow user
@@ -78,7 +78,7 @@ async def async_get_comments(self, target_id: str, target_type: str, take: int =
 
 ## Get work details, Physics-Lab-AR uses this interface when reading works for the first time
 ```Python
-def get_derivatives(self, content_id: str, category: physicsLab.enums.Category) -> dict
+def get_derivatives(self, content_id: str, category: physicslab.enums.Category) -> dict
 ```
 
 Args:
@@ -90,12 +90,12 @@ Returns:
 
 async version api:
 ```Python
-async def async_get_derivatives(self, content_id: str, category: physicsLab.enums.Category) -> Awaitable[dict]
+async def async_get_derivatives(self, content_id: str, category: physicslab.enums.Category) -> Awaitable[dict]
 ```
 
 ## Get experiment
 ```Python
-def get_experiment(self, content_id: str, category: physicsLab.enums.Category | None = None) -> dict
+def get_experiment(self, content_id: str, category: physicslab.enums.Category | None = None) -> dict
 ```
 
 Args:
@@ -108,7 +108,7 @@ Returns:
 
 async version api:
 ```Python
-async def async_get_experiment(self, content_id: str, category: physicsLab.enums.Category | None = None) -> Awaitable[dict]
+async def async_get_experiment(self, content_id: str, category: physicslab.enums.Category | None = None) -> Awaitable[dict]
 ```
 
 ## Get community works list
@@ -195,7 +195,7 @@ async def async_get_relations(self, user_id: str, display_type: str = 'Follower'
 
 ## Get experiment introduction
 ```Python
-def get_summary(self, content_id: str, category: physicsLab.enums.Category) -> dict
+def get_summary(self, content_id: str, category: physicslab.enums.Category) -> dict
 ```
 
 Args:
@@ -207,12 +207,12 @@ Returns:
 
 async version api:
 ```Python
-async def async_get_summary(self, content_id: str, category: physicsLab.enums.Category) -> Awaitable[dict]
+async def async_get_summary(self, content_id: str, category: physicslab.enums.Category) -> Awaitable[dict]
 ```
 
 ## Get support list
 ```Python
-def get_supporters(self, content_id: str, category: physicsLab.enums.Category, skip: int = 0, take: int = 16) -> dict
+def get_supporters(self, content_id: str, category: physicslab.enums.Category, skip: int = 0, take: int = 16) -> dict
 ```
 
 Args:
@@ -226,12 +226,12 @@ Returns:
 
 async version api:
 ```Python
-async def async_get_supporters(self, content_id: str, category: physicsLab.enums.Category, skip: int = 0, take: int = 16) -> Awaitable[dict]
+async def async_get_supporters(self, content_id: str, category: physicslab.enums.Category, skip: int = 0, take: int = 16) -> Awaitable[dict]
 ```
 
 ## Get user information
 ```Python
-def get_user(self, msg: str, get_user_mode: physicsLab.enums.GetUserMode) -> dict
+def get_user(self, msg: str, get_user_mode: physicslab.enums.GetUserMode) -> dict
 ```
 
 Args:
@@ -246,7 +246,7 @@ Notes:
 
 async version api:
 ```Python
-async def async_get_user(self, msg: str, get_user_mode: physicsLab.enums.GetUserMode) -> Awaitable[dict]
+async def async_get_user(self, msg: str, get_user_mode: physicslab.enums.GetUserMode) -> Awaitable[dict]
 ```
 
 ## Get user information
@@ -319,7 +319,7 @@ async def async_post_comment(self, target_id: str, target_type: str, content: st
 
 ## Query experiments
 ```Python
-def query_experiments(self, category: physicsLab.enums.Category, tags: List[physicsLab.enums.Tag] | None = None, exclude_tags: List[physicsLab.enums.Tag] | None = None, languages: List[str] | None = None, exclude_languages: List[str] | None = None, user_id: str | None = None, take: int = 20, skip: int = 0, from_skip: str | None = None) -> dict
+def query_experiments(self, category: physicslab.enums.Category, tags: List[physicslab.enums.Tag] | None = None, exclude_tags: List[physicslab.enums.Tag] | None = None, languages: List[str] | None = None, exclude_languages: List[str] | None = None, user_id: str | None = None, take: int = 20, skip: int = 0, from_skip: str | None = None) -> dict
 ```
 
 Args:
@@ -338,7 +338,7 @@ Returns:
 
 async version api:
 ```Python
-async def async_query_experiments(self, category: physicsLab.enums.Category, tags: List[physicsLab.enums.Tag] | None = None, exclude_tags: List[physicsLab.enums.Tag] | None = None, languages: List[str] | None = None, exclude_languages: List[str] | None = None, user_id: str | None = None, take: int = 20, skip: int = 0, from_skip: str | None = None) -> Awaitable[dict]
+async def async_query_experiments(self, category: physicslab.enums.Category, tags: List[physicslab.enums.Tag] | None = None, exclude_tags: List[physicslab.enums.Tag] | None = None, languages: List[str] | None = None, exclude_languages: List[str] | None = None, user_id: str | None = None, take: int = 20, skip: int = 0, from_skip: str | None = None) -> Awaitable[dict]
 ```
 
 ## Claim daily check-in reward
@@ -377,7 +377,7 @@ async def async_remove_comment(self, comment_id: str, target_type: str) -> Await
 
 ## Hide experiment
 ```Python
-def remove_experiment(self, summary_id: str, category: physicsLab.enums.Category, reason: str | None = None) -> dict
+def remove_experiment(self, summary_id: str, category: physicslab.enums.Category, reason: str | None = None) -> dict
 ```
 
 Args:
@@ -390,7 +390,7 @@ Returns:
 
 async version api:
 ```Python
-async def async_remove_experiment(self, summary_id: str, category: physicsLab.enums.Category, reason: str | None = None) -> Awaitable[dict]
+async def async_remove_experiment(self, summary_id: str, category: physicslab.enums.Category, reason: str | None = None) -> Awaitable[dict]
 ```
 
 ## Change user nickname
@@ -411,7 +411,7 @@ async def async_rename(self, nickname: str) -> Awaitable[dict]
 
 ## Favorite/Support an experiment
 ```Python
-def star_content(self, content_id: str, category: physicsLab.enums.Category, star_type: int, status: bool = True) -> dict
+def star_content(self, content_id: str, category: physicslab.enums.Category, star_type: int, status: bool = True) -> dict
 ```
 
 Args:
@@ -425,7 +425,7 @@ Returns:
 
 async version api:
 ```Python
-async def async_star_content(self, content_id: str, category: physicsLab.enums.Category, star_type: int, status: bool = True) -> Awaitable[dict]
+async def async_star_content(self, content_id: str, category: physicslab.enums.Category, star_type: int, status: bool = True) -> Awaitable[dict]
 ```
 
 ## Unban user

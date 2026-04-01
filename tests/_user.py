@@ -1,4 +1,4 @@
-from physicsLab import web
+from physicslab import web
 
 # this is a temp user without any binding
 user = web.token_login(

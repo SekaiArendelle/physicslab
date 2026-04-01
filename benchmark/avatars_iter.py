@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from test_tool import Timer
-from physicsLab import web
+from physicslab import web
 
 if not os.path.exists("images") or not os.path.isdir("images"):
     os.mkdir("images")

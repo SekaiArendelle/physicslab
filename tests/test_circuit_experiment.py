@@ -16,7 +16,7 @@ import unittest
 import _user
 import _constant
 
-from physicsLab import (
+from physicslab import (
     Position,
     Rotation,
     ColorOfWire,
@@ -31,9 +31,9 @@ from physicsLab import (
     ElementNotExistError,
     ExperimentNotExistError,
 )
-from physicsLab.circuit import elements
-from physicsLab.circuit._base import CircuitBase
-from physicsLab.enums import SwitchState, PDTSwitchState
+from physicslab.circuit import elements
+from physicslab.circuit._base import CircuitBase
+from physicslab.enums import SwitchState, PDTSwitchState
 
 
 class TestCircuitExperiment(unittest.TestCase):
@@ -768,7 +768,7 @@ class TestCircuitElements(unittest.TestCase):
             for name, obj in inspect.getmembers(elements, inspect.isclass)
             if issubclass(obj, CircuitBase)
             and obj is not CircuitBase
-            and obj.__module__.startswith("physicsLab.circuit.elements.")
+            and obj.__module__.startswith("physicslab.circuit.elements.")
             and not name.startswith("_")
         }
 

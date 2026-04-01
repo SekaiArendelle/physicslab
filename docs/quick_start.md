@@ -5,7 +5,7 @@
 元件浮空几乎成为了修改存档的代名词，因此，就让我们从创建一个悬空的逻辑输入开始吧：
 
 ```Python
-from physicsLab import (
+from physicslab import (
     crt_circuit_experiment,
     LogicOutput,
     Position,
@@ -26,7 +26,7 @@ with crt_circuit_experiment("example") as expe:
 ## 连接导线
 
 ```Python
-from physicsLab import (
+from physicslab import (
     crt_circuit_experiment,
     LogicInput,
     LogicOutput,
@@ -51,7 +51,7 @@ with crt_circuit_experiment("example") as expe:
 仿照客户端的行为，向物实服务器发送请求，获取物实服务器的响应
 
 ```Python
-from physicsLab import web
+from physicslab import web
 
 # 登录物实账号
 user = web.email_login(YOUR_EMAIL, YOUR_PASSWORD)

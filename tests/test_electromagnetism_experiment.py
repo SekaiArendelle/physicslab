@@ -14,7 +14,7 @@ import re
 import unittest
 import _constant
 import _user
-from physicsLab import (
+from physicslab import (
     Position,
     Rotation,
     Velocity,
@@ -29,8 +29,8 @@ from physicsLab import (
     ElementNotExistError,
     ExperimentNotExistError,
 )
-from physicsLab.electromagnetism import elements
-from physicsLab.electromagnetism._base import ElectromagnetismBase
+from physicslab.electromagnetism import elements
+from physicslab.electromagnetism._base import ElectromagnetismBase
 
 
 class TestElectromagnetismExperiment(unittest.TestCase):
@@ -250,7 +250,7 @@ class TestElectromagnetismElements(unittest.TestCase):
             for name, obj in inspect.getmembers(elements, inspect.isclass)
             if issubclass(obj, ElectromagnetismBase)
             and obj is not ElectromagnetismBase
-            and obj.__module__.startswith("physicsLab.electromagnetism.")
+            and obj.__module__.startswith("physicslab.electromagnetism.")
             and not name.startswith("_")
         }
 

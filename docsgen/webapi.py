@@ -11,7 +11,7 @@ import sys
 sys.path.append(SCRIPT_DIR)
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from physicsLab import web
+from physicslab import web
 
 # TODO 生成markdown目录
 def main():

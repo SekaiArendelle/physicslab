@@ -14,7 +14,7 @@ import inspect
 import re
 import unittest
 import _constant
-from physicsLab import (
+from physicslab import (
     Position,
     Velocity,
     Acceleration,
@@ -28,8 +28,8 @@ from physicsLab import (
     ElementNotExistError,
     ExperimentNotExistError,
 )
-from physicsLab.celestial import planets
-from physicsLab.celestial._base import CelestialBase
+from physicslab.celestial import planets
+from physicslab.celestial._base import CelestialBase
 
 
 class TestCelestialExperiment(unittest.TestCase):
@@ -496,7 +496,7 @@ class TestCelestialElements(unittest.TestCase):
             for name, obj in inspect.getmembers(planets, inspect.isclass)
             if issubclass(obj, CelestialBase)
             and obj is not CelestialBase
-            and obj.__module__.startswith("physicsLab.celestial.")
+            and obj.__module__.startswith("physicslab.celestial.")
             and not name.startswith("_")
         }
 
