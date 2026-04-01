@@ -1,3 +1,5 @@
+"""Base class for electromagnetism experiment elements."""
+
 import abc
 from physicsLab import coordinate_system
 
@@ -30,6 +32,7 @@ class ElectromagnetismBase:
 
     @property
     def lock_status(self) -> bool:
+        """Whether this element is locked in place."""
         return self.__lock_status
 
     @lock_status.setter
@@ -43,6 +46,7 @@ class ElectromagnetismBase:
 
     @property
     def identifier(self) -> str:
+        """Unique string identifier for this element."""
         return self.__identifier
 
     @identifier.setter
@@ -56,6 +60,7 @@ class ElectromagnetismBase:
 
     @property
     def position(self) -> coordinate_system.Position:
+        """World-space position of this element."""
         return self.__position
 
     @position.setter
@@ -69,6 +74,7 @@ class ElectromagnetismBase:
 
     @property
     def rotation(self) -> coordinate_system.Rotation:
+        """Euler-angle rotation of this element."""
         return self.__rotation
 
     @rotation.setter
@@ -82,6 +88,7 @@ class ElectromagnetismBase:
 
     @property
     def velocity(self) -> coordinate_system.Velocity:
+        """Initial linear velocity of this element."""
         return self.__velocity
 
     @velocity.setter
@@ -95,6 +102,7 @@ class ElectromagnetismBase:
 
     @property
     def angular_velocity(self) -> coordinate_system.AngularVelocity:
+        """Initial angular velocity of this element."""
         return self.__angular_velocity
 
     @angular_velocity.setter
@@ -111,12 +119,14 @@ class ElectromagnetismBase:
     @staticmethod
     @abc.abstractmethod
     def zh_name() -> str:
+        """Return the Chinese name of this element type as used in Physics-Lab-AR."""
         raise NotImplementedError(
             "The method `zh_name` must be implemented in the subclass"
         )
 
     @abc.abstractmethod
     def as_dict(self) -> dict:
+        """Serialise this element to a dictionary for inclusion in a ``.plsav`` file."""
         raise NotImplementedError(
             "The method `as_dict` must be implemented in the subclass"
         )

@@ -96,6 +96,7 @@ class _Color:
 
     @final
     def cprint(self, file):
+        """Print this colored message to *file* using the appropriate color API."""
         if _USE_WIN32_COLOR_API:
             import ctypes
 
@@ -122,6 +123,8 @@ class _Color:
 
 
 class Black(_Color):
+    """Black-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 0
     else:
@@ -129,6 +132,8 @@ class Black(_Color):
 
 
 class Red(_Color):
+    """Red-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 4
     else:
@@ -136,6 +141,8 @@ class Red(_Color):
 
 
 class Green(_Color):
+    """Green-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 2
     else:
@@ -143,6 +150,8 @@ class Green(_Color):
 
 
 class Yellow(_Color):
+    """Yellow-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 6
     else:
@@ -150,6 +159,8 @@ class Yellow(_Color):
 
 
 class Blue(_Color):
+    """Blue-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 1
     else:
@@ -157,6 +168,8 @@ class Blue(_Color):
 
 
 class Magenta(_Color):
+    """Magenta-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 5
     else:
@@ -164,6 +177,8 @@ class Magenta(_Color):
 
 
 class Cyan(_Color):
+    """Cyan-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 3
     else:
@@ -171,6 +186,8 @@ class Cyan(_Color):
 
 
 class White(_Color):
+    """White-colored text wrapper."""
+
     if _USE_WIN32_COLOR_API:
         fore = 7
     else:
@@ -178,6 +195,14 @@ class White(_Color):
 
 
 def cprint(*args, end="\n", file=sys.stdout) -> None:
+    """Print colored and plain objects to *file*, similar to the built-in ``print``.
+
+    Args:
+        *args: Objects to print. ``_Color`` instances are printed with ANSI/Win32
+            color attributes; all other objects are passed through ``print``.
+        end: String appended after the last argument (default ``"\\n"``).
+        file: Output stream (``sys.stdout`` or ``sys.stderr``).
+    """
     # Flush before printing so buffered content is not affected by color changes on Windows.
     # e.g.
     # print("test")

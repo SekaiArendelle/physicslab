@@ -1,3 +1,4 @@
+"""Celestial body classes for all planet, star, moon, and exotic object types."""
 import uuid
 from ._base import CelestialBase
 from physicsLab import coordinate_system
@@ -5,6 +6,8 @@ from physicsLab._typing import final, Optional
 
 
 class Mercury(CelestialBase):
+    """Represents the planet Mercury."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -71,10 +74,13 @@ class Mercury(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "水星"
 
 
 class Venus(CelestialBase):
+    """Represents the planet Venus."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -141,10 +147,13 @@ class Venus(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "金星"
 
 
 class Earth(CelestialBase):
+    """Represents the planet Earth."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -211,10 +220,13 @@ class Earth(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "地球"
 
 
 class Mars(CelestialBase):
+    """Represents the planet Mars."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -281,10 +293,13 @@ class Mars(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "火星"
 
 
 class Jupiter(CelestialBase):
+    """Represents the planet Jupiter."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -351,10 +366,13 @@ class Jupiter(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "木星"
 
 
 class Saturn(CelestialBase):
+    """Represents the planet Saturn."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -421,10 +439,13 @@ class Saturn(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "土星"
 
 
 class Uranus(CelestialBase):
+    """Represents the planet Uranus."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -491,10 +512,13 @@ class Uranus(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "天王星"
 
 
 class Neptune(CelestialBase):
+    """Represents the planet Neptune."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -561,10 +585,13 @@ class Neptune(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "海王星"
 
 
 class Pluto(CelestialBase):
+    """Represents the dwarf planet Pluto."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -631,10 +658,13 @@ class Pluto(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "冥王星"
 
 
 class Sun(CelestialBase):
+    """Represents the Sun."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -701,10 +731,13 @@ class Sun(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "太阳"
 
 
 class BlueGiant(CelestialBase):
+    """Represents a blue giant star."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -771,10 +804,13 @@ class BlueGiant(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "蓝巨星"
 
 
 class RedGiant(CelestialBase):
+    """Represents a red giant star."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -841,10 +877,13 @@ class RedGiant(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "红巨星"
 
 
 class RedDwarf(CelestialBase):
+    """Represents a red dwarf star."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -911,10 +950,13 @@ class RedDwarf(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "红矮星"
 
 
 class WhiteDwarf(CelestialBase):
+    """Represents a white dwarf star."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -981,10 +1023,13 @@ class WhiteDwarf(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "白矮星"
 
 
 class Blackhole(CelestialBase):
+    """Represents a black hole."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1051,10 +1096,13 @@ class Blackhole(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "黑洞"
 
 
 class FantasyStar(CelestialBase):
+    """Represents a fantasy star"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1121,10 +1169,13 @@ class FantasyStar(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "幻想恒星"
 
 
 class Moon(CelestialBase):
+    """Represents the Moon."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1191,10 +1242,13 @@ class Moon(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "月球"
 
 
 class ChocolateBall(CelestialBase):
+    """Represents a chocolate ballcelestial body."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1261,10 +1315,13 @@ class ChocolateBall(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "巧克力球"
 
 
 class Continential(CelestialBase):
+    """Represents a continental planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1331,10 +1388,13 @@ class Continential(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "大陆行星"
 
 
 class Arctic(CelestialBase):
+    """Represents a frozen arctic planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1401,10 +1461,13 @@ class Arctic(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "封冻行星"
 
 
 class Arid(CelestialBase):
+    """Represents an arid planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1471,10 +1534,13 @@ class Arid(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "干旱行星"
 
 
 class Barren(CelestialBase):
+    """Represents a barren planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1541,10 +1607,13 @@ class Barren(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "贫瘠行星"
 
 
 class Desert(CelestialBase):
+    """Represents a desert planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1611,10 +1680,13 @@ class Desert(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "沙漠行星"
 
 
 class Jungle(CelestialBase):
+    """Represents a jungle planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1681,10 +1753,13 @@ class Jungle(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "丛林行星"
 
 
 class Toxic(CelestialBase):
+    """Represents a toxic planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1751,10 +1826,13 @@ class Toxic(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "剧毒行星"
 
 
 class Lava(CelestialBase):
+    """Represents a lava planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1821,10 +1899,13 @@ class Lava(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "熔岩行星"
 
 
 class Ocean(CelestialBase):
+    """Represents an ocean planet"""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1891,4 +1972,5 @@ class Ocean(CelestialBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Returns the Chinese name of this celestial body."""
         return "海洋行星"

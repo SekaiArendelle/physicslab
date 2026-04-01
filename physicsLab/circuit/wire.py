@@ -1,7 +1,11 @@
+"""Wire metadata types for circuit connections."""
+
 from physicsLab.enums import ColorOfWire
 
 
 class WireInfo:
+    """Metadata associated with a single wire between two circuit pins."""
+
     __color: ColorOfWire
 
     def __init__(self, color: ColorOfWire = ColorOfWire.blue) -> None:
@@ -9,6 +13,7 @@ class WireInfo:
 
     @property
     def color(self) -> ColorOfWire:
+        """Color of this wire."""
         return self.__color
 
     @color.setter

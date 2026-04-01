@@ -1,3 +1,5 @@
+"""Custom exception types and error helpers for physicsLab."""
+
 from ._typing import NoReturn
 
 BUG_REPORT: str = (
@@ -8,17 +10,23 @@ BUG_REPORT: str = (
 
 
 class UnreachableError(Exception):
+    """Raised when code that should never execute is reached."""
+
     def __init__(self) -> None: ...
 
     def __str__(self) -> str:
+        """Return a human-readable description including a bug-report link."""
         return f"Unreachable touched, {BUG_REPORT}"
 
 
 def unreachable() -> NoReturn:
+    """Raise ``UnreachableError`` to signal that an unreachable code path was hit."""
     raise UnreachableError()
 
 
 class InvalidWireError(Exception):
+    """Raised when an invalid wire connection is attempted."""
+
     __msg: str
 
     def __init__(self, msg: str) -> None:
@@ -65,6 +73,8 @@ class ExperimentTypeError(Exception):
 
 
 class ElementNotExistError(Exception):
+    """Raised when a requested circuit or experiment element cannot be found."""
+
     def __init__(self, err_msg: str = "Can't find element") -> None:
         self.err_msg = err_msg
 
@@ -73,6 +83,8 @@ class ElementNotExistError(Exception):
 
 
 class ElementExistError(Exception):
+    """Raised when a duplicate element is added to an experiment."""
+
     def __init__(self, err_msg: str) -> None:
         assert isinstance(err_msg, str)
         self.err_msg = err_msg

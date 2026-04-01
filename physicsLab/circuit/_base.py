@@ -1,9 +1,13 @@
+"""Base classes for circuit elements and pin connections."""
+
 import abc
 from physicsLab import coordinate_system
 from physicsLab._typing import Optional, CircuitElementData, Iterator, Tuple
 
 
 class CircuitBase:
+    """Abstract base class for all circuit elements."""
+
     __position: coordinate_system.Position
     __rotation: coordinate_system.Rotation
     __identifier: str
@@ -31,6 +35,7 @@ class CircuitBase:
 
     @property
     def identifier(self) -> str:
+        """Unique string identifier for this element."""
         return self.__identifier
 
     @identifier.setter
@@ -43,6 +48,7 @@ class CircuitBase:
 
     @property
     def rotation(self) -> coordinate_system.Rotation:
+        """Euler-angle rotation of this element."""
         return self.__rotation
 
     @rotation.setter
@@ -56,6 +62,7 @@ class CircuitBase:
 
     @property
     def position(self) -> coordinate_system.Position:
+        """World-space position of this element."""
         return self.__position
 
     @position.setter
@@ -72,6 +79,7 @@ class CircuitBase:
 
     @property
     def lock_status(self) -> bool:
+        """Whether this element is locked in place."""
         return self.__lock_status
 
     @lock_status.setter
@@ -85,6 +93,7 @@ class CircuitBase:
 
     @property
     def label(self) -> Optional[str]:
+        """Optional user-visible label for this element."""
         return self.__label
 
     @label.setter
@@ -98,12 +107,14 @@ class CircuitBase:
 
     @abc.abstractmethod
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a ``CircuitElementData`` dict."""
         raise NotImplementedError(
             "Subclasses of CircuitBase must implement the as_dict method"
         )
 
     @abc.abstractmethod
     def all_pins(self) -> Iterator[Tuple[str, "Pin"]]:
+        """Yield ``(attribute_name, pin)`` pairs for every pin on this element."""
         raise NotImplementedError(
             "Subclasses of CircuitBase must implement the all_pins method"
         )
@@ -111,18 +122,22 @@ class CircuitBase:
     @staticmethod
     @abc.abstractmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         raise NotImplementedError(
             "Subclasses of CircuitBase must implement the count_all_pins method"
         )
 
     @abc.abstractmethod
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         raise NotImplementedError(
             "Subclasses of CircuitBase must implement the to_constructor_str method"
         )
 
 
 class Pin:
+    """A single electrical pin on a circuit element."""
+
     __element: CircuitBase
     __pin_label: int
     __pin_name: str
@@ -134,6 +149,7 @@ class Pin:
 
     @property
     def element(self) -> CircuitBase:
+        """The circuit element that owns this pin."""
         return self.__element
 
     @element.setter
@@ -147,6 +163,7 @@ class Pin:
 
     @property
     def pin_label(self) -> int:
+        """Numeric label identifying this pin on its element."""
         return self.__pin_label
 
     @pin_label.setter
@@ -160,6 +177,7 @@ class Pin:
 
     @property
     def pin_name(self) -> str:
+        """Human-readable name for this pin."""
         return self.__pin_name
 
     @pin_name.setter

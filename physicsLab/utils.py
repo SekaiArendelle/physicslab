@@ -1,3 +1,5 @@
+"""Utility helpers for working with Physics-Lab-AR save files."""
+
 import uuid
 import json
 import pathlib
@@ -13,12 +15,24 @@ def id_to_time(id: str) -> datetime:
 
 
 def generate_a_new_sav_path() -> pathlib.Path:
+    """Generate a unique ``.sav`` file path inside the experiment directory."""
     return pathlib.Path(
         constant.QUANTAM_PHYSICS_EXPERIMENT_DIR / str(uuid.uuid4())
     ).with_suffix(".sav")
 
 
 def find_path_of_sav_name(sav_name: str) -> Optional[pathlib.Path]:
+    """Search for the ``.sav`` file whose experiment subject matches *sav_name*.
+
+    Args:
+        sav_name: The experiment name to look up (as displayed in Physics-Lab-AR).
+
+    Returns:
+        The path to the matching save file, or ``None`` if not found.
+
+    Raises:
+        TypeError: If *sav_name* is not a string.
+    """
     if not isinstance(sav_name, str):
         raise TypeError(
             f"sav_name must be of type `str`, but got value {sav_name} of type {type(sav_name).__name__}"

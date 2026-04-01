@@ -1,3 +1,4 @@
+"""Base class definition for celestial body elements."""
 import abc
 from physicsLab import coordinate_system
 
@@ -24,6 +25,7 @@ class CelestialBase:
 
     @property
     def identifier(self) -> str:
+        """Returns the unique string identifier of this celestial element."""
         return self.__identifier
 
     @identifier.setter
@@ -37,6 +39,7 @@ class CelestialBase:
 
     @property
     def position(self) -> coordinate_system.Position:
+        """Returns the position of this celestial element."""
         return self.__position
 
     @position.setter
@@ -50,6 +53,7 @@ class CelestialBase:
 
     @property
     def velocity(self) -> coordinate_system.Velocity:
+        """Returns the velocity of this celestial element."""
         return self.__velocity
 
     @velocity.setter
@@ -63,6 +67,7 @@ class CelestialBase:
 
     @property
     def acceleration(self) -> coordinate_system.Acceleration:
+        """Returns the acceleration of this celestial element."""
         return self.__acceleration
 
     @acceleration.setter
@@ -76,12 +81,14 @@ class CelestialBase:
 
     @abc.abstractmethod
     def as_dict(self) -> dict:
+        """Subclasses must return a dict representation of this element for saving to a .plsav file."""
         raise NotImplementedError(
             "The method `as_dict` must be implemented in the subclass"
         )
 
     @abc.abstractmethod
     def to_constructor_str(self) -> str:
+        """Subclasses must return a Python constructor call string that recreates this element."""
         raise NotImplementedError(
             "The method `to_constructor_str` must be implemented in the subclass"
         )

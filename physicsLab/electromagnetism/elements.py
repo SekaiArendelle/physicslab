@@ -1,3 +1,5 @@
+"""Concrete electromagnetism element classes (charges, magnets, etc.)."""
+
 import uuid
 from physicsLab import coordinate_system
 from ._base import ElectromagnetismBase
@@ -5,6 +7,8 @@ from physicsLab._typing import Optional
 
 
 class NegativeCharge(ElectromagnetismBase):
+    """A negative point charge element in an electromagnetism experiment."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -34,6 +38,7 @@ class NegativeCharge(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"NegativeCharge("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -50,6 +55,8 @@ class NegativeCharge(ElectromagnetismBase):
 
 
 class PositiveCharge(ElectromagnetismBase):
+    """A positive point charge element in an electromagnetism experiment."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -79,6 +86,7 @@ class PositiveCharge(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"PositiveCharge("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -95,6 +103,8 @@ class PositiveCharge(ElectromagnetismBase):
 
 
 class NegativeTestCharge(ElectromagnetismBase):
+    """A small negative test charge element used to probe electric fields."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -128,6 +138,7 @@ class NegativeTestCharge(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"NegativeTestCharge("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -144,6 +155,8 @@ class NegativeTestCharge(ElectromagnetismBase):
 
 
 class PositiveTestCharge(ElectromagnetismBase):
+    """A small positive test charge element used to probe electric fields."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -177,6 +190,7 @@ class PositiveTestCharge(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"PositiveTestCharge("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -193,6 +207,8 @@ class PositiveTestCharge(ElectromagnetismBase):
 
 
 class BarMagnet(ElectromagnetismBase):
+    """A bar magnet element in an electromagnetism experiment."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -222,6 +238,7 @@ class BarMagnet(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"BarMagnet("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -238,6 +255,8 @@ class BarMagnet(ElectromagnetismBase):
 
 
 class Compass(ElectromagnetismBase):
+    """A compass element that responds to magnetic fields."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -267,6 +286,7 @@ class Compass(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"Compass("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -283,6 +303,8 @@ class Compass(ElectromagnetismBase):
 
 
 class UniformMagneticField(ElectromagnetismBase):
+    """A uniform magnetic field element in an electromagnetism experiment."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -312,6 +334,7 @@ class UniformMagneticField(ElectromagnetismBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"UniformMagneticField("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "

@@ -1,3 +1,5 @@
+"""Circuit element classes for the physicsLab circuit package."""
+
 from .basicCircuit import *
 from .logicCircuit import *
 from .artificialCircuit import *

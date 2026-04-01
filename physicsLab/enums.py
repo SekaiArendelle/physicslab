@@ -1,3 +1,5 @@
+"""Enumerations used across the physicsLab package."""
+
 from enum import Enum, unique
 
 
@@ -64,6 +66,8 @@ class OpenMode(Enum):
 
 @unique
 class ColorOfWire(Enum):
+    """Wire color options for circuit connections."""
+
     black = "黑"
     blue = "蓝"
     red = "红"
@@ -73,18 +77,24 @@ class ColorOfWire(Enum):
 
 @unique
 class GetUserMode(Enum):
+    """Mode for looking up a community user account."""
+
     by_id = 0
     by_name = 1
 
 
 @unique
 class SwitchState(Enum):
+    """On/off state for a two-position switch element."""
+
     OFF = 0
     ON = 1
 
 
 @unique
 class PDTSwitchState(Enum):
+    """State for a three-position (PDT) switch element."""
+
     OFF = 0
     LEFT = 1
     RIGHT = 2

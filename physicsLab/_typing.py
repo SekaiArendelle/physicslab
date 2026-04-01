@@ -1,3 +1,5 @@
+"""Shared typing aliases and TypedDict definitions used across physicsLab."""
+
 from typing import *
 from typing_extensions import * # type: ignore
 
@@ -5,6 +7,8 @@ num_type: TypeAlias = Union[int, float]
 
 
 class CircuitElementData(TypedDict):
+    """TypedDict representing the raw JSON structure of a circuit element."""
+
     ModelID: str
     IsBroken: bool
     IsLocked: bool

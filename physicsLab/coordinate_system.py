@@ -1,7 +1,16 @@
+"""3-D coordinate system types used throughout physicsLab.
+
+Provides typed vector classes (Position, Rotation, Velocity, AngularVelocity,
+Acceleration) and helpers for serialising/deserialising them to and from the
+``.plsav`` string format used by Physics-Lab-AR.
+"""
+
 from ._typing import num_type
 
 
 class Position:
+    """An immutable 3-D position vector (x, y, z)."""
+
     x: num_type
     y: num_type
     z: num_type
@@ -39,10 +48,23 @@ class Position:
         return self.x == value.x and self.y == value.y and self.z == value.z
 
     def as_postion_str_in_plsav(self) -> str:
+        """Return the position as a comma-separated string in plsav format (x,z,y)."""
         return f"{self.x},{self.z},{self.y}"
 
 
 def construct_position_from_plsav_str(position_str: str) -> Position:
+    """Construct a Position from a plsav-format string.
+
+    Args:
+        position_str: A string of the form ``"x,z,y"`` where each token is a
+            number, as produced by Physics-Lab-AR save files.
+
+    Returns:
+        The corresponding Position instance.
+
+    Raises:
+        ValueError: If the string cannot be parsed.
+    """
     try:
         x_str, z_str, y_str = position_str.split(",")
         x = float(x_str)
@@ -56,6 +78,8 @@ def construct_position_from_plsav_str(position_str: str) -> Position:
 
 
 class Rotation:
+    """An immutable 3-D rotation vector (x, y, z) in Euler angles."""
+
     x: num_type
     y: num_type
     z: num_type
@@ -93,10 +117,23 @@ class Rotation:
         return self.x == value.x and self.y == value.y and self.z == value.z
 
     def as_rotation_str_in_plsav(self) -> str:
+        """Return the rotation as a comma-separated string in plsav format (x,z,y)."""
         return f"{self.x},{self.z},{self.y}"
 
 
 def construct_rotation_from_plsav_str(rotation_str: str) -> Rotation:
+    """Construct a Rotation from a plsav-format string.
+
+    Args:
+        rotation_str: A string of the form ``"x,z,y"`` where each token is a
+            number, as produced by Physics-Lab-AR save files.
+
+    Returns:
+        The corresponding Rotation instance.
+
+    Raises:
+        ValueError: If the string cannot be parsed.
+    """
     try:
         x_str, z_str, y_str = rotation_str.split(",")
         x = float(x_str)
@@ -110,6 +147,8 @@ def construct_rotation_from_plsav_str(rotation_str: str) -> Rotation:
 
 
 class Velocity:
+    """An immutable 3-D velocity vector (x, y, z)."""
+
     x: num_type
     y: num_type
     z: num_type
@@ -147,10 +186,23 @@ class Velocity:
         return self.x == value.x and self.y == value.y and self.z == value.z
 
     def as_velocity_str_in_plsav(self) -> str:
+        """Return the velocity as a comma-separated string in plsav format (x,z,y)."""
         return f"{self.x},{self.z},{self.y}"
 
 
 def construct_velocity_from_plsav_str(velocity_str: str) -> Velocity:
+    """Construct a Velocity from a plsav-format string.
+
+    Args:
+        velocity_str: A string of the form ``"x,z,y"`` where each token is a
+            number, as produced by Physics-Lab-AR save files.
+
+    Returns:
+        The corresponding Velocity instance.
+
+    Raises:
+        ValueError: If the string cannot be parsed.
+    """
     try:
         x_str, z_str, y_str = velocity_str.split(",")
         x = float(x_str)
@@ -164,6 +216,8 @@ def construct_velocity_from_plsav_str(velocity_str: str) -> Velocity:
 
 
 class AngularVelocity:
+    """An immutable 3-D angular velocity vector (x, y, z)."""
+
     x: num_type
     y: num_type
     z: num_type
@@ -201,12 +255,25 @@ class AngularVelocity:
         return self.x == value.x and self.y == value.y and self.z == value.z
 
     def as_angular_velocity_str_in_plsav(self) -> str:
+        """Return the angular velocity as a comma-separated string in plsav format (x,z,y)."""
         return f"{self.x},{self.z},{self.y}"
 
 
 def construct_angular_velocity_from_plsav_str(
     angular_velocity_str: str,
 ) -> AngularVelocity:
+    """Construct an AngularVelocity from a plsav-format string.
+
+    Args:
+        angular_velocity_str: A string of the form ``"x,z,y"`` where each token
+            is a number, as produced by Physics-Lab-AR save files.
+
+    Returns:
+        The corresponding AngularVelocity instance.
+
+    Raises:
+        ValueError: If the string cannot be parsed.
+    """
     try:
         x_str, z_str, y_str = angular_velocity_str.split(",")
         x = float(x_str)
@@ -220,6 +287,8 @@ def construct_angular_velocity_from_plsav_str(
 
 
 class Acceleration:
+    """An immutable 3-D acceleration vector (x, y, z)."""
+
     x: num_type
     y: num_type
     z: num_type
@@ -257,10 +326,23 @@ class Acceleration:
         return self.x == value.x and self.y == value.y and self.z == value.z
 
     def as_acceleration_str_in_plsav(self) -> str:
+        """Return the acceleration as a comma-separated string in plsav format (x,z,y)."""
         return f"{self.x},{self.z},{self.y}"
 
 
 def construct_acceleration_from_plsav_str(acceleration_str: str) -> Acceleration:
+    """Construct an Acceleration from a plsav-format string.
+
+    Args:
+        acceleration_str: A string of the form ``"x,z,y"`` where each token is
+            a number, as produced by Physics-Lab-AR save files.
+
+    Returns:
+        The corresponding Acceleration instance.
+
+    Raises:
+        ValueError: If the string cannot be parsed.
+    """
     try:
         x_str, z_str, y_str = acceleration_str.split(",")
         x = float(x_str)

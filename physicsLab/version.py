@@ -1,7 +1,11 @@
+"""Version information for the physicsLab package."""
+
 from typing import Tuple
 
 
 class _Version:
+    """Semantic version container supporting comparison operators."""
+
     __major: int
     __minor: int
     __patch: int
@@ -16,6 +20,7 @@ class _Version:
 
     @property
     def major(self) -> int:
+        """Major version number."""
         return self.__major
 
     @major.setter
@@ -28,6 +33,7 @@ class _Version:
 
     @property
     def minor(self) -> int:
+        """Minor version number."""
         return self.__minor
 
     @minor.setter
@@ -40,6 +46,7 @@ class _Version:
 
     @property
     def patch(self) -> int:
+        """Patch version number."""
         return self.__patch
 
     @patch.setter
@@ -54,6 +61,7 @@ class _Version:
         return f"{self.major}.{self.minor}.{self.patch}"
 
     def to_tuple(self) -> Tuple[int, int, int]:
+        """Return the version as a ``(major, minor, patch)`` tuple."""
         return self.major, self.minor, self.patch
 
     def __eq__(self, value: object) -> bool:

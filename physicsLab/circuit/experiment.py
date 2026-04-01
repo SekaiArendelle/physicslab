@@ -1,3 +1,5 @@
+"""High-level circuit experiment API."""
+
 import json
 import pathlib
 import time
@@ -16,6 +18,8 @@ from .wire import WireInfo
 
 
 class CircuitExperiment:
+    """Represents a complete circuit experiment with elements, wires and camera state."""
+
     __name: Optional[str]
     __status_save: CircuitStatusSave
     __camera_save: CameraSave
@@ -42,6 +46,7 @@ class CircuitExperiment:
 
     @property
     def name(self) -> Optional[str]:
+        """Display name of this experiment (may be ``None``)."""
         return self.__name
 
     @name.setter
@@ -55,6 +60,7 @@ class CircuitExperiment:
 
     @property
     def status_save(self) -> CircuitStatusSave:
+        """Runtime state (elements and wires) of this experiment."""
         return self.__status_save
 
     @status_save.setter
@@ -68,6 +74,7 @@ class CircuitExperiment:
 
     @property
     def camera_save(self) -> CameraSave:
+        """Camera state saved with this experiment."""
         return self.__camera_save
 
     @camera_save.setter
@@ -80,30 +87,37 @@ class CircuitExperiment:
         self.__camera_save = camera_save
 
     def crt_a_element(self, element: CircuitBase) -> Self:
+        """Add a single element to this experiment and return ``self``."""
         self.status_save.append_element(element)
         return self
 
     def crt_elements(self, *elements: CircuitBase) -> Self:
+        """Add multiple elements to this experiment and return ``self``."""
         for element in elements:
             self.crt_a_element(element)
         return self
 
     def del_a_element(self, element: CircuitBase) -> Self:
+        """Remove a single element (and all its wires) from this experiment."""
         self.status_save.remove_element(element)
         return self
 
     def get_elements_count(self) -> int:
+        """Return the total number of elements in this experiment."""
         return len(self.status_save.elements)
 
     def get_element_by_index(self, index: int) -> CircuitBase:
+        """Return the element at position *index* in insertion order."""
         return self.status_save.get_element_by_index(index)
 
     def get_element_by_id(self, identifier: str) -> CircuitBase:
+        """Return the element with the given *identifier*."""
         return self.status_save.get_element_by_id(identifier)
 
     def get_element_by_position(
         self, position: coordinate_system.Position
     ) -> CircuitBase:
+        """Return the element located at *position*."""
         return self.status_save.get_element_by_position(position)
 
     def crt_a_wire(
@@ -112,6 +126,7 @@ class CircuitExperiment:
         target_pin: Pin,
         color: ColorOfWire = ColorOfWire.blue,
     ) -> Self:
+        """Create a wire between *source_pin* and *target_pin* with the given *color*."""
         if not isinstance(source_pin, Pin):
             raise TypeError(
                 f"parameter source_pin must be of type `Pin`, but got value {source_pin} of type {type(source_pin).__name__}"
@@ -138,6 +153,7 @@ class CircuitExperiment:
         *target_pins: Pin,
         color: ColorOfWire = ColorOfWire.blue,
     ) -> Self:
+        """Connect *source_pin* to each of *target_pins* with wires of the given *color*."""
         if len(target_pins) == 0:
             raise ValueError("At least one target pin is required")
 
@@ -146,18 +162,22 @@ class CircuitExperiment:
         return self
 
     def del_a_wire(self, source_pin: Pin, target_pin: Pin) -> Self:
+        """Remove the wire connecting *source_pin* and *target_pin*."""
         self.status_save.remove_wire(source_pin, target_pin)
 
         return self
 
     def clear_wires(self) -> Self:
+        """Remove all wires from this experiment and return ``self``."""
         self.status_save.circuit_graph.clear()
         return self
 
     def get_wires_count(self) -> int:
+        """Return the total number of wires in this experiment."""
         return self.status_save.circuit_graph.count_edges()
 
     def as_plsav_dict(self) -> dict:
+        """Serialise this experiment to a ``plsav`` dictionary."""
         return {
             "Type": 0,
             "Experiment": {
@@ -236,6 +256,7 @@ class CircuitExperiment:
         }
 
     def save_to(self, path: pathlib.Path) -> None:
+        """Write this experiment to *path* as a ``.plsav`` JSON file."""
         if not isinstance(path, pathlib.Path):
             raise TypeError(
                 f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
@@ -244,6 +265,7 @@ class CircuitExperiment:
             json.dump(self.as_plsav_dict(), f, ensure_ascii=True)
 
     def merge(self, other: "CircuitExperiment") -> Self:
+        """Merge all elements and wires from *other* into this experiment."""
         if not isinstance(other, CircuitExperiment):
             raise TypeError(
                 f"parameter other must be of type `CircuitExperiment`, but got value {other} of type {type(other).__name__}"
@@ -1019,10 +1041,24 @@ def _dict_to_element(element_dict: dict) -> CircuitBase:
 
 
 def crt_circuit_experiment(name: Optional[str]) -> CircuitExperiment:
+    """Create and return a new empty circuit experiment with the given *name*."""
     return CircuitExperiment(name)
 
 
 def load_circuit_experiment_by_file_path(path: pathlib.Path) -> CircuitExperiment:
+    """Load a circuit experiment from a ``.plsav`` file at *path*.
+
+    Args:
+        path: Path to the ``.plsav`` file.
+
+    Returns:
+        The loaded ``CircuitExperiment`` instance.
+
+    Raises:
+        TypeError: If *path* is not a ``pathlib.Path``.
+        ExperimentNotExistError: If the file does not exist.
+        ExperimentTypeError: If the file does not contain a circuit experiment.
+    """
     if not isinstance(path, pathlib.Path):
         raise TypeError(
             f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
@@ -1073,6 +1109,17 @@ def load_circuit_experiment_by_file_path(path: pathlib.Path) -> CircuitExperimen
 def load_circuit_experiment_by_sav_name(
     sav_name: str,
 ) -> Tuple[CircuitExperiment, pathlib.Path]:
+    """Load a circuit experiment by its save-file display name.
+
+    Args:
+        sav_name: The experiment name as displayed in Physics-Lab-AR.
+
+    Returns:
+        A ``(experiment, path)`` tuple.
+
+    Raises:
+        ExperimentNotExistError: If no matching save file is found.
+    """
     file = find_path_of_sav_name(sav_name)
     if file is None:
         raise errors.ExperimentNotExistError(
@@ -1087,6 +1134,20 @@ def load_circuit_experiment_from_app(
     category: Category,
     user: User = anonymous_login(),
 ) -> CircuitExperiment:
+    """Download and load a circuit experiment from Physics-Lab-AR.
+
+    Args:
+        content_id: The community content ID.
+        category: The community content category.
+        user: Authenticated user session (defaults to anonymous login).
+
+    Returns:
+        The loaded ``CircuitExperiment`` instance.
+
+    Raises:
+        TypeError: If any argument has an unexpected type.
+        ExperimentTypeError: If the content is not a circuit experiment.
+    """
     if not isinstance(content_id, str):
         raise TypeError(
             f"content_id must be of type `str`, but got value {content_id} of type {type(content_id).__name__}`"

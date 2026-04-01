@@ -1,3 +1,5 @@
+"""Storage path constants for Physics-Lab-AR save files."""
+
 import os
 import pathlib
 import platform

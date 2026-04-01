@@ -1,3 +1,5 @@
+"""Quantum-physics experiment utilities for the physicsLab package."""
+
 import platform
 
 import os

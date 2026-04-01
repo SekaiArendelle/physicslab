@@ -1,3 +1,5 @@
+"""Camera state serialisation for Physics-Lab-AR save files."""
+
 import json
 from enum import Enum, unique
 from physicsLab._typing import num_type
@@ -6,12 +8,16 @@ from physicsLab import coordinate_system
 
 @unique
 class CameraMode(Enum):
+    """The experiment type that determines the camera perspective."""
+
     circuit_mode = 0
     electromagnetism_mode = 1
     celestial_mode = 2
 
 
 class CameraSave:
+    """Camera state persisted inside a Physics-Lab-AR ``.plsav`` file."""
+
     __camera_mode: CameraMode
     __distance: num_type
     __vision_center: coordinate_system.Position
@@ -31,6 +37,7 @@ class CameraSave:
 
     @property
     def camera_mode(self) -> CameraMode:
+        """Active camera mode (circuit, electromagnetism or celestial)."""
         return self.__camera_mode
 
     @camera_mode.setter
@@ -44,6 +51,7 @@ class CameraSave:
 
     @property
     def distance(self) -> num_type:
+        """Distance from the camera to its focal point."""
         return self.__distance
 
     @distance.setter
@@ -57,6 +65,7 @@ class CameraSave:
 
     @property
     def vision_center(self) -> coordinate_system.Position:
+        """World-space position that the camera is looking at."""
         return self.__vision_center
 
     @vision_center.setter
@@ -70,6 +79,7 @@ class CameraSave:
 
     @property
     def target_rotation(self) -> coordinate_system.Rotation:
+        """Target rotation of the camera in Euler angles."""
         return self.__target_rotation
 
     @target_rotation.setter
@@ -82,6 +92,7 @@ class CameraSave:
         self.__target_rotation = target_rotation
 
     def as_dict(self) -> dict:
+        """Serialise the camera state to a plain dictionary."""
         return {
             "Mode": self.camera_mode.value,
             "Distance": self.distance,
@@ -90,4 +101,5 @@ class CameraSave:
         }
 
     def as_str_in_plsav(self) -> str:
+        """Serialise the camera state to a JSON string for use in a ``.plsav`` file."""
         return json.dumps(self.as_dict())
