@@ -1,3 +1,4 @@
+"""CelestialExperiment class and factory functions for Physics-Lab-AR celestial experiments."""
 import time
 import json
 import pathlib
@@ -14,6 +15,8 @@ from physicsLab._camera_save import CameraMode, CameraSave
 
 
 class CelestialExperiment:
+    """Manages a celestial experiment with elements and camera settings."""
+
     __name: Optional[str]
     __status_save: CelestialStatusSave
     __camera_save: CameraSave
@@ -40,6 +43,7 @@ class CelestialExperiment:
 
     @property
     def name(self) -> Optional[str]:
+        """Returns the experiment name."""
         return self.__name
 
     @name.setter
@@ -53,6 +57,7 @@ class CelestialExperiment:
 
     @property
     def status_save(self) -> CelestialStatusSave:
+        """Returns the status save containing all celestial elements."""
         return self.__status_save
 
     @status_save.setter
@@ -66,6 +71,7 @@ class CelestialExperiment:
 
     @property
     def camera_save(self) -> CameraSave:
+        """Returns the camera save configuration."""
         return self.__camera_save
 
     @camera_save.setter
@@ -78,36 +84,44 @@ class CelestialExperiment:
         self.__camera_save = camera_save
 
     def crt_a_element(self, element: CelestialBase) -> Self:
+        """Adds a single celestial element to the experiment."""
         self.status_save.append_element(element)
 
         return self
 
     def crt_elements(self, *elements: CelestialBase) -> Self:
+        """Adds multiple celestial elements to the experiment."""
         for element in elements:
             self.crt_a_element(element)
 
         return self
 
     def del_a_element(self, element: CelestialBase) -> Self:
+        """Removes a celestial element from the experiment."""
         self.status_save.remove_element(element)
 
         return self
 
     def get_elements_count(self) -> int:
+        """Returns the number of celestial elements in the experiment."""
         return len(self.status_save.elements)
 
     def get_element_by_index(self, index: int) -> CelestialBase:
+        """Returns the celestial element at the given index."""
         return self.status_save.get_element_by_index(index)
 
     def get_element_by_id(self, identifier: str) -> CelestialBase:
+        """Returns the celestial element with the given identifier."""
         return self.status_save.get_element_by_id(identifier)
 
     def get_element_by_position(
         self, position: coordinate_system.Position
     ) -> CelestialBase:
+        """Returns the celestial element at the given position."""
         return self.status_save.get_element_by_position(position)
 
     def as_plsav_dict(self) -> dict:
+        """Returns the full .plsav dict representation of this experiment."""
         return {
             "Type": 3,
             "Experiment": {
@@ -185,6 +199,14 @@ class CelestialExperiment:
         }
 
     def save_to(self, path: pathlib.Path) -> None:
+        """Saves the experiment to a .plsav file at the given path.
+
+        Args:
+            path: The filesystem path of the target .plsav file.
+
+        Raises:
+            TypeError: If path is not a pathlib.Path instance.
+        """
         if not isinstance(path, pathlib.Path):
             raise TypeError(
                 f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
@@ -194,6 +216,17 @@ class CelestialExperiment:
             json.dump(self.as_plsav_dict(), f, ensure_ascii=True)
 
     def merge(self, other: "CelestialExperiment") -> Self:
+        """Merges another CelestialExperiment's elements into this one.
+
+        Args:
+            other: The CelestialExperiment whose elements to merge in.
+
+        Returns:
+            Self, to allow method chaining.
+
+        Raises:
+            TypeError: If other is not a CelestialExperiment instance.
+        """
         if not isinstance(other, CelestialExperiment):
             raise TypeError(
                 f"parameter other must be of type `CelestialExperiment`, but got value {other} of type {type(other).__name__}"
@@ -276,12 +309,33 @@ def _dict_to_element(element_dict: dict) -> CelestialBase:
 
 
 def crt_celestial_experiment(name: Optional[str]) -> CelestialExperiment:
+    """Creates and returns a new CelestialExperiment with the given name.
+
+    Args:
+        name: The name for the new experiment, or None.
+
+    Returns:
+        A new CelestialExperiment instance.
+    """
     return CelestialExperiment(name)
 
 
 def load_celestial_experiment_by_file_path(
     path: pathlib.Path,
 ) -> CelestialExperiment:
+    """Loads a CelestialExperiment from a .plsav file path.
+
+    Args:
+        path: The filesystem path to the .plsav file.
+
+    Returns:
+        A CelestialExperiment populated with elements from the file.
+
+    Raises:
+        TypeError: If path is not a pathlib.Path instance.
+        ExperimentNotExistError: If the file does not exist.
+        ExperimentTypeError: If the file does not contain a celestial experiment.
+    """
     if not isinstance(path, pathlib.Path):
         raise TypeError(
             f"path must be of type `Path`, but got value {path} of type {type(path).__name__}"
@@ -322,7 +376,17 @@ def load_celestial_experiment_by_file_path(
 def load_celestial_experiment_by_sav_name(
     sav_name: str,
 ) -> Tuple[CelestialExperiment, pathlib.Path]:
-    file = find_path_of_sav_name(sav_name)
+    """Finds and loads a CelestialExperiment by its save name.
+
+    Args:
+        sav_name: The save name to search for.
+
+    Returns:
+        A tuple of (CelestialExperiment, Path) for the located experiment.
+
+    Raises:
+        ExperimentNotExistError: If no experiment with that name is found.
+    """
     if file is None:
         raise errors.ExperimentNotExistError(
             f'Experiment with name "{sav_name}" does not exist'
@@ -334,7 +398,20 @@ def load_celestial_experiment_by_sav_name(
 def load_celestial_experiment_from_app(
     content_id: str, category: Category, user: User = anonymous_login()
 ) -> CelestialExperiment:
-    if not isinstance(content_id, str):
+    """Downloads and loads a CelestialExperiment from the Physics-Lab-AR app server.
+
+    Args:
+        content_id: The content ID of the experiment on the server.
+        category: The Category enum value for the experiment.
+        user: The User to authenticate with; defaults to anonymous login.
+
+    Returns:
+        A CelestialExperiment populated with elements from the server.
+
+    Raises:
+        TypeError: If content_id, category, or user have incorrect types.
+        ExperimentTypeError: If the server content is not a celestial experiment.
+    """
         raise TypeError(
             f"content_id must be of type `str`, but got value {content_id} of type {type(content_id).__name__}`"
         )

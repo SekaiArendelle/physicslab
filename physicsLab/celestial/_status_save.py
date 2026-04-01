@@ -1,3 +1,4 @@
+"""Save-state container for celestial experiment elements and simulation settings."""
 import uuid
 import json
 from physicsLab import coordinate_system
@@ -7,6 +8,8 @@ from . import _base
 
 
 class CelestialStatusSave:
+    """Manages a collection of celestial elements and their simulation settings."""
+
     __elements: List[_base.CelestialBase]
     __id2element: Dict[str, _base.CelestialBase]
     __position2element: Dict[coordinate_system.Position, _base.CelestialBase]
@@ -34,18 +37,22 @@ class CelestialStatusSave:
 
     @property
     def elements(self) -> List[_base.CelestialBase]:
+        """Returns the list of all celestial elements."""
         return self.__elements
 
     @property
     def id2element(self) -> Dict[str, _base.CelestialBase]:
+        """Returns the dict mapping element identifiers to elements."""
         return self.__id2element
 
     @property
     def position2element(self) -> Dict[coordinate_system.Position, _base.CelestialBase]:
+        """Returns the dict mapping element positions to elements."""
         return self.__position2element
 
     @property
     def main_identifier(self) -> str:
+        """Returns the main identifier string of this status save."""
         return self.__main_identifier
 
     @main_identifier.setter
@@ -58,6 +65,7 @@ class CelestialStatusSave:
 
     @property
     def world_time(self) -> float:
+        """Returns the simulated world time."""
         return self.__world_time
 
     @world_time.setter
@@ -71,6 +79,7 @@ class CelestialStatusSave:
 
     @property
     def scaling_name(self) -> str:
+        """Returns the scaling name used for display."""
         return self.__scaling_name
 
     @scaling_name.setter
@@ -84,6 +93,7 @@ class CelestialStatusSave:
 
     @property
     def length_scale(self) -> float:
+        """Returns the length scale factor."""
         return self.__length_scale
 
     @length_scale.setter
@@ -97,6 +107,7 @@ class CelestialStatusSave:
 
     @property
     def size_linear(self) -> float:
+        """Returns the linear size scale factor."""
         return self.__size_linear
 
     @size_linear.setter
@@ -110,6 +121,7 @@ class CelestialStatusSave:
 
     @property
     def size_nonlinear(self) -> float:
+        """Returns the non-linear size scale factor."""
         return self.__size_nonlinear
 
     @size_nonlinear.setter
@@ -123,6 +135,7 @@ class CelestialStatusSave:
 
     @property
     def star_present(self) -> bool:
+        """Returns whether a star is present in the simulation."""
         return self.__star_present
 
     @star_present.setter
@@ -135,11 +148,19 @@ class CelestialStatusSave:
         self.__star_present = value
 
     def append_element(self, element: _base.CelestialBase) -> None:
+        """Appends a celestial element to the collection.
+
+        Args:
+            element: The celestial element to add.
+
+        Raises:
+            TypeError: If element is not a CelestialBase instance.
+            ElementExistError: If an element with the same identifier already exists.
+        """
         if not isinstance(element, _base.CelestialBase):
             raise TypeError(
                 f"parameter element must be of type `CelestialBase`, but got value {element} of type {type(element).__name__}"
             )
-        if element.identifier in self.id2element:
             raise errors.ElementExistError(
                 f"An element with the same identifier already exists, identifier: {element.identifier}"
             )
@@ -148,6 +169,14 @@ class CelestialStatusSave:
         self.position2element[element.position] = element
 
     def append_range(self, other: "CelestialStatusSave") -> None:
+        """Appends all elements from another CelestialStatusSave instance.
+
+        Args:
+            other: The CelestialStatusSave whose elements to merge in.
+
+        Raises:
+            TypeError: If other is not a CelestialStatusSave instance.
+        """
         if not isinstance(other, CelestialStatusSave):
             raise TypeError(
                 f"parameter other must be of type `CelestialStatusSave`, but got value {other} of type {type(other).__name__}"
@@ -156,6 +185,14 @@ class CelestialStatusSave:
             self.append_element(element)
 
     def remove_element(self, element: _base.CelestialBase) -> None:
+        """Removes a celestial element from the collection.
+
+        Args:
+            element: The celestial element to remove.
+
+        Raises:
+            TypeError: If element is not a CelestialBase instance.
+        """
         if not isinstance(element, _base.CelestialBase):
             raise TypeError(
                 f"parameter element must be of type `CelestialBase`, but got value {element} of type {type(element).__name__}"
@@ -165,6 +202,18 @@ class CelestialStatusSave:
         del self.position2element[element.position]
 
     def get_element_by_index(self, index: int) -> _base.CelestialBase:
+        """Returns the celestial element at the given index.
+
+        Args:
+            index: Zero-based index into the elements list.
+
+        Returns:
+            The CelestialBase element at the specified index.
+
+        Raises:
+            TypeError: If index is not an int.
+            ElementNotExistError: If index is out of range.
+        """
         if not isinstance(index, int):
             raise TypeError(
                 f"parameter index must be of type `int`, but got value {index} of type {type(index).__name__}"
@@ -177,6 +226,18 @@ class CelestialStatusSave:
         return self.elements[index]
 
     def get_element_by_id(self, identifier: str) -> _base.CelestialBase:
+        """Returns the celestial element with the given identifier.
+
+        Args:
+            identifier: The string identifier to look up.
+
+        Returns:
+            The CelestialBase element with the specified identifier.
+
+        Raises:
+            TypeError: If identifier is not a str.
+            ElementNotExistError: If no element has the given identifier.
+        """
         if not isinstance(identifier, str):
             raise TypeError(
                 f"parameter identifier must be of type `str`, but got value {identifier} of type {type(identifier).__name__}"
@@ -191,6 +252,18 @@ class CelestialStatusSave:
     def get_element_by_position(
         self, position: coordinate_system.Position
     ) -> _base.CelestialBase:
+        """Returns the celestial element at the given position.
+
+        Args:
+            position: The Position to look up.
+
+        Returns:
+            The CelestialBase element at the specified position.
+
+        Raises:
+            TypeError: If position is not a Position instance.
+            ElementNotExistError: If no element is at the given position.
+        """
         if not isinstance(position, coordinate_system.Position):
             raise TypeError(
                 f"parameter position must be of type `Position`, but got value {position} of type {type(position).__name__}"
@@ -203,6 +276,7 @@ class CelestialStatusSave:
         return self.position2element[position]
 
     def as_dict(self) -> dict:
+        """Returns a dict representation of this status save for use in a .plsav file."""
         return {
             "MainIdentifier": self.main_identifier,
             "Elements": {
@@ -218,4 +292,5 @@ class CelestialStatusSave:
         }
 
     def as_str_in_plsav(self) -> str:
+        """Returns the JSON string representation for embedding in a .plsav file."""
         return json.dumps(self.as_dict())
