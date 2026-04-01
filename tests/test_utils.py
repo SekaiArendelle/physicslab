@@ -5,9 +5,9 @@ import threading
 import unittest
 from unittest.mock import mock_open, patch
 
-from physicsLab import constant, quantum_physics, utils
-from physicsLab.version import _Version
-from physicsLab.web._threadpool import CanceledError, ThreadPool
+from physicslab import constant, quantum_physics, utils
+from physicslab.version import _Version
+from physicslab.web._threadpool import CanceledError, ThreadPool
 
 
 class TestUtils(unittest.TestCase):
@@ -38,7 +38,7 @@ class TestUtils(unittest.TestCase):
         "Windows-only constant is unavailable",
     )
     def test_get_quantum_physics_version_parses_numeric_segments(self):
-        with patch("physicsLab.quantum_physics.os.listdir", return_value=["a"]), patch(
+        with patch("physicslab.quantum_physics.os.listdir", return_value=["a"]), patch(
             "builtins.open",
             mock_open(read_data=json.dumps({"app_ver": "1.2.3"})),
         ):

@@ -8,7 +8,7 @@ build/
 pybind11/
 *.egg-info/
 __pycache__/
-physicsLabSav/
+physicslabSav/
 
 *.txt
 *.json
@@ -22,7 +22,7 @@ physicsLabSav/
 *.pyd
 *.exe
 
-# special file of physicsLab
+# special file of physicslab
 *.sav
 !tests/data/*.sav
 *.pl.py

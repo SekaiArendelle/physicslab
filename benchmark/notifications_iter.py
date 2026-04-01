@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from test_tool import Timer
-from physicsLab import web
+from physicslab import web
 
 user = web.token_login(
     token="tGTf8gbQBR9P0ZnWhSILjJ5oF6UOkVdm",

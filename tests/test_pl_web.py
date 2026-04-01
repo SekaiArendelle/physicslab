@@ -11,7 +11,7 @@ sys.path.append(LIBRARY_DIR)
 import unittest
 import _user
 from datetime import datetime
-from physicsLab import web, Tag, Category, GetUserMode
+from physicslab import web, Tag, Category, GetUserMode
 
 
 class TestWebApi(unittest.IsolatedAsyncioTestCase):

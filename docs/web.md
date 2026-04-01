@@ -1,4 +1,4 @@
-# 通过`physicsLab`使用物实网络API
+# 通过`physicslab`使用物实网络API
 
 ## class User
 
@@ -7,21 +7,21 @@
 * 匿名用户登录:
 
 ```python
-from physicsLab import web
+from physicslab import web
 user = web.anonymous_login()
 ```
 
 * 通过邮箱密码登录:
 
 ```python
-from physicsLab import web
+from physicslab import web
 user = web.email_login(YOUR_EMAIL, YOUR_PASSWORD)
 ```
 
 * 通过`Token`, `AuthCode`登录:
 
 ```python
-from physicsLab import *
+from physicslab import *
 user = web.token_login(
     token=YOUR_TOKEN,
     auth_code=YOUR_AUTH_CODE,

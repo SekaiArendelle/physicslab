@@ -3,22 +3,22 @@ import os
 import sys
 import setuptools
 
-physicsLab_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "physicsLab")
-sys.path.append(physicsLab_dir)
+physicslab_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "physicslab")
+sys.path.append(physicslab_dir)
 
 import version as v
 
 setuptools.setup(
-    name="physicsLab",
+    name="physicslab",
     version=str(v.__version__),
     license="MIT",
     author="Arendelle",
     author_email="Arendelle_@outlook.com",
     description="Python API for Quantum-Physics App",
-    long_description="show description in [github](https://github.com/SekaiArendelle/physicsLab)",
+    long_description="show description in [github](https://github.com/SekaiArendelle/physicslab)",
     long_description_content_type="text/markdown",
-    url="https://github.com/SekaiArendelle/physicsLab",
-    packages=setuptools.find_packages(include=["physicsLab", "physicsLab.*"]),
+    url="https://github.com/SekaiArendelle/physicslab",
+    packages=setuptools.find_packages(include=["physicslab", "physicslab.*"]),
     install_requires=["typing-extensions", "requests"],
     classifiers=[
         "Programming Language :: Python :: 3",
