@@ -1101,7 +1101,7 @@ class Blackhole(CelestialBase):
 
 
 class FantasyStar(CelestialBase):
-    """Represents a fantasy star (幻想恒星)."""
+    """Represents a fantasy star"""
 
     def __init__(
         self,
@@ -1247,7 +1247,7 @@ class Moon(CelestialBase):
 
 
 class ChocolateBall(CelestialBase):
-    """Represents a chocolate ball (巧克力球) celestial body."""
+    """Represents a chocolate ballcelestial body."""
 
     def __init__(
         self,
@@ -1320,7 +1320,7 @@ class ChocolateBall(CelestialBase):
 
 
 class Continential(CelestialBase):
-    """Represents a continental planet (大陆行星)."""
+    """Represents a continental planet"""
 
     def __init__(
         self,
@@ -1393,7 +1393,7 @@ class Continential(CelestialBase):
 
 
 class Arctic(CelestialBase):
-    """Represents a frozen arctic planet (封冻行星)."""
+    """Represents a frozen arctic planet"""
 
     def __init__(
         self,
@@ -1466,7 +1466,7 @@ class Arctic(CelestialBase):
 
 
 class Arid(CelestialBase):
-    """Represents an arid planet (干旱行星)."""
+    """Represents an arid planet"""
 
     def __init__(
         self,
@@ -1539,7 +1539,7 @@ class Arid(CelestialBase):
 
 
 class Barren(CelestialBase):
-    """Represents a barren planet (贫瘠行星)."""
+    """Represents a barren planet"""
 
     def __init__(
         self,
@@ -1612,7 +1612,7 @@ class Barren(CelestialBase):
 
 
 class Desert(CelestialBase):
-    """Represents a desert planet (沙漠行星)."""
+    """Represents a desert planet"""
 
     def __init__(
         self,
@@ -1685,7 +1685,7 @@ class Desert(CelestialBase):
 
 
 class Jungle(CelestialBase):
-    """Represents a jungle planet (丛林行星)."""
+    """Represents a jungle planet"""
 
     def __init__(
         self,
@@ -1758,7 +1758,7 @@ class Jungle(CelestialBase):
 
 
 class Toxic(CelestialBase):
-    """Represents a toxic planet (剧毒行星)."""
+    """Represents a toxic planet"""
 
     def __init__(
         self,
@@ -1831,7 +1831,7 @@ class Toxic(CelestialBase):
 
 
 class Lava(CelestialBase):
-    """Represents a lava planet (熔岩行星)."""
+    """Represents a lava planet"""
 
     def __init__(
         self,
@@ -1904,7 +1904,7 @@ class Lava(CelestialBase):
 
 
 class Ocean(CelestialBase):
-    """Represents an ocean planet (海洋行星)."""
+    """Represents an ocean planet"""
 
     def __init__(
         self,
