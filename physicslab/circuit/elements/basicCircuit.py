@@ -239,12 +239,12 @@ class DPDTSwitch(_SwitchBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "mid_up", cls.mid_up
-        yield "r_up", cls.r_up
         yield "l_low", cls.l_low
         yield "mid_low", cls.mid_low
         yield "r_low", cls.r_low
+        yield "l_up", cls.l_up
+        yield "mid_up", cls.mid_up
+        yield "r_up", cls.r_up
 
     @property
     def switch_state(self) -> PDTSwitchState:
