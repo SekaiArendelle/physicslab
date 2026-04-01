@@ -387,6 +387,7 @@ def load_celestial_experiment_by_sav_name(
     Raises:
         ExperimentNotExistError: If no experiment with that name is found.
     """
+    file = find_path_of_sav_name(sav_name)
     if file is None:
         raise errors.ExperimentNotExistError(
             f'Experiment with name "{sav_name}" does not exist'
@@ -412,6 +413,7 @@ def load_celestial_experiment_from_app(
         TypeError: If content_id, category, or user have incorrect types.
         ExperimentTypeError: If the server content is not a celestial experiment.
     """
+    if not isinstance(content_id, str):
         raise TypeError(
             f"content_id must be of type `str`, but got value {content_id} of type {type(content_id).__name__}`"
         )

@@ -179,6 +179,7 @@ class CircuitExperiment:
     def as_plsav_dict(self) -> dict:
         """Serialise this experiment to a ``plsav`` dictionary."""
         return {
+            "Type": 0,
             "Experiment": {
                 "ID": None,
                 "Type": 0,
