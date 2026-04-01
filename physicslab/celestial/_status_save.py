@@ -1,4 +1,5 @@
 """Save-state container for celestial experiment elements and simulation settings."""
+
 import uuid
 import json
 from physicslab import coordinate_system

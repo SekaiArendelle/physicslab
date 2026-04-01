@@ -1,7 +1,7 @@
 """Shared typing aliases and TypedDict definitions used across physicslab."""
 
 from typing import *
-from typing_extensions import * # type: ignore
+from typing_extensions import *  # type: ignore
 
 num_type: TypeAlias = Union[int, float]
 

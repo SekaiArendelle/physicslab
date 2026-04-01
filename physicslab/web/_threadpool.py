@@ -112,7 +112,9 @@ class ThreadPool:
             raise ValueError
 
         self.max_workers = max_workers
-        self.task_queue: queue.SimpleQueue[Union[_Task, Type[_EndOfQueue]]] = queue.SimpleQueue()
+        self.task_queue: queue.SimpleQueue[Union[_Task, Type[_EndOfQueue]]] = (
+            queue.SimpleQueue()
+        )
         self.threads: List[Thread] = []
 
     def _office(self) -> None:

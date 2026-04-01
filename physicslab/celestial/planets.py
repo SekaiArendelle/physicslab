@@ -1,4 +1,5 @@
 """Celestial body classes for all planet, star, moon, and exotic object types."""
+
 import uuid
 from ._base import CelestialBase
 from physicslab import coordinate_system

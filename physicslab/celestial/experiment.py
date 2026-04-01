@@ -1,4 +1,5 @@
 """CelestialExperiment class and factory functions for Physics-Lab-AR celestial experiments."""
+
 import time
 import json
 import pathlib

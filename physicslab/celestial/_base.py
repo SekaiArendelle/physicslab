@@ -1,4 +1,5 @@
 """Base class definition for celestial body elements."""
+
 import abc
 from physicslab import coordinate_system
 
