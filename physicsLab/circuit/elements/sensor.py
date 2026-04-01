@@ -1,3 +1,5 @@
+"""Sensor and MEMS-based circuit element classes."""
+
 import uuid
 from physicsLab import coordinate_system
 from .._base import CircuitBase, Pin
@@ -13,6 +15,8 @@ from physicsLab._typing import (
 
 
 class _MemsBase(CircuitBase):
+    """Base class for MEMS sensor elements with X, Y and Z output pins."""
+
     _all_pins: Tuple[
         Tuple[Literal["_x_pin"], Pin],
         Tuple[Literal["_y_pin"], Pin],
@@ -49,9 +53,11 @@ class _MemsBase(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
+        """Yield (attribute_name, pin) pairs for every pin on this element."""
         return iter(self._all_pins)
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"_MemsBase("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -66,22 +72,27 @@ class _MemsBase(CircuitBase):
 
     @staticmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         return 3
 
     @property
     def x(self) -> Pin:
+        """Output pin for the X-axis measurement."""
         return self._x_pin
 
     @property
     def y(self) -> Pin:
+        """Output pin for the Y-axis measurement."""
         return self._y_pin
 
     @property
     def z(self) -> Pin:
+        """Output pin for the Z-axis measurement."""
         return self._z_pin
 
     @property
     def ranges(self) -> num_type:
+        """Measurement range setting for the sensor."""
         return self.__ranges
 
     @ranges.setter
@@ -94,6 +105,7 @@ class _MemsBase(CircuitBase):
 
     @property
     def shifting(self) -> num_type:
+        """Output voltage offset (bias) of the sensor."""
         return self.__shifting
 
     @shifting.setter
@@ -106,6 +118,7 @@ class _MemsBase(CircuitBase):
 
     @property
     def response_factor(self) -> num_type:
+        """Sensitivity coefficient mapping physical input to output voltage."""
         return self.__response_factor
 
     @response_factor.setter
@@ -118,6 +131,8 @@ class _MemsBase(CircuitBase):
 
 
 class Accelerometer(_MemsBase):
+    """Three-axis accelerometer sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -144,6 +159,7 @@ class Accelerometer(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Accelerometer",
             "Identifier": self.identifier,
@@ -166,6 +182,7 @@ class Accelerometer(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"Accelerometer("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -181,10 +198,13 @@ class Accelerometer(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "加速度计"
 
 
 class AnalogJoystick(CircuitBase):
+    """Dual-axis analog joystick with three pins per axis."""
+
     _all_pins: Tuple[
         Tuple[Literal["_x1_pin"], Pin],
         Tuple[Literal["_x2_pin"], Pin],
@@ -224,6 +244,7 @@ class AnalogJoystick(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Analog Joystick",
             "Identifier": self.identifier,
@@ -240,13 +261,16 @@ class AnalogJoystick(CircuitBase):
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
+        """Yield (attribute_name, pin) pairs for every pin on this element."""
         return iter(self._all_pins)
 
     @staticmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         return 6
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"AnalogJoystick("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -259,34 +283,43 @@ class AnalogJoystick(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "模拟摇杆"
 
     @property
     def x1(self) -> Pin:
+        """First output pin for the X-axis potentiometer."""
         return self._x1_pin
 
     @property
     def x2(self) -> Pin:
+        """Wiper pin for the X-axis potentiometer."""
         return self._x2_pin
 
     @property
     def x3(self) -> Pin:
+        """Second output pin for the X-axis potentiometer."""
         return self._x3_pin
 
     @property
     def y1(self) -> Pin:
+        """First output pin for the Y-axis potentiometer."""
         return self._y1_pin
 
     @property
     def y2(self) -> Pin:
+        """Wiper pin for the Y-axis potentiometer."""
         return self._y2_pin
 
     @property
     def y3(self) -> Pin:
+        """Second output pin for the Y-axis potentiometer."""
         return self._y3_pin
 
 
 class AttitudeSensor(_MemsBase):
+    """Three-axis attitude (orientation) sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -313,6 +346,7 @@ class AttitudeSensor(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Attitude Sensor",
             "Identifier": self.identifier,
@@ -335,6 +369,7 @@ class AttitudeSensor(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"AttitudeSensor("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -350,10 +385,13 @@ class AttitudeSensor(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "姿态传感器"
 
 
 class GravitySensor(_MemsBase):
+    """Three-axis gravity sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -380,6 +418,7 @@ class GravitySensor(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Gravity Sensor",
             "Identifier": self.identifier,
@@ -402,6 +441,7 @@ class GravitySensor(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"GravitySensor("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -417,10 +457,13 @@ class GravitySensor(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "重力加速计"
 
 
 class Gyroscope(_MemsBase):
+    """Three-axis gyroscope sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -447,6 +490,7 @@ class Gyroscope(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Gyroscope",
             "Identifier": self.identifier,
@@ -469,6 +513,7 @@ class Gyroscope(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"Gyroscope("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -484,10 +529,13 @@ class Gyroscope(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "陀螺仪传感器"
 
 
 class LinearAccelerometer(_MemsBase):
+    """Three-axis linear accelerometer sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -514,6 +562,7 @@ class LinearAccelerometer(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Linear Accelerometer",
             "Identifier": self.identifier,
@@ -536,6 +585,7 @@ class LinearAccelerometer(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"LinearAccelerometer("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -551,10 +601,13 @@ class LinearAccelerometer(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "线性加速度计"
 
 
 class MagneticFieldSensor(_MemsBase):
+    """Three-axis magnetic field sensor element."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -581,6 +634,7 @@ class MagneticFieldSensor(_MemsBase):
         )
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Magnetic Field Sensor",
             "Identifier": self.identifier,
@@ -603,6 +657,7 @@ class MagneticFieldSensor(_MemsBase):
         }
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"MagneticFieldSensor("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -618,10 +673,13 @@ class MagneticFieldSensor(_MemsBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "磁场传感器"
 
 
 class Photodiode(CircuitBase):
+    """Light-sensitive photodiode sensor element."""
+
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
     _black_pin: Pin
@@ -645,6 +703,7 @@ class Photodiode(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Photodiode",
             "Identifier": self.identifier,
@@ -668,21 +727,26 @@ class Photodiode(CircuitBase):
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
+        """Yield (attribute_name, pin) pairs for every pin on this element."""
         return iter(self._all_pins)
 
     @staticmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         return 2
 
     @property
     def red(self) -> Pin:
+        """Anode (positive) pin of the photodiode."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Cathode (negative) pin of the photodiode."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"Photodiode("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -695,10 +759,13 @@ class Photodiode(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "光电二极管"
 
 
 class Photoresistor(CircuitBase):
+    """Light-dependent resistor (LDR) sensor element."""
+
     _all_pins: Tuple[Tuple[Literal["_red_pin"], Pin], Tuple[Literal["_black_pin"], Pin]]
     _red_pin: Pin
     _black_pin: Pin
@@ -722,6 +789,7 @@ class Photoresistor(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Photoresistor",
             "Identifier": self.identifier,
@@ -745,21 +813,26 @@ class Photoresistor(CircuitBase):
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
+        """Yield (attribute_name, pin) pairs for every pin on this element."""
         return iter(self._all_pins)
 
     @staticmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         return 2
 
     @property
     def red(self) -> Pin:
+        """High-resistance terminal pin of the photoresistor."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Low-resistance terminal pin of the photoresistor."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"Photoresistor("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -772,10 +845,13 @@ class Photoresistor(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "光敏电阻"
 
 
 class ProximitySensor(CircuitBase):
+    """Proximity sensor element with a single digital output pin."""
+
     _all_pins: Tuple[Tuple[Literal["_o_pin"], Pin]]
     _o_pin: Pin
 
@@ -795,6 +871,7 @@ class ProximitySensor(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     def as_dict(self) -> CircuitElementData:
+        """Serialise this element to a dict for inclusion in a .plsav file."""
         return {
             "ModelID": "Proximity Sensor",
             "Identifier": self.identifier,
@@ -816,13 +893,16 @@ class ProximitySensor(CircuitBase):
         }
 
     def all_pins(self) -> Iterator[Tuple[str, Pin]]:
+        """Yield (attribute_name, pin) pairs for every pin on this element."""
         return iter(self._all_pins)
 
     @staticmethod
     def count_all_pins() -> int:
+        """Return the total number of pins this element type has."""
         return 1
 
     def to_constructor_str(self) -> str:
+        """Return a Python constructor call string that reproduces this element."""
         return (
             f"ProximitySensor("
             f"position=Position({self.position.x}, {self.position.y}, {self.position.z}), "
@@ -835,8 +915,10 @@ class ProximitySensor(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Return the Chinese display name for this element."""
         return "临近传感器"
 
     @property
     def o(self) -> Pin:
+        """Digital output pin of the proximity sensor."""
         return self._o_pin
