@@ -161,6 +161,7 @@ class CelestialStatusSave:
             raise TypeError(
                 f"parameter element must be of type `CelestialBase`, but got value {element} of type {type(element).__name__}"
             )
+        if element.identifier in self.id2element:
             raise errors.ElementExistError(
                 f"An element with the same identifier already exists, identifier: {element.identifier}"
             )
