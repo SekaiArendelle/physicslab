@@ -38,13 +38,7 @@ python -m pip install physicslab
 ```
 > Note: 在`Windows`下你可以输入`py`来使用`Python`, `Linux, MacOS`下可能需要输入`python3`或者`python3.x`（`python`加上你的`Python`版本）来使用`python`
 
-3.  物实存档使用了中文字符, 默认编码为`utf-8`。但在一些非正常情况, 存档的编码可能被改变。虽然`physicslab`有一定的处理存档编码问题的能力, 但如果还是出现了问题, 请输入该命令：
-```bash
-pip install chardet
-```
-此时`physicslab`会自动调用`chardet`来处理更加棘手的文件编码问题。
-
-4.  如果下载成功, 就可以查看[快速开始](docs/quick_start.md), 开始你的使用了
+3.  如果下载成功, 就可以查看[快速开始](docs/quick_start.md), 开始你的使用了
 > Note: 每次通过`physicslab`生成了一个新的存档之后, 都需要重新加载物实的本地存档, 即点击`从本地读取`, 再次点击进入对应存档
 
 ### 新手解惑: 为什么我明明安装了physicslab, python却告诉我无法找到？
