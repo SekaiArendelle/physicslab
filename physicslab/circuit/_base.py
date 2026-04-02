@@ -130,14 +130,6 @@ class CircuitBase:
         )
 
     @classmethod
-    def _get_property(cls, name: str) -> property:
-        """Return a pin property descriptor by name."""
-        prop = getattr(cls, name)
-        if not isinstance(prop, property):
-            raise TypeError(f"{cls.__name__}.{name} is not a property")
-        return prop
-
-    @classmethod
     @abc.abstractmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
         """Iterate over all the properties of this class that are Pin instances.

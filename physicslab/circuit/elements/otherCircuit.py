@@ -14,6 +14,7 @@ from physicslab._typing import (
     final,
     Iterator,
     Generator,
+    cast,
 )
 
 
@@ -82,8 +83,8 @@ class Buzzer(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -159,8 +160,8 @@ class SparkGap(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -238,8 +239,8 @@ class TeslaCoil(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -334,10 +335,10 @@ class ColorLightEmittingDiode(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "l_up", cls._get_property("l_up")
-        yield "l_mid", cls._get_property("l_mid")
-        yield "l_low", cls._get_property("l_low")
-        yield "r", cls._get_property("r")
+        yield "l_up", cast(property, cls.l_up)
+        yield "l_mid", cast(property, cls.l_mid)
+        yield "l_low", cast(property, cls.l_low)
+        yield "r", cast(property, cls.r)
 
     @property
     def l_up(self) -> Pin:
@@ -434,8 +435,8 @@ class DualLightEmittingDiode(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -517,8 +518,8 @@ class ElectricBell(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -600,8 +601,8 @@ class MusicalBox(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -723,14 +724,14 @@ class ResistanceLaw(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "l_low", cls._get_property("l_low")
-        yield "l_lowmid", cls._get_property("l_lowmid")
-        yield "l_upmid", cls._get_property("l_upmid")
-        yield "l_up", cls._get_property("l_up")
-        yield "r_low", cls._get_property("r_low")
-        yield "r_lowmid", cls._get_property("r_lowmid")
-        yield "r_upmid", cls._get_property("r_upmid")
-        yield "r_up", cls._get_property("r_up")
+        yield "l_low", cast(property, cls.l_low)
+        yield "l_lowmid", cast(property, cls.l_lowmid)
+        yield "l_upmid", cast(property, cls.l_upmid)
+        yield "l_up", cast(property, cls.l_up)
+        yield "r_low", cast(property, cls.r_low)
+        yield "r_lowmid", cast(property, cls.r_lowmid)
+        yield "r_upmid", cast(property, cls.r_upmid)
+        yield "r_up", cast(property, cls.r_up)
 
     @property
     def l_low(self) -> Pin:
@@ -851,10 +852,10 @@ class Solenoid(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "subred", cls._get_property("subred")
-        yield "subblack", cls._get_property("subblack")
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "subred", cast(property, cls.subred)
+        yield "subblack", cast(property, cls.subblack)
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def subred(self) -> Pin:
@@ -958,8 +959,8 @@ class ElectricFan(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "red", cls._get_property("red")
-        yield "black", cls._get_property("black")
+        yield "red", cast(property, cls.red)
+        yield "black", cast(property, cls.black)
 
     @property
     def red(self) -> Pin:
@@ -1081,8 +1082,8 @@ class SimpleInstrument(CircuitBase):
 
     @classmethod
     def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
-        yield "i", cls._get_property("i")
-        yield "o", cls._get_property("o")
+        yield "i", cast(property, cls.i)
+        yield "o", cast(property, cls.o)
 
     @property
     def rated_oltage(self) -> num_type:
