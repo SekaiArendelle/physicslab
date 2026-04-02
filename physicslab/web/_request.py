@@ -1,3 +1,5 @@
+"""Provide request related functionality."""
+
 import ssl
 import json
 import urllib.request
@@ -5,6 +7,7 @@ from physicslab._typing import Union, Dict
 
 
 def get_http(domain: str, path: str, port: int = 80) -> bytes:
+    """Get http."""
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"
@@ -25,6 +28,7 @@ def get_http(domain: str, path: str, port: int = 80) -> bytes:
 
 
 def get_https(domain: str, path: str, port: int = 443, verify: bool = True) -> bytes:
+    """Get https."""
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"
@@ -59,6 +63,7 @@ def post_http(
     body: bytes,
     port: int = 80,
 ) -> dict:
+    """Execute the post http routine."""
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"
@@ -107,6 +112,7 @@ def post_https(
     port: int = 443,
     verify: bool = True,
 ) -> dict:
+    """Execute the post https routine."""
     if not isinstance(domain, str):
         raise TypeError(
             f"Parameter domain must be of type `str`, but got value {domain} of type `{type(domain).__name__}`"

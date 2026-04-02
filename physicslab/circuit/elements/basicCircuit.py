@@ -1,3 +1,5 @@
+"""Provide basic circuit related functionality."""
+
 import uuid
 from physicslab import coordinate_system
 from .._base import CircuitBase, Pin
@@ -27,6 +29,7 @@ class _SwitchBase(CircuitBase):
 
 
 class SimpleSwitch(_SwitchBase):
+    """Represent a simple switch component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -59,6 +62,7 @@ class SimpleSwitch(_SwitchBase):
 
     @property
     def switch_state(self) -> SwitchState:
+        """Execute the switch state routine."""
         return self._switch_state
 
     @switch_state.setter
@@ -71,10 +75,12 @@ class SimpleSwitch(_SwitchBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -84,6 +90,7 @@ class SimpleSwitch(_SwitchBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "简单开关"
 
     def as_dict(self) -> CircuitElementData:
@@ -118,6 +125,7 @@ class SimpleSwitch(_SwitchBase):
 
 
 class SPDTSwitch(_SwitchBase):
+    """Represent a s p d t switch component."""
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -147,6 +155,7 @@ class SPDTSwitch(_SwitchBase):
 
     @property
     def switch_state(self) -> PDTSwitchState:
+        """Execute the switch state routine."""
         return self._switch_state
 
     @switch_state.setter
@@ -160,6 +169,7 @@ class SPDTSwitch(_SwitchBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "单刀双掷开关"
 
     def as_dict(self) -> CircuitElementData:
@@ -194,14 +204,17 @@ class SPDTSwitch(_SwitchBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
     @staticmethod
@@ -210,6 +223,7 @@ class SPDTSwitch(_SwitchBase):
 
 
 class DPDTSwitch(_SwitchBase):
+    """Represent a d p d t switch component."""
     _l_low_pin: Pin
     _mid_low_pin: Pin
     _r_low_pin: Pin
@@ -248,6 +262,7 @@ class DPDTSwitch(_SwitchBase):
 
     @property
     def switch_state(self) -> PDTSwitchState:
+        """Execute the switch state routine."""
         return self._switch_state
 
     @switch_state.setter
@@ -261,6 +276,7 @@ class DPDTSwitch(_SwitchBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "双刀双掷开关"
 
     def as_dict(self) -> CircuitElementData:
@@ -295,26 +311,32 @@ class DPDTSwitch(_SwitchBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def mid_up(self) -> Pin:
+        """Execute the mid up routine."""
         return self._mid_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def mid_low(self) -> Pin:
+        """Execute the mid low routine."""
         return self._mid_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
     @staticmethod
@@ -323,6 +345,7 @@ class DPDTSwitch(_SwitchBase):
 
 
 class PushSwitch(CircuitBase):
+    """Represent a push switch component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -363,10 +386,12 @@ class PushSwitch(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -382,6 +407,7 @@ class PushSwitch(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "按钮开关"
 
     @final
@@ -391,6 +417,7 @@ class PushSwitch(CircuitBase):
 
 
 class AirSwitch(CircuitBase):
+    """Represent a air switch component."""
     _red_pin: Pin
     _black_pin: Pin
     __switch_state: SwitchState
@@ -438,6 +465,7 @@ class AirSwitch(CircuitBase):
 
     @property
     def switch_state(self) -> SwitchState:
+        """Execute the switch state routine."""
         return self.__switch_state
 
     @switch_state.setter
@@ -451,15 +479,18 @@ class AirSwitch(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "空气开关"
 
     @final
@@ -480,6 +511,7 @@ class AirSwitch(CircuitBase):
 
 
 class IncandescentLamp(CircuitBase):
+    """Represent a incandescent lamp component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -533,10 +565,12 @@ class IncandescentLamp(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -552,6 +586,7 @@ class IncandescentLamp(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "白炽灯泡"
 
     @final
@@ -561,6 +596,7 @@ class IncandescentLamp(CircuitBase):
 
 
 class BatterySource(CircuitBase):
+    """Represent a battery source component."""
     _red_pin: Pin
     _black_pin: Pin
     voltage: num_type
@@ -622,10 +658,12 @@ class BatterySource(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -643,6 +681,7 @@ class BatterySource(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "一节电池"
 
     @final
@@ -652,6 +691,7 @@ class BatterySource(CircuitBase):
 
 
 class StudentSource(CircuitBase):
+    """Represent a student source component."""
     _l_pin: Pin
     _l_mid_pin: Pin
     _r_mid_pin: Pin
@@ -723,6 +763,7 @@ class StudentSource(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "学生电源"
 
     @final
@@ -739,22 +780,27 @@ class StudentSource(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def l_mid(self) -> Pin:
+        """Execute the l mid routine."""
         return self._l_mid_pin
 
     @property
     def r_mid(self) -> Pin:
+        """Execute the r mid routine."""
         return self._r_mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class Resistor(CircuitBase):
+    """Represent a resistor component."""
     _red_pin: Pin
     _black_pin: Pin
     resistance: num_type
@@ -815,15 +861,18 @@ class Resistor(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电阻"
 
     @final
@@ -844,6 +893,7 @@ class Resistor(CircuitBase):
 
 
 class FuseComponent(CircuitBase):
+    """Represent a fuse component component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -896,10 +946,12 @@ class FuseComponent(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -915,6 +967,7 @@ class FuseComponent(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "保险丝"
 
     @final
@@ -924,6 +977,7 @@ class FuseComponent(CircuitBase):
 
 
 class SlideRheostat(CircuitBase):
+    """Represent a slide rheostat component."""
     _l_low_pin: Pin
     _r_low_pin: Pin
     _l_up_pin: Pin
@@ -993,6 +1047,7 @@ class SlideRheostat(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "滑动变阻器"
 
     @final
@@ -1009,22 +1064,27 @@ class SlideRheostat(CircuitBase):
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
 
 class Multimeter(CircuitBase):
+    """Represent a multimeter component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -1072,10 +1132,12 @@ class Multimeter(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -1091,6 +1153,7 @@ class Multimeter(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "多用电表"
 
     @final
@@ -1100,6 +1163,7 @@ class Multimeter(CircuitBase):
 
 
 class Galvanometer(CircuitBase):
+    """Represent a galvanometer component."""
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1148,6 +1212,7 @@ class Galvanometer(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "灵敏电流计"
 
     @final
@@ -1163,18 +1228,22 @@ class Galvanometer(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class Microammeter(CircuitBase):
+    """Represent a microammeter component."""
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1223,6 +1292,7 @@ class Microammeter(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "微安表"
 
     @final
@@ -1238,18 +1308,22 @@ class Microammeter(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class ElectricityMeter(CircuitBase):
+    """Represent a electricity meter component."""
     _l_pin: Pin
     _l_mid_pin: Pin
     _r_mid_pin: Pin
@@ -1300,6 +1374,7 @@ class ElectricityMeter(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电能表"
 
     @final
@@ -1316,22 +1391,27 @@ class ElectricityMeter(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def l_mid(self) -> Pin:
+        """Execute the l mid routine."""
         return self._l_mid_pin
 
     @property
     def r_mid(self) -> Pin:
+        """Execute the r mid routine."""
         return self._r_mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class ResistanceBox(CircuitBase):
+    """Represent a resistance box component."""
     _l_pin: Pin
     _r_pin: Pin
     resistance: num_type
@@ -1399,6 +1479,7 @@ class ResistanceBox(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电阻箱"
 
     @final
@@ -1413,14 +1494,17 @@ class ResistanceBox(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class SimpleAmmeter(CircuitBase):
+    """Represent a simple ammeter component."""
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1474,6 +1558,7 @@ class SimpleAmmeter(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "直流安培表"
 
     @final
@@ -1489,18 +1574,22 @@ class SimpleAmmeter(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
 
 class SimpleVoltmeter(CircuitBase):
+    """Represent a simple voltmeter component."""
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1553,6 +1642,7 @@ class SimpleVoltmeter(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "直流电压表"
 
     @final
@@ -1568,12 +1658,15 @@ class SimpleVoltmeter(CircuitBase):
 
     @property
     def l(self) -> Pin:
+        """Execute the l routine."""
         return self._l_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin

@@ -42,10 +42,12 @@ class _StatusEvent:
             self._status: _Status = _Status.wait
 
         def wait(self) -> None:
+            """Execute the wait routine."""
             while self._status != _Status.done:
                 pass
 
         def set_as_done(self) -> None:
+            """Set as done."""
             self._status = _Status.done
 
     else:
@@ -55,22 +57,27 @@ class _StatusEvent:
             self._status: _Status = _Status.wait
 
         def wait(self) -> None:
+            """Execute the wait routine."""
             with self._condition:
                 if self._status != _Status.done:
                     self._condition.wait()
 
         def set_as_done(self) -> None:
+            """Set as done."""
             with self._condition:
                 self._status = _Status.done
                 self._condition.notify_all()
 
     def set_as_running(self) -> None:
+        """Set as running."""
         self._status = _Status.running
 
     def set_as_cancelled(self) -> None:
+        """Set as cancelled."""
         self._status = _Status.cancelled
 
     def get_status(self) -> _Status:
+        """Get status."""
         return self._status
 
 
@@ -84,9 +91,11 @@ class _Task:
         self.status_event: _StatusEvent = _StatusEvent()
 
     def has_result(self) -> bool:
+        """Check whether the instance has result."""
         return self.status_event.get_status() == _Status.done
 
     def result(self):
+        """Execute the result routine."""
         if self.status_event.get_status() == _Status.cancelled:
             raise CanceledError
         self.status_event.wait()
@@ -98,6 +107,7 @@ class _Task:
 
 
 class ThreadPool:
+    """Represent a thread pool component."""
     def __init__(self, *, max_workers: int) -> None:
         """Initialize the thread pool.
 

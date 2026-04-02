@@ -1,3 +1,5 @@
+"""Provide logic circuit related functionality."""
+
 import uuid
 from physicslab import quantum_physics
 from .._base import CircuitBase, InputPin, OutputPin
@@ -13,6 +15,7 @@ from physicslab import coordinate_system
 
 
 class LogicInput(CircuitBase):
+    """Represent a logic input component."""
     _o_pin: OutputPin
     output_status: bool
 
@@ -88,6 +91,7 @@ class LogicInput(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "逻辑输入"
 
     @classmethod
@@ -96,6 +100,7 @@ class LogicInput(CircuitBase):
 
     @property
     def o(self) -> OutputPin:
+        """Execute the o routine."""
         return self._o_pin
 
     @staticmethod
@@ -104,6 +109,7 @@ class LogicInput(CircuitBase):
 
 
 class LogicOutput(CircuitBase):
+    """Represent a logic output component."""
     _i_pin: InputPin
 
     def __init__(
@@ -167,6 +173,7 @@ class LogicOutput(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "逻辑输出"
 
     @classmethod
@@ -175,6 +182,7 @@ class LogicOutput(CircuitBase):
 
     @property
     def i(self) -> InputPin:
+        """Execute the i routine."""
         return self._i_pin
 
     @staticmethod
@@ -219,10 +227,12 @@ class _2PinGate(CircuitBase):
 
     @property
     def i(self) -> InputPin:
+        """Execute the i routine."""
         return self._i_pin
 
     @property
     def o(self) -> OutputPin:
+        """Execute the o routine."""
         return self._o_pin
 
     @staticmethod
@@ -231,6 +241,7 @@ class _2PinGate(CircuitBase):
 
 
 class YesGate(_2PinGate):
+    """Represent a yes gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -268,6 +279,7 @@ class YesGate(_2PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "是门"
 
     @staticmethod
@@ -297,6 +309,7 @@ class YesGate(_2PinGate):
 
 
 class NoGate(_2PinGate):
+    """Represent a no gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -355,6 +368,7 @@ class NoGate(_2PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "非门"
 
     @staticmethod
@@ -402,14 +416,17 @@ class _3PinGate(CircuitBase):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o(self) -> OutputPin:
+        """Execute the o routine."""
         return self._o_pin
 
     @staticmethod
@@ -418,6 +435,7 @@ class _3PinGate(CircuitBase):
 
 
 class OrGate(_3PinGate):
+    """Represent a or gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -476,6 +494,7 @@ class OrGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "或门"
 
     @staticmethod
@@ -484,6 +503,7 @@ class OrGate(_3PinGate):
 
 
 class AndGate(_3PinGate):
+    """Represent a and gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -542,6 +562,7 @@ class AndGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "与门"
 
     @staticmethod
@@ -550,6 +571,7 @@ class AndGate(_3PinGate):
 
 
 class NorGate(_3PinGate):
+    """Represent a nor gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -608,6 +630,7 @@ class NorGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "或非门"
 
     @staticmethod
@@ -616,6 +639,7 @@ class NorGate(_3PinGate):
 
 
 class NandGate(_3PinGate):
+    """Represent a nand gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -674,6 +698,7 @@ class NandGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "与非门"
 
     @staticmethod
@@ -682,6 +707,7 @@ class NandGate(_3PinGate):
 
 
 class XorGate(_3PinGate):
+    """Represent a xor gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -740,6 +766,7 @@ class XorGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "异或门"
 
     @staticmethod
@@ -748,6 +775,7 @@ class XorGate(_3PinGate):
 
 
 class XnorGate(_3PinGate):
+    """Represent a xnor gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -806,6 +834,7 @@ class XnorGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "同或门"
 
     @staticmethod
@@ -814,6 +843,7 @@ class XnorGate(_3PinGate):
 
 
 class ImpGate(_3PinGate):
+    """Represent a imp gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -872,6 +902,7 @@ class ImpGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "蕴含门"
 
     @staticmethod
@@ -880,6 +911,7 @@ class ImpGate(_3PinGate):
 
 
 class NimpGate(_3PinGate):
+    """Represent a nimp gate component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -938,6 +970,7 @@ class NimpGate(_3PinGate):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "蕴含非门"
 
     @staticmethod
@@ -976,6 +1009,7 @@ class _BigElement(CircuitBase):
 
 
 class HalfAdder(_BigElement):
+    """Represent a half adder component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1036,18 +1070,22 @@ class HalfAdder(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1065,6 +1103,7 @@ class HalfAdder(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "半加器"
 
     @staticmethod
@@ -1073,6 +1112,7 @@ class HalfAdder(_BigElement):
 
 
 class FullAdder(_BigElement):
+    """Represent a full adder component."""
     _i_up_pin: InputPin
     _i_mid_pin: InputPin
     _i_low_pin: InputPin
@@ -1136,22 +1176,27 @@ class FullAdder(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_mid(self) -> InputPin:
+        """Execute the i mid routine."""
         return self._i_mid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1169,6 +1214,7 @@ class FullAdder(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "全加器"
 
     @staticmethod
@@ -1177,6 +1223,7 @@ class FullAdder(_BigElement):
 
 
 class HalfSubtractor(_BigElement):
+    """Represent a half subtractor component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1242,18 +1289,22 @@ class HalfSubtractor(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1271,6 +1322,7 @@ class HalfSubtractor(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "半减器"
 
     @staticmethod
@@ -1279,6 +1331,7 @@ class HalfSubtractor(_BigElement):
 
 
 class FullSubtractor(_BigElement):
+    """Represent a full subtractor component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1351,22 +1404,27 @@ class FullSubtractor(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_mid(self) -> InputPin:
+        """Execute the i mid routine."""
         return self._i_mid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1384,6 +1442,7 @@ class FullSubtractor(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "全减器"
 
     @staticmethod
@@ -1392,6 +1451,7 @@ class FullSubtractor(_BigElement):
 
 
 class Multiplier(_BigElement):
+    """Represent a multiplier component."""
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -1464,34 +1524,42 @@ class Multiplier(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_upmid(self) -> InputPin:
+        """Execute the i upmid routine."""
         return self._i_upmid_pin
 
     @property
     def i_lowmid(self) -> InputPin:
+        """Execute the i lowmid routine."""
         return self._i_lowmid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_upmid(self) -> OutputPin:
+        """Execute the o upmid routine."""
         return self._o_upmid_pin
 
     @property
     def o_lowmid(self) -> OutputPin:
+        """Execute the o lowmid routine."""
         return self._o_lowmid_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1509,6 +1577,7 @@ class Multiplier(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "二位乘法器"
 
     @staticmethod
@@ -1517,6 +1586,7 @@ class Multiplier(_BigElement):
 
 
 class DFlipflop(_BigElement):
+    """Represent a d flipflop component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1577,18 +1647,22 @@ class DFlipflop(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1606,6 +1680,7 @@ class DFlipflop(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "D触发器"
 
     @staticmethod
@@ -1614,6 +1689,7 @@ class DFlipflop(_BigElement):
 
 
 class TFlipflop(_BigElement):
+    """Represent a t flipflop component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1674,18 +1750,22 @@ class TFlipflop(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1703,6 +1783,7 @@ class TFlipflop(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "T'触发器"
 
     @staticmethod
@@ -1711,6 +1792,7 @@ class TFlipflop(_BigElement):
 
 
 class RealTFlipflop(_BigElement):
+    """Represent a real t flipflop component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1771,18 +1853,22 @@ class RealTFlipflop(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1800,6 +1886,7 @@ class RealTFlipflop(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "T触发器"
 
     @staticmethod
@@ -1808,6 +1895,7 @@ class RealTFlipflop(_BigElement):
 
 
 class JKFlipflop(_BigElement):
+    """Represent a j k flipflop component."""
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1871,22 +1959,27 @@ class JKFlipflop(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_mid(self) -> InputPin:
+        """Execute the i mid routine."""
         return self._i_mid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -1904,6 +1997,7 @@ class JKFlipflop(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "JK触发器"
 
     @staticmethod
@@ -1912,6 +2006,7 @@ class JKFlipflop(_BigElement):
 
 
 class Counter(_BigElement):
+    """Represent a counter component."""
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -1978,26 +2073,32 @@ class Counter(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_upmid(self) -> OutputPin:
+        """Execute the o upmid routine."""
         return self._o_upmid_pin
 
     @property
     def o_lowmid(self) -> OutputPin:
+        """Execute the o lowmid routine."""
         return self._o_lowmid_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -2015,6 +2116,7 @@ class Counter(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "计数器"
 
     @staticmethod
@@ -2023,6 +2125,7 @@ class Counter(_BigElement):
 
 
 class RandomGenerator(_BigElement):
+    """Represent a random generator component."""
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -2089,26 +2192,32 @@ class RandomGenerator(_BigElement):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_upmid(self) -> OutputPin:
+        """Execute the o upmid routine."""
         return self._o_upmid_pin
 
     @property
     def o_lowmid(self) -> OutputPin:
+        """Execute the o lowmid routine."""
         return self._o_lowmid_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -2126,6 +2235,7 @@ class RandomGenerator(_BigElement):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "随机数发生器"
 
     @staticmethod
@@ -2134,6 +2244,7 @@ class RandomGenerator(_BigElement):
 
 
 class EightBitInput(CircuitBase):
+    """Represent a eight bit input component."""
     _input_num: int
     low_level: num_type
     high_level: num_type
@@ -2232,6 +2343,7 @@ class EightBitInput(CircuitBase):
 
     @property
     def input_num(self) -> int:
+        """Execute the input num routine."""
         return self._input_num
 
     @input_num.setter
@@ -2248,39 +2360,48 @@ class EightBitInput(CircuitBase):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_upmid(self) -> InputPin:
+        """Execute the i upmid routine."""
         return self._i_upmid_pin
 
     @property
     def i_lowmid(self) -> InputPin:
+        """Execute the i lowmid routine."""
         return self._i_lowmid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_upmid(self) -> OutputPin:
+        """Execute the o upmid routine."""
         return self._o_upmid_pin
 
     @property
     def o_lowmid(self) -> OutputPin:
+        """Execute the o lowmid routine."""
         return self._o_lowmid_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "八位输入器"
 
     @staticmethod
@@ -2289,6 +2410,7 @@ class EightBitInput(CircuitBase):
 
 
 class EightBitDisplay(CircuitBase):
+    """Represent a eight bit display component."""
     _i_up_pin: InputPin
     _i_upmid_pin: InputPin
     _i_lowmid_pin: InputPin
@@ -2363,34 +2485,42 @@ class EightBitDisplay(CircuitBase):
 
     @property
     def i_up(self) -> InputPin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_upmid(self) -> InputPin:
+        """Execute the i upmid routine."""
         return self._i_upmid_pin
 
     @property
     def i_lowmid(self) -> InputPin:
+        """Execute the i lowmid routine."""
         return self._i_lowmid_pin
 
     @property
     def i_low(self) -> InputPin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
     @property
     def o_up(self) -> OutputPin:
+        """Execute the o up routine."""
         return self._o_up_pin
 
     @property
     def o_upmid(self) -> OutputPin:
+        """Execute the o upmid routine."""
         return self._o_upmid_pin
 
     @property
     def o_lowmid(self) -> OutputPin:
+        """Execute the o lowmid routine."""
         return self._o_lowmid_pin
 
     @property
     def o_low(self) -> OutputPin:
+        """Execute the o low routine."""
         return self._o_low_pin
 
     def to_constructor_str(self) -> str:
@@ -2408,6 +2538,7 @@ class EightBitDisplay(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "八位显示器"
 
     @staticmethod
@@ -2416,6 +2547,7 @@ class EightBitDisplay(CircuitBase):
 
 
 class SchmittTrigger(CircuitBase):
+    """Represent a schmitt trigger component."""
     _i_pin: InputPin
     _o_pin: OutputPin
     high_level: num_type
@@ -2484,6 +2616,7 @@ class SchmittTrigger(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "施密特触发器"
 
     def to_constructor_str(self) -> str:
@@ -2506,8 +2639,10 @@ class SchmittTrigger(CircuitBase):
 
     @property
     def i(self) -> InputPin:
+        """Execute the i routine."""
         return self._i_pin
 
     @property
     def o(self) -> OutputPin:
+        """Execute the o routine."""
         return self._o_pin

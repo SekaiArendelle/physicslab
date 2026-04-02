@@ -95,6 +95,7 @@ def get_start_page() -> dict:
 
 
 async def async_get_start_page() -> Awaitable[dict]:
+    """Execute the async get start page routine."""
     return await _async_wrapper(get_start_page)
 
 
@@ -174,6 +175,7 @@ def get_avatar(
 async def async_get_avatar(
     target_id: str, index: int, category: str, size_category: str
 ) -> Awaitable[dict]:
+    """Execute the async get avatar routine."""
     return await _async_wrapper(get_avatar, target_id, index, category, size_category)
 
 
@@ -321,6 +323,7 @@ class User:
         return _check_response_json(response)
 
     async def async_get_library(self) -> Awaitable[dict]:
+        """Execute the async get library routine."""
         return await _async_wrapper(self.get_library)
 
     def query_experiments(
@@ -470,6 +473,7 @@ class User:
         skip: int = 0,
         from_skip: Optional[str] = None,
     ) -> Awaitable[dict]:
+        """Execute the async query experiments routine."""
         return await _async_wrapper(
             self.query_experiments,
             category,
@@ -532,6 +536,7 @@ class User:
         content_id: str,
         category: Optional[enums.Category] = None,
     ) -> Awaitable[dict]:
+        """Execute the async get experiment routine."""
         return await _async_wrapper(self.get_experiment, content_id, category)
 
     def confirm_experiment(
@@ -586,6 +591,7 @@ class User:
     async def async_confirm_experiment(
         self, summary_id: str, category: enums.Category, image_counter: int
     ) -> Awaitable[dict]:
+        """Execute the async confirm experiment routine."""
         return await _async_wrapper(
             self.confirm_experiment, summary_id, category, image_counter
         )
@@ -649,6 +655,7 @@ class User:
         category: enums.Category,
         reason: Optional[str] = None,
     ) -> Awaitable[dict]:
+        """Execute the async remove experiment routine."""
         return await _async_wrapper(
             self.remove_experiment, summary_id, category, reason
         )
@@ -762,6 +769,7 @@ class User:
         reply_id: Optional[str] = None,
         special: Optional[str] = None,
     ) -> Awaitable[dict]:
+        """Execute the async post comment routine."""
         return await _async_wrapper(
             self.post_comment, target_id, target_type, content, reply_id, special
         )
@@ -809,6 +817,7 @@ class User:
     async def async_remove_comment(
         self, comment_id: str, target_type: str
     ) -> Awaitable[dict]:
+        """Execute the async remove comment routine."""
         return await _async_wrapper(self.remove_comment, comment_id, target_type)
 
     def get_comments(
@@ -884,6 +893,7 @@ class User:
         skip: int = 0,
         comment_id: Optional[str] = None,
     ) -> Awaitable[dict]:
+        """Execute the async get comments routine."""
         return await _async_wrapper(
             self.get_comments, target_id, target_type, take, skip, comment_id
         )
@@ -936,6 +946,7 @@ class User:
     async def async_get_summary(
         self, content_id: str, category: enums.Category
     ) -> Awaitable[dict]:
+        """Execute the async get summary routine."""
         return await _async_wrapper(self.get_summary, content_id, category)
 
     def get_derivatives(self, content_id: str, category: Category) -> dict:
@@ -977,6 +988,7 @@ class User:
     async def async_get_derivatives(
         self, content_id: str, category: enums.Category
     ) -> Awaitable[dict]:
+        """Execute the async get derivatives routine."""
         return await _async_wrapper(self.get_derivatives, content_id, category)
 
     def get_user_by_name(self, name: str) -> dict:
@@ -1007,6 +1019,7 @@ class User:
         return _check_response_json(response)
 
     async def async_get_user_by_name(self, name: str) -> Awaitable[dict]:
+        """Execute the async get user by name routine."""
         return await _async_wrapper(self.get_user_by_name, name)
 
     def get_user_by_id(self, id: str) -> dict:
@@ -1037,6 +1050,7 @@ class User:
         return _check_response_json(response)
 
     async def async_get_user_by_id(self, id: str) -> Awaitable[dict]:
+        """Execute the async get user by id routine."""
         return await _async_wrapper(self.get_user_by_id, id)
 
     def get_user(
@@ -1078,6 +1092,7 @@ class User:
         msg: str,
         get_user_mode: enums.GetUserMode,
     ) -> Awaitable[dict]:
+        """Execute the async get user routine."""
         return await _async_wrapper(self.get_user, msg, get_user_mode)
 
     def get_profile(self) -> dict:
@@ -1103,6 +1118,7 @@ class User:
         return _check_response_json(response)
 
     async def async_get_profile(self) -> Awaitable[dict]:
+        """Execute the async get profile routine."""
         return await _async_wrapper(self.get_profile)
 
     def star_content(
@@ -1166,6 +1182,7 @@ class User:
         star_type: int,
         status: bool = True,
     ) -> Awaitable[dict]:
+        """Execute the async star content routine."""
         return await _async_wrapper(
             self.star_content, content_id, category, star_type, status
         )
@@ -1223,6 +1240,7 @@ class User:
     async def async_upload_image(
         self, policy: str, authorization: str, image_path: str
     ) -> Awaitable[dict]:
+        """Execute the async upload image routine."""
         return await _async_wrapper(
             self.upload_image, policy, authorization, image_path
         )
@@ -1258,6 +1276,7 @@ class User:
         return _check_response_json(response)
 
     async def async_get_message(self, message_id: str) -> Awaitable[dict]:
+        """Execute the async get message routine."""
         return await _async_wrapper(self.get_message, message_id)
 
     def get_messages(
@@ -1322,6 +1341,7 @@ class User:
         take: int = 16,
         no_templates: bool = True,
     ) -> Awaitable[dict]:
+        """Execute the async get messages routine."""
         return await _async_wrapper(
             self.get_messages, category_id, skip, take, no_templates
         )
@@ -1387,6 +1407,7 @@ class User:
         skip: int = 0,
         take: int = 16,
     ) -> Awaitable[dict]:
+        """Execute the async get supporters routine."""
         return await _async_wrapper(
             self.get_supporters, content_id, category, skip, take
         )
@@ -1463,6 +1484,7 @@ class User:
         take: int = 20,
         query: str = "",
     ) -> Awaitable[dict]:
+        """Execute the async get relations routine."""
         return await _async_wrapper(
             self.get_relations, user_id, display_type, skip, take, query
         )
@@ -1506,6 +1528,7 @@ class User:
     async def async_follow(
         self, target_id: str, action: bool = True
     ) -> Awaitable[dict]:
+        """Execute the async follow routine."""
         return await _async_wrapper(self.follow, target_id, action)
 
     def rename(self, nickname: str) -> dict:
@@ -1540,6 +1563,7 @@ class User:
         return _check_response_json(response)
 
     async def async_rename(self, nickname: str) -> Awaitable[dict]:
+        """Execute the async rename routine."""
         return await _async_wrapper(self.rename, nickname)
 
     def modify_information(self, target: str) -> dict:
@@ -1574,6 +1598,7 @@ class User:
         return _check_response_json(response)
 
     async def async_modify_information(self, target: str) -> Awaitable[dict]:
+        """Execute the async modify information routine."""
         return await _async_wrapper(self.modify_information, target)
 
     def receive_bonus(self, activity_id: str, index: int) -> dict:
@@ -1620,6 +1645,7 @@ class User:
     async def async_receive_bonus(
         self, activity_id: str, index: int
     ) -> Awaitable[dict]:
+        """Execute the async receive bonus routine."""
         return await _async_wrapper(self.receive_bonus, activity_id, index)
 
     def ban(self, target_id: str, reason: str, length: int) -> dict:
@@ -1670,6 +1696,7 @@ class User:
     async def async_ban(
         self, target_id: str, reason: str, length: int
     ) -> Awaitable[dict]:
+        """Execute the async ban routine."""
         return await _async_wrapper(self.ban, target_id, reason, length)
 
     def unban(self, target_id: str, reason: str) -> dict:
@@ -1709,6 +1736,7 @@ class User:
         return _check_response_json(response)
 
     async def async_unban(self, target_id: str, reason: str) -> Awaitable[dict]:
+        """Execute the async unban routine."""
         return await _async_wrapper(self.unban, target_id, reason)
 
 
@@ -1886,6 +1914,7 @@ def token_login(
 async def async_anonymous_login(
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> Awaitable[User]:
+    """Execute the async anonymous login routine."""
     return await _async_wrapper(anonymous_login, domain)
 
 
@@ -1894,6 +1923,7 @@ async def async_email_login(
     password: str,
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> Awaitable[User]:
+    """Execute the async email login routine."""
     return await _async_wrapper(email_login, email, password, domain)
 
 
@@ -1902,4 +1932,5 @@ async def async_token_login(
     auth_code: str,
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> Awaitable[User]:
+    """Execute the async token login routine."""
     return await _async_wrapper(token_login, token, auth_code, domain)

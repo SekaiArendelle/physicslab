@@ -1,3 +1,5 @@
+"""Provide artificial circuit related functionality."""
+
 import uuid
 from physicslab import coordinate_system
 from .._base import CircuitBase, Pin
@@ -12,6 +14,7 @@ from physicslab._typing import (
 
 
 class NE555(CircuitBase):
+    """Represent a n e555 component."""
     _vcc_pin: Pin
     _dis_pin: Pin
     _thr_pin: Pin
@@ -90,6 +93,7 @@ class NE555(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "555定时器"
 
     @staticmethod
@@ -98,38 +102,47 @@ class NE555(CircuitBase):
 
     @property
     def vcc(self) -> Pin:
+        """Execute the vcc routine."""
         return self._vcc_pin
 
     @property
     def dis(self) -> Pin:
+        """Execute the dis routine."""
         return self._dis_pin
 
     @property
     def thr(self) -> Pin:
+        """Execute the thr routine."""
         return self._thr_pin
 
     @property
     def ctrl(self) -> Pin:
+        """Execute the ctrl routine."""
         return self._ctrl_pin
 
     @property
     def trig(self) -> Pin:
+        """Execute the trig routine."""
         return self._trig_pin
 
     @property
     def out(self) -> Pin:
+        """Execute the out routine."""
         return self._out_pin
 
     @property
     def reset(self) -> Pin:
+        """Execute the reset routine."""
         return self._reset_pin
 
     @property
     def ground(self) -> Pin:
+        """Execute the ground routine."""
         return self._ground_pin
 
 
 class BasicCapacitor(CircuitBase):
+    """Represent a basic capacitor component."""
     _red_pin: Pin
     _black_pin: Pin
     peak_voltage: num_type
@@ -214,15 +227,18 @@ class BasicCapacitor(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电容"
 
     @staticmethod
@@ -245,6 +261,7 @@ class BasicCapacitor(CircuitBase):
 
 
 class BasicInductor(CircuitBase):
+    """Represent a basic inductor component."""
     _red_pin: Pin
     _black_pin: Pin
     rated_current: num_type
@@ -329,15 +346,18 @@ class BasicInductor(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电感"
 
     @staticmethod
@@ -360,6 +380,7 @@ class BasicInductor(CircuitBase):
 
 
 class BasicDiode(CircuitBase):
+    """Represent a basic diode component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -406,10 +427,12 @@ class BasicDiode(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -425,6 +448,7 @@ class BasicDiode(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "二极管"
 
     @staticmethod
@@ -433,6 +457,7 @@ class BasicDiode(CircuitBase):
 
 
 class LightEmittingDiode(CircuitBase):
+    """Represent a light emitting diode component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -480,10 +505,12 @@ class LightEmittingDiode(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -499,6 +526,7 @@ class LightEmittingDiode(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "发光二极管"
 
     @staticmethod
@@ -507,6 +535,7 @@ class LightEmittingDiode(CircuitBase):
 
 
 class GroundComponent(CircuitBase):
+    """Represent a ground component component."""
     _i_pin: Pin
 
     def __init__(
@@ -555,6 +584,7 @@ class GroundComponent(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "接地"
 
     @staticmethod
@@ -563,10 +593,12 @@ class GroundComponent(CircuitBase):
 
     @property
     def i(self) -> Pin:
+        """Execute the i routine."""
         return self._i_pin
 
 
 class Transformer(CircuitBase):
+    """Represent a transformer component."""
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -637,6 +669,7 @@ class Transformer(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "理想变压器"
 
     @staticmethod
@@ -645,22 +678,27 @@ class Transformer(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
 
 class TappedTransformer(CircuitBase):
+    """Represent a tapped transformer component."""
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -733,6 +771,7 @@ class TappedTransformer(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "中心抽头变压器"
 
     @staticmethod
@@ -741,26 +780,32 @@ class TappedTransformer(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
 
 class MutualInductor(CircuitBase):
+    """Represent a mutual inductor component."""
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -830,6 +875,7 @@ class MutualInductor(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "理想互感"
 
     @staticmethod
@@ -838,22 +884,27 @@ class MutualInductor(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
 
 class Rectifier(CircuitBase):
+    """Represent a rectifier component."""
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -915,6 +966,7 @@ class Rectifier(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "全波整流器"
 
     @staticmethod
@@ -923,22 +975,27 @@ class Rectifier(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
 
 class Transistor(CircuitBase):
+    """Represent a transistor component."""
     _B_pin: Pin
     _C_pin: Pin
     _E_pin: Pin
@@ -1011,6 +1068,7 @@ class Transistor(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "三极管"
 
     @staticmethod
@@ -1032,18 +1090,22 @@ class Transistor(CircuitBase):
 
     @property
     def B(self) -> Pin:
+        """Execute the b routine."""
         return self._B_pin
 
     @property
     def C(self) -> Pin:
+        """Execute the c routine."""
         return self._C_pin
 
     @property
     def E(self) -> Pin:
+        """Execute the e routine."""
         return self._E_pin
 
 
 class Comparator(CircuitBase):
+    """Represent a comparator component."""
     _o_pin: Pin
     _i_up_pin: Pin
     _i_low_pin: Pin
@@ -1098,6 +1160,7 @@ class Comparator(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "比较器"
 
     @staticmethod
@@ -1106,18 +1169,22 @@ class Comparator(CircuitBase):
 
     @property
     def o(self) -> Pin:
+        """Execute the o routine."""
         return self._o_pin
 
     @property
     def i_up(self) -> Pin:
+        """Execute the i up routine."""
         return self._i_up_pin
 
     @property
     def i_low(self) -> Pin:
+        """Execute the i low routine."""
         return self._i_low_pin
 
 
 class OperationalAmplifier(CircuitBase):
+    """Represent a operational amplifier component."""
     _i_neg_pin: Pin
     _i_pos_pin: Pin
     _o_pin: Pin
@@ -1218,6 +1285,7 @@ class OperationalAmplifier(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "运算放大器"
 
     @staticmethod
@@ -1226,18 +1294,22 @@ class OperationalAmplifier(CircuitBase):
 
     @property
     def i_neg(self) -> Pin:
+        """Execute the i neg routine."""
         return self._i_neg_pin
 
     @property
     def i_pos(self) -> Pin:
+        """Execute the i pos routine."""
         return self._i_pos_pin
 
     @property
     def o(self) -> Pin:
+        """Execute the o routine."""
         return self._o_pin
 
 
 class RelayComponent(CircuitBase):
+    """Represent a relay component component."""
     _l_up_pin: Pin
     _l_low_pin: Pin
     _mid_pin: Pin
@@ -1335,6 +1407,7 @@ class RelayComponent(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "继电器"
 
     @staticmethod
@@ -1343,26 +1416,32 @@ class RelayComponent(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def mid(self) -> Pin:
+        """Execute the mid routine."""
         return self._mid_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
 
 class N_MOSFET(CircuitBase):
+    """Represent a n m o s f e t component."""
     _D_pin: Pin
     _S_pin: Pin
     _G_pin: Pin
@@ -1452,6 +1531,7 @@ class N_MOSFET(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "N-MOSFET"
 
     @staticmethod
@@ -1460,18 +1540,22 @@ class N_MOSFET(CircuitBase):
 
     @property
     def D(self) -> Pin:
+        """Execute the d routine."""
         return self._D_pin
 
     @property
     def S(self) -> Pin:
+        """Execute the s routine."""
         return self._S_pin
 
     @property
     def G(self) -> Pin:
+        """Execute the g routine."""
         return self._G_pin
 
 
 class P_MOSFET(CircuitBase):
+    """Represent a p m o s f e t component."""
     _G_pin: Pin
     _S_pin: Pin
     _D_pin: Pin
@@ -1538,6 +1622,7 @@ class P_MOSFET(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "P-MOSFET"
 
     @staticmethod
@@ -1546,18 +1631,22 @@ class P_MOSFET(CircuitBase):
 
     @property
     def G(self) -> Pin:
+        """Execute the g routine."""
         return self._G_pin
 
     @property
     def S(self) -> Pin:
+        """Execute the s routine."""
         return self._S_pin
 
     @property
     def D(self) -> Pin:
+        """Execute the d routine."""
         return self._D_pin
 
 
 class CurrentSource(CircuitBase):
+    """Represent a current source component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -1602,10 +1691,12 @@ class CurrentSource(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -1621,6 +1712,7 @@ class CurrentSource(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电流源"
 
     @staticmethod
@@ -1653,10 +1745,12 @@ class _SourceElectricity(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     def to_constructor_str(self) -> str:
@@ -1675,6 +1769,7 @@ class _SourceElectricity(CircuitBase):
 
 
 class SinewaveSource(_SourceElectricity):
+    """Represent a sinewave source component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1724,10 +1819,12 @@ class SinewaveSource(_SourceElectricity):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "正弦波发生器"
 
 
 class SquareSource(_SourceElectricity):
+    """Represent a square source component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1777,10 +1874,12 @@ class SquareSource(_SourceElectricity):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "方波发生器"
 
 
 class TriangleSource(_SourceElectricity):
+    """Represent a triangle source component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1830,10 +1929,12 @@ class TriangleSource(_SourceElectricity):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "三角波发生器"
 
 
 class SawtoothSource(_SourceElectricity):
+    """Represent a sawtooth source component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1883,10 +1984,12 @@ class SawtoothSource(_SourceElectricity):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "锯齿波发生器"
 
 
 class PulseSource(_SourceElectricity):
+    """Represent a pulse source component."""
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1936,4 +2039,5 @@ class PulseSource(_SourceElectricity):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "尖峰波发生器"

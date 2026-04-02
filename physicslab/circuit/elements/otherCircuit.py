@@ -1,3 +1,5 @@
+"""Provide other circuit related functionality."""
+
 import uuid
 from physicslab import quantum_physics
 from physicslab import coordinate_system
@@ -15,6 +17,7 @@ from physicslab._typing import (
 
 
 class Buzzer(CircuitBase):
+    """Represent a buzzer component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -72,6 +75,7 @@ class Buzzer(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "嗡鸣器"
 
     @classmethod
@@ -81,10 +85,12 @@ class Buzzer(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -93,6 +99,7 @@ class Buzzer(CircuitBase):
 
 
 class SparkGap(CircuitBase):
+    """Represent a spark gap component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -144,6 +151,7 @@ class SparkGap(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "火花隙"
 
     @classmethod
@@ -153,10 +161,12 @@ class SparkGap(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -165,6 +175,7 @@ class SparkGap(CircuitBase):
 
 
 class TeslaCoil(CircuitBase):
+    """Represent a tesla coil component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -218,6 +229,7 @@ class TeslaCoil(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "特斯拉线圈"
 
     @classmethod
@@ -227,10 +239,12 @@ class TeslaCoil(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -239,6 +253,7 @@ class TeslaCoil(CircuitBase):
 
 
 class ColorLightEmittingDiode(CircuitBase):
+    """Represent a color light emitting diode component."""
     _l_up_pin: Pin
     _l_mid_pin: Pin
     _l_low_pin: Pin
@@ -309,6 +324,7 @@ class ColorLightEmittingDiode(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "彩色发光二极管"
 
     @classmethod
@@ -320,18 +336,22 @@ class ColorLightEmittingDiode(CircuitBase):
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def l_mid(self) -> Pin:
+        """Execute the l mid routine."""
         return self._l_mid_pin
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def r(self) -> Pin:
+        """Execute the r routine."""
         return self._r_pin
 
     @staticmethod
@@ -340,6 +360,7 @@ class ColorLightEmittingDiode(CircuitBase):
 
 
 class DualLightEmittingDiode(CircuitBase):
+    """Represent a dual light emitting diode component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -402,6 +423,7 @@ class DualLightEmittingDiode(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "演示发光二极管"
 
     @classmethod
@@ -411,10 +433,12 @@ class DualLightEmittingDiode(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -423,6 +447,7 @@ class DualLightEmittingDiode(CircuitBase):
 
 
 class ElectricBell(CircuitBase):
+    """Represent a electric bell component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -480,6 +505,7 @@ class ElectricBell(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电铃"
 
     @classmethod
@@ -489,10 +515,12 @@ class ElectricBell(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -501,6 +529,7 @@ class ElectricBell(CircuitBase):
 
 
 class MusicalBox(CircuitBase):
+    """Represent a musical box component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -558,6 +587,7 @@ class MusicalBox(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "八音盒"
 
     @classmethod
@@ -567,10 +597,12 @@ class MusicalBox(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -579,6 +611,7 @@ class MusicalBox(CircuitBase):
 
 
 class ResistanceLaw(CircuitBase):
+    """Represent a resistance law component."""
     _l_low_pin: Pin
     _l_lowmid_pin: Pin
     _l_upmid_pin: Pin
@@ -676,6 +709,7 @@ class ResistanceLaw(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "电阻定律实验"
 
     @classmethod
@@ -691,34 +725,42 @@ class ResistanceLaw(CircuitBase):
 
     @property
     def l_low(self) -> Pin:
+        """Execute the l low routine."""
         return self._l_low_pin
 
     @property
     def l_lowmid(self) -> Pin:
+        """Execute the l lowmid routine."""
         return self._l_lowmid_pin
 
     @property
     def l_upmid(self) -> Pin:
+        """Execute the l upmid routine."""
         return self._l_upmid_pin
 
     @property
     def l_up(self) -> Pin:
+        """Execute the l up routine."""
         return self._l_up_pin
 
     @property
     def r_low(self) -> Pin:
+        """Execute the r low routine."""
         return self._r_low_pin
 
     @property
     def r_lowmid(self) -> Pin:
+        """Execute the r lowmid routine."""
         return self._r_lowmid_pin
 
     @property
     def r_upmid(self) -> Pin:
+        """Execute the r upmid routine."""
         return self._r_upmid_pin
 
     @property
     def r_up(self) -> Pin:
+        """Execute the r up routine."""
         return self._r_up_pin
 
     @staticmethod
@@ -727,6 +769,7 @@ class ResistanceLaw(CircuitBase):
 
 
 class Solenoid(CircuitBase):
+    """Represent a solenoid component."""
     _subred_pin: Pin
     _subblack_pin: Pin
     _red_pin: Pin
@@ -793,6 +836,7 @@ class Solenoid(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "通电螺线管"
 
     @classmethod
@@ -804,18 +848,22 @@ class Solenoid(CircuitBase):
 
     @property
     def subred(self) -> Pin:
+        """Execute the subred routine."""
         return self._subred_pin
 
     @property
     def subblack(self) -> Pin:
+        """Execute the subblack routine."""
         return self._subblack_pin
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -824,6 +872,7 @@ class Solenoid(CircuitBase):
 
 
 class ElectricFan(CircuitBase):
+    """Represent a electric fan component."""
     _red_pin: Pin
     _black_pin: Pin
 
@@ -893,6 +942,7 @@ class ElectricFan(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "小电扇"
 
     @classmethod
@@ -902,10 +952,12 @@ class ElectricFan(CircuitBase):
 
     @property
     def red(self) -> Pin:
+        """Execute the red routine."""
         return self._red_pin
 
     @property
     def black(self) -> Pin:
+        """Execute the black routine."""
         return self._black_pin
 
     @staticmethod
@@ -914,6 +966,7 @@ class ElectricFan(CircuitBase):
 
 
 class SimpleInstrument(CircuitBase):
+    """Represent a simple instrument component."""
     _i_pin: Pin
     _o_pin: Pin
 
@@ -959,6 +1012,7 @@ class SimpleInstrument(CircuitBase):
     @final
     @staticmethod
     def zh_name() -> str:
+        """Execute the zh name routine."""
         return "简单乐器"
 
     def as_dict(self) -> CircuitElementData:
@@ -1020,6 +1074,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def rated_oltage(self) -> num_type:
+        """Execute the rated oltage routine."""
         return self.__rated_oltage
 
     @rated_oltage.setter
@@ -1032,6 +1087,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def volume(self) -> num_type:
+        """Execute the volume routine."""
         return self.__volume
 
     @volume.setter
@@ -1046,6 +1102,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def bpm(self) -> int:
+        """Execute the bpm routine."""
         return self.__bpm
 
     @bpm.setter
@@ -1060,6 +1117,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def instrument(self) -> int:
+        """Execute the instrument routine."""
         return self.__instrument
 
     @instrument.setter
@@ -1074,6 +1132,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def is_ideal(self) -> bool:
+        """Check whether the instance is ideal."""
         return self.__is_ideal
 
     @is_ideal.setter
@@ -1086,6 +1145,7 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def is_pulse(self) -> bool:
+        """Check whether the instance is pulse."""
         return self.__is_pulse
 
     @is_pulse.setter
@@ -1098,10 +1158,12 @@ class SimpleInstrument(CircuitBase):
 
     @property
     def i(self) -> Pin:
+        """Execute the i routine."""
         return self._i_pin
 
     @property
     def o(self) -> Pin:
+        """Execute the o routine."""
         return self._o_pin
 
     def to_constructor_str(self) -> str:
