@@ -10,11 +10,13 @@ from physicslab._typing import (
     final,
     Tuple,
     Iterator,
+    Generator,
 )
 
 
 class NE555(CircuitBase):
     """Represent a n e555 component."""
+
     _vcc_pin: Pin
     _dis_pin: Pin
     _thr_pin: Pin
@@ -70,15 +72,15 @@ class NE555(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "vcc", cls.vcc
-        yield "dis", cls.dis
-        yield "thr", cls.thr
-        yield "ctrl", cls.ctrl
-        yield "trig", cls.trig
-        yield "out", cls.out
-        yield "reset", cls.reset
-        yield "ground", cls.ground
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "vcc", cls._get_property("vcc")
+        yield "dis", cls._get_property("dis")
+        yield "thr", cls._get_property("thr")
+        yield "ctrl", cls._get_property("ctrl")
+        yield "trig", cls._get_property("trig")
+        yield "out", cls._get_property("out")
+        yield "reset", cls._get_property("reset")
+        yield "ground", cls._get_property("ground")
 
     def to_constructor_str(self) -> str:
         return (
@@ -143,6 +145,7 @@ class NE555(CircuitBase):
 
 class BasicCapacitor(CircuitBase):
     """Represent a basic capacitor component."""
+
     _red_pin: Pin
     _black_pin: Pin
     peak_voltage: num_type
@@ -221,9 +224,9 @@ class BasicCapacitor(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -262,6 +265,7 @@ class BasicCapacitor(CircuitBase):
 
 class BasicInductor(CircuitBase):
     """Represent a basic inductor component."""
+
     _red_pin: Pin
     _black_pin: Pin
     rated_current: num_type
@@ -340,9 +344,9 @@ class BasicInductor(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -381,6 +385,7 @@ class BasicInductor(CircuitBase):
 
 class BasicDiode(CircuitBase):
     """Represent a basic diode component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -421,9 +426,9 @@ class BasicDiode(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -458,6 +463,7 @@ class BasicDiode(CircuitBase):
 
 class LightEmittingDiode(CircuitBase):
     """Represent a light emitting diode component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -499,9 +505,9 @@ class LightEmittingDiode(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -536,6 +542,7 @@ class LightEmittingDiode(CircuitBase):
 
 class GroundComponent(CircuitBase):
     """Represent a ground component component."""
+
     _i_pin: Pin
 
     def __init__(
@@ -568,8 +575,8 @@ class GroundComponent(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i", cls.i
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i", cls._get_property("i")
 
     def to_constructor_str(self) -> str:
         return (
@@ -599,6 +606,7 @@ class GroundComponent(CircuitBase):
 
 class Transformer(CircuitBase):
     """Represent a transformer component."""
+
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -650,11 +658,11 @@ class Transformer(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "r_up", cls.r_up
-        yield "l_low", cls.l_low
-        yield "r_low", cls.r_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "r_up", cls._get_property("r_up")
+        yield "l_low", cls._get_property("l_low")
+        yield "r_low", cls._get_property("r_low")
 
     def to_constructor_str(self) -> str:
         return (
@@ -699,6 +707,7 @@ class Transformer(CircuitBase):
 
 class TappedTransformer(CircuitBase):
     """Represent a tapped transformer component."""
+
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -751,12 +760,12 @@ class TappedTransformer(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "r_up", cls.r_up
-        yield "l_low", cls.l_low
-        yield "r_low", cls.r_low
-        yield "mid", cls.mid
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "r_up", cls._get_property("r_up")
+        yield "l_low", cls._get_property("l_low")
+        yield "r_low", cls._get_property("r_low")
+        yield "mid", cls._get_property("mid")
 
     def to_constructor_str(self) -> str:
         return (
@@ -806,6 +815,7 @@ class TappedTransformer(CircuitBase):
 
 class MutualInductor(CircuitBase):
     """Represent a mutual inductor component."""
+
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -856,11 +866,11 @@ class MutualInductor(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "r_up", cls.r_up
-        yield "l_low", cls.l_low
-        yield "r_low", cls.r_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "r_up", cls._get_property("r_up")
+        yield "l_low", cls._get_property("l_low")
+        yield "r_low", cls._get_property("r_low")
 
     def to_constructor_str(self) -> str:
         return (
@@ -905,6 +915,7 @@ class MutualInductor(CircuitBase):
 
 class Rectifier(CircuitBase):
     """Represent a rectifier component."""
+
     _l_up_pin: Pin
     _r_up_pin: Pin
     _l_low_pin: Pin
@@ -947,11 +958,11 @@ class Rectifier(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "r_up", cls.r_up
-        yield "l_low", cls.l_low
-        yield "r_low", cls.r_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "r_up", cls._get_property("r_up")
+        yield "l_low", cls._get_property("l_low")
+        yield "r_low", cls._get_property("r_low")
 
     def to_constructor_str(self) -> str:
         return (
@@ -996,6 +1007,7 @@ class Rectifier(CircuitBase):
 
 class Transistor(CircuitBase):
     """Represent a transistor component."""
+
     _b_pin: Pin
     _c_pin: Pin
     _e_pin: Pin
@@ -1060,10 +1072,10 @@ class Transistor(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "b", cls.b
-        yield "c", cls.c
-        yield "e", cls.e
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "b", cls._get_property("b")
+        yield "c", cls._get_property("c")
+        yield "e", cls._get_property("e")
 
     @final
     @staticmethod
@@ -1106,6 +1118,7 @@ class Transistor(CircuitBase):
 
 class Comparator(CircuitBase):
     """Represent a comparator component."""
+
     _o_pin: Pin
     _i_up_pin: Pin
     _i_low_pin: Pin
@@ -1142,10 +1155,10 @@ class Comparator(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "o", cls.o
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "o", cls._get_property("o")
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
 
     def to_constructor_str(self) -> str:
         return (
@@ -1185,6 +1198,7 @@ class Comparator(CircuitBase):
 
 class OperationalAmplifier(CircuitBase):
     """Represent a operational amplifier component."""
+
     _i_neg_pin: Pin
     _i_pos_pin: Pin
     _o_pin: Pin
@@ -1264,10 +1278,10 @@ class OperationalAmplifier(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_neg", cls.i_neg
-        yield "i_pos", cls.i_pos
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_neg", cls._get_property("i_neg")
+        yield "i_pos", cls._get_property("i_pos")
+        yield "o", cls._get_property("o")
 
     def to_constructor_str(self) -> str:
         return (
@@ -1310,6 +1324,7 @@ class OperationalAmplifier(CircuitBase):
 
 class RelayComponent(CircuitBase):
     """Represent a relay component component."""
+
     _l_up_pin: Pin
     _l_low_pin: Pin
     _mid_pin: Pin
@@ -1383,12 +1398,12 @@ class RelayComponent(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "l_low", cls.l_low
-        yield "mid", cls.mid
-        yield "r_up", cls.r_up
-        yield "r_low", cls.r_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "l_low", cls._get_property("l_low")
+        yield "mid", cls._get_property("mid")
+        yield "r_up", cls._get_property("r_up")
+        yield "r_low", cls._get_property("r_low")
 
     def to_constructor_str(self) -> str:
         return (
@@ -1442,6 +1457,7 @@ class RelayComponent(CircuitBase):
 
 class N_MOSFET(CircuitBase):
     """Represent a n m o s f e t component."""
+
     _d_pin: Pin
     _s_pin: Pin
     _g_pin: Pin
@@ -1510,10 +1526,10 @@ class N_MOSFET(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "d", cls.d
-        yield "s", cls.s
-        yield "g", cls.g
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "d", cls._get_property("d")
+        yield "s", cls._get_property("s")
+        yield "g", cls._get_property("g")
 
     def to_constructor_str(self) -> str:
         return (
@@ -1556,6 +1572,7 @@ class N_MOSFET(CircuitBase):
 
 class P_MOSFET(CircuitBase):
     """Represent a p m o s f e t component."""
+
     _g_pin: Pin
     _s_pin: Pin
     _d_pin: Pin
@@ -1604,10 +1621,10 @@ class P_MOSFET(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "g", cls.g
-        yield "d", cls.d
-        yield "s", cls.s
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "g", cls._get_property("g")
+        yield "d", cls._get_property("d")
+        yield "s", cls._get_property("s")
 
     def to_constructor_str(self) -> str:
         return (
@@ -1647,6 +1664,7 @@ class P_MOSFET(CircuitBase):
 
 class CurrentSource(CircuitBase):
     """Represent a current source component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -1685,9 +1703,9 @@ class CurrentSource(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -1739,9 +1757,9 @@ class _SourceElectricity(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -1770,6 +1788,7 @@ class _SourceElectricity(CircuitBase):
 
 class SinewaveSource(_SourceElectricity):
     """Represent a sinewave source component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1825,6 +1844,7 @@ class SinewaveSource(_SourceElectricity):
 
 class SquareSource(_SourceElectricity):
     """Represent a square source component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1880,6 +1900,7 @@ class SquareSource(_SourceElectricity):
 
 class TriangleSource(_SourceElectricity):
     """Represent a triangle source component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1935,6 +1956,7 @@ class TriangleSource(_SourceElectricity):
 
 class SawtoothSource(_SourceElectricity):
     """Represent a sawtooth source component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1990,6 +2012,7 @@ class SawtoothSource(_SourceElectricity):
 
 class PulseSource(_SourceElectricity):
     """Represent a pulse source component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,

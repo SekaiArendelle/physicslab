@@ -13,11 +13,13 @@ from physicslab._typing import (
     Tuple,
     final,
     Iterator,
+    Generator,
 )
 
 
 class Buzzer(CircuitBase):
     """Represent a buzzer component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -79,9 +81,9 @@ class Buzzer(CircuitBase):
         return "嗡鸣器"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -100,6 +102,7 @@ class Buzzer(CircuitBase):
 
 class SparkGap(CircuitBase):
     """Represent a spark gap component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -155,9 +158,9 @@ class SparkGap(CircuitBase):
         return "火花隙"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -176,6 +179,7 @@ class SparkGap(CircuitBase):
 
 class TeslaCoil(CircuitBase):
     """Represent a tesla coil component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -233,9 +237,9 @@ class TeslaCoil(CircuitBase):
         return "特斯拉线圈"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -254,6 +258,7 @@ class TeslaCoil(CircuitBase):
 
 class ColorLightEmittingDiode(CircuitBase):
     """Represent a color light emitting diode component."""
+
     _l_up_pin: Pin
     _l_mid_pin: Pin
     _l_low_pin: Pin
@@ -328,11 +333,11 @@ class ColorLightEmittingDiode(CircuitBase):
         return "彩色发光二极管"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_up", cls.l_up
-        yield "l_mid", cls.l_mid
-        yield "l_low", cls.l_low
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_up", cls._get_property("l_up")
+        yield "l_mid", cls._get_property("l_mid")
+        yield "l_low", cls._get_property("l_low")
+        yield "r", cls._get_property("r")
 
     @property
     def l_up(self) -> Pin:
@@ -361,6 +366,7 @@ class ColorLightEmittingDiode(CircuitBase):
 
 class DualLightEmittingDiode(CircuitBase):
     """Represent a dual light emitting diode component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -427,9 +433,9 @@ class DualLightEmittingDiode(CircuitBase):
         return "演示发光二极管"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -448,6 +454,7 @@ class DualLightEmittingDiode(CircuitBase):
 
 class ElectricBell(CircuitBase):
     """Represent a electric bell component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -509,9 +516,9 @@ class ElectricBell(CircuitBase):
         return "电铃"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -530,6 +537,7 @@ class ElectricBell(CircuitBase):
 
 class MusicalBox(CircuitBase):
     """Represent a musical box component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -591,9 +599,9 @@ class MusicalBox(CircuitBase):
         return "八音盒"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -612,6 +620,7 @@ class MusicalBox(CircuitBase):
 
 class ResistanceLaw(CircuitBase):
     """Represent a resistance law component."""
+
     _l_low_pin: Pin
     _l_lowmid_pin: Pin
     _l_upmid_pin: Pin
@@ -713,15 +722,15 @@ class ResistanceLaw(CircuitBase):
         return "电阻定律实验"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_low", cls.l_low
-        yield "l_lowmid", cls.l_lowmid
-        yield "l_upmid", cls.l_upmid
-        yield "l_up", cls.l_up
-        yield "r_low", cls.r_low
-        yield "r_lowmid", cls.r_lowmid
-        yield "r_upmid", cls.r_upmid
-        yield "r_up", cls.r_up
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_low", cls._get_property("l_low")
+        yield "l_lowmid", cls._get_property("l_lowmid")
+        yield "l_upmid", cls._get_property("l_upmid")
+        yield "l_up", cls._get_property("l_up")
+        yield "r_low", cls._get_property("r_low")
+        yield "r_lowmid", cls._get_property("r_lowmid")
+        yield "r_upmid", cls._get_property("r_upmid")
+        yield "r_up", cls._get_property("r_up")
 
     @property
     def l_low(self) -> Pin:
@@ -770,6 +779,7 @@ class ResistanceLaw(CircuitBase):
 
 class Solenoid(CircuitBase):
     """Represent a solenoid component."""
+
     _subred_pin: Pin
     _subblack_pin: Pin
     _red_pin: Pin
@@ -840,11 +850,11 @@ class Solenoid(CircuitBase):
         return "通电螺线管"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "subred", cls.subred
-        yield "subblack", cls.subblack
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "subred", cls._get_property("subred")
+        yield "subblack", cls._get_property("subblack")
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def subred(self) -> Pin:
@@ -873,6 +883,7 @@ class Solenoid(CircuitBase):
 
 class ElectricFan(CircuitBase):
     """Represent a electric fan component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -946,9 +957,9 @@ class ElectricFan(CircuitBase):
         return "小电扇"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -967,6 +978,7 @@ class ElectricFan(CircuitBase):
 
 class SimpleInstrument(CircuitBase):
     """Represent a simple instrument component."""
+
     _i_pin: Pin
     _o_pin: Pin
 
@@ -1068,9 +1080,9 @@ class SimpleInstrument(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i", cls.i
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i", cls._get_property("i")
+        yield "o", cls._get_property("o")
 
     @property
     def rated_oltage(self) -> num_type:

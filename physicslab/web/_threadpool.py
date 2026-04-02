@@ -108,6 +108,7 @@ class _Task:
 
 class ThreadPool:
     """Represent a thread pool component."""
+
     def __init__(self, *, max_workers: int) -> None:
         """Initialize the thread pool.
 

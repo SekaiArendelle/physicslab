@@ -10,12 +10,14 @@ from physicslab._typing import (
     final,
     Tuple,
     Iterator,
+    Generator,
 )
 from physicslab import coordinate_system
 
 
 class LogicInput(CircuitBase):
     """Represent a logic input component."""
+
     _o_pin: OutputPin
     output_status: bool
 
@@ -95,8 +97,8 @@ class LogicInput(CircuitBase):
         return "逻辑输入"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "o", cls._get_property("o")
 
     @property
     def o(self) -> OutputPin:
@@ -110,6 +112,7 @@ class LogicInput(CircuitBase):
 
 class LogicOutput(CircuitBase):
     """Represent a logic output component."""
+
     _i_pin: InputPin
 
     def __init__(
@@ -177,8 +180,8 @@ class LogicOutput(CircuitBase):
         return "逻辑输出"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i", cls.i
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i", cls._get_property("i")
 
     @property
     def i(self) -> InputPin:
@@ -221,9 +224,9 @@ class _2PinGate(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i", cls.i
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i", cls._get_property("i")
+        yield "o", cls._get_property("o")
 
     @property
     def i(self) -> InputPin:
@@ -242,6 +245,7 @@ class _2PinGate(CircuitBase):
 
 class YesGate(_2PinGate):
     """Represent a yes gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -310,6 +314,7 @@ class YesGate(_2PinGate):
 
 class NoGate(_2PinGate):
     """Represent a no gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -409,10 +414,10 @@ class _3PinGate(CircuitBase):
         super().__init__(position, rotation, identifier, lock_status, label)
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o", cls._get_property("o")
 
     @property
     def i_up(self) -> InputPin:
@@ -436,6 +441,7 @@ class _3PinGate(CircuitBase):
 
 class OrGate(_3PinGate):
     """Represent a or gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -504,6 +510,7 @@ class OrGate(_3PinGate):
 
 class AndGate(_3PinGate):
     """Represent a and gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -572,6 +579,7 @@ class AndGate(_3PinGate):
 
 class NorGate(_3PinGate):
     """Represent a nor gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -640,6 +648,7 @@ class NorGate(_3PinGate):
 
 class NandGate(_3PinGate):
     """Represent a nand gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -708,6 +717,7 @@ class NandGate(_3PinGate):
 
 class XorGate(_3PinGate):
     """Represent a xor gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -776,6 +786,7 @@ class XorGate(_3PinGate):
 
 class XnorGate(_3PinGate):
     """Represent a xnor gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -844,6 +855,7 @@ class XnorGate(_3PinGate):
 
 class ImpGate(_3PinGate):
     """Represent a imp gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -912,6 +924,7 @@ class ImpGate(_3PinGate):
 
 class NimpGate(_3PinGate):
     """Represent a nimp gate component."""
+
     def __init__(
         self,
         position: coordinate_system.Position,
@@ -1010,6 +1023,7 @@ class _BigElement(CircuitBase):
 
 class HalfAdder(_BigElement):
     """Represent a half adder component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1062,11 +1076,11 @@ class HalfAdder(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1113,6 +1127,7 @@ class HalfAdder(_BigElement):
 
 class FullAdder(_BigElement):
     """Represent a full adder component."""
+
     _i_up_pin: InputPin
     _i_mid_pin: InputPin
     _i_low_pin: InputPin
@@ -1167,12 +1182,12 @@ class FullAdder(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_mid", cls.i_mid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_mid", cls._get_property("i_mid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1224,6 +1239,7 @@ class FullAdder(_BigElement):
 
 class HalfSubtractor(_BigElement):
     """Represent a half subtractor component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1281,11 +1297,11 @@ class HalfSubtractor(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1332,6 +1348,7 @@ class HalfSubtractor(_BigElement):
 
 class FullSubtractor(_BigElement):
     """Represent a full subtractor component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1395,12 +1412,12 @@ class FullSubtractor(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_mid", cls.i_mid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_mid", cls._get_property("i_mid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1452,6 +1469,7 @@ class FullSubtractor(_BigElement):
 
 class Multiplier(_BigElement):
     """Represent a multiplier component."""
+
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -1512,15 +1530,15 @@ class Multiplier(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_upmid", cls.i_upmid
-        yield "i_lowmid", cls.i_lowmid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_upmid", cls.o_upmid
-        yield "o_lowmid", cls.o_lowmid
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_upmid", cls._get_property("i_upmid")
+        yield "i_lowmid", cls._get_property("i_lowmid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_upmid", cls._get_property("o_upmid")
+        yield "o_lowmid", cls._get_property("o_lowmid")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1587,6 +1605,7 @@ class Multiplier(_BigElement):
 
 class DFlipflop(_BigElement):
     """Represent a d flipflop component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1639,11 +1658,11 @@ class DFlipflop(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1690,6 +1709,7 @@ class DFlipflop(_BigElement):
 
 class TFlipflop(_BigElement):
     """Represent a t flipflop component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1742,11 +1762,11 @@ class TFlipflop(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1793,6 +1813,7 @@ class TFlipflop(_BigElement):
 
 class RealTFlipflop(_BigElement):
     """Represent a real t flipflop component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1845,11 +1866,11 @@ class RealTFlipflop(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -1896,6 +1917,7 @@ class RealTFlipflop(_BigElement):
 
 class JKFlipflop(_BigElement):
     """Represent a j k flipflop component."""
+
     _o_up_pin: OutputPin
     _o_low_pin: OutputPin
     _i_up_pin: InputPin
@@ -1950,12 +1972,12 @@ class JKFlipflop(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_mid", cls.i_mid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_mid", cls._get_property("i_mid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -2007,6 +2029,7 @@ class JKFlipflop(_BigElement):
 
 class Counter(_BigElement):
     """Represent a counter component."""
+
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -2063,13 +2086,13 @@ class Counter(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_upmid", cls.o_upmid
-        yield "o_lowmid", cls.o_lowmid
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_upmid", cls._get_property("o_upmid")
+        yield "o_lowmid", cls._get_property("o_lowmid")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -2126,6 +2149,7 @@ class Counter(_BigElement):
 
 class RandomGenerator(_BigElement):
     """Represent a random generator component."""
+
     _o_up_pin: OutputPin
     _o_upmid_pin: OutputPin
     _o_lowmid_pin: OutputPin
@@ -2182,13 +2206,13 @@ class RandomGenerator(_BigElement):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_upmid", cls.o_upmid
-        yield "o_lowmid", cls.o_lowmid
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_upmid", cls._get_property("o_upmid")
+        yield "o_lowmid", cls._get_property("o_lowmid")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -2245,6 +2269,7 @@ class RandomGenerator(_BigElement):
 
 class EightBitInput(CircuitBase):
     """Represent a eight bit input component."""
+
     _input_num: int
     low_level: num_type
     high_level: num_type
@@ -2331,15 +2356,15 @@ class EightBitInput(CircuitBase):
         )
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_upmid", cls.i_upmid
-        yield "i_lowmid", cls.i_lowmid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_upmid", cls.o_upmid
-        yield "o_lowmid", cls.o_lowmid
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_upmid", cls._get_property("i_upmid")
+        yield "i_lowmid", cls._get_property("i_lowmid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_upmid", cls._get_property("o_upmid")
+        yield "o_lowmid", cls._get_property("o_lowmid")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def input_num(self) -> int:
@@ -2411,6 +2436,7 @@ class EightBitInput(CircuitBase):
 
 class EightBitDisplay(CircuitBase):
     """Represent a eight bit display component."""
+
     _i_up_pin: InputPin
     _i_upmid_pin: InputPin
     _i_lowmid_pin: InputPin
@@ -2473,15 +2499,15 @@ class EightBitDisplay(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i_up", cls.i_up
-        yield "i_upmid", cls.i_upmid
-        yield "i_lowmid", cls.i_lowmid
-        yield "i_low", cls.i_low
-        yield "o_up", cls.o_up
-        yield "o_upmid", cls.o_upmid
-        yield "o_lowmid", cls.o_lowmid
-        yield "o_low", cls.o_low
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i_up", cls._get_property("i_up")
+        yield "i_upmid", cls._get_property("i_upmid")
+        yield "i_lowmid", cls._get_property("i_lowmid")
+        yield "i_low", cls._get_property("i_low")
+        yield "o_up", cls._get_property("o_up")
+        yield "o_upmid", cls._get_property("o_upmid")
+        yield "o_lowmid", cls._get_property("o_lowmid")
+        yield "o_low", cls._get_property("o_low")
 
     @property
     def i_up(self) -> InputPin:
@@ -2548,6 +2574,7 @@ class EightBitDisplay(CircuitBase):
 
 class SchmittTrigger(CircuitBase):
     """Represent a schmitt trigger component."""
+
     _i_pin: InputPin
     _o_pin: OutputPin
     high_level: num_type
@@ -2633,9 +2660,9 @@ class SchmittTrigger(CircuitBase):
         )
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "i", cls.i
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "i", cls._get_property("i")
+        yield "o", cls._get_property("o")
 
     @property
     def i(self) -> InputPin:

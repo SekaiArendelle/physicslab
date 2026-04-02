@@ -10,6 +10,7 @@ from physicslab._typing import (
     CircuitElementData,
     final,
     Iterator,
+    Generator,
     Tuple,
 )
 
@@ -30,6 +31,7 @@ class _SwitchBase(CircuitBase):
 
 class SimpleSwitch(_SwitchBase):
     """Represent a simple switch component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -56,9 +58,9 @@ class SimpleSwitch(_SwitchBase):
         self._black_pin = Pin(self, 1, "black")
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def switch_state(self) -> SwitchState:
@@ -126,6 +128,7 @@ class SimpleSwitch(_SwitchBase):
 
 class SPDTSwitch(_SwitchBase):
     """Represent a s p d t switch component."""
+
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -148,10 +151,10 @@ class SPDTSwitch(_SwitchBase):
         self._r_pin = Pin(self, 2, "r")
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "mid", cls.mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "mid", cls._get_property("mid")
+        yield "r", cls._get_property("r")
 
     @property
     def switch_state(self) -> PDTSwitchState:
@@ -224,6 +227,7 @@ class SPDTSwitch(_SwitchBase):
 
 class DPDTSwitch(_SwitchBase):
     """Represent a d p d t switch component."""
+
     _l_low_pin: Pin
     _mid_low_pin: Pin
     _r_low_pin: Pin
@@ -252,13 +256,13 @@ class DPDTSwitch(_SwitchBase):
         self.switch_state = switch_state
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_low", cls.l_low
-        yield "mid_low", cls.mid_low
-        yield "r_low", cls.r_low
-        yield "l_up", cls.l_up
-        yield "mid_up", cls.mid_up
-        yield "r_up", cls.r_up
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_low", cls._get_property("l_low")
+        yield "mid_low", cls._get_property("mid_low")
+        yield "r_low", cls._get_property("r_low")
+        yield "l_up", cls._get_property("l_up")
+        yield "mid_up", cls._get_property("mid_up")
+        yield "r_up", cls._get_property("r_up")
 
     @property
     def switch_state(self) -> PDTSwitchState:
@@ -346,6 +350,7 @@ class DPDTSwitch(_SwitchBase):
 
 class PushSwitch(CircuitBase):
     """Represent a push switch component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -380,9 +385,9 @@ class PushSwitch(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -418,6 +423,7 @@ class PushSwitch(CircuitBase):
 
 class AirSwitch(CircuitBase):
     """Represent a air switch component."""
+
     _red_pin: Pin
     _black_pin: Pin
     __switch_state: SwitchState
@@ -459,9 +465,9 @@ class AirSwitch(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def switch_state(self) -> SwitchState:
@@ -512,6 +518,7 @@ class AirSwitch(CircuitBase):
 
 class IncandescentLamp(CircuitBase):
     """Represent a incandescent lamp component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -559,9 +566,9 @@ class IncandescentLamp(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -597,6 +604,7 @@ class IncandescentLamp(CircuitBase):
 
 class BatterySource(CircuitBase):
     """Represent a battery source component."""
+
     _red_pin: Pin
     _black_pin: Pin
     voltage: num_type
@@ -652,9 +660,9 @@ class BatterySource(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -692,6 +700,7 @@ class BatterySource(CircuitBase):
 
 class StudentSource(CircuitBase):
     """Represent a student source component."""
+
     _l_pin: Pin
     _l_mid_pin: Pin
     _r_mid_pin: Pin
@@ -772,11 +781,11 @@ class StudentSource(CircuitBase):
         return 4
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "l_mid", cls.l_mid
-        yield "r_mid", cls.r_mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "l_mid", cls._get_property("l_mid")
+        yield "r_mid", cls._get_property("r_mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -801,6 +810,7 @@ class StudentSource(CircuitBase):
 
 class Resistor(CircuitBase):
     """Represent a resistor component."""
+
     _red_pin: Pin
     _black_pin: Pin
     resistance: num_type
@@ -855,9 +865,9 @@ class Resistor(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -894,6 +904,7 @@ class Resistor(CircuitBase):
 
 class FuseComponent(CircuitBase):
     """Represent a fuse component component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -940,9 +951,9 @@ class FuseComponent(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -978,6 +989,7 @@ class FuseComponent(CircuitBase):
 
 class SlideRheostat(CircuitBase):
     """Represent a slide rheostat component."""
+
     _l_low_pin: Pin
     _r_low_pin: Pin
     _l_up_pin: Pin
@@ -1056,11 +1068,11 @@ class SlideRheostat(CircuitBase):
         return 4
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l_low", cls.l_low
-        yield "r_low", cls.r_low
-        yield "l_up", cls.l_up
-        yield "r_up", cls.r_up
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l_low", cls._get_property("l_low")
+        yield "r_low", cls._get_property("r_low")
+        yield "l_up", cls._get_property("l_up")
+        yield "r_up", cls._get_property("r_up")
 
     @property
     def l_low(self) -> Pin:
@@ -1085,6 +1097,7 @@ class SlideRheostat(CircuitBase):
 
 class Multimeter(CircuitBase):
     """Represent a multimeter component."""
+
     _red_pin: Pin
     _black_pin: Pin
 
@@ -1126,9 +1139,9 @@ class Multimeter(CircuitBase):
         }
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -1164,6 +1177,7 @@ class Multimeter(CircuitBase):
 
 class Galvanometer(CircuitBase):
     """Represent a galvanometer component."""
+
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1221,10 +1235,10 @@ class Galvanometer(CircuitBase):
         return 3
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "mid", cls.mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "mid", cls._get_property("mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -1244,6 +1258,7 @@ class Galvanometer(CircuitBase):
 
 class Microammeter(CircuitBase):
     """Represent a microammeter component."""
+
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1301,10 +1316,10 @@ class Microammeter(CircuitBase):
         return 3
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "mid", cls.mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "mid", cls._get_property("mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -1324,6 +1339,7 @@ class Microammeter(CircuitBase):
 
 class ElectricityMeter(CircuitBase):
     """Represent a electricity meter component."""
+
     _l_pin: Pin
     _l_mid_pin: Pin
     _r_mid_pin: Pin
@@ -1383,11 +1399,11 @@ class ElectricityMeter(CircuitBase):
         return 4
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "l_mid", cls.l_mid
-        yield "r_mid", cls.r_mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "l_mid", cls._get_property("l_mid")
+        yield "r_mid", cls._get_property("r_mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -1412,6 +1428,7 @@ class ElectricityMeter(CircuitBase):
 
 class ResistanceBox(CircuitBase):
     """Represent a resistance box component."""
+
     _l_pin: Pin
     _r_pin: Pin
     resistance: num_type
@@ -1488,9 +1505,9 @@ class ResistanceBox(CircuitBase):
         return 2
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -1505,6 +1522,7 @@ class ResistanceBox(CircuitBase):
 
 class SimpleAmmeter(CircuitBase):
     """Represent a simple ammeter component."""
+
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1567,10 +1585,10 @@ class SimpleAmmeter(CircuitBase):
         return 3
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "mid", cls.mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "mid", cls._get_property("mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:
@@ -1590,6 +1608,7 @@ class SimpleAmmeter(CircuitBase):
 
 class SimpleVoltmeter(CircuitBase):
     """Represent a simple voltmeter component."""
+
     _l_pin: Pin
     _mid_pin: Pin
     _r_pin: Pin
@@ -1651,10 +1670,10 @@ class SimpleVoltmeter(CircuitBase):
         return 3
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "l", cls.l
-        yield "mid", cls.mid
-        yield "r", cls.r
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "l", cls._get_property("l")
+        yield "mid", cls._get_property("mid")
+        yield "r", cls._get_property("r")
 
     @property
     def l(self) -> Pin:

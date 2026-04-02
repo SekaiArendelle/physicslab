@@ -2,7 +2,7 @@
 
 import abc
 from physicslab import coordinate_system
-from physicslab._typing import Optional, CircuitElementData, Iterator, Tuple
+from physicslab._typing import Optional, CircuitElementData, Iterator, Tuple, Generator
 
 
 class CircuitBase:
@@ -130,8 +130,16 @@ class CircuitBase:
         )
 
     @classmethod
+    def _get_property(cls, name: str) -> property:
+        """Return a pin property descriptor by name."""
+        prop = getattr(cls, name)
+        if not isinstance(prop, property):
+            raise TypeError(f"{cls.__name__}.{name} is not a property")
+        return prop
+
+    @classmethod
     @abc.abstractmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
         """Iterate over all the properties of this class that are Pin instances.
 
         This method must be implemented by subclasses; it is used by the default

@@ -9,6 +9,7 @@ from physicslab._typing import (
     CircuitElementData,
     final,
     Iterator,
+    Generator,
     Tuple,
 )
 
@@ -62,10 +63,10 @@ class _MemsBase(CircuitBase):
         return 3
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "x", cls.x
-        yield "y", cls.y
-        yield "z", cls.z
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "x", cls._get_property("x")
+        yield "y", cls._get_property("y")
+        yield "z", cls._get_property("z")
 
     @property
     def x(self) -> Pin:
@@ -263,13 +264,13 @@ class AnalogJoystick(CircuitBase):
         return "模拟摇杆"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "x1", cls.x1
-        yield "x2", cls.x2
-        yield "x3", cls.x3
-        yield "y1", cls.y1
-        yield "y2", cls.y2
-        yield "y3", cls.y3
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "x1", cls._get_property("x1")
+        yield "x2", cls._get_property("x2")
+        yield "x3", cls._get_property("x3")
+        yield "y1", cls._get_property("y1")
+        yield "y2", cls._get_property("y2")
+        yield "y3", cls._get_property("y3")
 
     @property
     def x1(self) -> Pin:
@@ -712,9 +713,9 @@ class Photodiode(CircuitBase):
         return 2
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -794,9 +795,9 @@ class Photoresistor(CircuitBase):
         return 2
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "red", cls.red
-        yield "black", cls.black
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "red", cls._get_property("red")
+        yield "black", cls._get_property("black")
 
     @property
     def red(self) -> Pin:
@@ -889,8 +890,8 @@ class ProximitySensor(CircuitBase):
         return "临近传感器"
 
     @classmethod
-    def all_pins_property_iter(cls) -> Iterator[Tuple[str, property]]:
-        yield "o", cls.o
+    def all_pins_property_iter(cls) -> Generator[tuple[str, property], None, None]:
+        yield "o", cls._get_property("o")
 
     @property
     def o(self) -> Pin:
