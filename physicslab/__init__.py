@@ -12,6 +12,8 @@ from .electromagnetism import *
 
 from .errors import *
 
+from .publish import update_experiment, upload_experiment
+
 from physicslab.quantum_physics import *
 from physicslab.utils import *
 

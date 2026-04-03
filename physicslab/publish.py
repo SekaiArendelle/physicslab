@@ -11,8 +11,7 @@ from physicslab.circuit import CircuitExperiment
 from physicslab.celestial import CelestialExperiment
 from physicslab.electromagnetism import ElectromagnetismExperiment
 from physicslab._typing import Union, Optional, Tuple, TypeAlias
-from . import _request
-from .api import User
+from physicslab.web import _request, User
 
 _Experiment: TypeAlias = Union[
     CircuitExperiment, CelestialExperiment, ElectromagnetismExperiment
