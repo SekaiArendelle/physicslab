@@ -2,7 +2,7 @@
 
 import uuid
 from physicslab import quantum_physics
-from .._base import CircuitBase, InputPin, OutputPin
+from ..base import CircuitBase, InputPin, OutputPin
 from physicslab._typing import (
     Optional,
     num_type,

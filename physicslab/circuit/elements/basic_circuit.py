@@ -2,7 +2,7 @@
 
 import uuid
 from physicslab import coordinate_system
-from .._base import CircuitBase, Pin
+from ..base import CircuitBase, Pin
 from physicslab.enums import SwitchState, PDTSwitchState
 from physicslab._typing import (
     Optional,

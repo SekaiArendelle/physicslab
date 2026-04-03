@@ -32,7 +32,7 @@ from physicslab import (
     ExperimentNotExistError,
 )
 from physicslab.circuit import elements
-from physicslab.circuit._base import CircuitBase
+from physicslab.circuit.base import CircuitBase
 from physicslab.enums import SwitchState, PDTSwitchState
 
 

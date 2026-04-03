@@ -1,7 +1,7 @@
 """Circuit element classes for the physicslab circuit package."""
 
-from .basicCircuit import *
-from .logicCircuit import *
-from .artificialCircuit import *
-from .otherCircuit import *
+from .basic_circuit import *
+from .logic_circuit import *
+from .artificial_circuit import *
+from .other_circuit import *
 from .sensor import *

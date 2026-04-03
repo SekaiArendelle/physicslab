@@ -2,7 +2,7 @@
 
 import json
 from physicslab import errors
-from ._base import CircuitBase, Pin
+from .base import CircuitBase, Pin
 from .wire import WireInfo
 from physicslab import coordinate_system
 from physicslab._typing import List, Dict

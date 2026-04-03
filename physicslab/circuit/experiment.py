@@ -12,7 +12,7 @@ from physicslab.web import User, anonymous_login
 from physicslab._camera_save import CameraMode, CameraSave
 from physicslab._typing import Optional, Self, Tuple
 from . import elements
-from ._base import CircuitBase, Pin
+from .base import CircuitBase, Pin
 from ._status_save import CircuitStatusSave
 from .wire import WireInfo
 

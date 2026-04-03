@@ -2,7 +2,7 @@
 
 import uuid
 from physicslab import coordinate_system
-from .._base import CircuitBase, Pin
+from ..base import CircuitBase, Pin
 from physicslab._typing import (
     Optional,
     num_type,
