@@ -3,13 +3,13 @@ Except for experiment upload API which is encapsulated in class Experiment's __u
 This file provides support for multi-threaded style API calls
 """
 
-import os
 import sys
 import json
 import asyncio
 import functools
 import contextvars
 import requests
+import pathlib
 
 from . import _request
 
@@ -1187,7 +1187,9 @@ class User:
             self.star_content, content_id, category, star_type, status
         )
 
-    def upload_image(self, policy: str, authorization: str, image_path: str) -> dict:
+    def upload_image(
+        self, policy: str, authorization: str, image_path: pathlib.Path
+    ) -> dict:
         """Upload experiment image
 
         Args:
@@ -1211,14 +1213,14 @@ class User:
             raise TypeError(
                 f"Parameter `authorization` must be of type `str`, but got value `{authorization}` of type `{type(authorization).__name__}`"
             )
-        if not isinstance(image_path, str):
+        if not isinstance(image_path, pathlib.Path):
             raise TypeError(
-                f"Parameter `image_path` must be of type `str`, but got value `{image_path}` of type `{type(image_path).__name__}`"
+                f"Parameter `image_path` must be of type `Path`, but got value `{image_path}` of type `{type(image_path).__name__}`"
             )
-        if not os.path.exists(image_path) or not os.path.isfile(image_path):
+        if not image_path.exists() or not image_path.is_file():
             raise FileNotFoundError(f"`{image_path}` not found")
 
-        with open(image_path, "rb") as f:
+        with image_path.open("rb") as f:
             data = {
                 "policy": (None, policy, None),
                 "authorization": (None, authorization, None),
@@ -1238,7 +1240,7 @@ class User:
             return response.json()
 
     async def async_upload_image(
-        self, policy: str, authorization: str, image_path: str
+        self, policy: str, authorization: str, image_path: pathlib.Path
     ) -> Awaitable[dict]:
         """Execute the async upload image routine."""
         return await _async_wrapper(

@@ -1,9 +1,9 @@
 """Helpers for publishing experiment objects to Physics-Lab-AR."""
 
-import os
 import copy
 import json
 import gzip
+import pathlib
 
 from physicslab import errors, quantum_physics
 from physicslab.enums import Category
@@ -44,18 +44,18 @@ def _submit_experiment(
     expe: _Experiment,
     user: User,
     category: Optional[Category],
-    image_path: Optional[str],
+    image_path: Optional[pathlib.Path],
 ) -> Tuple[dict, dict]:
     _check_type(expe, user)
     if not isinstance(category, (Category, type(None))):
         raise TypeError(
             f"Parameter `category` must be of type `Category` or `None`, but got value `{category}` of type `{type(category).__name__}`"
         )
-    if not isinstance(image_path, (str, type(None))):
+    if not isinstance(image_path, (pathlib.Path, type(None))):
         raise TypeError(
-            f"Parameter `image_path` must be of type `str` or `None`, but got value `{image_path}` of type `{type(image_path).__name__}`"
+            f"Parameter `image_path` must be of type `Path` or `None`, but got value `{image_path}` of type `{type(image_path).__name__}`"
         )
-    if image_path is not None and (not os.path.exists(image_path) or not os.path.isfile(image_path)):
+    if image_path is not None and (not image_path.exists() or not image_path.is_file()):
         raise FileNotFoundError(f"`{image_path}` not found")
     if not user.is_binded:
         raise PermissionError("you must register first")
@@ -84,7 +84,7 @@ def _submit_experiment(
         "Workspace": workspace,
     }
     if image_path is not None:
-        image_size = os.path.getsize(image_path)
+        image_size = image_path.stat().st_size
         if image_size >= 1048576:
             # Use bug of Quantum-Physics to upload image
             image_size = -image_size
@@ -125,7 +125,7 @@ def upload_experiment(
     expe: _Experiment,
     user: User,
     category: Category,
-    image_path: Optional[str],
+    image_path: Optional[pathlib.Path],
 ) -> dict:
     """Publish a new experiment."""
     if not isinstance(category, Category):
@@ -165,7 +165,7 @@ def upload_experiment(
 def update_experiment(
     expe: _Experiment,
     user: User,
-    image_path: Optional[str] = None,
+    image_path: Optional[pathlib.Path] = None,
 ) -> dict:
     """Update an existing experiment."""
     summary_id = expe.as_plsav_dict()["Summary"]["ID"]
