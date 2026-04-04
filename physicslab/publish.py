@@ -124,8 +124,8 @@ def _submit_experiment(
 def upload_experiment(
     expe: _Experiment,
     user: User,
-    category: Category = Category.Experiment,
-    image_path: Optional[str] = None,
+    category: Category,
+    image_path: Optional[str],
 ) -> dict:
     """Publish a new experiment."""
     if not isinstance(category, Category):
@@ -135,6 +135,7 @@ def upload_experiment(
 
     summary_id = expe.as_plsav_dict()["Summary"]["ID"]
     if summary_id is not None:
+        # TODO This branch is always false
         raise RuntimeError(
             "upload can only be used to upload a brand new experiment, "
             "try using `.update_experiment` instead"

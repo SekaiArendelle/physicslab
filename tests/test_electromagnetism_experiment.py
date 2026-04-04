@@ -34,6 +34,19 @@ from physicslab.electromagnetism._base import ElectromagnetismBase
 
 
 class TestElectromagnetismExperiment(unittest.TestCase):
+    def test_introduction_round_trip_in_summary(self):
+        intro = "line1\nline2"
+        with crt_electromagnetism_experiment("intro-test") as expe:
+            expe.introduction = intro
+            self.assertEqual(
+                expe.as_plsav_dict()["Summary"]["Description"], ["line1", "line2"]
+            )
+
+        with load_electromagnetism_experiment_by_file_path(
+            pathlib.Path(_constant.TEST_DATA_DIR) / "All-Electromagnetism-Elements.sav"
+        ) as expe:
+            self.assertTrue(expe.introduction is None)
+
     def test_load_from_filepath(self):
         with load_electromagnetism_experiment_by_file_path(
             pathlib.Path(_constant.TEST_DATA_DIR) / "All-Electromagnetism-Elements.sav"

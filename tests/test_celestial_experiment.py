@@ -33,6 +33,17 @@ from physicslab.celestial._base import CelestialBase
 
 
 class TestCelestialExperiment(unittest.TestCase):
+    def test_introduction_round_trip_in_summary(self):
+        intro = "line1\nline2"
+        with crt_celestial_experiment("intro-test") as expe:
+            expe.introduction = intro
+            self.assertEqual(expe.as_plsav_dict()["Summary"]["Description"], ["line1", "line2"])
+
+        with load_celestial_experiment_by_file_path(
+            pathlib.Path(_constant.TEST_DATA_DIR) / "All-Celestial-Elements.sav"
+        ) as expe:
+            self.assertTrue(expe.introduction is None)
+
     def test_remove_element(self):
         with crt_celestial_experiment(None) as expe:
             sun = planets.Sun(Position(0, 0, 0))

@@ -60,3 +60,23 @@ def find_path_of_sav_name(sav_name: str) -> Optional[pathlib.Path]:
                 return file
 
     return None
+
+
+def serialize_introduction(introduction: Optional[str]) -> Optional[list[str]]:
+    """Convert introduction text to the ``Summary.Description`` save format."""
+    if introduction is None:
+        return None
+    return introduction.split("\n")
+
+
+def deserialize_introduction(description: object) -> Optional[str]:
+    """Convert ``Summary.Description`` data back to introduction text."""
+    if isinstance(description, list):
+        return "\n".join(description)
+    if isinstance(description, str):
+        return description
+    if description is None:
+        return None
+    raise TypeError(
+        f"description must be of type `list[str] | str | None`, but got value {description} of type {type(description).__name__}"
+    )

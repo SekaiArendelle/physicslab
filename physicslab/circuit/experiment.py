@@ -6,7 +6,11 @@ import time
 import uuid
 from physicslab import coordinate_system
 from physicslab import errors
-from physicslab.utils import find_path_of_sav_name
+from physicslab.utils import (
+    find_path_of_sav_name,
+    serialize_introduction,
+    deserialize_introduction,
+)
 from physicslab.enums import Category, ColorOfWire, SwitchState, PDTSwitchState
 from physicslab.web import User, anonymous_login
 from physicslab._camera_save import CameraMode, CameraSave
@@ -23,6 +27,7 @@ class CircuitExperiment:
     __name: Optional[str]
     __status_save: CircuitStatusSave
     __camera_save: CameraSave
+    __introduction: Optional[str]
 
     def __init__(
         self,
@@ -33,10 +38,12 @@ class CircuitExperiment:
             coordinate_system.Position(-0.1715205, -0.7228146, 1.08),
             coordinate_system.Rotation(50, 0, 0),
         ),
+        introduction: Optional[str] = None,
     ) -> None:
         self.name = name
         self.status_save = CircuitStatusSave()
         self.camera_save = camera_save
+        self.introduction = introduction
 
     def __enter__(self) -> Self:
         return self
@@ -85,6 +92,20 @@ class CircuitExperiment:
             )
 
         self.__camera_save = camera_save
+
+    @property
+    def introduction(self) -> Optional[str]:
+        """Introduction of this experiment (may be ``None``)."""
+        return self.__introduction
+
+    @introduction.setter
+    def introduction(self, introduction: Optional[str]) -> None:
+        if not isinstance(introduction, (str, type(None))):
+            raise TypeError(
+                f"introduction must be of type `str | None`, but got value {introduction} of type {type(introduction).__name__}"
+            )
+
+        self.__introduction = introduction
 
     def crt_a_element(self, element: CircuitBase) -> Self:
         """Add a single element to this experiment and return ``self``."""
@@ -202,7 +223,7 @@ class CircuitExperiment:
                 "ContentID": None,
                 "Editor": None,
                 "Coauthors": [],
-                "Description": None,
+                "Description": serialize_introduction(self.introduction),
                 "LocalizedDescription": None,
                 "Tags": ["Type-0"],
                 "ModelID": None,
@@ -1075,10 +1096,13 @@ def load_circuit_experiment_by_file_path(path: pathlib.Path) -> CircuitExperimen
 
     if isinstance(plasv_dict["Summary"], dict):
         subject = plasv_dict["Summary"]["Subject"]
+        introduction = deserialize_introduction(plasv_dict["Summary"].get("Description"))
     elif "Experiment" in plasv_dict and "Subject" in plasv_dict["Experiment"]:
         subject = plasv_dict["Experiment"]["Subject"]
+        introduction = None
     else:
         subject = plasv_dict.get("Subject", None)
+        introduction = None
 
     if "Experiment" in plasv_dict.keys():
         status_save_dict = json.loads(plasv_dict["Experiment"]["StatusSave"])
@@ -1087,7 +1111,7 @@ def load_circuit_experiment_by_file_path(path: pathlib.Path) -> CircuitExperimen
         status_save_dict = json.loads(plasv_dict["StatusSave"])
         camera_save = _construct_camera_save(plasv_dict["CameraSave"])
 
-    result = CircuitExperiment(subject, camera_save)
+    result = CircuitExperiment(subject, camera_save, introduction)
 
     for element_dict in status_save_dict["Elements"]:
         result.crt_a_element(_dict_to_element(element_dict))
@@ -1169,7 +1193,10 @@ def load_circuit_experiment_from_app(
             f'Content ID "{content_id}" does not correspond to a circuit experiment'
         )
 
-    result = CircuitExperiment(_summary["Subject"])
+    result = CircuitExperiment(
+        _summary["Subject"],
+        introduction=deserialize_introduction(_summary.get("Description")),
+    )
     status_save_dict = json.loads(_experiment["StatusSave"])
     for element_dict in status_save_dict["Elements"]:
         result.crt_a_element(_dict_to_element(element_dict))

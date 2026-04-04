@@ -4,7 +4,11 @@ import time
 import json
 import pathlib
 from physicslab import errors
-from physicslab.utils import find_path_of_sav_name
+from physicslab.utils import (
+    find_path_of_sav_name,
+    serialize_introduction,
+    deserialize_introduction,
+)
 from physicslab import coordinate_system
 from physicslab.enums import Category
 from physicslab.web import User, anonymous_login
@@ -21,6 +25,7 @@ class CelestialExperiment:
     __name: Optional[str]
     __status_save: CelestialStatusSave
     __camera_save: CameraSave
+    __introduction: Optional[str]
 
     def __init__(
         self,
@@ -31,10 +36,12 @@ class CelestialExperiment:
             coordinate_system.Position(0, 0, 1.083),
             coordinate_system.Rotation(90, 0, 0),
         ),
+        introduction: Optional[str] = None,
     ) -> None:
         self.name = name
         self.status_save = CelestialStatusSave()
         self.camera_save = camera_save
+        self.introduction = introduction
 
     def __enter__(self) -> Self:
         return self
@@ -83,6 +90,20 @@ class CelestialExperiment:
             )
 
         self.__camera_save = camera_save
+
+    @property
+    def introduction(self) -> Optional[str]:
+        """Returns the experiment introduction (may be ``None``)."""
+        return self.__introduction
+
+    @introduction.setter
+    def introduction(self, introduction: Optional[str]) -> None:
+        if not isinstance(introduction, (str, type(None))):
+            raise TypeError(
+                f"introduction must be of type `str | None`, but got value {introduction} of type {type(introduction).__name__}"
+            )
+
+        self.__introduction = introduction
 
     def crt_a_element(self, element: CelestialBase) -> Self:
         """Adds a single celestial element to the experiment."""
@@ -146,7 +167,7 @@ class CelestialExperiment:
                 "ContentID": None,
                 "Editor": None,
                 "Coauthors": [],
-                "Description": None,
+                "Description": serialize_introduction(self.introduction),
                 "LocalizedDescription": None,
                 "Tags": ["Type-3"],
                 "ModelID": None,
@@ -354,9 +375,11 @@ def load_celestial_experiment_by_file_path(
     summary_dict = plasv_dict["Summary"]
     if summary_dict is None:
         subject = None
+        introduction = None
     else:
         subject = summary_dict["Subject"]
-    result = CelestialExperiment(subject)
+        introduction = deserialize_introduction(summary_dict.get("Description"))
+    result = CelestialExperiment(subject, introduction=introduction)
 
     if "Experiment" in plasv_dict.keys():
         status_save_list = json.loads(plasv_dict["Experiment"]["StatusSave"])[
@@ -435,7 +458,10 @@ def load_celestial_experiment_from_app(
             f'Content ID "{content_id}" does not correspond to a celestial experiment'
         )
 
-    result = CelestialExperiment(_summary["Subject"])
+    result = CelestialExperiment(
+        _summary["Subject"],
+        introduction=deserialize_introduction(_summary.get("Description")),
+    )
 
     status_save_dict = json.loads(_experiment["StatusSave"])
     elements_list = status_save_dict["Elements"]
