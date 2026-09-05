@@ -6,7 +6,6 @@ This file provides support for multi-threaded style API calls
 
 import json
 import asyncio
-import requests
 import pathlib
 
 from . import _request
@@ -15,7 +14,7 @@ from physicslab import quantum_physics
 from physicslab import enums
 from physicslab import errors
 from physicslab.enums import Tag, Category
-from physicslab._typing import Optional, List, Callable, Awaitable, Dict, Any
+from physicslab._typing import Optional, List, Callable, Awaitable
 
 
 def _serialize_token(token: Optional[str]) -> str:
@@ -29,37 +28,6 @@ def _serialize_token(token: Optional[str]) -> str:
 
 async def _async_wrapper(func: Callable, *args, **kwargs):
     return await asyncio.to_thread(func, *args, **kwargs)
-
-
-def _check_response(
-    response: requests.Response, err_callback: Optional[Callable] = None
-) -> dict:
-    """Check the returned response
-
-    Args:
-        response: requests response object
-        err_callback: Custom error message for Physics-Lab-AR returned status,
-                      requires status_code (captures status_code from Physics-Lab-AR response body), no return value
-
-    Returns:
-        dict: Physics-Lab-AR API response structure
-
-    """
-    assert err_callback is None or callable(err_callback)
-
-    response.raise_for_status()
-
-    response_json = response.json()
-    status_code = response_json["Status"]
-
-    if status_code == 200:
-        return response_json
-    if err_callback is not None:
-        err_callback(status_code)
-    raise errors.ResponseFail(
-        response_json()["code"],
-        f"Physics-Lab-AR's server returned error code {status_code}: {response_json['Message']}",
-    )
 
 
 def _check_response_json(response: dict) -> dict:
@@ -148,22 +116,28 @@ def get_avatar(
     else:
         errors.unreachable()
 
-    protocol = "https" if usehttps else "http"
-    port = "443" if usehttps else "80"
+    port = 443 if usehttps else 80
 
-    url = (
-        f"{protocol}://physics-static-cn.turtlesim.com:{port}/{category}"
+    avatar_path = (
+        f"{category}"
         f"/{target_id[0:4]}/{target_id[4:6]}/{target_id[6:8]}/{target_id[8:]}/{index}.jpg!{size_category}"
     )
 
     if usehttps:
-        response = requests.get(url, verify=False)
+        content = _request.get_https(
+            "physics-static-cn.turtlesim.com",
+            avatar_path,
+            port=port,
+            verify=False,
+        )
     else:
-        response = requests.get(url)
+        content = _request.get_http(
+            "physics-static-cn.turtlesim.com", avatar_path, port=port
+        )
 
-    if b"<Error>" in response.content:
+    if b"<Error>" in content:
         raise IndexError("avatar not found")
-    return response.content
+    return content
 
 
 async def async_get_avatar(
@@ -1230,24 +1204,22 @@ class User:
         if not image_path.exists() or not image_path.is_file():
             raise FileNotFoundError(f"`{image_path}` not found")
 
-        with image_path.open("rb") as f:
-            data: Dict[str, Any] = {
-                "policy": (None, policy, None),
-                "authorization": (None, authorization, None),
-                "file": ("temp.jpg", f, None),
-            }
-            response = requests.post(
-                "http://v0.api.upyun.com/qphysics",
-                files=data,
+        result = _request.post_multipart(
+            "v0.api.upyun.com",
+            "qphysics",
+            {
+                "policy": policy,
+                "authorization": authorization,
+                "file": ("temp.jpg", image_path.read_bytes(), None),
+            },
+        )
+        if result["code"] != 200:
+            raise errors.ResponseFail(
+                result["code"],
+                f"Physics-Lab-AR returned error code {result['code']} : "
+                f"{result['message']}`",
             )
-            response.raise_for_status()
-            if response.json()["code"] != 200:
-                raise errors.ResponseFail(
-                    response.json()["code"],
-                    f"Physics-Lab-AR returned error code {response.json()['code']} : "
-                    f"{response.json()['message']}`",
-                )
-            return response.json()
+        return result
 
     async def async_upload_image(
         self, policy: str, authorization: str, image_path: pathlib.Path

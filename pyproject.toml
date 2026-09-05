@@ -19,7 +19,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "requests",
+    "urllib3",
 ]
 
 [tool.hatch.version]
@@ -37,7 +37,6 @@ dev = [
     "mypy>=2",
     # ruff is capped to keep the default rule set stable.
     "ruff>=0.16,<0.17",
-    "types-requests",
 ]
 
 [tool.mypy]
