@@ -11,7 +11,7 @@ TYPE_TAG_CELESTIAL = "Type-3"
 TYPE_TAG_ELECTROMAGNETISM = "Type-4"
 
 
-def serialize_introduction(introduction: Optional[str]) -> Optional[list[str]]:
+def serialize_introduction(introduction: Optional[str]) -> Optional[List[str]]:
     """Convert introduction text to the ``Summary.Description`` save format."""
     if introduction is None:
         return None
