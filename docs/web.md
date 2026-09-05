@@ -28,6 +28,16 @@ user = web.token_login(
 )
 ```
 
+* 通过《量子物理》本地的登录缓存登录(无需邮箱密码):
+
+```python
+from physicslab import web
+from physicslab import quantum_physics
+user = web.preference_login(quantum_physics.get_preference_path())
+```
+
+> 注: 该方式要求本机(Windows)装有《量子物理》并登录过CIVITAS账号; 若缓存的凭证已失效, 服务器会返回认证错误, 请改用邮箱密码登录。
+
 一个`User`的对象有以下属性:
 
 * is_binded: 该账号是否绑定了邮箱或第三方关联账号
