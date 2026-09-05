@@ -146,7 +146,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
             A shallow copy of the graph
 
         """
-        result = UndirectedGraph()
+        result: "UndirectedGraph[_Node, _Edge]" = UndirectedGraph()
         result._adjacency_list = copy.deepcopy(self._adjacency_list)
         result._count_edges = self._count_edges
         return result

@@ -32,9 +32,10 @@ dev = [
     "mkdocs",
     "mkdocs-material",
     "mkdocstrings[python]",
-    # Lint tools. mypy is capped below 2.0 so that `uv sync` still resolves on
-    # Python 3.8 (mypy 2.x requires Python >= 3.9 to run).
-    "mypy>=1.14,<2.0",
+    # Lint tools. mypy is capped below 1.15: mypy 1.15+ requires Python >= 3.9
+    # to run (breaking `uv sync` on Python 3.8), and mypy 1.17+ can no longer
+    # target `python_version = "3.8"`. 1.14.x supports both.
+    "mypy>=1.14,<1.15",
     # ruff is capped to keep the default rule set stable.
     "ruff>=0.16,<0.17",
     "types-requests",

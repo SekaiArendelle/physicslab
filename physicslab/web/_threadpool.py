@@ -55,7 +55,7 @@ class _StatusEvent:
 
         def __init__(self) -> None:
             self._condition = Condition()
-            self._status: _Status = _Status.wait
+            self._status = _Status.wait
 
         def wait(self) -> None:
             """Execute the wait routine."""

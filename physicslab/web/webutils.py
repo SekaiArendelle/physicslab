@@ -8,7 +8,7 @@ from .api import User, get_avatar
 from ._threadpool import ThreadPool, _Task
 from physicslab import errors
 from physicslab.enums import Category, Tag, GetUserMode
-from physicslab._typing import Optional, num_type, Callable, List
+from physicslab._typing import Any, Callable, Dict, Iterator, List, Optional, num_type
 
 _DEFAULT_MAX_WORKERS: int = 4
 
@@ -112,7 +112,7 @@ class NotificationsIter:
         self.max_retry = max_retry
         self.max_workers = max_workers
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         tasks: List[_Task] = []
         with ThreadPool(max_workers=self.max_workers) as executor:
             while True:
@@ -250,7 +250,7 @@ class ExperimentsIter:
         self.max_workers = max_workers
         self.exclude_languages = exclude_languages
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         while True:
             msgs = _run_task(
                 self.max_retry,
@@ -366,7 +366,7 @@ class BannedMsgIter:
         self.max_retry = max_retry
         self.max_workers = max_workers
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         for msg in NotificationsIter(
             self.user,
             category_id=5,
@@ -445,7 +445,7 @@ class CommentsIter:
         self.start_time = int(start_time * 1000)
         self.max_retry = max_retry
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         TAKE_AMOUNT: int = 20
         while True:
             comments = _run_task(
@@ -519,7 +519,7 @@ class WarnedMsgIter:
         self.end_time = end_time
         self.maybe_warned_message_callback = maybe_warned_message_callback
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         for comment in CommentsIter(
             self.user, content_id=self.user_id, category="User"
         ):
@@ -620,7 +620,7 @@ class RelationsIter:
             self.amount = amount
         self.max_workers = max_workers
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Dict[str, Any]]:
         with ThreadPool(max_workers=self.max_workers) as executor:
             tasks: List[_Task] = [
                 executor.submit(
@@ -733,7 +733,7 @@ class AvatarsIter:
         self.max_retry = max_retry
         self.max_workers = max_workers
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[bytes]:
         with ThreadPool(max_workers=self.max_workers) as executor:
             tasks: List[_Task] = [
                 executor.submit(
