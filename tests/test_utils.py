@@ -38,9 +38,12 @@ class TestUtils(unittest.TestCase):
         "Windows-only constant is unavailable",
     )
     def test_get_quantum_physics_version_parses_numeric_segments(self):
-        with patch("physicslab.quantum_physics.os.listdir", return_value=["a"]), patch(
-            "builtins.open",
-            mock_open(read_data=json.dumps({"app_ver": "1.2.3"})),
+        with (
+            patch("physicslab.quantum_physics.os.listdir", return_value=["a"]),
+            patch(
+                "builtins.open",
+                mock_open(read_data=json.dumps({"app_ver": "1.2.3"})),
+            ),
         ):
             self.assertEqual(
                 quantum_physics.get_quantum_physics_version(),

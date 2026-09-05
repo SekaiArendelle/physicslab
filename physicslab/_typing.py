@@ -1,7 +1,9 @@
 """Shared typing aliases and TypedDict definitions used across physicslab."""
 
+# Python >= 3.14 provides everything that ``typing_extensions`` used to
+# backport for older interpreters (``Self``, ``TypeAlias``, ``TypedDict``,
+# ...), so the backport import is no longer needed.
 from typing import *
-from typing_extensions import *  # type: ignore
 
 num_type: TypeAlias = Union[int, float]
 

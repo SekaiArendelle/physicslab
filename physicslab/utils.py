@@ -46,7 +46,7 @@ def find_path_of_sav_name(sav_name: str) -> Optional[pathlib.Path]:
         with open(file, encoding="utf-8") as f:
             try:
                 plsav_dict: dict = json.load(f)
-            except (json.decoder.JSONDecodeError, UnicodeDecodeError, OSError):
+            except json.decoder.JSONDecodeError, UnicodeDecodeError, OSError:
                 continue
         if "Summary" not in plsav_dict.keys():
             continue

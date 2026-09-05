@@ -4,11 +4,8 @@ This file provides support for multi-threaded style API calls
 
 """
 
-import sys
 import json
 import asyncio
-import functools
-import contextvars
 import requests
 import pathlib
 
@@ -18,7 +15,7 @@ from physicslab import quantum_physics
 from physicslab import enums
 from physicslab import errors
 from physicslab.enums import Tag, Category
-from physicslab._typing import Optional, List, Callable, Awaitable
+from physicslab._typing import Optional, List, Callable, Awaitable, Dict, Any
 
 
 def _serialize_token(token: Optional[str]) -> str:
@@ -31,14 +28,7 @@ def _serialize_token(token: Optional[str]) -> str:
 
 
 async def _async_wrapper(func: Callable, *args, **kwargs):
-    if sys.version_info < (3, 9):
-        # copied from asyncio.to_thread
-        loop = asyncio.get_running_loop()
-        ctx = contextvars.copy_context()
-        func_call = functools.partial(ctx.run, func, *args, **kwargs)
-        return await loop.run_in_executor(None, func_call)
-    else:
-        return await asyncio.to_thread(func, *args, **kwargs)
+    return await asyncio.to_thread(func, *args, **kwargs)
 
 
 def _check_response(
@@ -1241,7 +1231,7 @@ class User:
             raise FileNotFoundError(f"`{image_path}` not found")
 
         with image_path.open("rb") as f:
-            data = {
+            data: Dict[str, Any] = {
                 "policy": (None, policy, None),
                 "authorization": (None, authorization, None),
                 "file": ("temp.jpg", f, None),
