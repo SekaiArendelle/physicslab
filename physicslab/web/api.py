@@ -1943,6 +1943,44 @@ def token_login(
     )
 
 
+def preference_login(
+    preference_path: pathlib.Path,
+    region: str = "China",
+    domain: str = "physics-api-cn.turtlesim.com",
+) -> User:
+    """Login to Physics-Lab-AR via the credentials cached by Quantum-Physics.
+
+    The login credentials of the CIVITAS cloud account cached by the
+    Quantum-Physics app are read from its encrypted preference file.
+
+    Args:
+        preference_path: Path of the encrypted preference file, which can be
+            obtained by ``quantum_physics.get_preference_path()``.
+        region: The region of the cached account, e.g. "China" or "US".
+        domain: The domain of the server.
+
+    Returns:
+        The logged-in user.
+
+    Raises:
+        FileNotFoundError: The preference file does not exist.
+        ValueError: The preference file is damaged, the *region* account is not
+            bound, or the cached credentials are invalid.
+
+    """
+    if not isinstance(preference_path, pathlib.Path):
+        raise TypeError(
+            f"Parameter `preference_path` must be of type `pathlib.Path`, but got value `{preference_path}` of type `{type(preference_path).__name__}`"
+        )
+    if not isinstance(region, str):
+        raise TypeError(
+            f"Parameter `region` must be of type `str`, but got value `{region}` of type `{type(region).__name__}`"
+        )
+
+    token, auth_code = quantum_physics.get_cached_login(preference_path, region)
+    return token_login(token, auth_code, domain)
+
+
 async def async_anonymous_login(
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> Awaitable[User]:
@@ -1966,3 +2004,12 @@ async def async_token_login(
 ) -> Awaitable[User]:
     """Execute the async token login routine."""
     return await _async_wrapper(token_login, token, auth_code, domain)
+
+
+async def async_preference_login(
+    preference_path: pathlib.Path,
+    region: str = "China",
+    domain: str = "physics-api-cn.turtlesim.com",
+) -> Awaitable[User]:
+    """Execute the async preference login routine."""
+    return await _async_wrapper(preference_login, preference_path, region, domain)
