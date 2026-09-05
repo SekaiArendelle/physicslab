@@ -3,6 +3,7 @@
 
 Because of that behavior, this module provides a lightweight custom thread pool
 instead of using ``ThreadPoolExecutor`` directly.
+
 """
 
 import queue
@@ -14,7 +15,7 @@ from physicslab._typing import List, Callable, Self, Any, Optional, Union, Type
 
 
 class CanceledError(Exception):
-    """Task have been canceled"""
+    """Task has been canceled."""
 
     def __repr__(self) -> str:
         return "Task have been canceled"
@@ -27,7 +28,7 @@ class _EndOfQueue:
 
 @unique
 class _Status(Enum):
-    """task's status"""
+    """Task status."""
 
     wait = 0
     running = 1
@@ -114,6 +115,7 @@ class ThreadPool:
 
         Args:
             max_workers: Maximum number of worker threads.
+
         """
         if not isinstance(max_workers, int):
             raise TypeError(
@@ -129,7 +131,7 @@ class ThreadPool:
         self.threads: List[Thread] = []
 
     def _office(self) -> None:
-        """workers work here"""
+        """Worker loop for processing tasks."""
         while True:
             try:
                 _task = self.task_queue.get_nowait()
@@ -150,6 +152,7 @@ class ThreadPool:
     def submit(self, func, *args, **kwargs) -> _Task:
         """submit a task
         @param func: function to be submitted
+
         """
         if not callable(func):
             raise TypeError(
@@ -166,11 +169,11 @@ class ThreadPool:
         return task
 
     def submit_end(self) -> None:
-        """users should call this method after all tasks are submitted"""
+        """Call after all tasks have been submitted to signal no more tasks will follow."""
         self.task_queue.put_nowait(_EndOfQueue)
 
     def cancel_all_pending_tasks(self) -> None:
-        """cancel all pending tasks"""
+        """Cancel all pending tasks."""
         while True:
             try:
                 task = self.task_queue.get_nowait()
@@ -186,7 +189,7 @@ class ThreadPool:
         self.submit_end()
 
     def wait(self) -> None:
-        """blocking until all tasks are done"""
+        """Block until all tasks are done."""
         for thread in self.threads:
             if platform.system() == "Windows":  # and sys.version_info < (3, 14):
                 while thread.is_alive():

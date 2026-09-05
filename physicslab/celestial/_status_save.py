@@ -157,6 +157,7 @@ class CelestialStatusSave:
         Raises:
             TypeError: If element is not a CelestialBase instance.
             ElementExistError: If an element with the same identifier already exists.
+
         """
         if not isinstance(element, _base.CelestialBase):
             raise TypeError(
@@ -178,6 +179,7 @@ class CelestialStatusSave:
 
         Raises:
             TypeError: If other is not a CelestialStatusSave instance.
+
         """
         if not isinstance(other, CelestialStatusSave):
             raise TypeError(
@@ -194,6 +196,7 @@ class CelestialStatusSave:
 
         Raises:
             TypeError: If element is not a CelestialBase instance.
+
         """
         if not isinstance(element, _base.CelestialBase):
             raise TypeError(
@@ -215,6 +218,7 @@ class CelestialStatusSave:
         Raises:
             TypeError: If index is not an int.
             ElementNotExistError: If index is out of range.
+
         """
         if not isinstance(index, int):
             raise TypeError(
@@ -239,6 +243,7 @@ class CelestialStatusSave:
         Raises:
             TypeError: If identifier is not a str.
             ElementNotExistError: If no element has the given identifier.
+
         """
         if not isinstance(identifier, str):
             raise TypeError(
@@ -265,6 +270,7 @@ class CelestialStatusSave:
         Raises:
             TypeError: If position is not a Position instance.
             ElementNotExistError: If no element is at the given position.
+
         """
         if not isinstance(position, coordinate_system.Position):
             raise TypeError(

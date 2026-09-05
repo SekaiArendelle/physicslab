@@ -5,7 +5,7 @@ from physicslab import coordinate_system
 
 
 class CelestialBase:
-    """Base class for celestial elements"""
+    """Base class for celestial elements."""
 
     __position: coordinate_system.Position
     __velocity: coordinate_system.Velocity

@@ -45,6 +45,7 @@ class ElectromagnetismStatusSave:
         Raises:
             TypeError: If *element* is not an ``ElectromagnetismBase`` instance.
             ElementExistError: If an element with the same identifier already exists.
+
         """
         if not isinstance(element, _base.ElectromagnetismBase):
             raise TypeError(

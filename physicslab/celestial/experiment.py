@@ -241,6 +241,7 @@ class CelestialExperiment:
 
         Raises:
             TypeError: If path is not a pathlib.Path instance.
+
         """
         if not isinstance(path, pathlib.Path):
             raise TypeError(
@@ -261,6 +262,7 @@ class CelestialExperiment:
 
         Raises:
             TypeError: If other is not a CelestialExperiment instance.
+
         """
         if not isinstance(other, CelestialExperiment):
             raise TypeError(
@@ -351,6 +353,7 @@ def crt_celestial_experiment(name: Optional[str]) -> CelestialExperiment:
 
     Returns:
         A new CelestialExperiment instance.
+
     """
     return CelestialExperiment(name)
 
@@ -370,6 +373,7 @@ def load_celestial_experiment_by_file_path(
         TypeError: If path is not a pathlib.Path instance.
         ExperimentNotExistError: If the file does not exist.
         ExperimentTypeError: If the file does not contain a celestial experiment.
+
     """
     if not isinstance(path, pathlib.Path):
         raise TypeError(
@@ -421,6 +425,7 @@ def load_celestial_experiment_by_sav_name(
 
     Raises:
         ExperimentNotExistError: If no experiment with that name is found.
+
     """
     file = find_path_of_sav_name(sav_name)
     if file is None:
@@ -447,6 +452,7 @@ def load_celestial_experiment_from_app(
     Raises:
         TypeError: If content_id, category, or user have incorrect types.
         ExperimentTypeError: If the server content is not a celestial experiment.
+
     """
     if not isinstance(content_id, str):
         raise TypeError(

@@ -1102,7 +1102,7 @@ class Blackhole(CelestialBase):
 
 
 class FantasyStar(CelestialBase):
-    """Represents a fantasy star"""
+    """Represents a fantasy star."""
 
     def __init__(
         self,
@@ -1321,7 +1321,7 @@ class ChocolateBall(CelestialBase):
 
 
 class Continential(CelestialBase):
-    """Represents a continental planet"""
+    """Represents a continental planet."""
 
     def __init__(
         self,
@@ -1394,7 +1394,7 @@ class Continential(CelestialBase):
 
 
 class Arctic(CelestialBase):
-    """Represents a frozen arctic planet"""
+    """Represents a frozen arctic planet."""
 
     def __init__(
         self,
@@ -1467,7 +1467,7 @@ class Arctic(CelestialBase):
 
 
 class Arid(CelestialBase):
-    """Represents an arid planet"""
+    """Represents an arid planet."""
 
     def __init__(
         self,
@@ -1540,7 +1540,7 @@ class Arid(CelestialBase):
 
 
 class Barren(CelestialBase):
-    """Represents a barren planet"""
+    """Represents a barren planet."""
 
     def __init__(
         self,
@@ -1613,7 +1613,7 @@ class Barren(CelestialBase):
 
 
 class Desert(CelestialBase):
-    """Represents a desert planet"""
+    """Represents a desert planet."""
 
     def __init__(
         self,
@@ -1686,7 +1686,7 @@ class Desert(CelestialBase):
 
 
 class Jungle(CelestialBase):
-    """Represents a jungle planet"""
+    """Represents a jungle planet."""
 
     def __init__(
         self,
@@ -1759,7 +1759,7 @@ class Jungle(CelestialBase):
 
 
 class Toxic(CelestialBase):
-    """Represents a toxic planet"""
+    """Represents a toxic planet."""
 
     def __init__(
         self,
@@ -1832,7 +1832,7 @@ class Toxic(CelestialBase):
 
 
 class Lava(CelestialBase):
-    """Represents a lava planet"""
+    """Represents a lava planet."""
 
     def __init__(
         self,
@@ -1905,7 +1905,7 @@ class Lava(CelestialBase):
 
 
 class Ocean(CelestialBase):
-    """Represents an ocean planet"""
+    """Represents an ocean planet."""
 
     def __init__(
         self,

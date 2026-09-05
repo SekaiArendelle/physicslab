@@ -5,7 +5,7 @@ from physicslab import coordinate_system
 
 
 class ElectromagnetismBase:
-    """Base class for electromagnetism elements"""
+    """Base class for electromagnetism elements."""
 
     __position: coordinate_system.Position
     __rotation: coordinate_system.Rotation

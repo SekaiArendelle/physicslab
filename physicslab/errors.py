@@ -61,7 +61,7 @@ class ExperimentNotExistError(Exception):
 
 
 class ExperimentTypeError(Exception):
-    """The experiment type is incorrect"""
+    """The experiment type is incorrect."""
 
     __err_msg: str
 
@@ -94,7 +94,7 @@ class ElementExistError(Exception):
 
 
 class ResponseFail(Exception):
-    """The response successfully returned but the returned data from Quantum-Physics is invalid"""
+    """The response successfully returned but the returned data from Quantum-Physics is invalid."""
 
     def __init__(self, err_code: int, err_msg: str):
         self.err_code: int = err_code

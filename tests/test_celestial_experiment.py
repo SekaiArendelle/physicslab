@@ -37,7 +37,9 @@ class TestCelestialExperiment(unittest.TestCase):
         intro = "line1\nline2"
         with crt_celestial_experiment("intro-test") as expe:
             expe.introduction = intro
-            self.assertEqual(expe.as_plsav_dict()["Summary"]["Description"], ["line1", "line2"])
+            self.assertEqual(
+                expe.as_plsav_dict()["Summary"]["Description"], ["line1", "line2"]
+            )
 
         with load_celestial_experiment_by_file_path(
             pathlib.Path(_constant.TEST_DATA_DIR) / "All-Celestial-Elements.sav"

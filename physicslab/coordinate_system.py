@@ -3,6 +3,7 @@
 Provides typed vector classes (Position, Rotation, Velocity, AngularVelocity,
 Acceleration) and helpers for serialising/deserialising them to and from the
 ``.plsav`` string format used by Physics-Lab-AR.
+
 """
 
 from ._typing import num_type
@@ -64,6 +65,7 @@ def construct_position_from_plsav_str(position_str: str) -> Position:
 
     Raises:
         ValueError: If the string cannot be parsed.
+
     """
     try:
         x_str, z_str, y_str = position_str.split(",")
@@ -133,6 +135,7 @@ def construct_rotation_from_plsav_str(rotation_str: str) -> Rotation:
 
     Raises:
         ValueError: If the string cannot be parsed.
+
     """
     try:
         x_str, z_str, y_str = rotation_str.split(",")
@@ -202,6 +205,7 @@ def construct_velocity_from_plsav_str(velocity_str: str) -> Velocity:
 
     Raises:
         ValueError: If the string cannot be parsed.
+
     """
     try:
         x_str, z_str, y_str = velocity_str.split(",")
@@ -273,6 +277,7 @@ def construct_angular_velocity_from_plsav_str(
 
     Raises:
         ValueError: If the string cannot be parsed.
+
     """
     try:
         x_str, z_str, y_str = angular_velocity_str.split(",")
@@ -342,6 +347,7 @@ def construct_acceleration_from_plsav_str(acceleration_str: str) -> Acceleration
 
     Raises:
         ValueError: If the string cannot be parsed.
+
     """
     try:
         x_str, z_str, y_str = acceleration_str.split(",")

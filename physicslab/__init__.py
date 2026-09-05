@@ -1,4 +1,4 @@
-"""Python API for Physics-Lab-AR"""
+"""Python API for Physics-Lab-AR."""
 
 from .version import __version__
 

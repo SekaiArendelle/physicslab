@@ -32,6 +32,7 @@ def find_path_of_sav_name(sav_name: str) -> Optional[pathlib.Path]:
 
     Raises:
         TypeError: If *sav_name* is not a string.
+
     """
     if not isinstance(sav_name, str):
         raise TypeError(

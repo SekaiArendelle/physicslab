@@ -1,6 +1,7 @@
 """Wrapper for Physics-Lab-AR web API
 Except for experiment upload API which is encapsulated in class Experiment's __upload
 This file provides support for multi-threaded style API calls
+
 """
 
 import sys
@@ -52,6 +53,7 @@ def _check_response(
 
     Returns:
         dict: Physics-Lab-AR API response structure
+
     """
     assert err_callback is None or callable(err_callback)
 
@@ -86,6 +88,7 @@ def get_start_page() -> dict:
 
     Returns:
         dict: Physics-Lab-AR API response structure
+
     """
     response = _request.get_https(
         domain="physics-api-cn.turtlesim.com", port=443, path="Users"
@@ -117,6 +120,7 @@ def get_avatar(
 
     Returns:
         bytes: Image data
+
     """
     if not isinstance(target_id, str):
         raise TypeError(
@@ -180,7 +184,7 @@ async def async_get_avatar(
 
 
 class User:
-    """This class only provides blocking API"""
+    """This class only provides blocking API."""
 
     token: Optional[str]
     auth_code: str
@@ -223,7 +227,7 @@ class User:
         statistic: dict,
         domain: str,
     ) -> None:
-        """Data initialization only"""
+        """Data initialization only."""
         if not isinstance(token, (str, type(None))):
             raise TypeError(
                 f"Parameter `token` must be of type `str`, but got value `{token}` of type `{type(token).__name__}`"
@@ -304,6 +308,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         response = _request.post_https(
             domain=self.domain,
@@ -353,6 +358,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(category, Category):
             raise TypeError(
@@ -501,6 +507,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(content_id, str):
             raise TypeError(
@@ -555,6 +562,7 @@ class User:
         Notes:
             Low-level API, do not use directly
             Use Experiment.update() and Experiment.upload() methods to publish experiments
+
         """
         if not isinstance(summary_id, str):
             raise TypeError(
@@ -608,6 +616,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(summary_id, str):
             raise TypeError(
@@ -679,6 +688,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(target_id, str):
             raise TypeError(
@@ -783,6 +793,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(comment_id, str):
             raise TypeError(
@@ -839,6 +850,7 @@ class User:
 
         Returns:
             dict: Structure of the response body returned by Wushi API
+
         """
         if not isinstance(target_id, str):
             raise TypeError(
@@ -907,6 +919,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(content_id, str):
             raise TypeError(
@@ -958,6 +971,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(content_id, str):
             raise TypeError(
@@ -999,6 +1013,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(name, str):
             raise TypeError(
@@ -1030,6 +1045,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(id, str):
             raise TypeError(
@@ -1069,6 +1085,7 @@ class User:
 
         Notes:
             Only for compatibility, use `get_user_by_id` or `get_user_by_name` is recommended
+
         """
         if not isinstance(msg, str):
             raise TypeError(
@@ -1100,6 +1117,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         response = _request.post_https(
             domain=self.domain,
@@ -1134,6 +1152,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(content_id, str):
             raise TypeError(
@@ -1202,6 +1221,7 @@ class User:
 
         Notes:
             This API is a low-level API, it is recommended to use the more complete Experiment.upload() and Experiment.update() methods for uploading images
+
         """
         if policy is None or authorization is None:
             raise RuntimeError("Sorry, Physics-Lab-AR can't upload this iamge")
@@ -1255,6 +1275,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(message_id, str):
             raise TypeError(
@@ -1299,6 +1320,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if category_id not in (0, 1, 2, 3, 4, 5):
             raise TypeError(
@@ -1365,6 +1387,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(content_id, str):
             raise TypeError(
@@ -1433,6 +1456,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if display_type not in ("Follower", "Following"):
             raise ValueError(
@@ -1500,6 +1524,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(target_id, str):
             raise TypeError(
@@ -1541,6 +1566,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(nickname, str):
             raise TypeError(
@@ -1576,6 +1602,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(target, str):
             raise TypeError(
@@ -1612,6 +1639,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(activity_id, str):
             raise TypeError(
@@ -1660,6 +1688,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(target_id, str):
             raise TypeError(
@@ -1710,6 +1739,7 @@ class User:
 
         Returns:
             dict: Physics-Lab-AR API response structure
+
         """
         if not isinstance(target_id, str):
             raise TypeError(
@@ -1745,7 +1775,7 @@ class User:
 def anonymous_login(
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> User:
-    """Anonymous login to Physics-Lab-AR"""
+    """Anonymous login to Physics-Lab-AR."""
     _version = quantum_physics.get_quantum_physics_version()
     if _version is not None:
         plar_version = int(f"{_version[0]}{_version[1]}{_version[2]}")
@@ -1796,7 +1826,7 @@ def email_login(
     password: str,
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> User:
-    """Login to Physics-Lab-AR via email"""
+    """Login to Physics-Lab-AR via email."""
     if not isinstance(email, str):
         raise TypeError(
             f"Parameter email must be of type `str`, but got value {email} of type `{type(email).__name__}`"
@@ -1856,7 +1886,7 @@ def token_login(
     auth_code: str,
     domain: str = "physics-api-cn.turtlesim.com",
 ) -> User:
-    """Login to Physics-Lab-AR via token"""
+    """Login to Physics-Lab-AR via token."""
     if not isinstance(token, str):
         raise TypeError(
             f"Parameter email must be of type `str`, but got value {token} of type `{type(token).__name__}`"

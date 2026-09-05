@@ -18,6 +18,7 @@ def _run_task(max_retry: Optional[int], func: Callable, *args, **kwargs):
 
     Args:
         max_retry: Maximum retry count (>= 0). ``None`` means unlimited retries.
+
     """
     assert (max_retry is None or max_retry >= 0) and callable(func)
 
@@ -74,6 +75,7 @@ class NotificationsIter:
             max_retry: Maximum retries per request. Defaults to 0 (no retry).
                 ``None`` means unlimited retries (not recommended).
             max_workers: Maximum worker thread count.
+
         """
         if not isinstance(user, User):
             raise TypeError(
@@ -168,6 +170,7 @@ class ExperimentsIter:
             user_id: Filter by creator user ID.
             max_retry: Maximum retries per request.
             max_workers: Maximum worker thread count.
+
         """
         if not isinstance(category, Category):
             raise TypeError(
@@ -299,6 +302,7 @@ class BannedMsgIter:
             get_banned_template: Whether to fetch the latest ban template from server.
                 If ``False``, use the built-in template.
             max_workers: Maximum worker thread count.
+
         """
         if not isinstance(user, User):
             raise TypeError(
@@ -406,6 +410,7 @@ class CommentsIter:
             category: One of ``"User"``, ``"Experiment"``, or ``"Discussion"``.
             start_time: Start timestamp in seconds. Iteration proceeds from newer to older.
             max_retry: Retry count for transient request failures.
+
         """
         if not isinstance(user, User):
             raise TypeError(
@@ -478,6 +483,7 @@ class WarnedMsgIter:
             start_time: Start timestamp in seconds.
             end_time: End timestamp in seconds. ``None`` means now.
             maybe_warned_message_callback: Callback for possible warning messages.
+
         """
         if not isinstance(user, User):
             raise TypeError(
@@ -561,6 +567,7 @@ class RelationsIter:
             max_retry: Maximum retries (>= 0). ``None`` means unlimited.
             amount: Number of relations to fetch. ``None`` queries automatically.
             max_workers: Maximum worker thread count.
+
         """
         if not isinstance(user, User):
             raise TypeError(
@@ -659,6 +666,7 @@ class AvatarsIter:
             max_retry: Maximum retries (>= 0). ``None`` means unlimited.
             max_img_index: Upper bound for image index. ``None`` queries automatically.
             max_workers: Maximum worker thread count.
+
         """
         if not isinstance(target_id, str):
             raise TypeError(

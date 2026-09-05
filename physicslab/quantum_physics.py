@@ -9,7 +9,7 @@ from typing import Optional, Tuple
 
 
 def get_quantum_physics_version() -> Optional[Tuple[int, int, int]]:
-    """Get version of Quantum-Physics, return None if failed to get version"""
+    """Get version of Quantum-Physics, return None if failed to get version."""
     if platform.system() != "Windows":
         return None
 
@@ -44,7 +44,7 @@ def get_quantum_physics_version() -> Optional[Tuple[int, int, int]]:
 
 
 def get_quantum_physics_path() -> Optional[str]:
-    """Get path of Quantum-Physics"""
+    """Get path of Quantum-Physics."""
     if platform.system() != "Windows":
         return None
 

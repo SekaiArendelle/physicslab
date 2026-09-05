@@ -136,6 +136,7 @@ class CircuitBase:
 
         This method must be implemented by subclasses; it is used by the default
         implementation of :meth:`all_pins` to enumerate the element's pins.
+
         """
         raise NotImplementedError(
             "Subclasses of CircuitBase must implement the all_pins_property_iter "
@@ -215,14 +216,14 @@ class Pin:
 
 
 class InputPin(Pin):
-    """Input pin, only for logic circuit"""
+    """Input pin, only for logic circuit."""
 
     def __init__(self, element: CircuitBase, pinLabel: int, pin_name: str) -> None:
         super().__init__(element, pinLabel, pin_name)
 
 
 class OutputPin(Pin):
-    """Output pin, only for logic circuit"""
+    """Output pin, only for logic circuit."""
 
     def __init__(self, element, pinLabel: int, pin_name: str) -> None:
         super().__init__(element, pinLabel, pin_name)

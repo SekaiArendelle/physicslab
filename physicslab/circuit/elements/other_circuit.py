@@ -1008,6 +1008,7 @@ class SimpleInstrument(CircuitBase):
             bpm: Tempo in beats per minute.
             is_ideal: Whether to use ideal mode.
             is_pulse: Whether the instrument plays only once per trigger.
+
         """
         self._i_pin = Pin(self, 0, "i")
         self._o_pin = Pin(self, 1, "o")
@@ -1210,6 +1211,7 @@ class SimpleInstrument(CircuitBase):
         Notes:
             Supported range is ``C0`` to ``C8``.
             Examples: ``C0=24``, ``C1=36``, ``C2=48``, ``C3=60``, ..., ``C8=120``.
+
         """
         if not isinstance(pitch, str) or not isinstance(
             rising_falling, (bool, type(None))

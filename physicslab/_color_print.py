@@ -18,6 +18,7 @@ Usage:
     >>> cprint(Red("test"), end='')  # Supports custom ``end`` like ``print``
     # Use built-in ``print`` if you want plain text output only.
     >>> print(Green("test"), "test", Yellow("test"))  # No color in output
+
 """
 
 import platform
@@ -28,7 +29,8 @@ import io
 import sys
 
 if platform.system() in ("Windows", "Linux"):
-    # Fuck ANSI, fuck Windows
+    # On Windows and Linux, force UTF-8 to avoid UnicodeEncodeError from
+    # the legacy console that does not support ANSI escape sequences.
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
@@ -202,6 +204,7 @@ def cprint(*args, end="\n", file=sys.stdout) -> None:
             color attributes; all other objects are passed through ``print``.
         end: String appended after the last argument (default ``"\\n"``).
         file: Output stream (``sys.stdout`` or ``sys.stderr``).
+
     """
     # Flush before printing so buffered content is not affected by color changes on Windows.
     # e.g.

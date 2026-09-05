@@ -173,6 +173,7 @@ class BasicCapacitor(CircuitBase):
             is_ideal: Whether to use ideal mode.
             peak_voltage: Peak voltage in volts (V).
             internal_resistance: Internal resistance in ohms (Ohm).
+
         """
         if not isinstance(peak_voltage, (int, float)):
             raise TypeError(
@@ -293,6 +294,7 @@ class BasicInductor(CircuitBase):
             inductance: Inductance in henries (H).
             internal_resistance: Internal resistance in ohms (Ohm).
             is_ideal: Whether to use ideal mode.
+
         """
         if not isinstance(rated_current, (int, float)):
             raise TypeError(
@@ -1224,6 +1226,7 @@ class OperationalAmplifier(CircuitBase):
             gain: Gain factor.
             max_voltage: Maximum output voltage.
             min_voltage: Minimum output voltage.
+
         """
         if not isinstance(gain, (int, float)):
             raise TypeError(

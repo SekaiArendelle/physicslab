@@ -9,6 +9,7 @@ from physicslab._experiment import (
     construct_tags,
 )
 
+
 class Summary:
     """Summary information about an experiment, as displayed in Physics-Lab-AR."""
 

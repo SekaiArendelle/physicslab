@@ -42,6 +42,7 @@ def serialize_tags(tags: Set[enums.Tag], type_tag: str) -> List[str]:
     The saved list always starts with the type tag (e.g. ``"Type-3"``),
     followed by the actual community tags.  This is redundant with
     ``Summary.Type`` and is kept only for backward compatibility.
+
     """
     if not isinstance(type_tag, str):
         raise TypeError(
@@ -59,6 +60,7 @@ def construct_tags(raw_tags: Optional[List[str]], type_tag: str) -> Set[enums.Ta
     (the caller's own type tag) is also skipped so that it does not pollute
     the returned set, although in practice every ``"Type-*"`` entry is
     dropped regardless of its value.
+
     """
     if not isinstance(type_tag, str):
         raise TypeError(

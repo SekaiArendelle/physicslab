@@ -11,6 +11,7 @@ graph elements. It also provides utility methods for getting node degrees,
 counting nodes and edges, and creating copies of the graph.
 
 Url: https://github.com/SekaiArendelle/undirected_graph_py.git
+
 """
 
 import copy
@@ -101,6 +102,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             True if the node exists in the graph, False otherwise
+
         """
         return node in self._adjacency_list
 
@@ -109,6 +111,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             The number of nodes in the graph
+
         """
         return len(self._adjacency_list)
 
@@ -117,6 +120,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             A string representation showing the graph's edges
+
         """
         cls = self.__class__.__name__
         return f"{cls}({list(self.edges())})"
@@ -129,6 +133,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             A deep copy of the graph
+
         """
         if id(self) in memo:
             return memo[id(self)]
@@ -139,6 +144,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             A shallow copy of the graph
+
         """
         result = UndirectedGraph()
         result._adjacency_list = copy.deepcopy(self._adjacency_list)
@@ -150,6 +156,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Args:
             other: Another UndirectedGraph instance to swap with
+
         """
         self._adjacency_list, other._adjacency_list = (
             other._adjacency_list,
@@ -162,6 +169,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             True if the graph has no nodes, False otherwise
+
         """
         return self._adjacency_list == {}
 
@@ -173,6 +181,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Raises:
             NodeExistsError: If the node already exists in the graph
+
         """
         if node in self._adjacency_list:
             raise NodeExistsError(f"Node {node} already exists")
@@ -186,6 +195,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Raises:
             NodeNotExistsError: If the node doesn't exist in the graph
+
         """
         if node not in self._adjacency_list:
             raise NodeNotExistsError(f"Node {node} does not exist")
@@ -207,6 +217,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
             NodeNotExistsError: If either node doesn't exist in the graph
             EdgeExistsError: If an edge already exists between these nodes
             InvalidEdgeError: If the node1 and node2 are the same node
+
         """
         if node1 not in self._adjacency_list:
             raise NodeNotExistsError(f"Node {node1} does not exist")
@@ -235,6 +246,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
             NodeNotExistsError: If either node doesn't exist in the graph
             EdgeNotExistsError: If no edge exists between these nodes
             InvalidEdgeError: If the node1 and node2 are the same node
+
         """
         if node1 not in self._adjacency_list:
             raise NodeNotExistsError(f"Node {node1} does not exist")
@@ -259,6 +271,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
         Raises:
             NodeNotExistsError: If either node doesn't exist in the graph
             EdgeNotExistsError: If no edge exists between these nodes
+
         """
         if node1 not in self._adjacency_list:
             raise NodeNotExistsError(f"Node {node1} does not exist")
@@ -283,6 +296,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             True if edge exists between node1 and node2, False otherwise
+
         """
         return node1 in self._adjacency_list and node2 in self._adjacency_list[node1]
 
@@ -296,6 +310,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             The number of nodes in the graph
+
         """
         return len(self._adjacency_list)
 
@@ -304,6 +319,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             The number of edges in the graph
+
         """
         assert self._count_edges >= 0
         return self._count_edges
@@ -319,6 +335,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Raises:
             NodeNotExistsError: If the node doesn't exist in the graph
+
         """
         if node not in self._adjacency_list:
             raise NodeNotExistsError(f"Node {node} not in graph")
@@ -330,6 +347,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             An iterator over all nodes
+
         """
         return iter(self._adjacency_list.keys())
 
@@ -338,6 +356,7 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             An iterator over tuples of (node1, node2, edge_data)
+
         """
         _seen: Set[Tuple[_Node, _Node]] = set()
         for _node in self._adjacency_list.keys():
@@ -354,5 +373,6 @@ class UndirectedGraph(Generic[_Node, _Edge]):
 
         Returns:
             An iterator over neighboring nodes
+
         """
         return iter(self._adjacency_list[node])

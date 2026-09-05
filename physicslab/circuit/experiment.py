@@ -1093,6 +1093,7 @@ def load_circuit_experiment_by_file_path(path: pathlib.Path) -> CircuitExperimen
         TypeError: If *path* is not a ``pathlib.Path``.
         ExperimentNotExistError: If the file does not exist.
         ExperimentTypeError: If the file does not contain a circuit experiment.
+
     """
     if not isinstance(path, pathlib.Path):
         raise TypeError(
@@ -1251,6 +1252,7 @@ def load_circuit_experiment_by_sav_name(
 
     Raises:
         ExperimentNotExistError: If no matching save file is found.
+
     """
     file = find_path_of_sav_name(sav_name)
     if file is None:
@@ -1279,6 +1281,7 @@ def load_circuit_experiment_from_app(
     Raises:
         TypeError: If any argument has an unexpected type.
         ExperimentTypeError: If the content is not a circuit experiment.
+
     """
     if not isinstance(content_id, str):
         raise TypeError(

@@ -75,3 +75,23 @@ uv run python -m unittest tests.test_celestial_experiment.TestCelestialExperimen
 - Add or update tests when behavior changes.
 - Do not introduce new external dependencies without discussion.
 - Do not commit secrets, keys, or credentials.
+
+### Comments and docstrings
+
+- All comments must be in English.
+- Describe problems objectively; do not use profanity or emotional language in comments.
+- Single-line docstrings must end with a period: `"""Description."""`.
+- Multi-line docstrings must have a blank line after the opening `"""` and before the closing `"""`:
+
+```python
+def foo(bar: int) -> str:
+    """Do something with *bar*.
+
+    Args:
+        bar: The input value.
+
+    Returns:
+        A formatted string.
+
+    """
+```
