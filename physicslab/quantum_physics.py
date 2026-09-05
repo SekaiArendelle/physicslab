@@ -317,7 +317,7 @@ def get_quantum_physics_version() -> Optional[Tuple[int, int, int]]:
             return None
         major, minor, patch = parts
         return int(major), int(minor), int(patch)
-    except (json.decoder.JSONDecodeError, UnicodeDecodeError, FileNotFoundError):
+    except json.decoder.JSONDecodeError, UnicodeDecodeError, FileNotFoundError:
         return None
     except ValueError:
         return None

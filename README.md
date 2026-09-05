@@ -1,7 +1,7 @@
 ﻿# physicslab
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![support-version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)
+![support-version](https://img.shields.io/badge/python-3.14-blue)
 
 ## 介绍
 当我们在[物理实验室AR](https://www.turtlesim.com/)纯手动做实验的时候, 往往会遇到一些琐碎、麻烦但又不得不做的事情, 比如：重复的搭建某些电路, 调整元件的位置, 电路内部结构的重复。这些问题都可以通过使用`physicslab`生成这些电路结构来轻易解决！于是我写了`physicslab`, 让你能用`Python`在物实做实验。
@@ -17,7 +17,7 @@
 更多好用的功能等你来发现
 
 ## 功能支持
-* 跨平台支持, 只要`Python3.8+`能在该平台上运行并且能够读写文件, 比如`Windows7+`, `Linux`, `MacOS`, `Android`
+* 跨平台支持, 只要`Python3.14+`能在该平台上运行并且能够读写文件, 比如`Windows7+`, `Linux`, `MacOS`, `Android`
 * 支持物实**所有**实验类型：电学, 天体物理, 电与磁
 * 支持物实**全部**元件
 * 大多数物实网络api封装的支持 (直接与物实服务器进行交互)
@@ -26,7 +26,7 @@
 `physicslab`的版本发布采取快照的方式, `physicslab`仅会维护`trunk`
 
 ## 安装教程
-1.  请确保你的电脑有[Python](https://www.python.org)（>=3.8）与[物理实验室AR](https://www.turtlesim.com/)（简称`物实`）（也可以联系物理实验室的开发者[John-Chen](https://gitee.com/civitasjohn)）
+1.  请确保你的电脑有[Python](https://www.python.org)（>=3.14）与[物理实验室AR](https://www.turtlesim.com/)（简称`物实`）（也可以联系物理实验室的开发者[John-Chen](https://gitee.com/civitasjohn)）
 
 2.  在cmd或shell输入以下载physicslab：
 ```shell

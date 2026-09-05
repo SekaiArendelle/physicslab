@@ -9,7 +9,7 @@ This file is the entry point for AI coding agents. It contains the development w
 
 ## Development environment
 
-- Python 3.8+
+- Python 3.14+
 - [uv](https://docs.astral.sh/uv/) for dependency management and building
 
 Install dependencies (creates `.venv` automatically):
@@ -67,7 +67,7 @@ uv run ruff format --check physicslab tests
 ```
 
 Notes:
-- `mypy` analyzes the package targeting `python_version = "3.8"` (see `[tool.mypy]` in `pyproject.toml`); it is capped below 2.0 so `uv sync` keeps resolving on Python 3.8.
+- `mypy` analyzes the package targeting `python_version = "3.14"` (see `[tool.mypy]` in `pyproject.toml`).
 - `ruff` uses its default rule set, pinned via the `ruff` version range in the dev group.
 - The lint scope is `physicslab tests` on purpose, so markdown files such as `README.md` and `docs/*.md` are not reformatted by ruff.
 - The tree is not lint-clean yet; fixing the reported findings is a separate effort, so lint is not part of the mandatory workflow until it passes.

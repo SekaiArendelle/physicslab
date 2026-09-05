@@ -1,16 +1,16 @@
-"""Before Python 3.14, ``Thread.join`` on Windows may block exception propagation.
-    https://www.bilibili.com/video/BV1au411q7LN/?spm_id_from=333.999.0.0
+"""Lightweight custom thread pool for blocking API calls.
 
-Because of that behavior, this module provides a lightweight custom thread pool
-instead of using ``ThreadPoolExecutor`` directly.
-
+The pool provides the small submit/result/cancel primitives used by the web
+iterators. It was originally written because on Windows, before Python 3.14,
+``Thread.join`` blocked signal/exception delivery in the joining thread
+(https://github.com/python/cpython/issues/139689). The project requires
+Python >= 3.14, where that behavior is fixed, so a plain ``thread.join`` and
+a Condition-based status event work on every platform.
 """
 
 import queue
-import platform
 from threading import Thread, Condition
 from enum import Enum, unique
-from physicslab import errors
 from physicslab._typing import List, Callable, Self, Any, Optional, Union, Type
 
 
@@ -37,37 +37,23 @@ class _Status(Enum):
 
 
 class _StatusEvent:
-    if platform.system() == "Windows":  # and sys.version_info < (3, 14):
+    """Signal the completion of a task using a Condition."""
 
-        def __init__(self) -> None:
-            self._status: _Status = _Status.wait
+    def __init__(self) -> None:
+        self._condition = Condition()
+        self._status: _Status = _Status.wait
 
-        def wait(self) -> None:
-            """Execute the wait routine."""
-            while self._status != _Status.done:
-                pass
+    def wait(self) -> None:
+        """Execute the wait routine."""
+        with self._condition:
+            if self._status != _Status.done:
+                self._condition.wait()
 
-        def set_as_done(self) -> None:
-            """Set as done."""
+    def set_as_done(self) -> None:
+        """Set as done."""
+        with self._condition:
             self._status = _Status.done
-
-    else:
-
-        def __init__(self) -> None:
-            self._condition = Condition()
-            self._status = _Status.wait
-
-        def wait(self) -> None:
-            """Execute the wait routine."""
-            with self._condition:
-                if self._status != _Status.done:
-                    self._condition.wait()
-
-        def set_as_done(self) -> None:
-            """Set as done."""
-            with self._condition:
-                self._status = _Status.done
-                self._condition.notify_all()
+            self._condition.notify_all()
 
     def set_as_running(self) -> None:
         """Set as running."""
@@ -189,13 +175,9 @@ class ThreadPool:
         self.submit_end()
 
     def wait(self) -> None:
-        """Block until all tasks are done."""
+        """Block until all threads are done."""
         for thread in self.threads:
-            if platform.system() == "Windows":  # and sys.version_info < (3, 14):
-                while thread.is_alive():
-                    thread.join(timeout=2)
-            else:
-                thread.join()
+            thread.join()
 
     def __enter__(self) -> Self:
         return self
