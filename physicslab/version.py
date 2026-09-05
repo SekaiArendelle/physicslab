@@ -101,4 +101,5 @@ class _Version:
         return self.to_tuple() <= value.to_tuple()
 
 
-__version__ = _Version(3, 0, 0)
+# TODO maybe we need a better way to manage version info
+__version__ = "3.0.0"

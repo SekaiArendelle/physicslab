@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "physicslab"
+dynamic = ["version"]
+description = "Python API for Quantum-Physics App"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    { name = "Arendelle", email = "Arendelle_@outlook.com" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Chinese (Simplified)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "typing-extensions",
+    "requests",
+]
+
+[tool.hatch.version]
+path = "physicslab/version.py"
+
+[dependency-groups]
+dev = ["coverage"]

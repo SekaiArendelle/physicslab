@@ -2,6 +2,9 @@
 htmlcov/
 dumps/
 venv*
+.venv/
+.python-version
+uv.lock
 
 dist/
 build/
