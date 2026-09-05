@@ -2,7 +2,6 @@
 
 import time
 import urllib3
-import requests
 
 from .api import User, get_avatar
 from ._threadpool import ThreadPool, _Task
@@ -28,10 +27,8 @@ def _run_task(max_retry: Optional[int], func: Callable, *args, **kwargs):
                 return func(*args, **kwargs)
             except (
                 TimeoutError,
-                urllib3.exceptions.NewConnectionError,
-                urllib3.exceptions.MaxRetryError,
-                urllib3.exceptions.ConnectionError,
-                requests.exceptions.HTTPError,
+                ConnectionError,
+                urllib3.exceptions.HTTPError,
             ):
                 continue
     else:
@@ -42,10 +39,8 @@ def _run_task(max_retry: Optional[int], func: Callable, *args, **kwargs):
                 return func(*args, **kwargs)
             except (
                 TimeoutError,
-                urllib3.exceptions.NewConnectionError,
-                urllib3.exceptions.MaxRetryError,
-                urllib3.exceptions.ConnectionError,
-                requests.exceptions.HTTPError,
+                ConnectionError,
+                urllib3.exceptions.HTTPError,
             ):
                 continue
         raise errors.MaxRetryError("max retry reached")
