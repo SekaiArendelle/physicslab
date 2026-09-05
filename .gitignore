@@ -4,6 +4,8 @@ dumps/
 .venv/
 .python-version
 uv.lock
+.mypy_cache/
+.ruff_cache/
 
 dist/
 build/
