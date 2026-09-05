@@ -22,9 +22,19 @@ uv sync
 
 ### Run tests
 
+Full suite (includes network calls, slow):
+
 ```sh
 uv run coverage run -m unittest tests -v
 ```
+
+Fast path — skip network-dependent tests (when changes don't touch web/network code):
+
+```sh
+uv run coverage run -m unittest tests.test_celestial_experiment tests.test_circuit_experiment tests.test_electromagnetism_experiment tests.test_utils -v
+```
+
+This skips `test_pl_web` and the `test_load_from_app` methods in each experiment module. CI will run the full suite.
 
 ### View coverage report
 
