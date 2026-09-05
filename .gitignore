@@ -1,7 +1,6 @@
 .coverage
 htmlcov/
 dumps/
-venv*
 .venv/
 .python-version
 uv.lock
@@ -29,6 +28,5 @@ physicslabSav/
 *.sav
 !tests/data/*.sav
 *.pl.py
-*.test.*
-*.ignore.*
+*.ignore*
 *.xz
