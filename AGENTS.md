@@ -40,6 +40,12 @@ uv build
 
 Outputs `.tar.gz` and `.whl` to `dist/`.
 
+### Code formatting
+
+```sh
+uv format
+```
+
 ### Run a single test module
 
 ```sh

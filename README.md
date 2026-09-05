@@ -79,9 +79,4 @@ sys.path.append("/your/path/of/physicslab") # 将字符串替换为你想添加�
 * 国内镜像(gitee): https://gitee.com/script2000/physicslab
 
 ## 贡献代码
-`physicslab`使用`black`工具自动格式化代码风格
-```sh
-black physicslab
-```
-
 你可以从更新文档、bugfix、写[测试代码](./tests)开始入手
