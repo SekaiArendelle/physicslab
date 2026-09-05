@@ -56,6 +56,22 @@ Outputs `.tar.gz` and `.whl` to `dist/`.
 uv format
 ```
 
+### Run lint
+
+Lint tools are in the `dev` dependency group of `pyproject.toml` and are installed by `uv sync`.
+
+```sh
+uv run mypy physicslab
+uv run ruff check physicslab tests
+uv run ruff format --check physicslab tests
+```
+
+Notes:
+- `mypy` analyzes the package targeting `python_version = "3.8"` (see `[tool.mypy]` in `pyproject.toml`); it is capped below 2.0 so `uv sync` keeps resolving on Python 3.8.
+- `ruff` uses its default rule set, pinned via the `ruff` version range in the dev group.
+- The lint scope is `physicslab tests` on purpose, so markdown files such as `README.md` and `docs/*.md` are not reformatted by ruff.
+- The tree is not lint-clean yet; fixing the reported findings is a separate effort, so lint is not part of the mandatory workflow until it passes.
+
 ### Build docs
 
 ```sh

@@ -27,4 +27,22 @@ dependencies = [
 path = "physicslab/version.py"
 
 [dependency-groups]
-dev = ["coverage", "mkdocs", "mkdocs-material", "mkdocstrings[python]"]
+dev = [
+    "coverage",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    # Lint tools. mypy is capped below 2.0 so that `uv sync` still resolves on
+    # Python 3.8 (mypy 2.x requires Python >= 3.9 to run).
+    "mypy>=1.14,<2.0",
+    # ruff is capped to keep the default rule set stable.
+    "ruff>=0.16,<0.17",
+    "types-requests",
+]
+
+[tool.mypy]
+python_version = "3.8"
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
