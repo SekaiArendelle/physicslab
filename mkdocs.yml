@@ -1,0 +1,48 @@
+site_name: physicslab
+site_description: Python API for Physics-Lab-AR
+site_url: https://SekaiArendelle.github.io/physicslab/
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - scheme: default
+      primary: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - 首页: index.md
+  - 快速开始: quick_start.md
+  - Web API: web.md
+  - API Reference:
+      - 概览: api/index.md
+      - 坐标系: api/coordinate_system.md
+      - 枚举: api/enums.md
+      - 异常: api/errors.md
+      - 工具: api/utils.md
+      - 发布: api/publish.md
+      - 电路实验: api/circuit_experiment.md
+      - 电路元件: api/circuit_elements.md
+      - 天体实验: api/celestial_experiment.md
+      - 天体元件: api/celestial_planets.md
+      - 电磁实验: api/electromagnetism_experiment.md
+      - 电磁元件: api/electromagnetism_elements.md
+      - Web User: api/web_user.md
+      - Web 迭代器: api/web_iterators.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            members_order: source

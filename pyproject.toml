@@ -27,4 +27,4 @@ dependencies = [
 path = "physicslab/version.py"
 
 [dependency-groups]
-dev = ["coverage"]
+dev = ["coverage", "mkdocs", "mkdocs-material", "mkdocstrings[python]"]

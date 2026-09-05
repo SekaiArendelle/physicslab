@@ -46,6 +46,22 @@ Outputs `.tar.gz` and `.whl` to `dist/`.
 uv format
 ```
 
+### Build docs
+
+```sh
+uv run mkdocs build
+```
+
+Outputs static site to `site/`.
+
+### Preview docs
+
+```sh
+uv run mkdocs serve
+```
+
+Opens a local server at `http://127.0.0.1:8000`.
+
 ### Run a single test module
 
 ```sh
